@@ -36,7 +36,7 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h5" color="white">
-                  LISTA DE CLIENTES
+                  Lista de Clientes
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
