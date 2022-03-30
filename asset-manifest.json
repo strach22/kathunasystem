@@ -1,16 +1,14 @@
 {
   "files": {
-    "main.js": "/kathuna-system/static/js/main.0f526a77.js",
-    "static/media/pattern-tree.svg": "/kathuna-system/static/media/pattern-tree.156bb943ac7fd244f10c115d085e085e.svg",
+    "main.css": "/kathuna-system/static/css/main.87daad54.css",
+    "main.js": "/kathuna-system/static/js/main.93c5605b.js",
     "static/media/home-decor-3.jpg": "/kathuna-system/static/media/home-decor-3.74d13fcbd3c631fc7908.jpg",
     "static/media/home-decor-2.jpg": "/kathuna-system/static/media/home-decor-2.b4e5397c9846645ba275.jpg",
     "static/media/home-decor-1.jpg": "/kathuna-system/static/media/home-decor-1.05e218fd495ccc65c99d.jpg",
-    "static/media/bg-sign-in-basic.jpeg": "/kathuna-system/static/media/bg-sign-in-basic.f327db1d0e4b00ba3c81.jpeg",
     "static/media/bg-profile.jpeg": "/kathuna-system/static/media/bg-profile.af1219a742e09fc7b612.jpeg",
-    "static/media/bg-sign-up-cover.jpeg": "/kathuna-system/static/media/bg-sign-up-cover.30c5950b22e74f0d82ba.jpeg",
+    "static/media/bgkathuna.png": "/kathuna-system/static/media/bgkathuna.d589369bfa0f1dd33bdc.png",
     "static/media/home-decor-4.jpeg": "/kathuna-system/static/media/home-decor-4.5b448fd339a14695f6aa.jpeg",
-    "static/media/visa.png": "/kathuna-system/static/media/visa.71c0d5e9e2aaee42e4c3.png",
-    "static/media/mastercard.png": "/kathuna-system/static/media/mastercard.27fca3e7637a9458fb64.png",
+    "static/media/logo-ct.png": "/kathuna-system/static/media/logo-ct.cd2f88eca06df83c9954.png",
     "static/media/team-1.jpg": "/kathuna-system/static/media/team-1.0fd36e0ee93dcfacdef8.jpg",
     "static/media/bruce-mars.jpg": "/kathuna-system/static/media/bruce-mars.8a606c4a6dab54c9ceff.jpg",
     "static/media/marie.jpg": "/kathuna-system/static/media/marie.c28f32663b6432b46f78.jpg",
@@ -28,9 +26,11 @@
     "static/media/logo-atlassian.svg": "/kathuna-system/static/media/logo-atlassian.f2b0e8570a4b4ce768854ff3dad1a6e1.svg",
     "static/media/logo-asana.svg": "/kathuna-system/static/media/logo-asana.d758f410d82760a61d1eabcb03409de6.svg",
     "index.html": "/kathuna-system/index.html",
-    "main.0f526a77.js.map": "/kathuna-system/static/js/main.0f526a77.js.map"
+    "main.87daad54.css.map": "/kathuna-system/static/css/main.87daad54.css.map",
+    "main.93c5605b.js.map": "/kathuna-system/static/js/main.93c5605b.js.map"
   },
   "entrypoints": [
-    "static/js/main.0f526a77.js"
+    "static/css/main.87daad54.css",
+    "static/js/main.93c5605b.js"
   ]
 }
