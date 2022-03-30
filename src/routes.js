@@ -4,7 +4,6 @@ import Depositos from "layouts/depositos";
 import Clientes from "layouts/clientes";
 import AddClients from "layouts/addClients";
 import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
 import Retiros from "layouts/retiros";
 import Simulador from "layouts/simulador";
 import Credito from "layouts/credito";
@@ -130,14 +129,6 @@ const routes = [
     icon: <Icon fontSize="small">settings</Icon>,
     route: "/control",
     component: <Control />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
   },
 ];
 
