@@ -27,7 +27,6 @@ const routes = [
     route: "/authentication/sign-in",
     component: <SignIn />,
   },
-
   {
     type: "collapse",
     name: "Inicio",
