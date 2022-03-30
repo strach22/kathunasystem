@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "nombres": "Fernando",
+        "apellidos": "Espín",
+        "documento": "17172937234",
+        "telefono": "0998888888",
+        "direccion": "La planada",
+        "correoelectronico":"fernando@kathuna.com",
+        "tariff": "Socio",
+        "saldo":35
+    },
+    {
+        "id": 2,
+        "nombres": "Erick",
+        "apellidos": "Benavides",
+        "documento": "1717293799",
+        "telefono": "0998888899",
+        "direccion": "Las casas",
+        "correoelectronico":"erick@kathuna.com",
+        "tariff": "Socio",
+        "saldo":3000
+    },
+    {
+        "id": 3,
+        "nombres": "Sebastian Fernando",
+        "apellidos": "Lovato Encarnación",
+        "documento": "1717293774",
+        "telefono": "0998888888",
+        "direccion": "Pusuqui",
+        "correoelectronico":"Diuks@notengoempresa.com",
+        "tariff": "Particular",
+        "saldo": 10000
+    },
+    {
+        "id": 4,
+        "nombres": "Isaac Andrés",
+        "apellidos": "Pozo Urgilés",
+        "documento": "1717171777",
+        "telefono": "0999999999",
+        "direccion": "Mi casa",
+        "correoelectronico":"isaacandrespozo@gmial.com",
+        "tariff": "Particular",
+        "saldo": 450
+    }
+]
