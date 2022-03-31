@@ -41,7 +41,9 @@ function Notifications() {
                 <br />
                 Tarifa: {clients[id - 1].tariff}
                 <br />
-                Saldo: {clients[id - 1].saldo}
+                Saldo Ahorros: {clients[id - 1].saldoAhorros}
+                <br />
+                Saldo Crédito: {clients[id - 1].saldoCredito}
               </MDTypography>
             </MDBox>
           </Grid>

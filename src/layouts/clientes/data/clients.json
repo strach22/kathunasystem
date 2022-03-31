@@ -8,7 +8,8 @@
         "direccion": "La planada",
         "correoelectronico":"fernando@kathuna.com",
         "tariff": "Socio",
-        "saldo":35
+        "saldoAhorros":35,
+        "saldoCredito":1000
     },
     {
         "id": 2,
@@ -19,7 +20,8 @@
         "direccion": "Las casas",
         "correoelectronico":"erick@kathuna.com",
         "tariff": "Socio",
-        "saldo":3000
+        "saldoAhorros":30,
+        "saldoCredito":100000
     },
     {
         "id": 3,
@@ -30,7 +32,8 @@
         "direccion": "Pusuqui",
         "correoelectronico":"Diuks@notengoempresa.com",
         "tariff": "Particular",
-        "saldo": 10000
+        "saldoAhorros": 1,
+        "saldoCredito":10000000
     },
     {
         "id": 4,
@@ -41,6 +44,7 @@
         "direccion": "Mi casa",
         "correoelectronico":"isaacandrespozo@gmial.com",
         "tariff": "Particular",
-        "saldo": 450
+        "saldoAhorros": 4,
+        "saldoCredito":100050
     }
 ]
