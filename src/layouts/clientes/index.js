@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -11,9 +13,11 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import InfoIcon from "examples/Cards/IconInfo";
 
 // Data
 import clientes from "layouts/clientes/data/clientes";
+import clients from "layouts/clientes/data/clients.json";
 
 function Tables() {
   const { columns, rows } = clientes();
@@ -23,6 +27,18 @@ function Tables() {
       <DashboardNavbar />
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
+          <Grid item xs={6} md={6} lg={4}>
+            <Link to="/agregar-clientes">
+              <MDBox>
+                <InfoIcon
+                  color="dark"
+                  icon="person_add"
+                  title="Añadir Cliente"
+                  count={clients.length}
+                />
+              </MDBox>
+            </Link>
+          </Grid>
           <Grid item xs={12}>
             <Card>
               <MDBox

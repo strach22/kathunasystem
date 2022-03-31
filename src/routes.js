@@ -43,11 +43,11 @@ const routes = [
     component: <Clientes />,
   },
   {
-    type: "collapse",
-    name: "Agragar clientes",
-    key: "agragar-clientes",
+    type: "",
+    name: "Agregar clientes",
+    key: "agregar-clientes",
     icon: <Icon fontSize="small">person_add</Icon>,
-    route: "/agragar-clientes",
+    route: "/agregar-clientes",
     component: <AddClients />,
   },
   {
