@@ -45,7 +45,7 @@ const routes = [
   },
   {
     type: "",
-    name: "Agregar clientes",
+    name: "Agregar cliente",
     key: "agregar-clientes",
     icon: <Icon fontSize="small">person_add</Icon>,
     route: "/agregar-clientes",

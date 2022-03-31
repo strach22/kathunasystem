@@ -31,7 +31,7 @@ function InfoIcon({ color, title, count, icon, description }) {
           </Icon>
         </MDBox>
         <MDBox textAlign="right" lineHeight={1.25}>
-          <MDTypography variant="h5" mb={2}>
+          <MDTypography variant="h5" my={1.5}>
             {title}
           </MDTypography>
           <MDTypography variant="h6" color="text">

@@ -33,7 +33,7 @@ function Tables() {
                 <InfoIcon
                   color="dark"
                   icon="person_add"
-                  title="Añadir Cliente"
+                  title="Agregar Cliente"
                   description="Total: "
                   count={clients.length}
                 />
