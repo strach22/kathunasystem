@@ -95,6 +95,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   <Icon sx={iconsStyle}>exit_to_app</Icon>
                 </IconButton>
               </Link>
+              <Link to="/inicio">
+                <IconButton sx={navbarIconButton} size="small" disableRipple>
+                  <Icon sx={iconsStyle}>home</Icon>
+                </IconButton>
+              </Link>
               <IconButton
                 size="small"
                 disableRipple
