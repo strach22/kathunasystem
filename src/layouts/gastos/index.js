@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -13,32 +11,46 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
-import InfoIcon from "examples/Cards/IconInfo";
 
 // Data
-import clientes from "layouts/clientes/data/dataClients";
-import clients from "layouts/clientes/data/clients.json";
+import authorsTableData from "layouts/tables/data/authorsTableData";
+import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
-  const { columns, rows } = clientes();
+  const { columns, rows } = authorsTableData();
+  const { columns: pColumns, rows: pRows } = projectsTableData();
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={3}>
+      <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
-          <Grid item xs={6} md={6} lg={4}>
-            <MDBox>
-              <Link to="/agregar-clientes">
-                <InfoIcon
-                  color="dark"
-                  icon="person_add"
-                  title="Añadir Cliente"
-                  description="Total: "
-                  count={clients.length}
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h6" color="white">
+                  Authors Table
+                </MDTypography>
+              </MDBox>
+              <MDBox pt={3}>
+                <DataTable
+                  table={{ columns, rows }}
+                  isSorted={false}
+                  entriesPerPage={false}
+                  showTotalEntries={false}
+                  noEndBorder
                 />
-              </Link>
-            </MDBox>
+              </MDBox>
+            </Card>
           </Grid>
           <Grid item xs={12}>
             <Card>
@@ -52,18 +64,17 @@ function Tables() {
                 borderRadius="lg"
                 coloredShadow="info"
               >
-                <MDTypography variant="h5" color="white">
-                  Lista de Clientes
+                <MDTypography variant="h6" color="white">
+                  Projects Table
                 </MDTypography>
               </MDBox>
-              <MDBox>
+              <MDBox pt={3}>
                 <DataTable
-                  table={{ columns, rows }}
-                  canSearch
+                  table={{ columns: pColumns, rows: pRows }}
                   isSorted={false}
+                  entriesPerPage={false}
                   showTotalEntries={false}
                   noEndBorder
-                  entriesPerPage={false}
                 />
               </MDBox>
             </Card>

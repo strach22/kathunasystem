@@ -9,7 +9,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-function InfoIcon({ color, title, count, icon }) {
+function InfoIcon({ color, title, count, icon, description }) {
   return (
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={1} pb={2} px={2}>
@@ -35,8 +35,8 @@ function InfoIcon({ color, title, count, icon }) {
             {title}
           </MDTypography>
           <MDTypography variant="h6" color="text">
-            Total:
-            <MDTypography variant="">&nbsp;{count}</MDTypography>
+            {description}
+            <MDTypography variant="">{count}</MDTypography>
           </MDTypography>
         </MDBox>
       </MDBox>
@@ -62,6 +62,7 @@ InfoIcon.propTypes = {
     "dark",
   ]),
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   icon: PropTypes.node.isRequired,
 };

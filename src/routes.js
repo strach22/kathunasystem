@@ -6,12 +6,13 @@ import AddClients from "layouts/addClients";
 import SignIn from "layouts/authentication/sign-in";
 import Retiros from "layouts/retiros";
 import Simulador from "layouts/simulador";
-import Credito from "layouts/credito";
+import Creditos from "layouts/credito";
 import CargaClientes from "layouts/cargaClientes";
 import CargaCreditos from "layouts/cargaCreditos";
 import Historial from "layouts/historial";
 import Informacion from "layouts/informacion";
 import Cobranzas from "layouts/cobranzas";
+import Gastos from "layouts/gastos";
 import Control from "layouts/control";
 
 // @mui icons
@@ -52,7 +53,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Depositos",
+    name: "Depósitos",
     key: "depositos",
     icon: <Icon fontSize="small">add</Icon>,
     route: "/depositos",
@@ -76,11 +77,11 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Credito",
-    key: "credito",
-    icon: <Icon fontSize="small">account_balance_wallet</Icon>,
-    route: "/credito",
-    component: <Credito />,
+    name: "Créditos",
+    key: "creditos",
+    icon: <Icon fontSize="small">credit_card</Icon>,
+    route: "/creditos",
+    component: <Creditos />,
   },
   {
     type: "collapse",
@@ -110,9 +111,17 @@ const routes = [
     type: "collapse",
     name: "Cobranzas",
     key: "cobranzas",
-    icon: <Icon fontSize="small">paid</Icon>,
+    icon: <Icon fontSize="small">point_of_sale</Icon>,
     route: "/cobranzas",
     component: <Cobranzas />,
+  },
+  {
+    type: "collapse",
+    name: "Gastos",
+    key: "gastos",
+    icon: <Icon fontSize="small">paid</Icon>,
+    route: "/gastos",
+    component: <Gastos />,
   },
   {
     type: "collapse",
