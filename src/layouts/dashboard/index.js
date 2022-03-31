@@ -46,15 +46,15 @@ function Dashboard() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <Link to="/gastos">
-                <InfoIcon color="dark" icon="paid" title="Gastos" />
+              <Link to="/creditos">
+                <InfoIcon color="warning" icon="credit_card" title="Créditos" />
               </Link>
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <Link to="/creditos">
-                <InfoIcon color="warning" icon="credit_card" title="Créditos" />
+              <Link to="/gastos">
+                <InfoIcon color="dark" icon="paid" title="Gastos" />
               </Link>
             </MDBox>
           </Grid>
