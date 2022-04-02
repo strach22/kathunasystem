@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Input from "../elements/Input";
 import * as Helpers from "../helpers/Helpers";
 import RadioG from "../elements/RadioG";
@@ -7,6 +7,7 @@ import SelectG from "../elements/SelectG";
 import DatePickerH from "../elements/DatePickerH";
 import CheckboxB from "../elements/CheckboxB";
 import useForm from "../hooks/useForm";
+import Form from "../helpers/Form";
 
 const initialValues = {
   id: 0,
@@ -43,7 +44,7 @@ export default function FormScreen() {
   } = values;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={6}>
           <Input label="Nombres" name="names" value={firstname} onChange={handleInputChange} />
@@ -83,21 +84,23 @@ export default function FormScreen() {
             onChange={handleInputChange}
             options={Helpers.getCivilStatus()}
           />
+          <Box sx={{ width: 335, margin: "3px 0px 15px 60px" }}>
+            <DatePickerH
+              name="birthDate"
+              label="Fecha de Nacimiento"
+              value={birthDate}
+              onChange={handleInputChange}
+            />
+          </Box>
 
-          <DatePickerH
-            name="birthDate"
-            label="Fecha de Nacimiento"
-            value={birthDate}
-            onChange={handleInputChange}
-          />
           <CheckboxB
             name="agree"
-            label="Desea Añadir Cliente"
+            label="Desea Agregar Cliente"
             value={agree}
             onChange={handleInputChange}
           />
         </Grid>
       </Grid>
-    </form>
+    </Form>
   );
 }

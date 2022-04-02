@@ -1,8 +1,8 @@
 import { Checkbox, FormControl, FormControlLabel } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function CheckboxB(props) {
-  // eslint-disable-next-line react/prop-types
   const { name, label, value, onChange } = props;
 
   // eslint-disable-next-line no-shadow
@@ -18,6 +18,7 @@ export default function CheckboxB(props) {
       <FormControlLabel
         control={
           <Checkbox
+            sx={{ marginLeft: "60px" }}
             name={name}
             color="primary"
             checked={value}
@@ -29,3 +30,10 @@ export default function CheckboxB(props) {
     </FormControl>
   );
 }
+
+CheckboxB.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.string.isRequired,
+};

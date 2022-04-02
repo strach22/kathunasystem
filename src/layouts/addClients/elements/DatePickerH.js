@@ -2,9 +2,9 @@ import { DatePicker, LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { TextField } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function DatePickerH(props) {
-  // eslint-disable-next-line react/prop-types
   const { name, label, value, onChange } = props;
 
   // eslint-disable-next-line no-shadow
@@ -18,12 +18,12 @@ export default function DatePickerH(props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        displayStaticWrapperAs="desktop"
-        disableToolbar
-        variant="inline"
-        inputVariant="outlined"
+        // displayStaticWrapperAs="desktop"
+        // disableToolbar
+        // variant="inline"
+        // inputVariant="outlined"
         label={label}
-        inputFormat="MM/dd/yyyy"
+        inputFormat="dd/MM/yyyy"
         name={name}
         value={value}
         onChange={(date) => onChange(convertToDefEventPara(name, date))}
@@ -32,3 +32,10 @@ export default function DatePickerH(props) {
     </LocalizationProvider>
   );
 }
+
+DatePickerH.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.string.isRequired,
+};
