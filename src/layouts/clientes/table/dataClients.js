@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 // Soft UI Dashboard React components
 import MDTypography from "components/MDTypography";
-import clients from "./clients.json";
+import clients from "../../../data/clients.json";
 
 export default function data() {
   return {

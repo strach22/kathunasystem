@@ -12,7 +12,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 
-import clients from "../data/clients.json";
+import clients from "../../../data/clients.json";
 
 function Notifications() {
   const { id } = useParams();
