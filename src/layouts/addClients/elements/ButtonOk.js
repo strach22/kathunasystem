@@ -21,7 +21,8 @@ export default function ButtonOk(props) {
     <Button
       variant={variant || "contained"}
       size={size || "large"}
-      color={color || "success"}
+      // color={color || "success"}
+      color={color || "primary"}
       onClick={onClick}
       {...other}
       classes={{ root: classes.root, label: classes.label }}
