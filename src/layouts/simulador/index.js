@@ -43,6 +43,7 @@ function Tables() {
               </MDBox>
               <MDBox pt={3}>
                 <DataTable
+                  canSearch
                   table={{ columns, rows }}
                   isSorted={false}
                   entriesPerPage={false}

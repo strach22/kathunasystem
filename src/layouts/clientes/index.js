@@ -16,7 +16,7 @@ import DataTable from "examples/Tables/DataTable";
 import InfoIcon from "examples/Cards/IconInfo";
 
 // Data
-import clientes from "layouts/clientes/table/dataClients";
+import clientes from "./table/dataClients";
 import clients from "../../data/clients.json";
 
 function Tables() {
@@ -59,7 +59,6 @@ function Tables() {
               <MDBox>
                 <DataTable
                   table={{ columns, rows }}
-                  canSearch
                   isSorted={false}
                   showTotalEntries={false}
                   noEndBorder

@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo, useEffect, useState } from "react";
 
 // prop-types is a library for typechecking of props
@@ -55,13 +40,6 @@ function DataTable({
   const columns = useMemo(() => table.columns, [table]);
   const data = useMemo(() => table.rows, [table]);
 
-  const tableInstance = useTable(
-    { columns, data, initialState: { pageIndex: 0 } },
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  );
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -78,7 +56,12 @@ function DataTable({
     setPageSize,
     setGlobalFilter,
     state: { pageIndex, pageSize, globalFilter },
-  } = tableInstance;
+  } = useTable(
+    { columns, data, initialState: { pageIndex: 0 } },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
 
   // Set the default value for the entries per page when component mounts
   useEffect(() => setPageSize(defaultValue || 10), [defaultValue]);
@@ -102,19 +85,19 @@ function DataTable({
   const handleInputPagination = ({ target: { value } }) =>
     value > pageOptions.length || value < 0 ? gotoPage(0) : gotoPage(Number(value));
 
+  // Search input value state
+  const [search, setSearch] = useState(globalFilter);
+
   // Customized page options starting from 1
   const customizedPageOptions = pageOptions.map((option) => option + 1);
 
   // Setting value for the pagination input
   const handleInputPaginationValue = ({ target: value }) => gotoPage(Number(value.value - 1));
 
-  // Search input value state
-  const [search, setSearch] = useState(globalFilter);
-
   // Search input state handle
   const onSearchChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
-  }, 100);
+  }, 200);
 
   // A function that sets the sorted value for the table
   const setSortedValue = (column) => {
@@ -174,9 +157,9 @@ function DataTable({
                 value={search}
                 size="small"
                 fullWidth
-                onChange={({ currentTarget }) => {
+                onChange={({ target }) => {
+                  onSearchChange(target.value);
                   setSearch(search);
-                  onSearchChange(currentTarget.value);
                 }}
               />
             </MDBox>
