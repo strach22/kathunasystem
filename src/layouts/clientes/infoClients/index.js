@@ -26,20 +26,24 @@ function Notifications() {
               <MDTypography padding={2} variant="h4">
                 Cliente # {id}
               </MDTypography>
-              <MDTypography variant="h5" padding={2}>
-                Nombres: {clients[id - 1].nombres}
+              <MDTypography variant="h5" paddingLeft={2} paddingBottom={2}>
+                Nombres: {clients[id - 1].firstName}
                 <br />
-                Apellidos: {clients[id - 1].apellidos}
+                Apellidos: {clients[id - 1].lastName}
                 <br />
-                Documento: {clients[id - 1].documento}
+                Documento: {clients[id - 1].identification}
                 <br />
-                Teléfono: {clients[id - 1].telefono}
+                Teléfono: {clients[id - 1].mobile}
                 <br />
-                Direccion: {clients[id - 1].direccion}
+                Direccion: {clients[id - 1].address}
                 <br />
-                Correo Electrónico: {clients[id - 1].correoelectronico}
+                Correo Electrónico: {clients[id - 1].email}
                 <br />
                 Tarifa: {clients[id - 1].tariff}
+                <br />
+                Estado Civil: {clients[id - 1].civil}
+                <br />
+                Fecha de Nacimiento: {clients[id - 1].birthDate}
                 <br />
                 Saldo Ahorros: {clients[id - 1].saldoAhorros}
                 <br />

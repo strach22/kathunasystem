@@ -8,10 +8,10 @@ export default function data() {
   return {
     columns: [
       { Header: "código", accessor: "id", align: "left" },
-      { Header: "nombres", accessor: "nombres", align: "left" },
-      { Header: "apellidos", accessor: "apellidos", align: "left" },
-      { Header: "documento", accessor: "documento", align: "center" },
-      { Header: "teléfono", accessor: "telefono", align: "center" },
+      { Header: "nombres", accessor: "firstName", align: "left" },
+      { Header: "apellidos", accessor: "lastName", align: "left" },
+      { Header: "documento", accessor: "identification", align: "center" },
+      { Header: "teléfono", accessor: "mobile", align: "center" },
       { Header: "tarifa", accessor: "tariff", align: "center" },
       { Header: "acción", accessor: "accion", align: "center" },
     ],
@@ -22,24 +22,24 @@ export default function data() {
           {cliente.id}
         </MDTypography>
       ),
-      nombres: (
+      firstName: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.nombres}
+          {cliente.firstName}
         </MDTypography>
       ),
-      apellidos: (
+      lastName: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.apellidos}
+          {cliente.lastName}
         </MDTypography>
       ),
-      documento: (
+      identification: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.documento}
+          {cliente.identification}
         </MDTypography>
       ),
-      telefono: (
+      mobile: (
         <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.telefono}
+          {cliente.mobile}
         </MDTypography>
       ),
       tariff: (
