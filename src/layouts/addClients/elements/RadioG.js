@@ -1,9 +1,16 @@
 import React from "react";
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import PropTypes from "prop-types";
 
 export default function RadioG(props) {
-  const { name, label, value, onChange, items } = props;
+  const { name, label, value, onChange, items, error } = props;
 
   return (
     <FormControl>
@@ -28,6 +35,7 @@ export default function RadioG(props) {
           <FormControlLabel key={item.id} value={item.id} control={<Radio />} label={item.title} />
         ))}
       </RadioGroup>
+      {error && <FormHelperText>{error}</FormHelperText>}
     </FormControl>
   );
 }
@@ -38,4 +46,5 @@ RadioG.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.string.isRequired,
   items: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
 };

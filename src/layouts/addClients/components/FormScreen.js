@@ -13,12 +13,12 @@ import ButtonOk from "../elements/ButtonOk";
 
 const initialValues = {
   id: 0,
-  firstname: "",
-  lastname: "",
+  firstName: "",
+  lastName: "",
   identification: "",
   mobile: "",
   email: "",
-  direction: "",
+  address: "",
   tariff: "",
   civil: "",
   birthDate: new Date(),
@@ -29,22 +29,24 @@ export default function FormScreen() {
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
-    if ("firstname" in fieldValues)
-      tempo.firstname = fieldValues.firstname ? "" : "Este campo es obligatorio";
-    if ("lastname" in fieldValues)
-      tempo.lastname = fieldValues.lastname ? "" : "Este campo es obligatorio";
+    if ("firstName" in fieldValues)
+      tempo.firstName = fieldValues.firstName ? "" : "Este campo es obligatorio llenar";
+    if ("lastName" in fieldValues)
+      tempo.lastName = fieldValues.lastName ? "" : "Este campo es obligatorio llenar";
     if ("identification" in fieldValues)
-      tempo.identification = fieldValues.identification ? "" : "Este campo es obligatorio";
+      tempo.identification = fieldValues.identification ? "" : "Este campo es obligatorio llenar";
     if ("mobile" in fieldValues)
-      tempo.mobile = fieldValues.mobile.length > 9 ? "" : "Se requiere mínimo 10 números";
+      tempo.mobile = fieldValues.mobile.length > 9 ? "" : "Se requiere 10 números";
     if ("email" in fieldValues)
-      tempo.email = /$^|.+@.+..+/.test(fieldValues.email)
+      tempo.email = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
+        fieldValues.email
+      )
         ? ""
-        : "La dirección de Emal no es válido";
-    if ("direction" in fieldValues)
-      tempo.direction = fieldValues.direction ? "" : "Este campo es obligatorio";
+        : "La dirección de emal no es válido";
+    if ("address" in fieldValues)
+      tempo.address = fieldValues.address ? "" : "Este campo es obligatorio llenar";
     if ("civil" in fieldValues)
-      tempo.civil = fieldValues.tariff.civil !== 0 ? "" : "Este campo es obligatorio";
+      tempo.civil = fieldValues.civil.length !== 0 ? "" : "Es obligatorio escoger una opción";
     setErrors({
       ...tempo,
     });
@@ -66,12 +68,12 @@ export default function FormScreen() {
   };
 
   const {
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     identification,
     mobile,
     email,
-    direction,
+    address,
     tariff,
     civil,
     birthDate,
@@ -84,17 +86,17 @@ export default function FormScreen() {
         <Grid item xs={6}>
           <Input
             label="Nombres"
-            name="firstname"
-            value={firstname}
+            name="firstName"
+            value={firstName}
             onChange={handleInputChange}
-            error={errors.firstname}
+            error={errors.firstName}
           />
           <Input
             label="Apellidos"
-            name="lastname"
-            value={lastname}
+            name="lastName"
+            value={lastName}
             onChange={handleInputChange}
-            error={errors.lastname}
+            error={errors.lastName}
           />
           <Input
             label="Cédula de Indentidad"
@@ -119,10 +121,10 @@ export default function FormScreen() {
           />
           <Input
             label="Dirección"
-            name="direction"
-            value={direction}
+            name="address"
+            value={address}
             onChange={handleInputChange}
-            error={errors.direction}
+            error={errors.address}
           />
         </Grid>
         <Grid item xs={6}>
@@ -132,6 +134,7 @@ export default function FormScreen() {
             value={tariff}
             onChange={handleInputChange}
             items={Helpers.tariffItems()}
+            error={errors.tariff}
           />
           <SelectG
             name="civil"
