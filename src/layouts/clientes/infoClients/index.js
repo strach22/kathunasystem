@@ -33,17 +33,19 @@ function Notifications() {
                 <br />
                 Documento: {clients[id - 1].identification}
                 <br />
+                Fecha de Nacimiento: {clients[id - 1].birthDate}
+                <br />
                 Teléfono: {clients[id - 1].mobile}
                 <br />
                 Direccion: {clients[id - 1].address}
                 <br />
                 Correo Electrónico: {clients[id - 1].email}
                 <br />
-                Tarifa: {clients[id - 1].tariff}
-                <br />
                 Estado Civil: {clients[id - 1].civil}
                 <br />
-                Fecha de Nacimiento: {clients[id - 1].birthDate}
+                Fecha de afiliación: {clients[id - 1].creationDate}
+                <br />
+                Tarifa: {clients[id - 1].tariff}
                 <br />
                 Saldo Ahorros: {clients[id - 1].saldoAhorros}
                 <br />

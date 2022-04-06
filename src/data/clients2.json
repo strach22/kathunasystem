@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "firstName": "Fernando",
+        "lastName": "Espín",
+        "identification": "1772937234",
+        "mobile": "0998888888",
+        "address": "La planada",
+        "email":"fernando@kathuna.com",
+        "tariff": "Socio",
+        "civil":"Soltero/a",
+        "birthDate":"Mar 18, 1994",
+        "saldoAhorros":3500,
+        "saldoCredito":1000
+    },
+    {
+        "id": 2,
+        "firstName": "Erick",
+        "lastName": "Benavides",
+        "identification": "1717293799",
+        "mobile": "0998888899",
+        "address": "Las casas",
+        "email":"erick@kathuna.com",
+        "tariff": "Socio",
+        "civil":"Casado/a",
+        "birthDate":"Mar 18, 1994",
+        "saldoAhorros":3020,
+        "saldoCredito":1000
+    },
+    {
+        "id": 3,
+        "firstName": "Sebastian Fernando",
+        "lastName": "Lovato Encarnación",
+        "identification": "1717293774",
+        "mobile": "0998888888",
+        "address": "Pusuqui",
+        "email":"Diuks@notengoempresa.com",
+        "tariff": "Particular",
+        "civil":"Viudo/a",
+        "birthDate":"Mar 18, 1994",
+        "saldoAhorros": 100,
+        "saldoCredito":1000
+    },
+    {
+        "id": 4,
+        "firstName": "Isaac Andrés",
+        "lastName": "Pozo Urgilés",
+        "identification": "1717171777",
+        "mobile": "0999999999",
+        "address": "Mi casa",
+        "email":"isaacandrespozo@gmial.com",
+        "tariff": "Particular",
+        "civil":"Unión Libre",
+        "birthDate":"Apr 01, 1995",
+        "saldoAhorros": 450,
+        "saldoCredito":1000
+    }
+]
