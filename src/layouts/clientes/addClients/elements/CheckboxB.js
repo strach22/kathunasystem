@@ -16,6 +16,7 @@ export default function CheckboxB(props) {
   return (
     <FormControl>
       <FormControlLabel
+        className="checkOption"
         control={
           <Checkbox
             sx={{ marginLeft: "60px" }}

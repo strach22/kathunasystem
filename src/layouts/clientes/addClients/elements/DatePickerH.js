@@ -18,10 +18,6 @@ export default function DatePickerH(props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        // displayStaticWrapperAs="desktop"
-        // disableToolbar
-        // variant="inline"
-        // inputVariant="outlined"
         label={label}
         inputFormat="dd/MM/yyyy"
         name={name}

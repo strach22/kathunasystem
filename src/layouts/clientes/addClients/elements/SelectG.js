@@ -7,17 +7,12 @@ export default function SelectG(props) {
 
   return (
     <FormControl fullWidth>
-      <InputLabel
-        {...(error && { error: true })}
-        id="demo-simple-select-label"
-        sx={{ marginLeft: "60px" }}
-      >
+      <InputLabel {...(error && { error: true })} id="demo-simple-select-label">
         {label}
       </InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        sx={{ height: 44, width: 300, margin: "0px 0px 10px 60px" }}
         label={label}
         name={name}
         value={value}
@@ -30,11 +25,7 @@ export default function SelectG(props) {
           </MenuItem>
         ))}
       </Select>
-      {error && (
-        <FormHelperText error sx={{ marginLeft: "75px" }}>
-          {error}
-        </FormHelperText>
-      )}
+      {error && <FormHelperText error>{error}</FormHelperText>}
     </FormControl>
   );
 }

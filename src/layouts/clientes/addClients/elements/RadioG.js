@@ -6,19 +6,9 @@ export default function RadioG(props) {
   const { name, label, value, onChange, items } = props;
 
   return (
-    <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group" color="grey" sx={{ marginLeft: "60px" }}>
-        {label}
-      </FormLabel>
+    <FormControl className="ControlTariff">
+      <FormLabel id="demo-controlled-radio-buttons-group">{label}</FormLabel>
       <RadioGroup
-        sx={{
-          fontSize: 23,
-          border: "1px double #CDD4D5",
-          paddingLeft: 3,
-          width: 300,
-          borderRadius: 2,
-          margin: "5px 0px 15px 60px",
-        }}
         aria-labelledby="demo-controlled-radio-buttons-group"
         name={name}
         value={value}

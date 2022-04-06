@@ -25,7 +25,7 @@ export default function PrincipalScreen() {
                 Agregar Clientes
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ marginBottom: 5 }}>
+            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
               <FormScreen />
             </MDBox>
           </Card>
