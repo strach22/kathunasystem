@@ -23,7 +23,7 @@ export default function DatePickerH(props) {
         name={name}
         value={value}
         onChange={(date) => onChange(convertToDefEventPara(name, date))}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} className="Calendario" />}
       />
     </LocalizationProvider>
   );

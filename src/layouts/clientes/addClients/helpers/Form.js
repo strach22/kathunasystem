@@ -10,25 +10,10 @@ const useStyles = makeStyles({
       width: "90%",
       margin: "12px",
     },
-    // DatePicker
-    "& .MuiBox-root": {
-      width: "77.5%",
-      margin: "20px 0px 0px 40px",
-    },
-    // Selector
-    "& .MuiFormControl-fullWidth": {
-      margin: "20px 0px 0px 50px",
-      width: "70%",
-    },
-    // Selector
-    "& #demo-simple-select": {
-      height: 44,
-      marginLeft: "8px",
-    },
     // ButtonGroup
     "& .ControlTariff": {
-      margin: "16px 0px 0px 50px",
-      paddingBottom: "1px",
+      margin: "10px 0px 10px 50px",
+      paddingBottom: "3px",
       width: "70%",
       border: "1px double #CDD4D5",
       borderRadius: 7,
@@ -44,7 +29,23 @@ const useStyles = makeStyles({
     },
     // ButtonGroup
     "& .MuiTypography-root": {
-      color: "grey",
+      color: "#8C8F90",
+      fontSize: "15px",
+    },
+    // Selector
+    "& .MuiFormControl-fullWidth": {
+      margin: "10px 0px 10px 50px",
+      width: "70%",
+    },
+    // Selector
+    "& #demo-simple-select": {
+      height: 44,
+      marginLeft: "8px",
+    },
+    // DatePicker
+    "& .Calendario": {
+      width: "70%",
+      margin: "15px 0px 10px 50px",
     },
     // CheckBox
     "& .checkOption": {

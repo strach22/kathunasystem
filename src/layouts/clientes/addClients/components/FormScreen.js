@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Input from "../elements/Input";
 import * as Helpers from "../helpers/Helpers";
 import RadioG from "../elements/RadioG";
@@ -19,7 +19,7 @@ const initialValues = {
   mobile: "",
   email: "",
   address: "",
-  tariff: "",
+  tariff: "particular",
   civil: "",
   birthDate: new Date(),
   agree: false,
@@ -143,15 +143,12 @@ export default function FormScreen() {
             options={Helpers.getCivilStatus()}
             error={errors.civil}
           />
-          <Box sx={{ width: 335, margin: "3px 0px 15px 60px" }}>
-            <DatePickerH
-              name="birthDate"
-              label="Fecha de Nacimiento"
-              value={birthDate}
-              onChange={handleInputChange}
-            />
-          </Box>
-
+          <DatePickerH
+            name="birthDate"
+            label="Fecha de Nacimiento"
+            value={birthDate}
+            onChange={handleInputChange}
+          />
           <CheckboxB
             name="agree"
             label="Desea Agregar Cliente"
