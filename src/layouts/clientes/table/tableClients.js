@@ -17,36 +17,12 @@ export default function data() {
     ],
 
     rows: clients.map((cliente) => ({
-      id: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.id}
-        </MDTypography>
-      ),
-      firstName: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.firstName}
-        </MDTypography>
-      ),
-      lastName: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.lastName}
-        </MDTypography>
-      ),
-      identification: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.identification}
-        </MDTypography>
-      ),
-      mobile: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.mobile}
-        </MDTypography>
-      ),
-      tariff: (
-        <MDTypography variant="caption" color="text" fontWeight="medium">
-          {cliente.tariff}
-        </MDTypography>
-      ),
+      id: cliente.id,
+      firstName: cliente.firstName,
+      lastName: cliente.lastName,
+      identification: cliente.identification,
+      mobile: cliente.mobile,
+      tariff: cliente.tariff,
       accion: (
         <Link to={`${cliente.id}`}>
           <MDTypography component="a" variant="caption" color="text" fontWeight="medium">

@@ -31,25 +31,25 @@ function Notifications() {
                 <br />
                 Apellidos: {clients[id - 1].lastName}
                 <br />
-                Documento: {clients[id - 1].identification}
+                Documento de Identidad: {clients[id - 1].identification}
                 <br />
                 Fecha de Nacimiento: {clients[id - 1].birthDate}
                 <br />
                 Teléfono: {clients[id - 1].mobile}
                 <br />
-                Direccion: {clients[id - 1].address}
+                Dirección: {clients[id - 1].address}
                 <br />
                 Correo Electrónico: {clients[id - 1].email}
                 <br />
                 Estado Civil: {clients[id - 1].civil}
                 <br />
-                Fecha de afiliación: {clients[id - 1].creationDate}
+                Fecha de Afiliación: {clients[id - 1].creationDate}
                 <br />
                 Tarifa: {clients[id - 1].tariff}
                 <br />
-                Saldo Ahorros: {clients[id - 1].saldoAhorros}
+                Saldo de Ahorros: {clients[id - 1].saldoAhorros}
                 <br />
-                Saldo Crédito: {clients[id - 1].saldoCredito}
+                Saldo de Crédito: {clients[id - 1].saldoCredito}
               </MDTypography>
             </MDBox>
           </Grid>
