@@ -134,12 +134,14 @@ export default function FormScreen() {
             value={tariff}
             onChange={handleInputChange}
             items={Helpers.tariffItems()}
+            error={errors.tariff}
           />
           <SelectG
             name="civil"
             label="Estado Civil"
             value={civil}
             onChange={handleInputChange}
+            s
             options={Helpers.getCivilStatus()}
             error={errors.civil}
           />
