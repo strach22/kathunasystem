@@ -60,12 +60,12 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-containedSuccess": {
-      background: "#e3f2fd",
+      background: "#f57c00",
       margin: "25px 0px 20px 14px",
     },
     // Buttons
     "& .MuiButton-containedWarning": {
-      background: "#f57c00",
+      background: "#e3f2fd",
       width: "60%",
       margin: "0px 0px 0px 75px",
     },

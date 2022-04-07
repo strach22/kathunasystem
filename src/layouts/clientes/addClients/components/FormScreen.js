@@ -34,9 +34,11 @@ export default function FormScreen() {
     if ("lastName" in fieldValues)
       tempo.lastName = fieldValues.lastName ? "" : "Este campo es obligatorio llenar";
     if ("identification" in fieldValues)
-      tempo.identification = fieldValues.identification ? "" : "Este campo es obligatorio llenar";
+      tempo.identification = /^[0-9]+$/.test(fieldValues.identification)
+        ? ""
+        : "Este campo es obligatorio llenar";
     if ("mobile" in fieldValues)
-      tempo.mobile = fieldValues.mobile.length > 9 ? "" : "Se requiere 10 números";
+      tempo.mobile = /^[0-9]+$/.test(fieldValues.mobile) ? "" : "Este campo es obligatorio llenar";
     if ("email" in fieldValues)
       tempo.email = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
         fieldValues.email
@@ -61,8 +63,10 @@ export default function FormScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const dateResume = birthDate.toISOString().split("T")[0];
 
     if (validate()) {
+      values.birthDate = dateResume;
       LocalStorageTempo.insertLocalStorage(values);
       resetForm();
     }
