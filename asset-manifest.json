@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.js": "/kathuna-system/static/js/main.2b0bd896.js",
+    "main.js": "/kathuna-system/static/js/main.3a315c38.js",
     "static/media/bgkathuna.png": "/kathuna-system/static/media/bgkathuna.d589369bfa0f1dd33bdc.png",
     "static/media/logo-ct.png": "/kathuna-system/static/media/logo-ct.cd2f88eca06df83c9954.png",
     "static/media/team-1.jpg": "/kathuna-system/static/media/team-1.0fd36e0ee93dcfacdef8.jpg",
     "static/media/team-2.jpg": "/kathuna-system/static/media/team-2.13ae2ce3e12f4cfed420.jpg",
     "static/media/team-3.jpg": "/kathuna-system/static/media/team-3.0ef0be95e6850814c79e.jpg",
     "static/media/team-4.jpg": "/kathuna-system/static/media/team-4.85c82b6e60178804017f.jpg",
-    "static/media/github.svg": "/kathuna-system/static/media/github.067f80f311bc16bd0d1216457d09bdb3.svg",
-    "static/media/logo-slack.svg": "/kathuna-system/static/media/logo-slack.7c47c5aa474b5c4fb39fcf05ffb8e4e7.svg",
-    "static/media/logo-xd.svg": "/kathuna-system/static/media/logo-xd.6e37886f94dba0c2967ece68a152e30c.svg",
-    "static/media/logo-invision.svg": "/kathuna-system/static/media/logo-invision.a1062115730dcd10e1c4f4abe7b9ab33.svg",
-    "static/media/logo-spotify.svg": "/kathuna-system/static/media/logo-spotify.e83cf56c9d99a1fdf59e8deb58bbe470.svg",
-    "static/media/logo-jira.svg": "/kathuna-system/static/media/logo-jira.c19fd4e416babfbd0fdb0a794188c601.svg",
-    "static/media/logo-atlassian.svg": "/kathuna-system/static/media/logo-atlassian.f2b0e8570a4b4ce768854ff3dad1a6e1.svg",
-    "static/media/logo-asana.svg": "/kathuna-system/static/media/logo-asana.d758f410d82760a61d1eabcb03409de6.svg",
+    "static/media/github.svg": "/kathuna-system/static/media/github.62a94bc83ef91aadf17b3d66c96048dd.svg",
+    "static/media/logo-slack.svg": "/kathuna-system/static/media/logo-slack.d8feb9c5b2a92c377e8c5b7a10faabc9.svg",
+    "static/media/logo-xd.svg": "/kathuna-system/static/media/logo-xd.77e7dd1528183ab292936e4f91241cf0.svg",
+    "static/media/logo-invision.svg": "/kathuna-system/static/media/logo-invision.f3413d25dc0761bcc615835e48482191.svg",
+    "static/media/logo-spotify.svg": "/kathuna-system/static/media/logo-spotify.3f055cde07c024fb2b73063b46416f1b.svg",
+    "static/media/logo-jira.svg": "/kathuna-system/static/media/logo-jira.f9c1ddbe3e751a29bd16580977ade064.svg",
+    "static/media/logo-atlassian.svg": "/kathuna-system/static/media/logo-atlassian.d92c4f81bb3efbf288b3ef71ce2fbfb0.svg",
+    "static/media/logo-asana.svg": "/kathuna-system/static/media/logo-asana.5c9ced4f9006cfb2d4c10f905cf6d310.svg",
     "index.html": "/kathuna-system/index.html",
-    "main.2b0bd896.js.map": "/kathuna-system/static/js/main.2b0bd896.js.map"
+    "main.3a315c38.js.map": "/kathuna-system/static/js/main.3a315c38.js.map"
   },
   "entrypoints": [
-    "static/js/main.2b0bd896.js"
+    "static/js/main.3a315c38.js"
   ]
 }
