@@ -20,7 +20,7 @@ export default function SelectG(props) {
         {...(error && { error: true })}
       >
         {options.map((item) => (
-          <MenuItem key={item.id} value={item.id}>
+          <MenuItem key={item.id} value={item.title}>
             {item.title}
           </MenuItem>
         ))}

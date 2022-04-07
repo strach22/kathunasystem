@@ -6,7 +6,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   root: {
     "&:hover": {
-      backgroundColor: "grey",
+      backgroundColor: "#F3F7F9",
     },
   },
 });

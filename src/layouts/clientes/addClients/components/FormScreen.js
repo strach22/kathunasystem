@@ -23,6 +23,7 @@ const initialValues = {
   tariff: "particular",
   civil: "",
   birthDate: new Date(),
+  // creationDate: new Date(),
 };
 
 export default function FormScreen() {
@@ -64,6 +65,7 @@ export default function FormScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const dateResume = birthDate.toISOString().split("T")[0];
+    // console.log(values);
 
     if (validate()) {
       values.birthDate = dateResume;
