@@ -1,8 +1,10 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 import Input from "../elements/Input";
-import * as Helpers from "../helpers/Helpers";
+import * as ConstDate from "../helpers/ConstDate";
+import * as LocalStorageTempo from "../helpers/LocalStorageTempo";
 import RadioG from "../elements/RadioG";
 import SelectG from "../elements/SelectG";
 import DatePickerH from "../elements/DatePickerH";
@@ -61,8 +63,8 @@ export default function FormScreen() {
     e.preventDefault();
 
     if (validate()) {
+      LocalStorageTempo.insertLocalStorage(values);
       resetForm();
-      // console.log(JSON.parse(JSON.stringify(birthDate)));
     }
   };
 
@@ -122,14 +124,14 @@ export default function FormScreen() {
             label="Tarifa"
             value={tariff}
             onChange={handleInputChange}
-            items={Helpers.tariffItems()}
+            items={ConstDate.tariffItems()}
           />
           <SelectG
             name="civil"
             label="Estado Civil"
             value={civil}
             onChange={handleInputChange}
-            options={Helpers.getCivilStatus()}
+            options={ConstDate.getCivilStatus()}
             error={errors.civil}
           />
           <DatePickerH
@@ -143,7 +145,9 @@ export default function FormScreen() {
             <ButtonOk text="Resetear" color="success" onClick={resetForm} />
           </Grid>
           <Grid item xs={12} className="Botton-down">
-            <ButtonOk text="Regresar" color="warning" />
+            <Link to="/clientes">
+              <ButtonOk text="Regresar" color="warning" onClick={resetForm} />
+            </Link>
           </Grid>
         </Grid>
       </Grid>
