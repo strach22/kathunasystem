@@ -4,13 +4,13 @@ import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import Input from "../elements/Input";
 import * as ConstDate from "../helpers/ConstDate";
-import * as LocalStorageTempo from "../helpers/LocalStorageTempo";
 import RadioG from "../elements/RadioG";
 import SelectG from "../elements/SelectG";
 import DatePickerH from "../elements/DatePickerH";
 import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
 import ButtonOk from "../elements/ButtonOk";
+import clients from "../../../../data/clients.json";
 
 const initialValues = {
   id: 0,
@@ -67,7 +67,8 @@ export default function FormScreen() {
 
     if (validate()) {
       values.birthDate = dateResume;
-      LocalStorageTempo.insertLocalStorage(values);
+      values.id = clients[clients.length - 1].id + 1;
+      clients.push(values);
       resetForm();
     }
   };
