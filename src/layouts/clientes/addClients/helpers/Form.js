@@ -47,6 +47,28 @@ const useStyles = makeStyles({
       width: "70%",
       margin: "15px 0px 10px 50px",
     },
+    // Buttons
+    "& .MuiButton-root": {
+      width: "30%",
+      color: "black",
+      // margin: "10px",
+    },
+    // Buttons
+    "& .MuiButton-containedPrimary": {
+      background: "#42a5f5",
+      margin: "25px 14px 20px 60px",
+    },
+    // Buttons
+    "& .MuiButton-containedSuccess": {
+      background: "#e3f2fd",
+      margin: "25px 0px 20px 14px",
+    },
+    // Buttons
+    "& .MuiButton-containedWarning": {
+      background: "#f57c00",
+      width: "60%",
+      margin: "0px 0px 0px 75px",
+    },
   },
 });
 

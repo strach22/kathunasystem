@@ -138,10 +138,13 @@ export default function FormScreen() {
             value={birthDate}
             onChange={handleInputChange}
           />
-          <div>
+          <Grid item xs={12} className="Botton-up">
             <ButtonOk type="submit" text="Agregar" />
             <ButtonOk text="Resetear" color="success" onClick={resetForm} />
-          </div>
+          </Grid>
+          <Grid item xs={12} className="Botton-down">
+            <ButtonOk text="Regresar" color="warning" />
+          </Grid>
         </Grid>
       </Grid>
     </Form>
