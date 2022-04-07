@@ -40,7 +40,7 @@ function Deposito() {
             </MDBox>
           </Grid>
           <Grid item xs={12} lg={11}>
-            <Link to="/clientes">
+            <Link to="/depositos">
               <MDButton color="secondary" sx={{ marginLeft: 2 }}>
                 REGRESAR
               </MDButton>
