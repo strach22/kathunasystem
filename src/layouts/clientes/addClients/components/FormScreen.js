@@ -23,7 +23,7 @@ const initialValues = {
   tariff: "particular",
   civil: "",
   birthDate: new Date(),
-  // creationDate: new Date(),
+  creationDate: new Date(),
 };
 
 export default function FormScreen() {
@@ -65,18 +65,29 @@ export default function FormScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const dateResume = birthDate.toISOString().split("T")[0];
-    // console.log(values);
+    const dateResume2 = creationDate.toISOString().split("T")[0];
 
     if (validate()) {
       values.birthDate = dateResume;
+      values.creationDate = dateResume2;
       values.id = clients[clients.length - 1].id + 1;
       clients.push(values);
       resetForm();
     }
   };
 
-  const { firstName, lastName, identification, mobile, email, address, tariff, civil, birthDate } =
-    values;
+  const {
+    firstName,
+    lastName,
+    identification,
+    mobile,
+    email,
+    address,
+    tariff,
+    civil,
+    birthDate,
+    creationDate,
+  } = values;
 
   return (
     <Form onSubmit={handleSubmit}>
