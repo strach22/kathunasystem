@@ -1,8 +1,18 @@
 import React from "react";
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import PropTypes from "prop-types";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  root: {
+    "&:hover": {
+      backgroundColor: "grey",
+    },
+  },
+});
 
 export default function RadioG(props) {
+  const classes = useStyles();
   const { name, label, value, onChange, items } = props;
 
   return (
@@ -15,7 +25,12 @@ export default function RadioG(props) {
         onChange={onChange}
       >
         {items.map((item) => (
-          <FormControlLabel key={item.id} value={item.id} control={<Radio />} label={item.title} />
+          <FormControlLabel
+            key={item.id}
+            value={item.id}
+            control={<Radio className={classes.root} />}
+            label={item.title}
+          />
         ))}
       </RadioGroup>
     </FormControl>
