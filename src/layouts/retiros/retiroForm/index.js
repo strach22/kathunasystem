@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import MDButton from "components/MDButton";
@@ -14,8 +14,14 @@ import Footer from "examples/Footer";
 
 import clients from "../../../data/clients.json";
 
-function Notifications() {
+function Retiro() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const retirar = () => {
+    clients[id - 1].saldoAhorros -= 10;
+    navigate("/inicio");
+  };
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -45,8 +51,8 @@ function Notifications() {
                 REGRESAR
               </MDButton>
             </Link>
-            <MDButton color="info" sx={{ marginLeft: 2 }}>
-              EDITAR
+            <MDButton color="info" onClick={retirar} sx={{ marginLeft: 2 }}>
+              RETIRAR
             </MDButton>
             <MDButton color="error" sx={{ marginLeft: 2 }}>
               ELIMINAR
@@ -59,4 +65,4 @@ function Notifications() {
   );
 }
 
-export default Notifications;
+export default Retiro;
