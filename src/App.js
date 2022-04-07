@@ -19,6 +19,8 @@ import themeDark from "assets/theme-dark";
 // Material Dashboard 2 React routes
 import routes from "routes";
 import InfoClientes from "layouts/clientes/infoClients/index";
+import DepositoForm from "layouts/depositos/depositoForm/index";
+import RetiroForm from "layouts/retiros/retiroForm/index";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav } from "context";
@@ -87,6 +89,8 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route exact path="/clientes/:id" element={<InfoClientes />} />
+        <Route exact path="/depositos/:id" element={<DepositoForm />} />
+        <Route exact path="/retiros/:id" element={<RetiroForm />} />
         <Route path="/*" element={<Navigate to="/authentication/sign-in/" />} />
       </Routes>
     </ThemeProvider>
