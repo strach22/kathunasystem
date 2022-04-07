@@ -47,11 +47,6 @@ const useStyles = makeStyles({
       width: "70%",
       margin: "15px 0px 10px 50px",
     },
-    // CheckBox
-    "& .checkOption": {
-      margin: "10px 0px 0px 40px",
-      width: "77%",
-    },
   },
 });
 

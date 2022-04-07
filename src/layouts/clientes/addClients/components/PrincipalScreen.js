@@ -3,7 +3,6 @@ import { Card, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import FormScreen from "./FormScreen";
-// import ButtonOk from "../elements/ButtonOk";
 
 export default function PrincipalScreen() {
   return (
@@ -29,20 +28,6 @@ export default function PrincipalScreen() {
               <FormScreen />
             </MDBox>
           </Card>
-          {/* <MDBox
-            mx={25}
-            mt={-5}
-            py={3}
-            // px={12}
-            variant="gradient"
-            bgColor="info"
-            borderRadius="lg"
-            validBoxShadows="xxl"
-            coloredShadow="info"
-          >
-            <ButtonOk type="submit" text="Submit" />
-            <ButtonOk text="Reset" color="default" />
-          </MDBox> */}
         </Grid>
       </Grid>
     </MDBox>

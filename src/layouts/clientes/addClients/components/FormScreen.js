@@ -6,7 +6,6 @@ import * as Helpers from "../helpers/Helpers";
 import RadioG from "../elements/RadioG";
 import SelectG from "../elements/SelectG";
 import DatePickerH from "../elements/DatePickerH";
-import CheckboxB from "../elements/CheckboxB";
 import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
 import ButtonOk from "../elements/ButtonOk";
@@ -22,7 +21,6 @@ const initialValues = {
   tariff: "particular",
   civil: "",
   birthDate: new Date(),
-  agree: false,
 };
 
 export default function FormScreen() {
@@ -64,21 +62,12 @@ export default function FormScreen() {
 
     if (validate()) {
       resetForm();
+      // console.log(JSON.parse(JSON.stringify(birthDate)));
     }
   };
 
-  const {
-    firstName,
-    lastName,
-    identification,
-    mobile,
-    email,
-    address,
-    tariff,
-    civil,
-    birthDate,
-    agree,
-  } = values;
+  const { firstName, lastName, identification, mobile, email, address, tariff, civil, birthDate } =
+    values;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -149,13 +138,6 @@ export default function FormScreen() {
             value={birthDate}
             onChange={handleInputChange}
           />
-          <CheckboxB
-            name="agree"
-            label="Desea Agregar Cliente"
-            value={agree}
-            onChange={handleInputChange}
-          />
-
           <div>
             <ButtonOk type="submit" text="Agregar" />
             <ButtonOk text="Resetear" color="success" onClick={resetForm} />
