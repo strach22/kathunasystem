@@ -24,6 +24,8 @@ const initialValues = {
   civil: "",
   birthDate: new Date(),
   creationDate: new Date(),
+  saldoAhorros: 0,
+  saldoCredito: 0,
 };
 
 export default function FormScreen() {

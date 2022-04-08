@@ -32,6 +32,10 @@ const useStyles = makeStyles({
       color: "#8C8F90",
       fontSize: "15px",
     },
+    // ButtonGroup
+    "& .MuiTouchRipple-root": {
+      color: "black",
+    },
     // Selector
     "& .MuiFormControl-fullWidth": {
       margin: "10px 0px 10px 50px",
