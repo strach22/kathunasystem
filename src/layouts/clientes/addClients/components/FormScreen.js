@@ -42,7 +42,7 @@ export default function FormScreen() {
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
-    const status = {};
+    const status = { ...state };
     if ("firstName" in fieldValues)
       tempo.firstName = fieldValues.firstName ? "" : "Este campo es obligatorio llenar";
     if ("lastName" in fieldValues)
@@ -63,15 +63,19 @@ export default function FormScreen() {
       tempo.address = fieldValues.address ? "" : "Este campo es obligatorio llenar";
     if ("civil" in fieldValues) {
       tempo.civil = fieldValues.civil.length !== 0 ? "" : "Es obligatorio escoger una opción";
-      status.civil = fieldValues.civil === "Soltero/a" ? "true" : "false";
+      status.civil =
+        fieldValues.civil === "Unión Libre" || fieldValues.civil === "Casado/a" ? "true" : "false";
     }
     setErrors({
       ...tempo,
     });
+    setState({
+      ...status,
+    });
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
+  const { values, errors, setErrors, state, setState, handleInputChange, resetForm } = useForm(
     initialValues,
     true,
     validate
@@ -85,13 +89,12 @@ export default function FormScreen() {
     if (validate()) {
       values.birthDate = dateResume;
       values.creationDate = dateResume2;
+      console.log(values);
       values.id = clients[clients.length - 1].id + 1;
       clients.push(values);
       resetForm();
     }
   };
-
-  console.log(errors);
 
   const {
     firstName,
@@ -113,6 +116,13 @@ export default function FormScreen() {
     mobileGuarantor,
     relationShipGuarantor,
   } = values;
+
+  // if (state.civil === "false") {
+  //   values.firstNameSpouse = "";
+  //   values.firstNameSpouse = "";
+  //   values.firstNameSpouse = "";
+  //   values.firstNameSpouse = "";
+  // }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -205,12 +215,14 @@ export default function FormScreen() {
               name="firstNameSpouse"
               value={firstNameSpouse}
               onChange={handleInputChange}
+              state={state.civil}
             />
             <Input
               label="Apellidos"
               name="lastNameSpouse"
               value={lastNameSpouse}
               onChange={handleInputChange}
+              state={state.civil}
             />
           </Grid>
           <Grid item xs={6}>
@@ -219,12 +231,14 @@ export default function FormScreen() {
               name="identificationSpouse"
               value={identificationSpouse}
               onChange={handleInputChange}
+              state={state.civil}
             />
             <Input
               label="Número de Teléfono"
               name="mobileSpouse"
               value={mobileSpouse}
               onChange={handleInputChange}
+              state={state.civil}
             />
           </Grid>
         </Grid>

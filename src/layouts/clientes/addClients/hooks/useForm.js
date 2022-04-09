@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function useForm(initialValues, validateOnChange = false, validate) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
+  const [state, setState] = useState({ civil: "false" });
 
   const handleInputChange = ({ target }) => {
     setValues({
@@ -15,7 +16,8 @@ export default function useForm(initialValues, validateOnChange = false, validat
   const resetForm = () => {
     setValues(initialValues);
     setErrors({});
+    setState({ civil: "false" });
   };
 
-  return { values, errors, setErrors, handleInputChange, resetForm };
+  return { values, errors, setErrors, state, setState, handleInputChange, resetForm };
 }

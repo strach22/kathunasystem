@@ -3,10 +3,10 @@ import { TextField } from "@mui/material";
 import PropTypes from "prop-types";
 
 export default function Input(props) {
-  const { label, name, error, value, onChange } = props;
-
+  const { label, name, error, value, onChange, state } = props;
   return (
     <TextField
+      {...(state === "false" && { disabled: true })}
       variant="outlined"
       label={label}
       name={name}
@@ -23,4 +23,5 @@ Input.propTypes = {
   error: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };
