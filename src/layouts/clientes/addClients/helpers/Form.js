@@ -12,8 +12,8 @@ const useStyles = makeStyles({
     },
     // ButtonGroup
     "& .ControlTariff": {
-      margin: "10px 0px 10px 50px",
-      paddingBottom: "3px",
+      margin: "10px 0px 32px 50px",
+      paddingBottom: "20px",
       width: "70%",
       border: "1px double #CDD4D5",
       borderRadius: 7,
@@ -21,11 +21,11 @@ const useStyles = makeStyles({
     // ButtonGroup
     "& #demo-controlled-radio-buttons-group": {
       color: "grey",
-      margin: "10px 0px 5px 15px",
+      margin: "15px 0px 15px 15px",
     },
     // ButtonGroup
     "& .MuiRadio-root": {
-      margin: "0px 10px 0px 40px",
+      margin: "2px 10px 0px 40px",
     },
     // ButtonGroup
     "& .MuiTypography-root": {
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
-      margin: "10px 0px 10px 50px",
+      margin: "10px 0px 40px 50px",
       width: "70%",
     },
     // Selector
@@ -53,25 +53,18 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "30%",
+      width: "20%",
       color: "black",
-      // margin: "10px",
+      margin: "100px 10px 0px 15px",
+      "&:hover": {
+        backgroundColor: "#929CA2",
+      },
     },
-    // Buttons
-    "& .MuiButton-containedPrimary": {
-      background: "#42a5f5",
-      margin: "25px 14px 20px 60px",
-    },
-    // Buttons
-    "& .MuiButton-containedSuccess": {
-      background: "#f57c00",
-      margin: "25px 0px 20px 14px",
-    },
-    // Buttons
-    "& .MuiButton-containedWarning": {
-      background: "#e3f2fd",
-      width: "60%",
-      margin: "0px 0px 0px 75px",
+    // Subtítulo
+    "& .Subtitles": {
+      fontSize: 20,
+      color: "white",
+      textAlign: "center",
     },
   },
 });

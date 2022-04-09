@@ -23,7 +23,7 @@ function Notifications() {
         <Grid container spacing={3}>
           <Grid item xs={10}>
             <MDBox coloredShadow="secondary">
-              <MDTypography padding={2} variant="h4">
+              <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                 Cliente # {id}
               </MDTypography>
               <MDTypography variant="h5" paddingLeft={2} paddingBottom={2}>
