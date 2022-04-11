@@ -12,8 +12,8 @@ const useStyles = makeStyles({
     },
     // ButtonGroup
     "& .ControlTariff": {
-      margin: "10px 0px 32px 50px",
-      paddingBottom: "20px",
+      margin: "10px 0px 25px 47px",
+      paddingBottom: "10px",
       width: "70%",
       border: "1px double #CDD4D5",
       borderRadius: 7,
@@ -21,11 +21,11 @@ const useStyles = makeStyles({
     // ButtonGroup
     "& #demo-controlled-radio-buttons-group": {
       color: "grey",
-      margin: "15px 0px 15px 15px",
+      margin: "15px 0px 10px 15px",
     },
     // ButtonGroup
     "& .MuiRadio-root": {
-      margin: "2px 10px 0px 40px",
+      margin: "0px 10px 0px 40px",
     },
     // ButtonGroup
     "& .MuiTypography-root": {
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
-      margin: "10px 0px 40px 50px",
+      margin: "10px 0px 40px 47px",
       width: "70%",
     },
     // Selector
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
     // DatePicker
     "& .Calendario": {
       width: "70%",
-      margin: "15px 0px 10px 50px",
+      margin: "0px 0px 21px 47px",
     },
     // Buttons
     "& .MuiButton-root": {

@@ -16,18 +16,9 @@ export default function DatePickerH(props) {
     },
   });
 
-  // console.log(Date.parse(value));
-
-  // const auxDate = new Date().toISOString().split("T")[0];
-  // new Date(value).toISOString().split("T")[0]);
-
-  // // const auxDate = Date(value);
-  // console.log(auxDate);
-
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        // maxDate="+2m"
         label={label}
         inputFormat="dd/MM/yyyy"
         name={name}

@@ -20,6 +20,7 @@ const initialValues = {
   lastName: "",
   identification: "",
   mobile: "",
+  secondMobile: "",
   email: "",
   address: "",
   tariff: "particular",
@@ -61,10 +62,51 @@ export default function FormScreen() {
         : "La dirección de emal no es válido";
     if ("address" in fieldValues)
       tempo.address = fieldValues.address ? "" : "Este campo es obligatorio llenar";
+
+    if ("firstNameGuarantor" in fieldValues)
+      tempo.firstNameGuarantor = fieldValues.firstNameGuarantor
+        ? ""
+        : "Este campo es obligatorio llenar";
+    if ("lastNameGuarantor" in fieldValues)
+      tempo.lastNameGuarantor = fieldValues.lastNameGuarantor
+        ? ""
+        : "Este campo es obligatorio llenar";
+    if ("mobileGuarantor" in fieldValues)
+      tempo.mobileGuarantor = /^[0-9]+$/.test(fieldValues.mobileGuarantor)
+        ? ""
+        : "Este campo es obligatorio llenar";
+    if ("relationShipGuarantor" in fieldValues)
+      tempo.relationShipGuarantor = fieldValues.relationShipGuarantor
+        ? ""
+        : "Este campo es obligatorio llenar";
+
     if ("civil" in fieldValues) {
       tempo.civil = fieldValues.civil.length !== 0 ? "" : "Es obligatorio escoger una opción";
-      status.civil =
-        fieldValues.civil === "Unión Libre" || fieldValues.civil === "Casado/a" ? "true" : "false";
+      if (fieldValues.civil === "Unión Libre" || fieldValues.civil === "Casado/a") {
+        status.civil = "true";
+      } else {
+        status.civil = "false";
+        values.firstNameSpouse = "";
+        values.lastNameSpouse = "";
+        values.identificationSpouse = "";
+        values.mobileSpouse = "";
+      }
+    }
+    if (status.civil === "true") {
+      if ("firstNameSpouse" in fieldValues)
+        tempo.firstNameSpouse = fieldValues.firstNameSpouse
+          ? ""
+          : "Este campo es obligatorio llenar";
+      if ("lastNameSpouse" in fieldValues)
+        tempo.lastNameSpouse = fieldValues.lastNameSpouse ? "" : "Este campo es obligatorio llenar";
+      if ("identificationSpouse" in fieldValues)
+        tempo.identificationSpouse = /^[0-9]+$/.test(fieldValues.identificationSpouse)
+          ? ""
+          : "Este campo es obligatorio llenar";
+      if ("mobileSpouse" in fieldValues)
+        tempo.mobileSpouse = /^[0-9]+$/.test(fieldValues.mobileSpouse)
+          ? ""
+          : "Este campo es obligatorio llenar";
     }
     setErrors({
       ...tempo,
@@ -89,7 +131,6 @@ export default function FormScreen() {
     if (validate()) {
       values.birthDate = dateResume;
       values.creationDate = dateResume2;
-      console.log(values);
       values.id = clients[clients.length - 1].id + 1;
       clients.push(values);
       resetForm();
@@ -101,6 +142,7 @@ export default function FormScreen() {
     lastName,
     identification,
     mobile,
+    secondMobile,
     email,
     address,
     tariff,
@@ -116,13 +158,6 @@ export default function FormScreen() {
     mobileGuarantor,
     relationShipGuarantor,
   } = values;
-
-  // if (state.civil === "false") {
-  //   values.firstNameSpouse = "";
-  //   values.firstNameSpouse = "";
-  //   values.firstNameSpouse = "";
-  //   values.firstNameSpouse = "";
-  // }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -157,18 +192,17 @@ export default function FormScreen() {
             error={errors.mobile}
           />
           <Input
+            label="2do Número de teléfono (Opcional)"
+            name="secondMobile"
+            value={secondMobile}
+            onChange={handleInputChange}
+          />
+          <Input
             label="Email"
             name="email"
             value={email}
             onChange={handleInputChange}
             error={errors.email}
-          />
-          <Input
-            label="Dirección"
-            name="address"
-            value={address}
-            onChange={handleInputChange}
-            error={errors.address}
           />
         </Grid>
         <Grid item xs={6}>
@@ -193,12 +227,19 @@ export default function FormScreen() {
             value={birthDate}
             onChange={handleInputChange}
           />
+          <Input
+            label="Dirección"
+            name="address"
+            value={address}
+            onChange={handleInputChange}
+            error={errors.address}
+          />
         </Grid>
       </Grid>
       <MDBox
         mx={13}
         mt={7}
-        py={3}
+        py={2}
         mb={2}
         variant="gradient"
         bgColor="info"
@@ -215,6 +256,7 @@ export default function FormScreen() {
               name="firstNameSpouse"
               value={firstNameSpouse}
               onChange={handleInputChange}
+              error={errors.firstNameSpouse}
               state={state.civil}
             />
             <Input
@@ -222,6 +264,7 @@ export default function FormScreen() {
               name="lastNameSpouse"
               value={lastNameSpouse}
               onChange={handleInputChange}
+              error={errors.lastNameSpouse}
               state={state.civil}
             />
           </Grid>
@@ -231,6 +274,7 @@ export default function FormScreen() {
               name="identificationSpouse"
               value={identificationSpouse}
               onChange={handleInputChange}
+              error={errors.identificationSpouse}
               state={state.civil}
             />
             <Input
@@ -238,6 +282,7 @@ export default function FormScreen() {
               name="mobileSpouse"
               value={mobileSpouse}
               onChange={handleInputChange}
+              error={errors.mobileSpouse}
               state={state.civil}
             />
           </Grid>
@@ -246,7 +291,7 @@ export default function FormScreen() {
       <MDBox
         mx={13}
         mt={7}
-        py={3}
+        py={2}
         mb={2}
         variant="gradient"
         bgColor="info"
@@ -263,12 +308,14 @@ export default function FormScreen() {
               name="firstNameGuarantor"
               value={firstNameGuarantor}
               onChange={handleInputChange}
+              error={errors.firstNameGuarantor}
             />
             <Input
               label="Apellidos"
               name="lastNameGuarantor"
               value={lastNameGuarantor}
               onChange={handleInputChange}
+              error={errors.lastNameGuarantor}
             />
           </Grid>
           <Grid item xs={6}>
@@ -277,12 +324,14 @@ export default function FormScreen() {
               name="mobileGuarantor"
               value={mobileGuarantor}
               onChange={handleInputChange}
+              error={errors.mobileGuarantor}
             />
             <Input
               label="Parentesco"
               name="relationShipGuarantor"
               value={relationShipGuarantor}
               onChange={handleInputChange}
+              error={errors.relationShipGuarantor}
             />
           </Grid>
         </Grid>
