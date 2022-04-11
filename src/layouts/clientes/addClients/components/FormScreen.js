@@ -8,10 +8,10 @@ import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
 import ButtonOk from "../elements/ButtonOk";
 import clients from "../../../../data/clients.json";
-import FormList1 from "../elements/list/FormList1";
-import FormList2 from "../elements/list/FormList2";
-import FormListSpouse from "../elements/list/FormListSpouse";
-import FormListGuarantor from "../elements/list/FormListGuarantor";
+import FormList1 from "./list/FormList1";
+import FormList2 from "./list/FormList2";
+import FormListSpouse from "./list/FormListSpouse";
+import FormListGuarantor from "./list/FormListGuarantor";
 
 const initialValues = {
   id: 0,
@@ -26,8 +26,6 @@ const initialValues = {
   civil: "",
   birthDate: new Date(),
   creationDate: new Date(),
-  saldoAhorros: 0,
-  saldoCredito: 0,
   firstNameSpouse: "",
   lastNameSpouse: "",
   identificationSpouse: "",
@@ -36,6 +34,8 @@ const initialValues = {
   lastNameGuarantor: "",
   mobileGuarantor: "",
   relationShipGuarantor: "",
+  saldoAhorros: 0,
+  saldoCredito: 0,
 };
 
 export default function FormScreen() {
