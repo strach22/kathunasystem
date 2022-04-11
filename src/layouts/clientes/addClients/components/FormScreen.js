@@ -4,15 +4,14 @@ import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
-import Input from "../elements/Input";
-import * as ConstDate from "../helpers/ConstDate";
-import RadioG from "../elements/RadioG";
-import SelectG from "../elements/SelectG";
-import DatePickerH from "../elements/DatePickerH";
 import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
 import ButtonOk from "../elements/ButtonOk";
 import clients from "../../../../data/clients.json";
+import FormList1 from "../elements/list/FormList1";
+import FormList2 from "../elements/list/FormList2";
+import FormListSpouse from "../elements/list/FormListSpouse";
+import FormListGuarantor from "../elements/list/FormListGuarantor";
 
 const initialValues = {
   id: 0,
@@ -114,7 +113,9 @@ export default function FormScreen() {
     setState({
       ...status,
     });
-    if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
+    if (fieldValues === values) {
+      return Object.values(tempo).every((x) => x === "");
+    }
   };
 
   const { values, errors, setErrors, state, setState, handleInputChange, resetForm } = useForm(
@@ -125,8 +126,8 @@ export default function FormScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const dateResume = birthDate.toISOString().split("T")[0];
-    const dateResume2 = creationDate.toISOString().split("T")[0];
+    const dateResume = values.birthDate.toISOString().split("T")[0];
+    const dateResume2 = values.creationDate.toISOString().split("T")[0];
 
     if (validate()) {
       values.birthDate = dateResume;
@@ -137,102 +138,34 @@ export default function FormScreen() {
     }
   };
 
-  const {
-    firstName,
-    lastName,
-    identification,
-    mobile,
-    secondMobile,
-    email,
-    address,
-    tariff,
-    civil,
-    birthDate,
-    creationDate,
-    firstNameSpouse,
-    lastNameSpouse,
-    identificationSpouse,
-    mobileSpouse,
-    firstNameGuarantor,
-    lastNameGuarantor,
-    mobileGuarantor,
-    relationShipGuarantor,
-  } = values;
-
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={6}>
-          <Input
-            label="Nombres"
-            name="firstName"
-            value={firstName}
-            onChange={handleInputChange}
-            error={errors.firstName}
-          />
-          <Input
-            label="Apellidos"
-            name="lastName"
-            value={lastName}
-            onChange={handleInputChange}
-            error={errors.lastName}
-          />
-          <Input
-            label="Cédula de Indentidad"
-            name="identification"
-            value={identification}
-            onChange={handleInputChange}
-            error={errors.identification}
-          />
-          <Input
-            label="Número de teléfono"
-            name="mobile"
-            value={mobile}
-            onChange={handleInputChange}
-            error={errors.mobile}
-          />
-          <Input
-            label="2do Número de teléfono (Opcional)"
-            name="secondMobile"
-            value={secondMobile}
-            onChange={handleInputChange}
-          />
-          <Input
-            label="Email"
-            name="email"
-            value={email}
-            onChange={handleInputChange}
-            error={errors.email}
+          <FormList1
+            valFirstName={values.firstName}
+            valLastName={values.lastName}
+            valIdentification={values.identification}
+            valMobile={values.mobile}
+            valSecondMobile={values.secondMobile}
+            valEmail={values.email}
+            handleInputChange={handleInputChange}
+            errFirstName={errors.firstName}
+            errLastName={errors.lastName}
+            errIdentification={errors.identification}
+            errMobile={errors.mobile}
+            errEmail={errors.email}
           />
         </Grid>
         <Grid item xs={6}>
-          <RadioG
-            name="tariff"
-            label="Tarifa"
-            value={tariff}
-            onChange={handleInputChange}
-            items={ConstDate.tariffItems()}
-          />
-          <SelectG
-            name="civil"
-            label="Estado Civil"
-            value={civil}
-            onChange={handleInputChange}
-            options={ConstDate.getCivilStatus()}
-            error={errors.civil}
-          />
-          <DatePickerH
-            name="birthDate"
-            label="Fecha de Nacimiento"
-            value={birthDate}
-            onChange={handleInputChange}
-          />
-          <Input
-            label="Dirección"
-            name="address"
-            value={address}
-            onChange={handleInputChange}
-            error={errors.address}
+          <FormList2
+            valTariff={values.tariff}
+            valCivil={values.civil}
+            valBirthDate={values.birthDate}
+            valAddress={values.address}
+            handleInputChange={handleInputChange}
+            errCivil={errors.civil}
+            errAddress={errors.address}
           />
         </Grid>
       </Grid>
@@ -249,44 +182,18 @@ export default function FormScreen() {
         <MDTypography className="Subtitles">Datos del Conyuge</MDTypography>
       </MDBox>
       <MDBox pt={3}>
-        <Grid container>
-          <Grid item xs={6}>
-            <Input
-              label="Nombres"
-              name="firstNameSpouse"
-              value={firstNameSpouse}
-              onChange={handleInputChange}
-              error={errors.firstNameSpouse}
-              state={state.civil}
-            />
-            <Input
-              label="Apellidos"
-              name="lastNameSpouse"
-              value={lastNameSpouse}
-              onChange={handleInputChange}
-              error={errors.lastNameSpouse}
-              state={state.civil}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Input
-              label="Cédula de Identidad"
-              name="identificationSpouse"
-              value={identificationSpouse}
-              onChange={handleInputChange}
-              error={errors.identificationSpouse}
-              state={state.civil}
-            />
-            <Input
-              label="Número de Teléfono"
-              name="mobileSpouse"
-              value={mobileSpouse}
-              onChange={handleInputChange}
-              error={errors.mobileSpouse}
-              state={state.civil}
-            />
-          </Grid>
-        </Grid>
+        <FormListSpouse
+          valFirstName={values.firstNameSpouse}
+          valLastName={values.lastNameSpouse}
+          valIdentification={values.identificationSpouse}
+          valMobile={values.mobileSpouse}
+          handleInputChange={handleInputChange}
+          errFirstName={errors.firstNameSpouse}
+          errLastName={errors.lastNameSpouse}
+          errIdentification={errors.identificationSpouse}
+          errMobile={errors.mobileSpouse}
+          state={state.civil}
+        />
       </MDBox>
       <MDBox
         mx={13}
@@ -301,40 +208,17 @@ export default function FormScreen() {
         <MDTypography className="Subtitles">Datos del Garante</MDTypography>
       </MDBox>
       <MDBox pt={3}>
-        <Grid container>
-          <Grid item xs={6}>
-            <Input
-              label="Nombres"
-              name="firstNameGuarantor"
-              value={firstNameGuarantor}
-              onChange={handleInputChange}
-              error={errors.firstNameGuarantor}
-            />
-            <Input
-              label="Apellidos"
-              name="lastNameGuarantor"
-              value={lastNameGuarantor}
-              onChange={handleInputChange}
-              error={errors.lastNameGuarantor}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Input
-              label="Cédula de Identidad"
-              name="mobileGuarantor"
-              value={mobileGuarantor}
-              onChange={handleInputChange}
-              error={errors.mobileGuarantor}
-            />
-            <Input
-              label="Parentesco"
-              name="relationShipGuarantor"
-              value={relationShipGuarantor}
-              onChange={handleInputChange}
-              error={errors.relationShipGuarantor}
-            />
-          </Grid>
-        </Grid>
+        <FormListGuarantor
+          valFirstName={values.firstNameGuarantor}
+          valLastName={values.lastNameGuarantor}
+          valMobile={values.mobileGuarantor}
+          valRelationShip={values.relationShipGuarantor}
+          handleInputChange={handleInputChange}
+          errFirstName={errors.firstNameGuarantor}
+          errLastName={errors.lastNameGuarantor}
+          errMobile={errors.mobileGuarantor}
+          errRelationShip={errors.relationShipGuarantor}
+        />
       </MDBox>
       <Grid item xs={12}>
         <ButtonOk type="submit" text="Agregar" sx={{ background: "#42a5f5" }} />
