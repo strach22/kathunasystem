@@ -15,7 +15,7 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import clientes from "./table/tableRetiros";
 
-function Depositos() {
+function Retiros() {
   const { columns, rows } = clientes();
 
   return (
@@ -58,4 +58,4 @@ function Depositos() {
   );
 }
 
-export default Depositos;
+export default Retiros;
