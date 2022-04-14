@@ -56,9 +56,6 @@ const useStyles = makeStyles({
       width: "20%",
       color: "black",
       margin: "100px 10px 0px 15px",
-      "&:hover": {
-        backgroundColor: "#929CA2",
-      },
     },
     // Subtítulo
     "& .Subtitles": {

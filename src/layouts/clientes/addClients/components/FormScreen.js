@@ -115,9 +115,7 @@ export default function FormScreen() {
     setState({
       ...status,
     });
-    if (fieldValues === values) {
-      return Object.values(tempo).every((x) => x === "");
-    }
+    if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
   const { values, errors, setErrors, state, setState, handleInputChange, resetForm } = useForm(
@@ -223,10 +221,22 @@ export default function FormScreen() {
         />
       </MDBox>
       <Grid item xs={12}>
-        <ButtonOk type="submit" text="Agregar" sx={{ background: "#42a5f5" }} />
-        <ButtonOk text="Resetear" onClick={resetForm} sx={{ background: "#f57c00" }} />
+        <ButtonOk
+          type="submit"
+          text="Agregar"
+          sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
+        />
+        <ButtonOk
+          text="Resetear"
+          onClick={resetForm}
+          sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
+        />
         <Link to="/clientes">
-          <ButtonOk text="Regresar" onClick={resetForm} sx={{ background: "#e3f2fd" }} />
+          <ButtonOk
+            text="Regresar"
+            onClick={resetForm}
+            sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
+          />
         </Link>
       </Grid>
     </Form>

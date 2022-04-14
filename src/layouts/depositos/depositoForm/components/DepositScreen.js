@@ -1,9 +1,10 @@
+/* eslint-disable no-use-before-define */
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Grid, InputAdornment, OutlinedInput, TextareaAutosize } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
-import MDButton from "components/MDButton";
+import ButtonOk from "elements/ButtonOk";
 import DatePickerH from "../../../../elements/DatePickerH";
 import Form from "../helpers/Form";
 
@@ -13,15 +14,13 @@ export default function DepositScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const depositar = () => {
-    clients[id - 1].saldoAhorros += 10;
-    navigate("/inicio");
-  };
-
-  const { values, handleInputChange } = useForm(clients[id - 1]);
+  const { values, handleInputChange, resetForm } = useForm(clients[id - 1]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    clients[id - 1].saldoAhorros += 10;
+    navigate("/inicio");
+    resetForm();
   };
 
   return (
@@ -38,38 +37,51 @@ export default function DepositScreen() {
             obChange={handleInputChange}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <MDTypography className="Subtitles">Valor a depositar:</MDTypography>
           <OutlinedInput
             id="outlined-adornment-amount"
+            name="deposit"
             value={values.deposit}
             onChange={handleInputChange}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            inputProps={{ inputMode: "numeric" }}
           />
         </Grid>
-        <Grid xs={6}>
+        <Grid xs={7}>
           <MDTypography className="Subtitles">Observaciones:</MDTypography>
           <TextareaAutosize
             aria-label="minimum height"
             minRows={3}
             maxRows={4}
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
-            style={{ width: 200 }}
+            style={{
+              width: "90%",
+              height: "35%",
+              padding: "2%",
+              border: "1px double #CDD4D5",
+              borderRadius: 7,
+              fontSize: "80%",
+            }}
           />
         </Grid>
         <Grid item xs={12} lg={11}>
+          <ButtonOk
+            type="submit"
+            text="DEPOSITAR"
+            sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
+          />
+          <ButtonOk
+            text="RESETEAR"
+            onClick={resetForm}
+            sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
+          />
           <Link to="/depositos">
-            <MDButton color="secondary" sx={{ marginLeft: 2 }}>
-              REGRESAR
-            </MDButton>
+            <ButtonOk
+              text="REGRESAR"
+              onClick={resetForm}
+              sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
+            />
           </Link>
-          <MDButton color="info" onClick={depositar} sx={{ marginLeft: 2 }}>
-            DEPOSITAR
-          </MDButton>
-          <MDButton color="error" sx={{ marginLeft: 2 }}>
-            Resetear
-          </MDButton>
         </Grid>
       </Grid>
     </Form>
