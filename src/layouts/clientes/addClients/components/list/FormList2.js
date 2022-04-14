@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Input from "../../elements/Input";
-import RadioG from "../../elements/RadioG";
-import SelectG from "../../elements/SelectG";
-import DatePickerH from "../../elements/DatePickerH";
+import Input from "../../../../../elements/Input";
+import RadioG from "../../../../../elements/RadioG";
+import SelectG from "../../../../../elements/SelectG";
+import DatePickerH from "../../../../../elements/DatePickerH";
 import * as ConstDate from "../../helpers/ConstDate";
 
 export default function FormList2(props) {

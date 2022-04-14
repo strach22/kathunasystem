@@ -6,7 +6,7 @@ import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
-import ButtonOk from "../elements/ButtonOk";
+import ButtonOk from "../../../../elements/ButtonOk";
 import clients from "../../../../data/clients.json";
 import FormList1 from "./list/FormList1";
 import FormList2 from "./list/FormList2";
@@ -26,6 +26,7 @@ const initialValues = {
   civil: "",
   birthDate: new Date(),
   creationDate: new Date(),
+  depositDate: "",
   firstNameSpouse: "",
   lastNameSpouse: "",
   identificationSpouse: "",
@@ -36,6 +37,7 @@ const initialValues = {
   relationShipGuarantor: "",
   saldoAhorros: 0,
   saldoCredito: 0,
+  deposit: 0,
 };
 
 export default function FormScreen() {
