@@ -14,20 +14,18 @@ export default function data() {
       { Header: "acción", accessor: "accion", align: "center" },
     ],
 
-    rows: clients
-      .filter((cliente) => cliente.tariff === "Socio")
-      .map((cliente) => ({
-        id: cliente.id,
-        firstName: cliente.firstName,
-        lastName: cliente.lastName,
-        identification: cliente.identification,
-        accion: (
-          <Link to={`${cliente.id}`}>
-            <MDTypography component="a" variant="caption" color="text" fontWeight="medium">
-              Depósito
-            </MDTypography>
-          </Link>
-        ),
-      })),
+    rows: clients.map((cliente) => ({
+      id: cliente.id,
+      firstName: cliente.firstName,
+      lastName: cliente.lastName,
+      identification: cliente.identification,
+      accion: (
+        <Link to={`${cliente.id}`}>
+          <MDTypography component="a" variant="caption" color="text" fontWeight="medium">
+            Depósito
+          </MDTypography>
+        </Link>
+      ),
+    })),
   };
 }
