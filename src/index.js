@@ -5,11 +5,14 @@ import App from "App";
 
 // Soft UI Context Provider
 import { MaterialUIControllerProvider } from "context";
+import ClientsState from "./context/Clients/ClientsState";
 
 ReactDOM.render(
   <BrowserRouter>
     <MaterialUIControllerProvider>
-      <App />
+      <ClientsState>
+        <App />
+      </ClientsState>
     </MaterialUIControllerProvider>
   </BrowserRouter>,
   document.getElementById("root")

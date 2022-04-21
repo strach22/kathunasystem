@@ -5,6 +5,7 @@ import ExcelImport from "./ExcelImport";
 export default function UploadClientsScreen() {
   const [data, setData] = useState([]);
 
+  // eslint-disable-next-line no-console
   console.log(data);
 
   const worksheets = [
