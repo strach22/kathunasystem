@@ -11,9 +11,9 @@ export default function ExcelExport({ filename = "", worksheets = [] }) {
       <Workbook
         filename={filename}
         element={
-          <MDButton color="success">
+          <MDButton color="success" sx={{ marginBottom: "20px" }}>
             <ArticleIcon color="dark" fontSize="large" sx={{ marginRight: 1 }} />
-            Descargar
+            Descargar Plantilla
           </MDButton>
         }
       >
