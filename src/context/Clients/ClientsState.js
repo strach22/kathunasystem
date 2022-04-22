@@ -7,10 +7,13 @@ import ClientsContext from "./ClientsContext";
 
 function reducer(state, action) {
   switch (action.type) {
-    case "GET_CLIENTS": {
+    case "ADD_CLIENTS": {
       return { ...state, clients: action.value };
     }
     case "ERASE_CLIENT": {
+      return { ...state, clients: action.value };
+    }
+    case "NEW_DATA": {
       return { ...state, clients: action.value };
     }
     default: {
@@ -24,19 +27,20 @@ function ClientsState({ children }) {
     clients,
   };
 
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useReducer(reducer, initialstate);
 
-  const getClients = () => {
+  const addClients = (newClient) => {
+    const newClients = clients.push(newClient);
     dispatch({
-      type: "GET_CLIENTS",
-      value: [
-        { id: 1, firstName: "Isaac" },
-        { id: 2, firstName: "Sebastian" },
-      ],
+      type: "ADD_CLIENTS",
+      value: newClients,
     });
-    // eslint-disable-next-line no-console
-    console.log(state);
+  };
+  const newData = (data) => {
+    dispatch({
+      type: "NEW_DATA",
+      value: data,
+    });
   };
 
   const eraseClient = (id) => {
@@ -52,8 +56,9 @@ function ClientsState({ children }) {
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         clients: state.clients,
-        getClients,
+        addClients,
         eraseClient,
+        newData,
       }}
     >
       {children}
