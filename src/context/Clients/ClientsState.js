@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useMemo } from "react";
 
 import PropTypes from "prop-types";
 
@@ -29,6 +29,8 @@ function ClientsState({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialstate);
 
+  const value = useMemo(() => [state, dispatch], [state, dispatch]);
+
   const addClients = (newClient) => {
     const newClients = clients.push(newClient);
     dispatch({
@@ -52,15 +54,7 @@ function ClientsState({ children }) {
   };
 
   return (
-    <ClientsContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{
-        clients: state.clients,
-        addClients,
-        eraseClient,
-        newData,
-      }}
-    >
+    <ClientsContext.Provider value={(value, newData, addClients, eraseClient)}>
       {children}
     </ClientsContext.Provider>
   );
