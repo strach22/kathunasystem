@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 // @mui material components
@@ -15,13 +16,13 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 import InfoIcon from "examples/Cards/IconInfo";
 
+import ClientsContext from "../../context/Clients/ClientsContext";
 // Data
 import clientes from "./table/tableClients";
-import clients from "../../data/clients.json";
 
 function Tables() {
   const { columns, rows } = clientes();
-
+  const { clients } = useContext(ClientsContext);
   return (
     <DashboardLayout>
       <DashboardNavbar />

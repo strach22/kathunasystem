@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -12,10 +13,12 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 
-import clients from "../../../data/clients.json";
+import ClientsContext from "../../../context/Clients/ClientsContext";
 
-function Notifications() {
+function infoClients() {
   const { id } = useParams();
+  const { clients, eraseClient } = useContext(ClientsContext);
+  const i = clients.map((e) => e.id).indexOf(parseInt(id, 10));
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -27,42 +30,46 @@ function Notifications() {
                 Cliente # {id}
               </MDTypography>
               <MDTypography variant="h5" paddingLeft={2} paddingBottom={2}>
-                Nombres: {clients[id - 1].firstName}
+                Nombres: {clients[i].firstName}
                 <br />
-                Apellidos: {clients[id - 1].lastName}
+                Apellidos: {clients[i].lastName}
                 <br />
-                Documento de Identidad: {clients[id - 1].identification}
+                Documento de Identidad: {clients[i].identification}
                 <br />
-                Fecha de Nacimiento: {clients[id - 1].birthDate}
+                Fecha de Nacimiento: {clients[i].birthDate}
                 <br />
-                Teléfono: {clients[id - 1].mobile}
+                Teléfono: {clients[i].mobile}
                 <br />
-                Dirección: {clients[id - 1].address}
+                Dirección: {clients[i].address}
                 <br />
-                Correo Electrónico: {clients[id - 1].email}
+                Correo Electrónico: {clients[i].email}
                 <br />
-                Estado Civil: {clients[id - 1].civil}
+                Estado Civil: {clients[i].civil}
                 <br />
-                Fecha de Afiliación: {clients[id - 1].creationDate}
+                Fecha de Afiliación: {clients[i].creationDate}
                 <br />
-                Tarifa: {clients[id - 1].tariff}
+                Tarifa: {clients[i].tariff}
                 <br />
-                Saldo de Ahorros: {clients[id - 1].saldoAhorros}
+                Saldo de Ahorros: {clients[i].saldoAhorros}
                 <br />
-                Saldo de Crédito: {clients[id - 1].saldoCredito}
+                Saldo de Crédito: {clients[i].saldoCredito}
               </MDTypography>
             </MDBox>
           </Grid>
           <Grid item xs={12} lg={11}>
-            <Link to="/clientes">
-              <MDButton color="secondary" sx={{ marginLeft: 2 }}>
-                REGRESAR
-              </MDButton>
-            </Link>
+            <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
+              REGRESAR
+            </MDButton>
             <MDButton color="info" sx={{ marginLeft: 2 }}>
               EDITAR
             </MDButton>
-            <MDButton color="error" sx={{ marginLeft: 2 }}>
+            <MDButton
+              color="error"
+              sx={{ marginLeft: 2 }}
+              component={Link}
+              to="/clientes"
+              onClick={() => eraseClient(parseInt(id, 10))}
+            >
               ELIMINAR
             </MDButton>
           </Grid>
@@ -73,4 +80,4 @@ function Notifications() {
   );
 }
 
-export default Notifications;
+export default infoClients;

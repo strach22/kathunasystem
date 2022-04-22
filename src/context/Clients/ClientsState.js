@@ -10,8 +10,8 @@ function reducer(state, action) {
     case "GET_CLIENTS": {
       return { ...state, clients: action.value };
     }
-    case "GET_PROFILE": {
-      return { ...state, selectedClient: action.value };
+    case "ERASE_CLIENT": {
+      return { ...state, clients: action.value };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -22,7 +22,6 @@ function reducer(state, action) {
 function ClientsState({ children }) {
   const initialstate = {
     clients,
-    selectedClient: null,
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -31,16 +30,20 @@ function ClientsState({ children }) {
   const getClients = () => {
     dispatch({
       type: "GET_CLIENTS",
-      value: [{ firstName: "Isaac" }, { firstName: "Sebastian" }],
+      value: [
+        { id: 1, firstName: "Isaac" },
+        { id: 2, firstName: "Sebastian" },
+      ],
     });
     // eslint-disable-next-line no-console
-    console.log("Hola");
+    console.log(state);
   };
 
-  const getProfile = () => {
+  const eraseClient = (id) => {
+    const newClients = state.clients.filter((client) => client.id !== id);
     dispatch({
-      type: "GET_PROFILE",
-      value: "Usuario 1",
+      type: "ERASE_CLIENT",
+      value: newClients,
     });
   };
 
@@ -49,9 +52,8 @@ function ClientsState({ children }) {
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         clients: state.clients,
-        selectedClient: state.selectedClient,
         getClients,
-        getProfile,
+        eraseClient,
       }}
     >
       {children}
