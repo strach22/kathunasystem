@@ -17,7 +17,7 @@ import ClientsContext from "../../../context/Clients/ClientsContext";
 
 function infoClients() {
   const { id } = useParams();
-  const { clients, eraseClient } = useContext(ClientsContext);
+  const { clients, eraseClient, editClient } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(parseInt(id, 10));
   return (
     <DashboardLayout>
@@ -29,38 +29,73 @@ function infoClients() {
               <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                 Cliente # {id}
               </MDTypography>
-              <MDTypography variant="h5" paddingLeft={2} paddingBottom={2}>
-                Nombres: {clients[i].firstName}
-                <br />
-                Apellidos: {clients[i].lastName}
-                <br />
-                Documento de Identidad: {clients[i].identification}
-                <br />
-                Fecha de Nacimiento: {clients[i].birthDate}
-                <br />
-                Teléfono: {clients[i].mobile}
-                <br />
-                Dirección: {clients[i].address}
-                <br />
-                Correo Electrónico: {clients[i].email}
-                <br />
-                Estado Civil: {clients[i].civil}
-                <br />
-                Fecha de Afiliación: {clients[i].creationDate}
-                <br />
-                Tarifa: {clients[i].tariff}
-                <br />
-                Saldo de Ahorros: {clients[i].saldoAhorros}
-                <br />
-                Saldo de Crédito: {clients[i].saldoCredito}
-              </MDTypography>
+              <Grid container spacing={2} paddingLeft={3} paddingBottom={2}>
+                <Grid item xs={5}>
+                  <MDTypography variant="h5">Nombres:</MDTypography>
+                  <MDTypography variant="h5">Apellidos:</MDTypography>
+                  <MDTypography variant="h5">Documento de Identidad:</MDTypography>
+                  <MDTypography variant="h5">Fecha de Nacimiento:</MDTypography>
+                  <MDTypography variant="h5">Teléfono:</MDTypography>
+                  <MDTypography variant="h5">Correo Electrónico:</MDTypography>
+                  <MDTypography variant="h5">Estado Civil:</MDTypography>
+                  <MDTypography variant="h5">Fecha de Afiliación:</MDTypography>
+                  <MDTypography variant="h5">Tarifa:</MDTypography>
+                  <MDTypography variant="h5">Saldo de Ahorros:</MDTypography>
+                  <MDTypography variant="h5">Saldo de Crédito:</MDTypography>
+                  <MDTypography variant="h5">Dirección:</MDTypography>
+                </Grid>
+                <Grid item xs={6}>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].firstName}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].lastName}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].identification}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].birthDate}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].mobile}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].email}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].civil}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].creationDate}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].tariff}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].saldoAhorros}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].saldoCredito}
+                  </MDTypography>
+                  <MDTypography fontWeight="regular" variant="h5">
+                    {clients[i].address}
+                  </MDTypography>
+                </Grid>
+              </Grid>
             </MDBox>
           </Grid>
           <Grid item xs={12} lg={11}>
             <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
               REGRESAR
             </MDButton>
-            <MDButton color="info" sx={{ marginLeft: 2 }}>
+            <MDButton
+              color="info"
+              sx={{ marginLeft: 2 }}
+              component={Link}
+              to="/agregar-clientes"
+              onClick={() => editClient(clients[i])}
+            >
               EDITAR
             </MDButton>
             <MDButton

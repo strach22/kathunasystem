@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo } from "react";
+import React, { useReducer } from "react";
 
 import PropTypes from "prop-types";
 
@@ -16,6 +16,9 @@ function reducer(state, action) {
     case "NEW_DATA": {
       return { ...state, clients: action.value };
     }
+    case "EDIT_CLIENT": {
+      return { ...state, clientInfo: action.value };
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -25,11 +28,10 @@ function reducer(state, action) {
 function ClientsState({ children }) {
   const initialstate = {
     clients,
+    clientInfo: {},
   };
 
   const [state, dispatch] = useReducer(reducer, initialstate);
-
-  const value = useMemo(() => [state, dispatch], [state, dispatch]);
 
   const addClients = (newClient) => {
     const newClients = clients.push(newClient);
@@ -52,9 +54,24 @@ function ClientsState({ children }) {
       value: newClients,
     });
   };
+  const editClient = (info) => {
+    dispatch({
+      type: "EDIT_CLIENT",
+      value: info,
+    });
+  };
 
   return (
-    <ClientsContext.Provider value={(value, newData, addClients, eraseClient)}>
+    <ClientsContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{
+        clients: state.clients,
+        addClients,
+        eraseClient,
+        newData,
+        editClient,
+      }}
+    >
       {children}
     </ClientsContext.Provider>
   );
