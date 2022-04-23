@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+/* eslint-disable prefer-destructuring */
+import React, { useReducer, useState } from "react";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-// import MDButton from "components/MDButton";
-// import ExcelExport from "./ExcelExport";
 import ExcelImport from "./ExcelImport";
+import ActionReduce from "./ActionReduce";
 
 const useStyles = makeStyles({
   root: {
@@ -62,9 +62,42 @@ const useStyles = makeStyles({
 export default function UploadClientsScreen() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [dataBase, dispatch] = useReducer(ActionReduce);
 
   const handleUpload = () => {
-    console.log(data);
+    for (let i = 0; i < data.length; i += 1) {
+      const value = data[i].map((val) => val);
+
+      const dataBaseTempo = {
+        id: value[0],
+        nombres: value[1],
+        apellidos: value[2],
+        cedulaIdentidad: value[3],
+        numeroTelefono: value[4],
+        numeroTelefono2: value[5],
+        email: value[6],
+        tarifa: value[7],
+        estadoCivil: value[8],
+        fechaNacimiento: value[9],
+        fechaCreacion: value[10],
+        direccion: value[11],
+        saldoAhorros: value[12],
+        saldoCredito: value[13],
+        nombresConyugue: value[14],
+        apellidosConyugue: value[15],
+        cedulaIdentidadConyugue: value[16],
+        telefonoConyugue: value[17],
+        parentesco: value[18],
+        nombresParentesco: value[19],
+        apellidosParentesco: value[20],
+        cedulaIdentidadParentesco: value[21],
+      };
+
+      dispatch({
+        type: "CLIENT_DATA",
+        payload: dataBaseTempo,
+      });
+    }
   };
 
   const worksheets = [
@@ -149,14 +182,9 @@ export default function UploadClientsScreen() {
 
   return (
     <Grid container className={classes.root}>
-      {/* <Grid item xs={4}>
-        <ExcelExport filename="Lista-de-clientes.xlsx" worksheets={worksheets} />
-      </Grid>
-      <Grid item xs={4}>
-        <MDButton onClick={handleUpload}>Cargar Clientes</MDButton>
-      </Grid> */}
       <Grid item xs={12}>
         <ExcelImport setData={setData} worksheets={worksheets} onClick={handleUpload} />
+        <pre>{JSON.stringify(dataBase, null, 3)}</pre>
       </Grid>
     </Grid>
   );

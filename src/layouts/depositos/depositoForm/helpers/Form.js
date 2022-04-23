@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     "& .Subtitles": {
       marginBottom: "15px",
       color: "black",
-      fontFamily: "cursive",
+      // fontFamily: "cursive",
     },
     // Buttons
     "& .MuiButton-root": {

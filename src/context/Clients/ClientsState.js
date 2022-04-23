@@ -7,24 +7,26 @@ import ClientsContext from "./ClientsContext";
 
 function reducer(state, action) {
   switch (action.type) {
-    case "ADD_CLIENTS": {
+    case "ADD_CLIENTS":
       return { ...state, clients: action.value };
-    }
-    case "ERASE_CLIENT": {
+
+    case "ERASE_CLIENT":
       return { ...state, clients: action.value };
-    }
-    case "NEW_DATA": {
+
+    case "NEW_DATA":
       return { ...state, clients: action.value };
-    }
-    case "EDIT_CLIENT": {
+
+    case "EDIT_CLIENT":
       return { ...state, clientInfo: action.value };
-    }
+
+    case "CLIENT_DATA":
+      return [...state, action.payload];
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
-
 function ClientsState({ children }) {
   const initialstate = {
     clients,
