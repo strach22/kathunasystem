@@ -1,15 +1,23 @@
 /* eslint-disable object-shorthand */
-import React, { useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import { Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import UploadIcon from "@mui/icons-material/Upload";
+import ClientsContext from "context/Clients/ClientsContext";
 import ExcelExport from "./ExcelExport";
+import ActionReduce from "./ActionReduce";
 
-export default function ExcelImport({ setData, worksheets, onClick }) {
+export default function ExcelImport({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
+  const [dataBase, dispatch] = useReducer(ActionReduce);
+  const { uploadClients } = useContext(ClientsContext);
+
+  const handleUpload = () => {
+    if (dataBase) uploadClients(dataBase);
+  };
 
   const uploadFile = (e) => {
     const fileObj = e.target.files[0];
@@ -22,7 +30,48 @@ export default function ExcelImport({ setData, worksheets, onClick }) {
         });
         const data = [...rows];
         data.shift();
-        setData(data);
+
+        for (let i = 0; i < data.length; i += 1) {
+          const value = data[i].map((val) => val);
+
+          const dataBaseTempo = {
+            id: value[0],
+            firstName: value[1],
+            lastName: value[2],
+            identification: value[3],
+            mobile: value[4],
+            address: value[5],
+            email: value[6],
+            tariff: value[7],
+            civil: value[8],
+            birthDate: value[9],
+            saldoAhorros: value[10],
+            saldoCredito: value[11],
+            creationDate: value[12],
+            // numeroTelefono2: value[5],
+            // email: value[6],
+            // tarifa: value[7],
+            // estadoCivil: value[8],
+            // fechaNacimiento: value[9],
+            // fechaCreacion: value[10],
+            // direccion: value[11],
+            // saldoAhorros: value[12],
+            // saldoCredito: value[13],
+            // nombresConyugue: value[14],
+            // apellidosConyugue: value[15],
+            // cedulaIdentidadConyugue: value[16],
+            // telefonoConyugue: value[17],
+            // parentesco: value[18],
+            // nombresParentesco: value[19],
+            // apellidosParentesco: value[20],
+            // cedulaIdentidadParentesco: value[21],
+          };
+
+          dispatch({
+            type: "CLIENT_DATA",
+            payload: dataBaseTempo,
+          });
+        }
       }
     });
   };
@@ -38,7 +87,7 @@ export default function ExcelImport({ setData, worksheets, onClick }) {
             <ExcelExport filename="Lista-de-clientes.xlsx" worksheets={worksheets} />
           </Grid>
           <Grid item xs={4}>
-            <MDButton onClick={onClick} color="info">
+            <MDButton onClick={handleUpload} color="info" sx={{ width: "75%" }}>
               <UploadIcon color="dark" fontSize="large" sx={{ marginRight: 1 }} />
               SUBIR ARCHIVO
             </MDButton>
@@ -54,7 +103,5 @@ export default function ExcelImport({ setData, worksheets, onClick }) {
 }
 
 ExcelImport.propTypes = {
-  setData: PropTypes.string.isRequired,
   worksheets: PropTypes.string.isRequired,
-  onClick: PropTypes.string.isRequired,
 };

@@ -13,7 +13,7 @@ function reducer(state, action) {
     case "ERASE_CLIENT":
       return { ...state, clients: action.value };
 
-    case "NEW_DATA":
+    case "UPLOAD_CLIENTS":
       return { ...state, clients: action.value };
 
     case "EDIT_CLIENT":
@@ -42,9 +42,9 @@ function ClientsState({ children }) {
       value: newClients,
     });
   };
-  const newData = (data) => {
+  const uploadClients = (data) => {
     dispatch({
-      type: "NEW_DATA",
+      type: "UPLOAD_CLIENTS",
       value: data,
     });
   };
@@ -70,7 +70,7 @@ function ClientsState({ children }) {
         clients: state.clients,
         addClients,
         eraseClient,
-        newData,
+        uploadClients,
         editClient,
       }}
     >
