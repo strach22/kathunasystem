@@ -3,23 +3,43 @@ import React, { useContext, useReducer, useState } from "react";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
-import { Grid } from "@mui/material";
+import {
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+} from "@mui/material";
 import MDButton from "components/MDButton";
 import UploadIcon from "@mui/icons-material/Upload";
 import ClientsContext from "context/Clients/ClientsContext";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ExcelExport from "./ExcelExport";
 import ActionReduce from "./ActionReduce";
 
 export default function ExcelImport({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { uploadClients } = useContext(ClientsContext);
+
+  const handleClickOpen = () => {
+    setLoading(!loading);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleUpload = () => {
     if (dataBase) uploadClients(dataBase);
   };
 
   const uploadFile = (e) => {
+    setLoading(true);
     const fileObj = e.target.files[0];
     ExcelRenderer(fileObj, (err, resp) => {
       if (!err) {
@@ -74,6 +94,7 @@ export default function ExcelImport({ worksheets }) {
           });
         }
       }
+      setLoading(false);
     });
   };
 
@@ -83,6 +104,7 @@ export default function ExcelImport({ worksheets }) {
         <MDTypography variant="h5" sx={{ marginBottom: 2 }}>
           CARGAR DATOS DE LOS CLIENTES
         </MDTypography>
+
         <Grid container>
           <Grid item xs={4}>
             <ExcelExport filename="Lista-de-clientes.xlsx" worksheets={worksheets} />
@@ -96,6 +118,43 @@ export default function ExcelImport({ worksheets }) {
         </Grid>
         <input id="excel-upload" type="file" onChange={uploadFile} />
       </div>
+
+      <div className="AlertDialog">
+        <MDButton variant="outlined" color="info" onClick={handleClickOpen}>
+          <InfoOutlinedIcon sx={{ marginRight: 1 }} />
+          INFORMACIÓN IMPORTANTE
+        </MDButton>
+        <Dialog onClose={handleClose} open={open} sx={{ background: "#B2C6C6" }}>
+          <DialogTitle onClose={handleClose}>INSTRUCCIONES</DialogTitle>
+          <DialogContent dividers>
+            <MDTypography gutterBottom>
+              Descargar la plantilla y colocar la información en el archivo EXCEL con la misma
+              estructura.
+            </MDTypography>
+            <MDTypography gutterBottom>
+              Revisar todos los datos con mucho cuidado. NO SE PODRÁ REVERTIR LOS CAMBIOS.
+            </MDTypography>
+            <MDTypography gutterBottom>
+              Una vez seleccionado el archivo, espere unos segundos y podrá observar la tabla en
+              pantalla y verificar que todos los datos sean correctos
+            </MDTypography>
+            <MDTypography gutterBottom>
+              Finalmente, seleccione el botón <b>Subir archivo</b> y se cargarán todos los clientes.
+            </MDTypography>
+          </DialogContent>
+          <DialogActions>
+            <MDButton autoFocus onClick={handleClose} color="info">
+              OK
+            </MDButton>
+          </DialogActions>
+        </Dialog>
+      </div>
+
+      <Grid container>
+        {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
+        {loading && <MDTypography>Cargando ...</MDTypography>}
+      </Grid>
+
       <div className="excel-table-import">
         <OutTable data={state.rows} columns={state.cols} tableClassName="excel-table" />
       </div>
