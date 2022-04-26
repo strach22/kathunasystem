@@ -16,7 +16,7 @@ import FormListGuarantor from "./list/FormListGuarantor";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const { clientInfo, resetClientInfo } = useContext(ClientsContext);
+  const { clientInfo, resetClientInfo, addClients } = useContext(ClientsContext);
   const initialValues =
     clientInfo !== null
       ? clientInfo
@@ -140,12 +140,26 @@ export default function FormScreen() {
     const dateResume = values.birthDate.toISOString().split("T")[0];
     const dateResume2 = values.creationDate.toISOString().split("T")[0];
 
+    resetClientInfo();
     if (validate()) {
       values.birthDate = dateResume;
       values.creationDate = dateResume2;
       values.id = clients[clients.length - 1].id + 1;
       clients.push(values);
       resetForm();
+    }
+  };
+  const handleAgregar = () => {
+    const dateResume = values.birthDate.toISOString().split("T")[0];
+    const dateResume2 = values.creationDate.toISOString().split("T")[0];
+
+    if (validate()) {
+      values.birthDate = dateResume;
+      values.creationDate = dateResume2;
+      values.id = clients[clients.length - 1].id + 1;
+      resetForm();
+      resetClientInfo();
+      addClients(values);
     }
   };
 
@@ -238,13 +252,7 @@ export default function FormScreen() {
         <MDButton color="warning" sx={{ marginLeft: 2 }} onClick={resetForm}>
           RESETEAR
         </MDButton>
-        <MDButton
-          color="info"
-          sx={{ marginLeft: 2 }}
-          component={Link}
-          to="/clientes"
-          onClick={resetClientInfo}
-        >
+        <MDButton color="info" sx={{ marginLeft: 2 }} onClick={handleAgregar}>
           AGREGAR
         </MDButton>
       </Grid>
