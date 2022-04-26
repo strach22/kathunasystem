@@ -1,52 +1,57 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
+import React, { useContext } from "react";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
+import MDButton from "components/MDButton";
 import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
-import ButtonOk from "../../../../elements/ButtonOk";
 import clients from "../../../../data/clients.json";
 import FormList1 from "./list/FormList1";
 import FormList2 from "./list/FormList2";
 import FormListSpouse from "./list/FormListSpouse";
 import FormListGuarantor from "./list/FormListGuarantor";
 
-const initialValues = {
-  id: 0,
-  firstName: "",
-  lastName: "",
-  identification: "",
-  mobile: "",
-  secondMobile: "",
-  tariff: "particular",
-  civil: "",
-  birthDate: new Date(),
-  creationDate: new Date(),
-  address: "",
-  email: "",
-  firstNameSpouse: "",
-  lastNameSpouse: "",
-  identificationSpouse: "",
-  mobileSpouse: "",
-  relationShip: "",
-  firstNameRelationShip: "",
-  lastNameRelationShip: "",
-  mobileRelationShip: "",
-  savingBalance: 0,
-  creditBalance: 0,
-  savingHistory: [
-    {
-      type: "",
-      transactionDate: "",
-      transactionValue: "",
-      actualBalance: "",
-    },
-  ],
-};
+import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
+  const { clientInfo } = useContext(ClientsContext);
+  const initialValues =
+    clientInfo !== null
+      ? clientInfo
+      : {
+          id: 0,
+          firstName: "",
+          lastName: "",
+          identification: "",
+          mobile: "",
+          secondMobile: "",
+          tariff: "particular",
+          civil: "",
+          birthDate: new Date(),
+          creationDate: new Date(),
+          address: "",
+          email: "",
+          firstNameSpouse: "",
+          lastNameSpouse: "",
+          identificationSpouse: "",
+          mobileSpouse: "",
+          relationShip: "",
+          firstNameRelationShip: "",
+          lastNameRelationShip: "",
+          mobileRelationShip: "",
+          savingBalance: 0,
+          creditBalance: 0,
+          savingHistory: [
+            {
+              type: "",
+              transactionDate: "",
+              transactionValue: "",
+              actualBalance: "",
+            },
+          ],
+        };
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
@@ -147,7 +152,7 @@ export default function FormScreen() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <FormList1
             valFirstName={values.firstName}
             valLastName={values.lastName}
@@ -227,23 +232,21 @@ export default function FormScreen() {
         />
       </MDBox>
       <Grid item xs={12}>
-        <ButtonOk
-          type="submit"
-          text="Agregar"
-          sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
-        />
-        <ButtonOk
-          text="Resetear"
+        <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
+          REGRESAR
+        </MDButton>
+        <MDButton color="warning" sx={{ marginLeft: 2 }} onClick={resetForm}>
+          RESETEAR
+        </MDButton>
+        <MDButton
+          color="info"
+          sx={{ marginLeft: 2 }}
+          component={Link}
+          to="/clientes"
           onClick={resetForm}
-          sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
-        />
-        <Link to="/clientes">
-          <ButtonOk
-            text="Regresar"
-            onClick={resetForm}
-            sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
-          />
-        </Link>
+        >
+          AGREGAR
+        </MDButton>
       </Grid>
     </Form>
   );

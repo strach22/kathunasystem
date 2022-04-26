@@ -31,7 +31,7 @@ function reducer(state, action) {
 function ClientsState({ children }) {
   const initialstate = {
     clients,
-    clientInfo: {},
+    clientInfo: null,
   };
 
   const [state, dispatch] = useReducer(reducer, initialstate);
@@ -69,6 +69,7 @@ function ClientsState({ children }) {
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         clients: state.clients,
+        clientInfo: state.clientInfo,
         addClients,
         eraseClient,
         uploadClients,

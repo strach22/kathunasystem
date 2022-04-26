@@ -53,9 +53,8 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "15%",
-      color: "black",
-      margin: "100px 10px 0px 15px",
+      color: "white",
+      margin: "10px 10px 0px 15px",
     },
     // Subtítulo
     "& .Subtitles": {
