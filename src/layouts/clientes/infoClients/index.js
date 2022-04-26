@@ -24,7 +24,7 @@ function infoClients() {
       <DashboardNavbar />
       <MDBox mt={6} mb={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={10}>
+          <Grid item xs={10}>
             <MDBox coloredShadow="secondary">
               <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                 Cliente # {id}

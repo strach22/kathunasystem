@@ -16,7 +16,7 @@ import FormListGuarantor from "./list/FormListGuarantor";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const { clientInfo } = useContext(ClientsContext);
+  const { clientInfo, resetClientInfo } = useContext(ClientsContext);
   const initialValues =
     clientInfo !== null
       ? clientInfo
@@ -151,8 +151,8 @@ export default function FormScreen() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Grid container>
-        <Grid item xs={12} md={6}>
+      <Grid container spacing={1}>
+        <Grid item xs={6}>
           <FormList1
             valFirstName={values.firstName}
             valLastName={values.lastName}
@@ -243,7 +243,7 @@ export default function FormScreen() {
           sx={{ marginLeft: 2 }}
           component={Link}
           to="/clientes"
-          onClick={resetForm}
+          onClick={resetClientInfo}
         >
           AGREGAR
         </MDButton>

@@ -19,9 +19,8 @@ function reducer(state, action) {
     case "EDIT_CLIENT":
       return { ...state, clientInfo: action.value };
 
-    case "CLIENT_DATA":
-      // return [ ...state, clients: action.value ];
-      return [...state, action.payload];
+    case "RESET_CLIENT_INFO":
+      return { ...state, clientInfo: action.value };
 
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -63,6 +62,12 @@ function ClientsState({ children }) {
       value: info,
     });
   };
+  const resetClientInfo = () => {
+    dispatch({
+      type: "RESET_CLIENT_INFO",
+      value: null,
+    });
+  };
 
   return (
     <ClientsContext.Provider
@@ -74,6 +79,7 @@ function ClientsState({ children }) {
         eraseClient,
         uploadClients,
         editClient,
+        resetClientInfo,
       }}
     >
       {children}
