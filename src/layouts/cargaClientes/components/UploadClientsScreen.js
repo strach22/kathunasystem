@@ -51,8 +51,11 @@ const useStyles = makeStyles({
     },
     "& .excel-table-import": {
       margin: "15px 0px",
-      maxHeight: "300px",
+      maxHeight: "400px",
       overflowY: "scroll",
+    },
+    "& .AlertDialog": {
+      margin: "25px 0px",
     },
   },
 });
