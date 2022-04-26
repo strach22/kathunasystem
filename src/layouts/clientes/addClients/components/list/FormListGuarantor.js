@@ -36,7 +36,7 @@ export default function FormListGuarantor(props) {
       </Grid>
       <Grid item xs={6}>
         <Input
-          label="Cédula de Identidad"
+          label="Número de Teléfono"
           name="mobileGuarantor"
           value={valMobile}
           onChange={handleInputChange}

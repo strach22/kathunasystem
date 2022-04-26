@@ -20,24 +20,30 @@ const initialValues = {
   identification: "",
   mobile: "",
   secondMobile: "",
-  email: "",
-  address: "",
   tariff: "particular",
   civil: "",
   birthDate: new Date(),
   creationDate: new Date(),
-  depositDate: "",
+  address: "",
+  email: "",
   firstNameSpouse: "",
   lastNameSpouse: "",
   identificationSpouse: "",
   mobileSpouse: "",
-  firstNameGuarantor: "",
-  lastNameGuarantor: "",
-  mobileGuarantor: "",
-  relationShipGuarantor: "",
-  saldoAhorros: 0,
-  saldoCredito: 0,
-  deposit: 0,
+  relationShip: "",
+  firstNameRelationShip: "",
+  lastNameRelationShip: "",
+  mobileRelationShip: "",
+  savingBalance: 0,
+  creditBalance: 0,
+  savingHistory: [
+    {
+      type: "",
+      transactionDate: "",
+      transactionValue: "",
+      actualBalance: "",
+    },
+  ],
 };
 
 export default function FormScreen() {
@@ -205,7 +211,7 @@ export default function FormScreen() {
         borderRadius="lg"
         coloredShadow="info"
       >
-        <MDTypography className="Subtitles">Datos del Garante</MDTypography>
+        <MDTypography className="Subtitles">Datos del Parentesco</MDTypography>
       </MDBox>
       <MDBox pt={3}>
         <FormListGuarantor

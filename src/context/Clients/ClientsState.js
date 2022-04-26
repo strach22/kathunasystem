@@ -20,6 +20,7 @@ function reducer(state, action) {
       return { ...state, clientInfo: action.value };
 
     case "CLIENT_DATA":
+      // return [ ...state, clients: action.value ];
       return [...state, action.payload];
 
     default: {
