@@ -67,7 +67,7 @@ export default function TableHistoryScreen({ worksheets }) {
       </div>
 
       <Grid container>
-        {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
+        {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "4%" }} />}
         {loading && <MDTypography>Cargando ...</MDTypography>}
       </Grid>
 
