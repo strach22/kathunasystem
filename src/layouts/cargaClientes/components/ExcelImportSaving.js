@@ -12,10 +12,10 @@ import PropTypes from "prop-types";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
-import ExcelExport from "layouts/cargaClientes/components/ExcelExport";
 import UploadIcon from "@mui/icons-material/Upload";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import ActionReduce from "layouts/cargaClientes/components/ActionReduce";
+import ActionReduce from "./ActionReduce";
+import ExcelExport from "./ExcelExport";
 
 export default function ExcelImportSaving({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
