@@ -1,68 +1,8 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import ExcelImportSaving from "./ExcelImportSaving";
-
-const useStyles = makeStyles({
-  root: {
-    "& .excel-import-container": {
-      padding: "25px",
-      boxShadow: "0 0 20px rgba(66, 50, 98, 0.35)",
-      border: "1px solid #eaeaea",
-      borderRadius: "10px",
-    },
-    "& .file-upload": {
-      display: "grid",
-      gridGap: "10px",
-    },
-    "& .MuiTypography-root": {
-      color: "black",
-    },
-    "& #excel-upload": {
-      width: "100%",
-      height: "25px",
-      border: "1px solid #cdcdcd",
-      borderRadius: "4px",
-      fontFamily: "arial, sans-serif",
-      fontSize: "75%",
-    },
-    "& .excel-table": {
-      width: "100%",
-      fontSize: "75%",
-    },
-    "& .excel-table tr:first-of-type": {
-      display: "none",
-    },
-    "& .excel-table tr": {
-      backgroundColor: "#c6e6f5",
-    },
-    "& .excel-table td": {
-      padding: "5px 10px",
-    },
-    "& .excel-table tr:nth-of-type(2)": {
-      backgroundColor: "#3d5662 !important",
-      color: "#fff",
-    },
-    "& .excel-table td:nth-of-type(1)": {
-      display: "none",
-    },
-    "& .excel-table tr:nth-of-type(even)": {
-      backgroundColor: "#e6fbff",
-    },
-    "& .excel-table-import": {
-      margin: "15px 0px",
-      maxHeight: "400px",
-      overflowY: "scroll",
-    },
-    "& .AlertDialog": {
-      margin: "25px 0px",
-    },
-  },
-});
+import TableHistoryScreen from "./TableHistoryScreen";
 
 export default function SavingHistoryScreen() {
-  const classes = useStyles();
-
   const worksheets = [
     {
       name: "Requisitos",
@@ -102,9 +42,9 @@ export default function SavingHistoryScreen() {
   ];
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container>
       <Grid item xs={12}>
-        <ExcelImportSaving worksheets={worksheets} />
+        <TableHistoryScreen worksheets={worksheets} />
       </Grid>
     </Grid>
   );

@@ -7,7 +7,7 @@ function Tables() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      Hola
+      Carga Créditos
       <Footer />
     </DashboardLayout>
   );
