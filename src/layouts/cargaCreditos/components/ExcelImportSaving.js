@@ -59,7 +59,6 @@ export default function ExcelImportSaving({ worksheets }) {
             transactionValue: value[2],
             actualBalance: value[3],
             observation: value[4],
-            identification: value[5],
           };
 
           dispatch({

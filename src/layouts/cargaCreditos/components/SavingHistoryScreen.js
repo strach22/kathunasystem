@@ -67,12 +67,12 @@ export default function SavingHistoryScreen() {
     {
       name: "Requisitos",
       columns: [
-        { label: "Cédula de Identidad", value: "cedulaIdentidad" },
         { label: "Tipo de Transacción", value: "tipoTransaccion" },
         { label: "Fecha", value: "fecha" },
         { label: "Valor de la Transacción", value: "valorTransaccion" },
         { label: "Saldo Final", value: "saldoFinal" },
         { label: "Observación", value: "observacion" },
+        { label: "Cédula de Identidad", value: "cedulaIdentidad" },
       ],
       data: [
         {
@@ -88,6 +88,13 @@ export default function SavingHistoryScreen() {
           fecha: "16/04/2022",
           valorTransaccion: "200",
           saldoFinal: "3400",
+          observacion: "Número de Cédula es necesario colocar una sola vez",
+        },
+        {
+          tipoTransaccion: "Retiro",
+          fecha: "26/04/2022",
+          valorTransaccion: "50",
+          saldoFinal: "3350",
           observacion: "NULL",
         },
       ],
