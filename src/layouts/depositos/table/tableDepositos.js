@@ -23,7 +23,7 @@ export default function data() {
       identification: cliente.identification,
       accion: (
         <Link to={`${cliente.id}`}>
-          <MDTypography component="a" variant="caption" color="text" fontWeight="medium">
+          <MDTypography variant="caption" color="text" fontWeight="medium">
             Depósito
           </MDTypography>
         </Link>

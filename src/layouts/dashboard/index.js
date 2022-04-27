@@ -33,7 +33,7 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox>
               <Link to="/depositos">
-                <InfoIcon color="info" icon="add" title="Depósitos" />
+                <InfoIcon icon="add" title="Depósitos" />
               </Link>
             </MDBox>
           </Grid>

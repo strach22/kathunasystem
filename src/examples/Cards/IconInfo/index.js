@@ -48,7 +48,7 @@ function InfoIcon({ color, title, count, icon, description }) {
 InfoIcon.defaultProps = {
   color: "info",
   description: "",
-  count: " ",
+  count: "",
 };
 
 // Typechecking props for the InfoIcon
