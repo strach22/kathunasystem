@@ -34,7 +34,7 @@ function infoClients() {
     "Correo Electrónico:",
     "Nombres del Conyugue",
     "Apellidos del Conyugue",
-    "Documento I del Conyugue",
+    "Documento Id del Conyugue",
     "Teléfono del Conyugue",
     "Nombres del Pariente",
     "Apellidos del Pariente",
