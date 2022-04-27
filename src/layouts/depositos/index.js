@@ -36,7 +36,7 @@ function Depositos() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h5" color="white">
-                  Lista de Socios
+                  Lista de Clientes
                 </MDTypography>
               </MDBox>
               <MDBox>
