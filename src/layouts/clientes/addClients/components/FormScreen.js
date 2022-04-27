@@ -234,15 +234,15 @@ export default function FormScreen() {
       </MDBox>
       <MDBox pt={3}>
         <FormListGuarantor
-          valFirstName={values.firstNameGuarantor}
-          valLastName={values.lastNameGuarantor}
-          valMobile={values.mobileGuarantor}
-          valRelationShip={values.relationShipGuarantor}
+          valFirstName={values.firstNameRelationShip}
+          valLastName={values.lastNameRelationShip}
+          valMobile={values.mobileRelationShip}
+          valRelationShip={values.relationShip}
           handleInputChange={handleInputChange}
-          errFirstName={errors.firstNameGuarantor}
-          errLastName={errors.lastNameGuarantor}
-          errMobile={errors.mobileGuarantor}
-          errRelationShip={errors.relationShipGuarantor}
+          errFirstName={errors.firstRelationShip}
+          errLastName={errors.lastRelationShip}
+          errMobile={errors.mobileRelationShip}
+          errRelationShip={errors.relationShip}
         />
       </MDBox>
       <Grid item xs={12}>
