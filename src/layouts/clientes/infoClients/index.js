@@ -21,17 +21,36 @@ function infoClients() {
   const i = clients.map((e) => e.id).indexOf(id);
 
   const categories = [
-    ["Nombres:", clients[i].firstName],
-    ["Apellidos:", clients[i].lastName],
+    "Nombres:",
+    "Apellidos:",
+    "Documento de Identidad:",
+    "Teléfono:",
+    "2do Teléfono:",
+    "Tarifa:",
+    "Estado Civil:",
+    "Fecha de Nacimiento:",
+    "Fecha de Afiliación:",
+    "Dirección:",
+    "Correo Electrónico:",
+    "Nombres del Conyugue",
+    "Apellidos del Conyugue",
+    "Documento I del Conyugue",
+    "Teléfono del Conyugue",
+    "Nombres del Pariente",
+    "Apellidos del Pariente",
+    "Teléfono del Pariente",
+    "Parentesco ",
+    "Saldo de Ahorros:",
+    "Saldo de Crédito:",
   ];
-  const getInfo = (category) => (
-    <Grid container spacing={2} paddingLeft={3} paddingBottom={2}>
+  const getInfo = (category, info) => (
+    <Grid container paddingLeft={3}>
       <Grid item xs={5.7}>
-        <MDTypography variant="h5">{category[0]}</MDTypography>
+        <MDTypography variant="h5">{category}</MDTypography>
       </Grid>
       <Grid item xs={6}>
         <MDTypography fontWeight="regular" variant="h5">
-          {category[1]}
+          {info}
         </MDTypography>
       </Grid>
     </Grid>
@@ -46,61 +65,27 @@ function infoClients() {
               <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                 Cliente # {id}
               </MDTypography>
-              {categories.forEach((category) => getInfo(category))}
-              <Grid container spacing={2} paddingLeft={3} paddingBottom={2}>
-                <Grid item xs={5.7}>
-                  <MDTypography variant="h5">Nombres:</MDTypography>
-                  <MDTypography variant="h5">Apellidos:</MDTypography>
-                  <MDTypography variant="h5">Documento de Identidad:</MDTypography>
-                  <MDTypography variant="h5">Fecha de Nacimiento:</MDTypography>
-                  <MDTypography variant="h5">Teléfono:</MDTypography>
-                  <MDTypography variant="h5">Correo Electrónico:</MDTypography>
-                  <MDTypography variant="h5">Estado Civil:</MDTypography>
-                  <MDTypography variant="h5">Fecha de Afiliación:</MDTypography>
-                  <MDTypography variant="h5">Tarifa:</MDTypography>
-                  <MDTypography variant="h5">Saldo de Ahorros:</MDTypography>
-                  <MDTypography variant="h5">Saldo de Crédito:</MDTypography>
-                  <MDTypography variant="h5">Dirección:</MDTypography>
-                </Grid>
-                <Grid item xs={6}>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].firstName}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].lastName}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].identification}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].birthDate}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].mobile}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].email}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].civil}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].creationDate}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].tariff}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].saldoAhorros}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].saldoCredito}
-                  </MDTypography>
-                  <MDTypography fontWeight="regular" variant="h5">
-                    {clients[i].address}
-                  </MDTypography>
-                </Grid>
-              </Grid>
+              {getInfo(categories[0], clients[i].firstName)}
+              {getInfo(categories[1], clients[i].lastName)}
+              {getInfo(categories[2], clients[i].identification)}
+              {getInfo(categories[4], clients[i].mobile)}
+              {getInfo(categories[5], clients[i].secondMobile)}
+              {getInfo(categories[6], clients[i].tariff)}
+              {getInfo(categories[7], clients[i].civil)}
+              {getInfo(categories[3], clients[i].birthDate)}
+              {getInfo(categories[8], clients[i].creationDate)}
+              {getInfo(categories[9], clients[i].address)}
+              {getInfo(categories[10], clients[i].email)}
+              {getInfo(categories[11], clients[i].firstNameSpouse)}
+              {getInfo(categories[12], clients[i].lastNameSpouse)}
+              {getInfo(categories[13], clients[i].identificationSpouse)}
+              {getInfo(categories[14], clients[i].mobileSpouse)}
+              {getInfo(categories[15], clients[i].firstNameRelationShip)}
+              {getInfo(categories[16], clients[i].lastNameRelationShip)}
+              {getInfo(categories[17], clients[i].mobileRelationShip)}
+              {getInfo(categories[18], clients[i].relationShip)}
+              {getInfo(categories[19], clients[i].savingBalance)}
+              {getInfo(categories[20], clients[i].creditBalance)}
             </MDBox>
           </Grid>
           <Grid item xs={12} lg={11}>
@@ -121,7 +106,7 @@ function infoClients() {
               sx={{ marginLeft: 2 }}
               component={Link}
               to="/clientes"
-              onClick={() => eraseClient(parseInt(id, 10))}
+              onClick={() => eraseClient(id)}
             >
               ELIMINAR
             </MDButton>
