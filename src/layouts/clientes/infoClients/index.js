@@ -18,7 +18,24 @@ import ClientsContext from "../../../context/Clients/ClientsContext";
 function infoClients() {
   const { id } = useParams();
   const { clients, eraseClient, editClient } = useContext(ClientsContext);
-  const i = clients.map((e) => e.id).indexOf(parseInt(id, 10));
+  const i = clients.map((e) => e.id).indexOf(id);
+
+  const categories = [
+    ["Nombres:", clients[i].firstName],
+    ["Apellidos:", clients[i].lastName],
+  ];
+  const getInfo = (category) => (
+    <Grid container spacing={2} paddingLeft={3} paddingBottom={2}>
+      <Grid item xs={5.7}>
+        <MDTypography variant="h5">{category[0]}</MDTypography>
+      </Grid>
+      <Grid item xs={6}>
+        <MDTypography fontWeight="regular" variant="h5">
+          {category[1]}
+        </MDTypography>
+      </Grid>
+    </Grid>
+  );
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -29,6 +46,7 @@ function infoClients() {
               <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                 Cliente # {id}
               </MDTypography>
+              {categories.forEach((category) => getInfo(category))}
               <Grid container spacing={2} paddingLeft={3} paddingBottom={2}>
                 <Grid item xs={5.7}>
                   <MDTypography variant="h5">Nombres:</MDTypography>
