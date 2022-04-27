@@ -1,10 +1,10 @@
 {
-  "name": "material-dashboard-2-react",
-  "version": "2.1.0",
+  "name": "kathuna-system",
+  "version": "1.0.0",
   "private": true,
-  "author": "Creative Tim",
-  "license": "See license in https://www.creative-tim.com/license",
-  "description": "React version of Material Dashboard 2 by Creative Tim",
+  "author": "Kathuna-System",
+  "license": " ",
+  "description": "Sistema para cajas de ahorro y crédito",
   "homepage": " https://strach22.github.io/kathuna-system/",
   "bugs": {
     "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"

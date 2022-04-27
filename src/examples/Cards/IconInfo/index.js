@@ -47,6 +47,8 @@ function InfoIcon({ color, title, count, icon, description }) {
 // Setting default values for the props of InfoIcon
 InfoIcon.defaultProps = {
   color: "info",
+  description: "",
+  count: " ",
 };
 
 // Typechecking props for the InfoIcon
@@ -62,8 +64,8 @@ InfoIcon.propTypes = {
     "dark",
   ]),
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  description: PropTypes.string,
+  count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   icon: PropTypes.node.isRequired,
 };
 
