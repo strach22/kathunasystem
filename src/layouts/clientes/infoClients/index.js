@@ -68,11 +68,11 @@ function infoClients() {
               {getInfo(categories[0], clients[i].firstName)}
               {getInfo(categories[1], clients[i].lastName)}
               {getInfo(categories[2], clients[i].identification)}
-              {getInfo(categories[4], clients[i].mobile)}
-              {getInfo(categories[5], clients[i].secondMobile)}
-              {getInfo(categories[6], clients[i].tariff)}
-              {getInfo(categories[7], clients[i].civil)}
-              {getInfo(categories[3], clients[i].birthDate)}
+              {getInfo(categories[3], clients[i].mobile)}
+              {getInfo(categories[4], clients[i].secondMobile)}
+              {getInfo(categories[5], clients[i].tariff)}
+              {getInfo(categories[6], clients[i].civil)}
+              {getInfo(categories[7], clients[i].birthDate)}
               {getInfo(categories[8], clients[i].creationDate)}
               {getInfo(categories[9], clients[i].address)}
               {getInfo(categories[10], clients[i].email)}
