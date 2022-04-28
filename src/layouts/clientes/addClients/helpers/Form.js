@@ -53,6 +53,7 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
+      width: "15%",
       color: "white",
       margin: "10px 10px 0px 15px",
     },

@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
-import MDButton from "components/MDButton";
+import ButtonOk from "elements/ButtonOk";
 import useForm from "../hooks/useForm";
 import Form from "../helpers/Form";
 import clients from "../../../../data/clients.json";
@@ -16,7 +16,8 @@ import FormListRelationShip from "./list/FormListRelationShip";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const { clientInfo, resetClientInfo, addClients } = useContext(ClientsContext);
+  const { clientInfo, resetClientInfo, addClient } = useContext(ClientsContext);
+
   const initialValues =
     clientInfo !== null
       ? clientInfo
@@ -156,29 +157,16 @@ export default function FormScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const dateResume = values.birthDate.toISOString().split("T")[0];
-    const dateResume2 = values.creationDate.toISOString().split("T")[0];
+    // const dateResume = values.birthDate.toISOString().split("T")[0];
+    // const dateResume2 = values.creationDate.toISOString().split("T")[0];
 
     resetClientInfo();
     if (validate()) {
-      values.birthDate = dateResume;
-      values.creationDate = dateResume2;
+      // values.birthDate = dateResume;
+      // values.creationDate = dateResume2;
       values.id = clients[clients.length - 1].id + 1;
-      clients.push(values);
+      addClient(values);
       resetForm();
-    }
-  };
-  const handleAgregar = () => {
-    const dateResume = values.birthDate.toISOString().split("T")[0];
-    const dateResume2 = values.creationDate.toISOString().split("T")[0];
-
-    if (validate()) {
-      values.birthDate = dateResume;
-      values.creationDate = dateResume2;
-      values.id = clients[clients.length - 1].id + 1;
-      resetForm();
-      resetClientInfo();
-      addClients(values);
     }
   };
 
@@ -269,16 +257,34 @@ export default function FormScreen() {
         />
       </MDBox>
       <Grid item xs={12}>
-        <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
-          REGRESAR
-        </MDButton>
-        <MDButton color="warning" sx={{ marginLeft: 2 }} onClick={resetForm}>
-          RESETEAR
-        </MDButton>
-        <MDButton color="info" sx={{ marginLeft: 2 }} onClick={handleAgregar}>
-          AGREGAR
-        </MDButton>
+        <ButtonOk
+          type="submit"
+          text="AGREGAR"
+          // sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
+        />
+        <ButtonOk
+          text="RESETEAR"
+          onClick={resetForm}
+          sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
+        />
+        <Link to="/clientes">
+          <ButtonOk
+            text="REGRESAR"
+            onClick={resetForm}
+            sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
+          />
+        </Link>
       </Grid>
     </Form>
   );
 }
+
+/* <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
+  REGRESAR
+</MDButton>
+<MDButton color="warning" sx={{ marginLeft: 2 }} onClick={resetForm}>
+  RESETEAR
+</MDButton>
+<MDButton color="info" sx={{ marginLeft: 2 }} onClick={handleAgregar}>
+  AGREGAR
+</MDButton> */

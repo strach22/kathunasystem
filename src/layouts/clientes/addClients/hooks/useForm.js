@@ -5,6 +5,8 @@ export default function useForm(initialValues, validateOnChange = false, validat
   const [errors, setErrors] = useState(errorValues);
   const [state, setState] = useState({ civil: "false", other: "true" });
 
+  // console.log(values);
+
   const handleInputChange = ({ target }) => {
     setValues({
       ...values,

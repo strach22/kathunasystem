@@ -7,12 +7,6 @@ import ClientsContext from "./ClientsContext";
 
 function reducer(state, action) {
   switch (action.type) {
-    case "ADD_CLIENTS":
-      return { ...state, clients: action.value };
-
-    case "ERASE_CLIENT":
-      return { ...state, clients: action.value };
-
     case "UPLOAD_CLIENTS":
       return { ...state, clients: action.value };
 
@@ -35,24 +29,28 @@ function ClientsState({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialstate);
 
-  const addClients = (newClient) => {
-    const newClients = clients.push(newClient);
+  const addClient = (newClient) => {
+    const newClients = state.clients;
+    newClients.push(newClient);
+
     dispatch({
-      type: "ADD_CLIENTS",
+      type: "UPLOAD_CLIENTS",
       value: newClients,
     });
   };
+
   const uploadClients = (data) => {
+    const newClients = state.clients.concat(data);
     dispatch({
       type: "UPLOAD_CLIENTS",
-      value: data,
+      value: newClients,
     });
   };
 
   const eraseClient = (id) => {
     const newClients = state.clients.filter((client) => client.id !== id);
     dispatch({
-      type: "ERASE_CLIENT",
+      type: "UPLOAD_CLIENTS",
       value: newClients,
     });
   };
@@ -75,7 +73,7 @@ function ClientsState({ children }) {
       value={{
         clients: state.clients,
         clientInfo: state.clientInfo,
-        addClients,
+        addClient,
         eraseClient,
         uploadClients,
         editClient,

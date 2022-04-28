@@ -14,7 +14,20 @@ import clients from "../../../../data/clients.json";
 export default function DepositScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
-  clients[id - 1].creationDate = new Date();
+  // clients[id - 1].creationDate = new Date();
+  // clients[id - 1].creationDate.setDate(5);
+
+  // const valDate = parseInt(clients[id - 1].creationDate.substring(0, 2), 10);
+  // const valMonth = parseInt(clients[id - 1].creationDate.substring(3, 5), 10);
+  // const valYear = parseInt(clients[id - 1].creationDate.substring(6, 10), 10);
+
+  // clients[id - 1].creationDate = new Date();
+
+  // clients[id - 1].creationDate.setDate(valDate);
+  // clients[id - 1].creationDate.setMonth(valMonth);
+  // clients[id - 1].creationDate.setFullYear(valYear);
+
+  console.log(clients[id - 1]);
 
   const { values, handleInputChange, resetForm } = useForm(clients[id - 1]);
 
@@ -36,7 +49,7 @@ export default function DepositScreen() {
             name="depositDate"
             label="Fecha de transacción"
             value={values.creationDate}
-            obChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={5}>
