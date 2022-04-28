@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/kathuna-system/static/js/main.9b689d5b.js",
+    "main.js": "/kathuna-system/static/js/main.09040f2e.js",
     "static/media/bgkathuna.png": "/kathuna-system/static/media/bgkathuna.d589369bfa0f1dd33bdc.png",
     "static/media/logo-ct.png": "/kathuna-system/static/media/logo-ct.cd2f88eca06df83c9954.png",
     "static/media/team-1.jpg": "/kathuna-system/static/media/team-1.0fd36e0ee93dcfacdef8.jpg",
@@ -16,9 +16,9 @@
     "static/media/logo-atlassian.svg": "/kathuna-system/static/media/logo-atlassian.f2b0e8570a4b4ce768854ff3dad1a6e1.svg",
     "static/media/logo-asana.svg": "/kathuna-system/static/media/logo-asana.d758f410d82760a61d1eabcb03409de6.svg",
     "index.html": "/kathuna-system/index.html",
-    "main.9b689d5b.js.map": "/kathuna-system/static/js/main.9b689d5b.js.map"
+    "main.09040f2e.js.map": "/kathuna-system/static/js/main.09040f2e.js.map"
   },
   "entrypoints": [
-    "static/js/main.9b689d5b.js"
+    "static/js/main.09040f2e.js"
   ]
 }
