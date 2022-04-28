@@ -9,6 +9,7 @@ function Simulador() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      Hola Mundo
       <Footer />
     </DashboardLayout>
   );
