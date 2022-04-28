@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import Input from "../../../../../elements/Input";
 
-export default function FormListGuarantor(props) {
+export default function FormListRelationShip(props) {
   const {
     valFirstName,
     valLastName,
@@ -22,7 +22,7 @@ export default function FormListGuarantor(props) {
       <Grid item xs={6}>
         <Input
           label="Nombres"
-          name="firstNameGuarantor"
+          name="firstNameRelationShip"
           value={valFirstName}
           onChange={handleInputChange}
           error={errFirstName}
@@ -30,7 +30,7 @@ export default function FormListGuarantor(props) {
         />
         <Input
           label="Apellidos"
-          name="lastNameGuarantor"
+          name="lastNameRelationShip"
           value={valLastName}
           onChange={handleInputChange}
           error={errLastName}
@@ -40,7 +40,7 @@ export default function FormListGuarantor(props) {
       <Grid item xs={6}>
         <Input
           label="Número de Teléfono"
-          name="mobileGuarantor"
+          name="mobileRelationShip"
           value={valMobile}
           onChange={handleInputChange}
           error={errMobile}
@@ -48,7 +48,7 @@ export default function FormListGuarantor(props) {
         />
         <Input
           label="Parentesco"
-          name="relationShipGuarantor"
+          name="relationShip"
           value={valRelationShip}
           onChange={handleInputChange}
           error={errRelationShip}
@@ -59,7 +59,7 @@ export default function FormListGuarantor(props) {
   );
 }
 
-FormListGuarantor.propTypes = {
+FormListRelationShip.propTypes = {
   valFirstName: PropTypes.string.isRequired,
   valLastName: PropTypes.string.isRequired,
   valMobile: PropTypes.string.isRequired,

@@ -11,7 +11,7 @@ import clients from "../../../../data/clients.json";
 import FormList1 from "./list/FormList1";
 import FormList2 from "./list/FormList2";
 import FormListSpouse from "./list/FormListSpouse";
-import FormListGuarantor from "./list/FormListGuarantor";
+import FormListRelationShip from "./list/FormListRelationShip";
 
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
@@ -62,8 +62,8 @@ export default function FormScreen() {
     civil: "",
     address: "",
     relationShip: "",
-    firstRelationShip: "",
-    lastRelationShip: "",
+    firstNameRelationShip: "",
+    lastNameRelationShip: "",
     mobileRelationShip: "",
     firstNameSpouse: "",
     lastNameSpouse: "",
@@ -94,22 +94,20 @@ export default function FormScreen() {
     if ("address" in fieldValues)
       tempo.address = fieldValues.address ? "" : "Este campo es obligatorio llenar";
 
-    if ("firstNameGuarantor" in fieldValues)
-      tempo.firstNameGuarantor = fieldValues.firstNameGuarantor
+    if ("firstNameRelationShip" in fieldValues)
+      tempo.firstNameRelationShip = fieldValues.firstNameRelationShip
         ? ""
         : "Este campo es obligatorio llenar";
-    if ("lastNameGuarantor" in fieldValues)
-      tempo.lastNameGuarantor = fieldValues.lastNameGuarantor
+    if ("lastNameRelationShip" in fieldValues)
+      tempo.lastNameRelationShip = fieldValues.lastNameRelationShip
         ? ""
         : "Este campo es obligatorio llenar";
-    if ("mobileGuarantor" in fieldValues)
-      tempo.mobileGuarantor = /^[0-9]+$/.test(fieldValues.mobileGuarantor)
+    if ("mobileRelationShip" in fieldValues)
+      tempo.mobileRelationShip = /^[0-9]+$/.test(fieldValues.mobileRelationShip)
         ? ""
         : "Este campo es obligatorio llenar";
-    if ("relationShipGuarantor" in fieldValues)
-      tempo.relationShipGuarantor = fieldValues.relationShipGuarantor
-        ? ""
-        : "Este campo es obligatorio llenar";
+    if ("relationShip" in fieldValues)
+      tempo.relationShip = fieldValues.relationShip ? "" : "Este campo es obligatorio llenar";
 
     if ("civil" in fieldValues) {
       tempo.civil = fieldValues.civil.length !== 0 ? "" : "Es obligatorio escoger una opción";
@@ -257,14 +255,14 @@ export default function FormScreen() {
         <MDTypography className="Subtitles">Datos del Parentesco</MDTypography>
       </MDBox>
       <MDBox pt={3}>
-        <FormListGuarantor
+        <FormListRelationShip
           valFirstName={values.firstNameRelationShip}
           valLastName={values.lastNameRelationShip}
           valMobile={values.mobileRelationShip}
           valRelationShip={values.relationShip}
           handleInputChange={handleInputChange}
-          errFirstName={errors.firstRelationShip}
-          errLastName={errors.lastRelationShip}
+          errFirstName={errors.firstNameRelationShip}
+          errLastName={errors.lastNameRelationShip}
           errMobile={errors.mobileRelationShip}
           errRelationShip={errors.relationShip}
           state={state.other}
