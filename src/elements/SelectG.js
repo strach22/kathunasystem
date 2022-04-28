@@ -6,8 +6,6 @@ import React from "react";
 export default function SelectG(props) {
   const { name, label, value, error = null, onChange, options } = props;
 
-  console.log(props);
-
   return (
     <FormControl fullWidth>
       <InputLabel {...(error && { error: true })} id="demo-simple-select-label">

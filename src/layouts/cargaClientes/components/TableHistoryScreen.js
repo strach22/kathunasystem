@@ -1,9 +1,10 @@
 /* eslint-disable object-shorthand */
-import React, { useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import { CircularProgress, Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
+import ClientsContext from "context/Clients/ClientsContext";
 import ActionReduce from "../element/ActionReduce";
 import ExcelExport from "../element/ExcelExport";
 
@@ -11,11 +12,10 @@ export default function TableHistoryScreen({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
   const [dataBase, dispatch] = useReducer(ActionReduce);
-  // const { uploadClients } = useContext(ClientsContext);
+  const { uploadClients } = useContext(ClientsContext);
 
   const handleUpload = () => {
-    // if (dataBase) uploadClients(dataBase);
-    if (dataBase) console.log(dataBase);
+    if (dataBase) uploadClients(dataBase);
   };
 
   const uploadFile = (e) => {
