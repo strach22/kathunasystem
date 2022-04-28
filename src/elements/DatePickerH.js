@@ -32,6 +32,7 @@ export default function DatePickerH(props) {
 DatePickerH.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
+  // value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };

@@ -56,7 +56,8 @@ export default function FormList2(props) {
 FormList2.propTypes = {
   valTariff: PropTypes.string.isRequired,
   valCivil: PropTypes.string.isRequired,
-  valBirthDate: PropTypes.string.isRequired,
+  valBirthDate: PropTypes.instanceOf(Date).isRequired,
+  // valBirthDate: PropTypes.string.isRequired,
   valAddress: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   errCivil: PropTypes.string.isRequired,

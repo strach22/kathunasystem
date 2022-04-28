@@ -69,6 +69,7 @@ export default function FormScreen() {
     lastNameSpouse: "",
     identificationSpouse: "",
     mobileSpouse: "",
+    other: "",
   };
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
@@ -200,6 +201,7 @@ export default function FormScreen() {
             errIdentification={errors.identification}
             errMobile={errors.mobile}
             errEmail={errors.email}
+            errOther={errors.other}
             state={state.other}
           />
         </Grid>

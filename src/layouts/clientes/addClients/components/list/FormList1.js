@@ -16,6 +16,7 @@ export default function FormList1(props) {
     errIdentification,
     errMobile,
     errEmail,
+    errOther,
     state,
   } = props;
 
@@ -59,6 +60,7 @@ export default function FormList1(props) {
         value={valSecondMobile}
         onChange={handleInputChange}
         state={state}
+        error={errOther}
       />
       <Input
         label="Email"
@@ -85,5 +87,6 @@ FormList1.propTypes = {
   errIdentification: PropTypes.string.isRequired,
   errMobile: PropTypes.string.isRequired,
   errEmail: PropTypes.string.isRequired,
+  errOther: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
 };
