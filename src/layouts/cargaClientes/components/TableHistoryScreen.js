@@ -35,11 +35,12 @@ export default function TableHistoryScreen({ worksheets }) {
           const value = data[i].map((val) => val);
 
           const savingHistoryTempo = {
-            type: value[0],
-            transactionDate: value[1],
-            transactionValue: value[2],
-            actualBalance: value[3],
-            observation: value[4],
+            identification: value[0],
+            type: value[1],
+            transactionDate: value[2],
+            transactionValue: value[3],
+            actualBalance: value[4],
+            observation: value[5],
           };
 
           dispatch({

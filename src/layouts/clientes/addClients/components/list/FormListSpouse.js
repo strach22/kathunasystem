@@ -64,7 +64,7 @@ FormListSpouse.propTypes = {
   valLastName: PropTypes.string.isRequired,
   valIdentification: PropTypes.string.isRequired,
   valMobile: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   errFirstName: PropTypes.string.isRequired,
   errLastName: PropTypes.string.isRequired,
   errIdentification: PropTypes.string.isRequired,

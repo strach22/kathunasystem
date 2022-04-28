@@ -7,14 +7,25 @@ import { Card } from "@mui/material";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import { makeStyles } from "@mui/styles";
 import InfoScreen from "./InfoScreen";
 import DepositScreen from "./DepositScreen";
 import AccountStatusScreen from "./AccountStatusScreen";
 
+const useStyles = makeStyles({
+  root: {
+    "& .css-1f19gdh": {
+      margin: "30px",
+      padding: "24px",
+    },
+  },
+});
+
 export default function PrincipalScreen() {
+  const classes = useStyles();
   return (
     <MDBox pt={6} pb={3} mx={15}>
-      <Grid container spacing={6}>
+      <Grid container spacing={6} className={classes.root}>
         <Grid item xs={12}>
           <Card>
             <MDBox
@@ -31,7 +42,7 @@ export default function PrincipalScreen() {
                 Datos del cliente
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox pt={3}>
               <InfoScreen />
             </MDBox>
           </Card>
@@ -52,7 +63,7 @@ export default function PrincipalScreen() {
                 Crear Depósito
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox pt={3}>
               <DepositScreen />
             </MDBox>
           </Card>
@@ -73,7 +84,7 @@ export default function PrincipalScreen() {
                 Historial de Estado de Cuenta
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox pt={3}>
               <AccountStatusScreen />
             </MDBox>
           </Card>

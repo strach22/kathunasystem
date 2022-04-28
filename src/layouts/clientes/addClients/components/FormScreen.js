@@ -52,6 +52,24 @@ export default function FormScreen() {
             },
           ],
         };
+
+  const errorValues = {
+    firstName: "",
+    lastName: "",
+    identification: "",
+    mobile: "",
+    email: "",
+    civil: "",
+    address: "",
+    relationShip: "",
+    firstRelationShip: "",
+    lastRelationShip: "",
+    mobileRelationShip: "",
+    firstNameSpouse: "",
+    lastNameSpouse: "",
+    identificationSpouse: "",
+    mobileSpouse: "",
+  };
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
@@ -123,6 +141,7 @@ export default function FormScreen() {
     setErrors({
       ...tempo,
     });
+
     setState({
       ...status,
     });
@@ -132,7 +151,8 @@ export default function FormScreen() {
   const { values, errors, setErrors, state, setState, handleInputChange, resetForm } = useForm(
     initialValues,
     true,
-    validate
+    validate,
+    errorValues
   );
 
   const handleSubmit = (e) => {
@@ -180,6 +200,7 @@ export default function FormScreen() {
             errIdentification={errors.identification}
             errMobile={errors.mobile}
             errEmail={errors.email}
+            state={state.other}
           />
         </Grid>
         <Grid item xs={6}>
@@ -191,6 +212,7 @@ export default function FormScreen() {
             handleInputChange={handleInputChange}
             errCivil={errors.civil}
             errAddress={errors.address}
+            state={state.other}
           />
         </Grid>
       </Grid>
@@ -243,6 +265,7 @@ export default function FormScreen() {
           errLastName={errors.lastRelationShip}
           errMobile={errors.mobileRelationShip}
           errRelationShip={errors.relationShip}
+          state={state.other}
         />
       </MDBox>
       <Grid item xs={12}>

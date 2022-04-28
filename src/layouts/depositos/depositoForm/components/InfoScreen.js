@@ -26,7 +26,7 @@ export default function InfoScreen() {
               <br />
               Teléfono: {clients[id - 1].mobile}
               <br />
-              Saldo de Ahorros: {clients[id - 1].saldoAhorros}
+              Saldo de Ahorros: {clients[id - 1].savingBalance}
             </MDTypography>
           </MDBox>
         </Grid>

@@ -29,6 +29,14 @@ const useStyles = makeStyles({
       color: "black",
       margin: "0px 10px 0px 15px",
     },
+    "& #textAreaForm": {
+      width: "90%",
+      height: "35%",
+      padding: "2%",
+      border: "1px double #CDD4D5",
+      borderRadius: 7,
+      fontSize: "80%",
+    },
   },
 });
 

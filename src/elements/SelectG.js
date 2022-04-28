@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 export default function SelectG(props) {
   const { name, label, value, error = null, onChange, options } = props;
 
+  console.log(props);
+
   return (
     <FormControl fullWidth>
       <InputLabel {...(error && { error: true })} id="demo-simple-select-label">
@@ -35,6 +37,6 @@ SelectG.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
-  onChange: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   options: PropTypes.string.isRequired,
 };

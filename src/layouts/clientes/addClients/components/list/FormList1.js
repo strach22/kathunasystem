@@ -16,6 +16,7 @@ export default function FormList1(props) {
     errIdentification,
     errMobile,
     errEmail,
+    state,
   } = props;
 
   return (
@@ -26,6 +27,7 @@ export default function FormList1(props) {
         value={valFirstName}
         onChange={handleInputChange}
         error={errFirstName}
+        state={state}
       />
       <Input
         label="Apellidos"
@@ -33,6 +35,7 @@ export default function FormList1(props) {
         value={valLastName}
         onChange={handleInputChange}
         error={errLastName}
+        state={state}
       />
       <Input
         label="Cédula de Indentidad"
@@ -40,6 +43,7 @@ export default function FormList1(props) {
         value={valIdentification}
         onChange={handleInputChange}
         error={errIdentification}
+        state={state}
       />
       <Input
         label="Número de teléfono"
@@ -47,12 +51,14 @@ export default function FormList1(props) {
         value={valMobile}
         onChange={handleInputChange}
         error={errMobile}
+        state={state}
       />
       <Input
         label="2do Número de teléfono (Opcional)"
         name="secondMobile"
         value={valSecondMobile}
         onChange={handleInputChange}
+        state={state}
       />
       <Input
         label="Email"
@@ -60,6 +66,7 @@ export default function FormList1(props) {
         value={valEmail}
         onChange={handleInputChange}
         error={errEmail}
+        state={state}
       />
     </>
   );
@@ -72,10 +79,11 @@ FormList1.propTypes = {
   valMobile: PropTypes.string.isRequired,
   valSecondMobile: PropTypes.string.isRequired,
   valEmail: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   errFirstName: PropTypes.string.isRequired,
   errLastName: PropTypes.string.isRequired,
   errIdentification: PropTypes.string.isRequired,
   errMobile: PropTypes.string.isRequired,
   errEmail: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };

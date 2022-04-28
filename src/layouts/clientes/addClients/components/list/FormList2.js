@@ -7,8 +7,16 @@ import DatePickerH from "../../../../../elements/DatePickerH";
 import * as ConstDate from "../../helpers/ConstDate";
 
 export default function FormList2(props) {
-  const { valTariff, valCivil, valBirthDate, valAddress, handleInputChange, errCivil, errAddress } =
-    props;
+  const {
+    valTariff,
+    valCivil,
+    valBirthDate,
+    valAddress,
+    handleInputChange,
+    errCivil,
+    errAddress,
+    state,
+  } = props;
 
   return (
     <>
@@ -39,6 +47,7 @@ export default function FormList2(props) {
         value={valAddress}
         onChange={handleInputChange}
         error={errAddress}
+        state={state}
       />
     </>
   );
@@ -49,7 +58,8 @@ FormList2.propTypes = {
   valCivil: PropTypes.string.isRequired,
   valBirthDate: PropTypes.string.isRequired,
   valAddress: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   errCivil: PropTypes.string.isRequired,
   errAddress: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };

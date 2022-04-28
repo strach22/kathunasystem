@@ -14,6 +14,7 @@ export default function FormListGuarantor(props) {
     errLastName,
     errMobile,
     errRelationShip,
+    state,
   } = props;
 
   return (
@@ -25,6 +26,7 @@ export default function FormListGuarantor(props) {
           value={valFirstName}
           onChange={handleInputChange}
           error={errFirstName}
+          state={state}
         />
         <Input
           label="Apellidos"
@@ -32,6 +34,7 @@ export default function FormListGuarantor(props) {
           value={valLastName}
           onChange={handleInputChange}
           error={errLastName}
+          state={state}
         />
       </Grid>
       <Grid item xs={6}>
@@ -41,6 +44,7 @@ export default function FormListGuarantor(props) {
           value={valMobile}
           onChange={handleInputChange}
           error={errMobile}
+          state={state}
         />
         <Input
           label="Parentesco"
@@ -48,6 +52,7 @@ export default function FormListGuarantor(props) {
           value={valRelationShip}
           onChange={handleInputChange}
           error={errRelationShip}
+          state={state}
         />
       </Grid>
     </Grid>
@@ -59,9 +64,10 @@ FormListGuarantor.propTypes = {
   valLastName: PropTypes.string.isRequired,
   valMobile: PropTypes.string.isRequired,
   valRelationShip: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   errFirstName: PropTypes.string.isRequired,
   errLastName: PropTypes.string.isRequired,
   errMobile: PropTypes.string.isRequired,
   errRelationShip: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };

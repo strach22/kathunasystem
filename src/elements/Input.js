@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 export default function Input(props) {
   const { label, name, error, value, onChange, state } = props;
+
   return (
     <TextField
       {...(state === "false" && { disabled: true })}
@@ -23,6 +24,6 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
 };

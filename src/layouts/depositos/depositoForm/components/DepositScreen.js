@@ -1,11 +1,12 @@
-/* eslint-disable no-use-before-define */
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Grid, InputAdornment, OutlinedInput, TextareaAutosize } from "@mui/material";
+import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
 import ButtonOk from "elements/ButtonOk";
-import DatePickerH from "../../../../elements/DatePickerH";
+import InputValue from "elements/InputValue";
+import TextArea from "elements/TextArea";
+import DatePickerH from "elements/DatePickerH";
 import Form from "../helpers/Form";
 
 import clients from "../../../../data/clients.json";
@@ -13,6 +14,7 @@ import clients from "../../../../data/clients.json";
 export default function DepositScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
+  clients[id - 1].creationDate = new Date();
 
   const { values, handleInputChange, resetForm } = useForm(clients[id - 1]);
 
@@ -33,35 +35,20 @@ export default function DepositScreen() {
           <DatePickerH
             name="depositDate"
             label="Fecha de transacción"
-            value={values.depositDate}
+            value={values.creationDate}
             obChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={5}>
           <MDTypography className="Subtitles">Valor a depositar:</MDTypography>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            name="deposit"
-            value={values.deposit}
-            onChange={handleInputChange}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
+          <InputValue name="deposit" value={values.deposit} onChange={handleInputChange} />
         </Grid>
         <Grid xs={7}>
           <MDTypography className="Subtitles">Observaciones:</MDTypography>
-          <TextareaAutosize
-            aria-label="minimum height"
+          <TextArea
             minRows={3}
             maxRows={4}
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
-            style={{
-              width: "90%",
-              height: "35%",
-              padding: "2%",
-              border: "1px double #CDD4D5",
-              borderRadius: 7,
-              fontSize: "80%",
-            }}
           />
         </Grid>
         <Grid item xs={12} lg={11}>
