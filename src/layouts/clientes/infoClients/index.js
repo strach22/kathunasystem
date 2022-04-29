@@ -21,29 +21,6 @@ function infoClients() {
   const { clients, eraseClient, editClient } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(id);
 
-  const categories = [
-    "Nombres:",
-    "Apellidos:",
-    "Documento de Identidad:",
-    "Teléfono:",
-    "2do Teléfono:",
-    "Tarifa:",
-    "Estado Civil:",
-    "Fecha de Nacimiento:",
-    "Fecha de Afiliación:",
-    "Dirección:",
-    "Correo Electrónico:",
-    "Nombres del Conyugue:",
-    "Apellidos del Conyugue:",
-    "Documento Id del Conyugue:",
-    "Teléfono del Conyugue:",
-    "Nombres del Pariente:",
-    "Apellidos del Pariente:",
-    "Teléfono del Pariente:",
-    "Parentesco:",
-    "Saldo de Ahorros:",
-    "Saldo de Crédito:",
-  ];
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
       <Grid item xs={5.7}>
@@ -66,30 +43,30 @@ function infoClients() {
               <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                 Cliente # {id}
               </MDTypography>
-              {getInfo(categories[0], clients[i].firstName)}
-              {getInfo(categories[1], clients[i].lastName)}
-              {getInfo(categories[2], clients[i].identification)}
-              {getInfo(categories[3], clients[i].mobile)}
-              {getInfo(categories[4], clients[i].secondMobile)}
-              {getInfo(categories[5], clients[i].tariff)}
-              {getInfo(categories[6], clients[i].civil)}
-              {getInfo(categories[7], clients[i].birthDate)}
-              {getInfo(categories[8], clients[i].creationDate)}
-              {getInfo(categories[9], clients[i].address)}
-              {getInfo(categories[10], clients[i].email)}
+              {getInfo("Nombres:", clients[i].firstName)}
+              {getInfo("Apellidos:", clients[i].lastName)}
+              {getInfo("Documento de Identidad:", clients[i].identification)}
+              {getInfo("Teléfono:", clients[i].mobile)}
+              {getInfo("2do Teléfono:", clients[i].secondMobile)}
+              {getInfo("Tarifa:", clients[i].tariff)}
+              {getInfo("Estado Civil:", clients[i].civil)}
+              {getInfo("Fecha de Nacimiento:", clients[i].birthDate)}
+              {getInfo("Fecha de Afiliación:", clients[i].creationDate)}
+              {getInfo("Dirección:", clients[i].address)}
+              {getInfo("Correo Electrónico:", clients[i].email)}
               <Divider />
-              {getInfo(categories[11], clients[i].firstNameSpouse)}
-              {getInfo(categories[12], clients[i].lastNameSpouse)}
-              {getInfo(categories[13], clients[i].identificationSpouse)}
-              {getInfo(categories[14], clients[i].mobileSpouse)}
+              {getInfo("Nombres del Conyugue:", clients[i].firstNameSpouse)}
+              {getInfo("Apellidos del Conyugue:", clients[i].lastNameSpouse)}
+              {getInfo("Documento Id del Conyugue:", clients[i].identificationSpouse)}
+              {getInfo("Teléfono del Conyugue:", clients[i].mobileSpouse)}
               <Divider />
-              {getInfo(categories[15], clients[i].firstNameRelationShip)}
-              {getInfo(categories[16], clients[i].lastNameRelationShip)}
-              {getInfo(categories[17], clients[i].mobileRelationShip)}
-              {getInfo(categories[18], clients[i].relationShip)}
+              {getInfo("Nombres del Pariente:", clients[i].firstNameRelationShip)}
+              {getInfo("Apellidos del Pariente:", clients[i].lastNameRelationShip)}
+              {getInfo("Teléfono del Pariente:", clients[i].mobileRelationShip)}
+              {getInfo("Parentesco:", clients[i].relationShip)}
               <Divider />
-              {getInfo(categories[19], clients[i].savingBalance)}
-              {getInfo(categories[20], clients[i].creditBalance)}
+              {getInfo("Saldo de Ahorros:", clients[i].savingBalance)}
+              {getInfo("Saldo de Crédito:", clients[i].creditBalance)}
             </MDBox>
           </Grid>
           <Grid item xs={12} lg={11}>
