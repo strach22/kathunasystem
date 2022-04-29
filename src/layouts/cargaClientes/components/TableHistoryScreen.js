@@ -9,12 +9,17 @@ import ActionReduce from "../element/ActionReduce";
 import ExcelExport from "../element/ExcelExport";
 
 export default function TableHistoryScreen({ worksheets }) {
-  const [state, setState] = useState({ cols: [], rows: [] });
+  const [stateData, setSatateData] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
   const [dataBase, dispatch] = useReducer(ActionReduce);
-  const { uploadClients } = useContext(ClientsContext);
+  const { uploadClients, clients } = useContext(ClientsContext);
 
   const handleUpload = () => {
+    // const newClients = clients.filter((client) => client.identification !== id);
+
+    console.log(clients);
+    console.log(dataBase);
+
     if (dataBase) uploadClients(dataBase);
   };
 
@@ -24,7 +29,7 @@ export default function TableHistoryScreen({ worksheets }) {
     ExcelRenderer(fileObj, (err, resp) => {
       if (!err) {
         const { cols, rows } = resp;
-        setState({
+        setSatateData({
           cols: cols,
           rows: rows,
         });
@@ -73,7 +78,7 @@ export default function TableHistoryScreen({ worksheets }) {
       </Grid>
 
       <div className="excel-table-import">
-        <OutTable data={state.rows} columns={state.cols} tableClassName="excel-table" />
+        <OutTable data={stateData.rows} columns={stateData.cols} tableClassName="excel-table" />
       </div>
     </div>
   );

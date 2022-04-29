@@ -50,6 +50,7 @@ export default function FormScreen() {
               transactionDate: "",
               transactionValue: "",
               actualBalance: "",
+              observation: "",
             },
           ],
         };
