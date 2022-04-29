@@ -33,7 +33,6 @@ function infoClients() {
       </Grid>
     </Grid>
   );
-  console.log(clients);
   return (
     <DashboardLayout>
       <DashboardNavbar />
