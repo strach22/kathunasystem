@@ -1,3 +1,16 @@
+import DataTable from "examples/Tables/DataTable";
+import historial from "../../table/tableHistory";
+
 export default function AccountStatusScreen() {
-  return <div>Poner estado de cuenta</div>;
+  const { columns, rows } = historial();
+  return (
+    <div>
+      <DataTable
+        table={{ columns, rows }}
+        showTotalEntries={false}
+        noEndBorder
+        entriesPerPage={false}
+      />
+    </div>
+  );
 }
