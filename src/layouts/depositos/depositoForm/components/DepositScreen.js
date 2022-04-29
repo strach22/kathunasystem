@@ -1,36 +1,22 @@
-import React, { useContext } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React from "react";
 import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
+import DatePickerH from "elements/DatePickerH";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
-import ButtonOk from "elements/ButtonOk";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
-import DatePickerH from "elements/DatePickerH";
-import ClientsContext from "context/Clients/ClientsContext";
+import ButtonOk from "elements/ButtonOk";
+import { Link } from "react-router-dom";
 import Form from "../helpers/Form";
 
 export default function DepositScreen() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const { clients } = useContext(ClientsContext);
-
-  const newId = clients.map((e) => e.id).indexOf(id);
-
-  if (clients[newId].savingHistory[clients[newId].savingHistory.length - 1].value)
-    clients[newId].savingHistory[clients[newId].savingHistory.length] = {
-      transactionDate: new Date(),
-      value: "",
-      actualBalance: "",
-      observation: "",
-    };
-
-  const { values, handleInputChange, resetForm } = useForm(clients[newId]);
+  const { values, handleInputChange, resetForm } = useForm({
+    depositDate: new Date(),
+    actualBalance: 0,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/inicio");
-    resetForm();
   };
 
   return (
@@ -43,13 +29,17 @@ export default function DepositScreen() {
           <DatePickerH
             name="depositDate"
             label="Fecha de transacción"
-            value={values.creationDate}
+            value={values.depositDate}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={5}>
           <MDTypography className="Subtitles">Valor a depositar:</MDTypography>
-          <InputValue name="deposit" value={values.deposit} onChange={handleInputChange} />
+          <InputValue
+            name="actualBalance"
+            value={values.actualBalance}
+            onChange={handleInputChange}
+          />
         </Grid>
         <Grid xs={7}>
           <MDTypography className="Subtitles">Observaciones:</MDTypography>
