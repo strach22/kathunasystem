@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
@@ -7,19 +7,28 @@ import ButtonOk from "elements/ButtonOk";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import DatePickerH from "elements/DatePickerH";
+import ClientsContext from "context/Clients/ClientsContext";
 import Form from "../helpers/Form";
-
-import clients from "../../../../data/clients.json";
 
 export default function DepositScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { clients } = useContext(ClientsContext);
 
-  const { values, handleInputChange, resetForm } = useForm(clients[id - 1]);
+  const newId = clients.map((e) => e.id).indexOf(id);
+
+  if (clients[newId].savingHistory[clients[newId].savingHistory.length - 1].value)
+    clients[newId].savingHistory[clients[newId].savingHistory.length] = {
+      transactionDate: new Date(),
+      value: "",
+      actualBalance: "",
+      observation: "",
+    };
+
+  const { values, handleInputChange, resetForm } = useForm(clients[newId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    clients[id - 1].saldoAhorros += 10;
     navigate("/inicio");
     resetForm();
   };

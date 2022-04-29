@@ -22,7 +22,7 @@ export default function DatePickerH(props) {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label={label}
-        inputFormat="dd/MM/yyyy"
+        inputFormat="yyyy/MM/dd"
         name={name}
         value={value}
         onChange={(date) => onChange(convertToDefEventPara(name, date))}

@@ -57,15 +57,7 @@ export default function TableClientsScreen({ worksheets }) {
             mobileRelationShip: value[19],
             savingBalance: value[20],
             creditBalance: value[21],
-            savingHistory: [
-              {
-                type: "",
-                transactionDate: "",
-                transactionValue: "",
-                actualBalance: "",
-                observation: "",
-              },
-            ],
+            savingHistory: [],
           };
 
           const valDate = parseInt(dataBaseTempo.birthDate.substring(0, 2), 10);
