@@ -5,14 +5,14 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 
-function Simulador() {
+function simulador() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      Hola Mundo
+      Simulador de Créditos
       <Footer />
     </DashboardLayout>
   );
 }
 
-export default Simulador;
+export default simulador;
