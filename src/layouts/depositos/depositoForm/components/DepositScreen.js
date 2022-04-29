@@ -7,7 +7,7 @@ import useForm from "layouts/clientes/addClients/hooks/useForm";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import ButtonOk from "elements/ButtonOk";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ClientsContext from "context/Clients/ClientsContext";
 import Form from "../helpers/Form";
 
@@ -23,7 +23,7 @@ export default function DepositScreen() {
     if ("actualBalance" in fieldValues) {
       tempo.actualBalance = /^[0-9]+$/.test(fieldValues.actualBalance)
         ? ""
-        : "Llenar el campo. No se permite letras";
+        : "Obligatorio llenar el campo. No se permite letras";
     }
     setErrors({
       ...tempo,
@@ -35,13 +35,19 @@ export default function DepositScreen() {
     {
       transactionDate: new Date(),
       actualBalance: 0,
+      value: 0,
+      observation: "",
     },
     true,
     validate,
     errorValues
   );
 
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { clients } = useContext(ClientsContext);
+
+  const newId = clients.map((e) => e.id).indexOf(id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,13 +56,13 @@ export default function DepositScreen() {
       const newTransactionDate = values.transactionDate.toISOString().split("T")[0];
       values.transactionDate = newTransactionDate;
 
-      console.log(clients);
+      const auxSaving = clients[newId].savingBalance;
+      const auxBalance = parseInt(values.actualBalance, 10);
 
-      // if (values.id === "0") values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
-      // addClient(values);
-      // resetForm();
-      // resetClientInfo();
-      // navigate("/clientes");
+      values.value = auxSaving + auxBalance;
+
+      resetForm();
+      navigate("/clientes");
     }
   };
 
@@ -92,8 +98,11 @@ export default function DepositScreen() {
             Observaciones:
           </MDTypography>
           <TextArea
+            name="observation"
             minRows={3}
             maxRows={4}
+            value={values.observation}
+            onChange={handleInputChange}
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
           />
         </Grid>

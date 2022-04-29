@@ -1,66 +1,109 @@
-import { Grid, InputAdornment, OutlinedInput, TextareaAutosize } from "@mui/material";
+/* eslint-disable no-use-before-define */
+import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
+import ClientsContext from "context/Clients/ClientsContext";
 import ButtonOk from "elements/ButtonOk";
 import DatePickerH from "elements/DatePickerH";
+import InputValue from "elements/InputValue";
+import TextArea from "elements/TextArea";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
 import Form from "layouts/depositos/depositoForm/helpers/Form";
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import clients from "../../../../data/clients.json";
-
 export default function RetiroScreen() {
+  const errorValues = {
+    actualBalance: "",
+  };
+
+  // eslint-disable-next-line consistent-return
+  const validate = (fieldValues = values) => {
+    const tempo = { ...errors };
+
+    if ("actualBalance" in fieldValues) {
+      tempo.actualBalance = /^[0-9]+$/.test(fieldValues.actualBalance)
+        ? ""
+        : "Obligatorio llenar el campo. No se permite letras";
+    }
+    setErrors({
+      ...tempo,
+    });
+    if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
+  };
+
+  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
+    {
+      transactionDate: new Date(),
+      actualBalance: 0,
+      value: 0,
+      observation: "",
+    },
+    true,
+    validate,
+    errorValues
+  );
+
   const { id } = useParams();
   const navigate = useNavigate();
+  const { clients } = useContext(ClientsContext);
 
-  const { values, handleInputChange, resetForm } = useForm(clients[id - 1]);
+  const newId = clients.map((e) => e.id).indexOf(id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    clients[id - 1].saldoAhorros += 10;
-    navigate("/inicio");
-    resetForm();
+
+    if (validate()) {
+      const newTransactionDate = values.transactionDate.toISOString().split("T")[0];
+      values.transactionDate = newTransactionDate;
+
+      const auxSaving = clients[newId].savingBalance;
+      const auxBalance = parseInt(values.actualBalance, 10);
+
+      values.value = auxSaving - auxBalance;
+
+      resetForm();
+      navigate("/clientes");
+    }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={4}>
-          <MDTypography className="Subtitles">Fecha de la transacción:</MDTypography>
+          <MDTypography className="Subtitles" variant="h5">
+            Fecha de la transacción:
+          </MDTypography>
         </Grid>
         <Grid item xs={8}>
           <DatePickerH
-            name="depositDate"
+            name="transactionDate"
             label="Fecha de transacción"
-            value={values.depositDate}
-            obChange={handleInputChange}
+            value={values.transactionDate}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={5}>
-          <MDTypography className="Subtitles">Valor a retirar:</MDTypography>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            name="deposit"
-            value={values.deposit}
+          <MDTypography className="Subtitles" variant="h5">
+            Valor a retirar:
+          </MDTypography>
+          <InputValue
+            name="actualBalance"
+            value={values.actualBalance}
             onChange={handleInputChange}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            error={errors.actualBalance}
           />
         </Grid>
         <Grid xs={7}>
-          <MDTypography className="Subtitles">Observaciones:</MDTypography>
-          <TextareaAutosize
-            aria-label="minimum height"
+          <MDTypography className="Subtitles" variant="h5">
+            Observaciones:
+          </MDTypography>
+          <TextArea
+            name="observation"
             minRows={3}
             maxRows={4}
+            value={values.observation}
+            onChange={handleInputChange}
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
-            style={{
-              width: "90%",
-              height: "35%",
-              padding: "2%",
-              border: "1px double #CDD4D5",
-              borderRadius: 7,
-              fontSize: "80%",
-            }}
           />
         </Grid>
         <Grid item xs={12} lg={11}>
