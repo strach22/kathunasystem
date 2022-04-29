@@ -27,8 +27,6 @@ export default function DepositScreen() {
   // clients[id - 1].creationDate.setMonth(valMonth);
   // clients[id - 1].creationDate.setFullYear(valYear);
 
-  console.log(clients[id - 1]);
-
   const { values, handleInputChange, resetForm } = useForm(clients[id - 1]);
 
   const handleSubmit = (e) => {
