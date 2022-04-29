@@ -22,13 +22,13 @@ export default function FormScreen() {
     clientInfo !== null
       ? clientInfo
       : {
-          id: 0,
+          id: "0",
           firstName: "",
           lastName: "",
           identification: "",
           mobile: "",
           secondMobile: "",
-          tariff: "particular",
+          tariff: "Particular",
           civil: "",
           birthDate: new Date(),
           creationDate: new Date(),
@@ -150,7 +150,6 @@ export default function FormScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    resetClientInfo();
 
     if (validate()) {
       const newBirthDate = values.birthDate.toISOString().split("T")[0];
@@ -160,6 +159,7 @@ export default function FormScreen() {
       values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
       addClient(values);
       resetForm();
+      resetClientInfo();
     }
   };
 
@@ -263,7 +263,7 @@ export default function FormScreen() {
         <Link to="/clientes">
           <ButtonOk
             text="REGRESAR"
-            onClick={resetForm}
+            onClick={resetClientInfo}
             sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
           />
         </Link>

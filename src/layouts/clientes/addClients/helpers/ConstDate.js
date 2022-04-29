@@ -6,6 +6,6 @@ export const getCivilStatus = () => [
 ];
 
 export const tariffItems = () => [
-  { id: "particular", title: "Particular" },
-  { id: "socio", title: "Socio" },
+  { id: "Particular", title: "Particular" },
+  { id: "Socio", title: "Socio" },
 ];
