@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React, { useContext } from "react";
 import { Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import ButtonOk from "elements/ButtonOk";
@@ -17,6 +17,7 @@ import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
   const { clientInfo, resetClientInfo, addClient } = useContext(ClientsContext);
+  const navigate = useNavigate();
 
   const initialValues =
     clientInfo !== null
@@ -160,6 +161,7 @@ export default function FormScreen() {
       addClient(values);
       resetForm();
       resetClientInfo();
+      navigate("/clientes");
     }
   };
 
@@ -250,23 +252,23 @@ export default function FormScreen() {
         />
       </MDBox>
       <Grid item xs={12}>
+        <Link to="/clientes">
+          <ButtonOk
+            text="REGRESAR"
+            onClick={resetClientInfo}
+            sx={{ background: "#AEB0B2", "&:hover": { background: "#7B809A" } }}
+          />
+        </Link>
+        <ButtonOk
+          text="RESETEAR"
+          onClick={resetForm}
+          sx={{ background: "#DF9325", "&:hover": { background: "#FB8C00" } }}
+        />
         <ButtonOk
           type="submit"
           text="AGREGAR"
           // sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
         />
-        <ButtonOk
-          text="RESETEAR"
-          onClick={resetForm}
-          sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
-        />
-        <Link to="/clientes">
-          <ButtonOk
-            text="REGRESAR"
-            onClick={resetClientInfo}
-            sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
-          />
-        </Link>
       </Grid>
     </Form>
   );
@@ -274,9 +276,6 @@ export default function FormScreen() {
 
 /* <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
   REGRESAR
-</MDButton>
-<MDButton color="warning" sx={{ marginLeft: 2 }} onClick={resetForm}>
-  RESETEAR
 </MDButton>
 <MDButton color="info" sx={{ marginLeft: 2 }} onClick={handleAgregar}>
   AGREGAR
