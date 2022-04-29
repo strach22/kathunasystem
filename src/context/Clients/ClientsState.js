@@ -54,6 +54,16 @@ function ClientsState({ children }) {
       value: newClients,
     });
   };
+  const addClientHistory = (id, data) => {
+    const i = clients.map((e) => e.id).indexOf(id);
+    const newClients = state.clients;
+    newClients[i].savingHistory.push(data);
+    dispatch({
+      type: "UPLOAD_CLIENTS",
+      value: newClients,
+    });
+  };
+
   const editClient = (info) => {
     dispatch({
       type: "EDIT_CLIENT",
@@ -78,6 +88,7 @@ function ClientsState({ children }) {
         uploadClients,
         editClient,
         resetClientInfo,
+        addClientHistory,
       }}
     >
       {children}

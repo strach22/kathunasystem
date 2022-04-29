@@ -164,7 +164,7 @@ export default function FormScreen() {
     if (validate()) {
       // values.birthDate = dateResume;
       // values.creationDate = dateResume2;
-      values.id = clients[clients.length - 1].id + 1;
+      values.id = parseInt(clients[clients.length - 1].id, 10) + 1;
       addClient(values);
       resetForm();
     }

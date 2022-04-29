@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import MDButton from "components/MDButton";
+import { Divider } from "@mui/material";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -32,14 +33,14 @@ function infoClients() {
     "Fecha de Afiliación:",
     "Dirección:",
     "Correo Electrónico:",
-    "Nombres del Conyugue",
-    "Apellidos del Conyugue",
-    "Documento Id del Conyugue",
-    "Teléfono del Conyugue",
-    "Nombres del Pariente",
-    "Apellidos del Pariente",
-    "Teléfono del Pariente",
-    "Parentesco ",
+    "Nombres del Conyugue:",
+    "Apellidos del Conyugue:",
+    "Documento Id del Conyugue:",
+    "Teléfono del Conyugue:",
+    "Nombres del Pariente:",
+    "Apellidos del Pariente:",
+    "Teléfono del Pariente:",
+    "Parentesco:",
     "Saldo de Ahorros:",
     "Saldo de Crédito:",
   ];
@@ -76,14 +77,17 @@ function infoClients() {
               {getInfo(categories[8], clients[i].creationDate)}
               {getInfo(categories[9], clients[i].address)}
               {getInfo(categories[10], clients[i].email)}
+              <Divider />
               {getInfo(categories[11], clients[i].firstNameSpouse)}
               {getInfo(categories[12], clients[i].lastNameSpouse)}
               {getInfo(categories[13], clients[i].identificationSpouse)}
               {getInfo(categories[14], clients[i].mobileSpouse)}
+              <Divider />
               {getInfo(categories[15], clients[i].firstNameRelationShip)}
               {getInfo(categories[16], clients[i].lastNameRelationShip)}
               {getInfo(categories[17], clients[i].mobileRelationShip)}
               {getInfo(categories[18], clients[i].relationShip)}
+              <Divider />
               {getInfo(categories[19], clients[i].savingBalance)}
               {getInfo(categories[20], clients[i].creditBalance)}
             </MDBox>
