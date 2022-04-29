@@ -156,7 +156,7 @@ export default function FormScreen() {
       const newCreationDate = values.creationDate.toISOString().split("T")[0];
       values.birthDate = newBirthDate;
       values.creationDate = newCreationDate;
-      values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
+      if (values.id === "0") values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
       addClient(values);
       resetForm();
       resetClientInfo();

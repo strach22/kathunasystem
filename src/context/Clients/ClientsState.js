@@ -67,9 +67,14 @@ function ClientsState({ children }) {
   };
 
   const editClient = (info) => {
+    const bitrhTempo = info.birthDate;
+    const creationTempo = info.creationDate;
+    const newInfo = info;
+    newInfo.birthDate = new Date(bitrhTempo);
+    newInfo.creationDate = new Date(creationTempo);
     dispatch({
       type: "EDIT_CLIENT",
-      value: info,
+      value: newInfo,
     });
   };
   const resetClientInfo = () => {
