@@ -12,15 +12,19 @@ export default function TableHistoryScreen({ worksheets }) {
   const [stateData, setSatateData] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
   const [dataBase, dispatch] = useReducer(ActionReduce);
-  const { uploadClients, clients } = useContext(ClientsContext);
+  const { clients, addClientHistory } = useContext(ClientsContext);
 
   const handleUpload = () => {
-    // const newClients = clients.filter((client) => client.identification !== id);
-
-    console.log(clients);
-    console.log(dataBase);
-
-    if (dataBase) uploadClients(dataBase);
+    for (let i = 0; i < dataBase.length; i += 1) {
+      for (let j = 0; j < clients.length; j += 1) {
+        if (dataBase[i].identification === clients[j].identification) {
+          if (dataBase[i].type === "Retiro") dataBase[i].transactionValue *= -1;
+          delete dataBase[i].identification;
+          delete dataBase[i].type;
+          addClientHistory(clients[j].id, dataBase[i]);
+        }
+      }
+    }
   };
 
   const uploadFile = (e) => {

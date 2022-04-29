@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import MDButton from "components/MDButton";
@@ -33,8 +33,8 @@ export default function ExcelExport({ filename = "", worksheets = [], handleUplo
 
       <Grid item xs={4}>
         <MDButton
-          component={Link}
-          to="/clientes"
+          // component={Link}
+          // to="/clientes"
           onClick={handleUpload}
           color="info"
           sx={{ width: "80%", height: "10px" }}
@@ -50,5 +50,5 @@ export default function ExcelExport({ filename = "", worksheets = [], handleUplo
 ExcelExport.propTypes = {
   filename: PropTypes.string.isRequired,
   worksheets: PropTypes.string.isRequired,
-  handleUpload: PropTypes.string.isRequired,
+  handleUpload: PropTypes.func.isRequired,
 };

@@ -114,12 +114,8 @@ export default function PrincipalScreen() {
                       Revisar todos los datos con mucho cuidado. NO SE PODRÁ REVERTIR LOS CAMBIOS.
                     </MDTypography>
                     <MDTypography gutterBottom>
-                      Una vez seleccionado el archivo, espere unos segundos para observar la tabla
-                      en pantalla y verificar que todos los datos sean correctos
-                    </MDTypography>
-                    <MDTypography gutterBottom>
-                      Para cargar el historial de ahorros completos de todos los clientes, repita
-                      los pasos anteriores.
+                      Para cargar el historial de ahorros completo de todos los clientes, repita los
+                      pasos anteriores.
                     </MDTypography>
                     <MDTypography gutterBottom>
                       Primero debe cargar los datos de los clientes y después el historial de
