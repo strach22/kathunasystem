@@ -44,15 +44,7 @@ export default function FormScreen() {
           mobileRelationShip: "",
           savingBalance: 0,
           creditBalance: 0,
-          savingHistory: [
-            {
-              type: "",
-              transactionDate: "",
-              transactionValue: "",
-              actualBalance: "",
-              observation: "",
-            },
-          ],
+          savingHistory: [],
         };
 
   const errorValues = {
@@ -158,13 +150,13 @@ export default function FormScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const dateResume = values.birthDate.toISOString().split("T")[0];
-    // const dateResume2 = values.creationDate.toISOString().split("T")[0];
-
     resetClientInfo();
+
     if (validate()) {
-      // values.birthDate = dateResume;
-      // values.creationDate = dateResume2;
+      const newBirthDate = values.birthDate.toISOString().split("T")[0];
+      const newCreationDate = values.creationDate.toISOString().split("T")[0];
+      values.birthDate = newBirthDate;
+      values.creationDate = newCreationDate;
       values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
       addClient(values);
       resetForm();
