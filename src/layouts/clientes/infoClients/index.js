@@ -18,7 +18,7 @@ import ClientsContext from "../../../context/Clients/ClientsContext";
 
 function infoClients() {
   const { id } = useParams();
-  const { clients, eraseClient, editClient } = useContext(ClientsContext);
+  const { clients, editClient } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(id);
 
   const getInfo = (category, info) => (
@@ -81,15 +81,6 @@ function infoClients() {
               onClick={() => editClient(clients[i])}
             >
               EDITAR
-            </MDButton>
-            <MDButton
-              color="error"
-              sx={{ marginLeft: 2 }}
-              component={Link}
-              to="/clientes"
-              onClick={() => eraseClient(id)}
-            >
-              ELIMINAR
             </MDButton>
           </Grid>
         </Grid>
