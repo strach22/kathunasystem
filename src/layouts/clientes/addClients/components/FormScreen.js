@@ -256,18 +256,18 @@ export default function FormScreen() {
           <ButtonOk
             text="REGRESAR"
             onClick={resetClientInfo}
-            sx={{ background: "#7B809A", "&:hover": { background: "#AEB0B2" } }}
+            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
           />
         </Link>
         <ButtonOk
           text="RESETEAR"
           onClick={resetForm}
-          sx={{ background: "#FB8C00", "&:hover": { background: "#DF9325" } }}
+          sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
         />
         <ButtonOk
           type="submit"
           text="AGREGAR"
-          // sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
+          sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
         />
       </Grid>
     </Form>
