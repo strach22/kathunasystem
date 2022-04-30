@@ -49,7 +49,7 @@ export default function TableClientsScreen({ worksheets }) {
             email: value[11],
             firstNameSpouse: value[12],
             lastNameSpouse: value[13],
-            identificationSpouse: value[14],
+            identificationSpouse: String(value[14]),
             mobileSpouse: String(value[15]),
             relationShip: value[16],
             firstNameRelationShip: value[17],
