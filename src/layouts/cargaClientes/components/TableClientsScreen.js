@@ -60,18 +60,7 @@ export default function TableClientsScreen({ worksheets }) {
             savingHistory: [],
           };
 
-          const valDate = parseInt(dataBaseTempo.birthDate.substring(0, 2), 10);
-          const valMonth = parseInt(dataBaseTempo.birthDate.substring(3, 5), 10);
-          const valYear = parseInt(dataBaseTempo.birthDate.substring(6, 10), 10);
-
-          dataBaseTempo.birthDate = new Date();
-
-          dataBaseTempo.birthDate.setDate(valDate);
-          dataBaseTempo.birthDate.setMonth(valMonth);
-          dataBaseTempo.birthDate.setFullYear(valYear);
-
-          // Si se quiere obtener en string:
-          // values.birthDate.toISOString().split("T")[0];
+          String(value[0]);
 
           dispatch({
             type: "CLIENT_DATA",
@@ -112,3 +101,16 @@ export default function TableClientsScreen({ worksheets }) {
 TableClientsScreen.propTypes = {
   worksheets: PropTypes.string.isRequired,
 };
+
+// const valDate = parseInt(dataBaseTempo.birthDate.substring(0, 2), 10);
+// const valMonth = parseInt(dataBaseTempo.birthDate.substring(3, 5), 10);
+// const valYear = parseInt(dataBaseTempo.birthDate.substring(6, 10), 10);
+
+// dataBaseTempo.birthDate = new Date();
+
+// dataBaseTempo.birthDate.setDate(valDate);
+// dataBaseTempo.birthDate.setMonth(valMonth);
+// dataBaseTempo.birthDate.setFullYear(valYear);
+
+// Si se quiere obtener en string:
+// values.birthDate.toISOString().split("T")[0];

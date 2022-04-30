@@ -13,18 +13,40 @@ export default function TableHistoryScreen({ worksheets }) {
   const [loading, setLoading] = useState(false);
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { clients, addClientHistory } = useContext(ClientsContext);
+  // const { clients } = useContext(ClientsContext);
 
   const handleUpload = () => {
-    for (let i = 0; i < dataBase.length; i += 1) {
-      for (let j = 0; j < clients.length; j += 1) {
-        if (dataBase[i].identification === clients[j].identification) {
-          if (dataBase[i].type === "Retiro") dataBase[i].transactionValue *= -1;
-          delete dataBase[i].identification;
-          delete dataBase[i].type;
+    const aux1 = dataBase.length;
+    const aux2 = clients.length;
+
+    for (let i = 0; i < aux1; i += 1) {
+      for (let j = 0; j < aux2; j += 1) {
+        const aux3 = dataBase[i].identification;
+        const aux4 = parseInt(clients[j].identification, 10);
+        const aux5 = dataBase[i].type;
+        if (aux3 === aux4) {
+          if (aux5 === "Retiro") dataBase[i].transactionValue *= -1;
+          // delete dataBase[i].identification;
+          // delete dataBase[i].type;
+          console.log(clients[j].id);
+          console.log(dataBase[i]);
           addClientHistory(clients[j].id, dataBase[i]);
         }
       }
     }
+
+    // for (let i = 0; i < dataBase.length; i += 1) {
+    //   for (let j = 0; j < clients.length; j += 1) {
+    //     if (dataBase[i].identification === clients[j].identification) {
+    //       if (dataBase[i].type === "Retiro") dataBase[i].transactionValue *= -1;
+    //       delete dataBase[i].identification;
+    //       delete dataBase[i].type;
+    //       console.log(clients[j].id);
+    //       console.log(dataBase[i]);
+    //       addClientHistory(clients[j].id, dataBase[i]);
+    //     }
+    //   }
+    // }
   };
 
   const uploadFile = (e) => {
@@ -47,7 +69,7 @@ export default function TableHistoryScreen({ worksheets }) {
             identification: value[0],
             type: value[1],
             transactionDate: value[2],
-            transactionValue: value[3],
+            value: value[3],
             actualBalance: value[4],
             observation: value[5],
           };

@@ -53,13 +53,15 @@ export default function DepositScreen() {
     e.preventDefault();
 
     if (validate()) {
-      const newTransactionDate = values.transactionDate.toISOString().split("T")[0];
-      values.transactionDate = newTransactionDate;
+      // const newTransactionDate = values.transactionDate.toISOString().split("T")[0];
+      // values.transactionDate = newTransactionDate;
 
       const auxSaving = clients[newId].savingBalance;
       const auxBalance = parseInt(values.actualBalance, 10);
 
       values.value = auxSaving + auxBalance;
+
+      // addSavingValue(newId, values);
 
       resetForm();
       navigate("/clientes");
@@ -93,7 +95,7 @@ export default function DepositScreen() {
             error={errors.actualBalance}
           />
         </Grid>
-        <Grid xs={7}>
+        <Grid item xs={7}>
           <MDTypography className="Subtitles" variant="h5">
             Observaciones:
           </MDTypography>

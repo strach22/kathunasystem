@@ -56,6 +56,7 @@ function ClientsState({ children }) {
       value: newClients,
     });
   };
+
   const addClientHistory = (id, data) => {
     const i = state.clients.map((e) => e.id).indexOf(id);
     const newClients = state.clients;
@@ -63,6 +64,15 @@ function ClientsState({ children }) {
     dispatch({
       type: "UPLOAD_CLIENTS",
       value: newClients,
+    });
+  };
+
+  const addSavingValue = (id, data) => {
+    const ActClients = state.clients;
+    ActClients[id].savingHistory.push(data);
+    dispatch({
+      type: "UPLOAD_CLIENTS",
+      value: ActClients,
     });
   };
 
@@ -77,6 +87,7 @@ function ClientsState({ children }) {
       value: newInfo,
     });
   };
+
   const resetClientInfo = () => {
     dispatch({
       type: "RESET_CLIENT_INFO",
@@ -96,6 +107,7 @@ function ClientsState({ children }) {
         editClient,
         resetClientInfo,
         addClientHistory,
+        addSavingValue,
       }}
     >
       {children}
