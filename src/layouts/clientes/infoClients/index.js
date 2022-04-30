@@ -20,7 +20,6 @@ function infoClients() {
   const { id } = useParams();
   const { clients, editClient } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(id);
-
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
       <Grid item xs={5.7}>

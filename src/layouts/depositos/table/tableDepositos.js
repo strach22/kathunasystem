@@ -24,7 +24,7 @@ export default function data() {
       accion: (
         <Link to={`${cliente.id}`}>
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            Depósito
+            Transacción
           </MDTypography>
         </Link>
       ),
