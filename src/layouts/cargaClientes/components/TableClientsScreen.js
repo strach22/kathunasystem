@@ -35,7 +35,7 @@ export default function TableClientsScreen({ worksheets }) {
           const value = data[i].map((val) => val);
 
           const dataBaseTempo = {
-            id: value[0],
+            id: String(value[0]),
             firstName: value[1],
             lastName: value[2],
             identification: value[3],
@@ -59,8 +59,6 @@ export default function TableClientsScreen({ worksheets }) {
             creditBalance: value[21],
             savingHistory: [],
           };
-
-          String(value[0]);
 
           dispatch({
             type: "CLIENT_DATA",
