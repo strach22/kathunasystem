@@ -7,7 +7,7 @@ import DatePickerH from "elements/DatePickerH";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
-import Form from "layouts/depositos/depositoForm/helpers/Form";
+import Form from "layouts/transaccionesAhorros/depositoForm/helpers/Form";
 import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -117,7 +117,7 @@ export default function RetiroScreen() {
             onClick={resetForm}
             sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
           />
-          <Link to="/retiros">
+          <Link to="/transaccionesAhorros">
             <ButtonOk
               text="REGRESAR"
               onClick={resetForm}

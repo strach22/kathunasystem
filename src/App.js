@@ -19,8 +19,8 @@ import themeDark from "assets/theme-dark";
 // Material Dashboard 2 React routes
 import routes from "routes";
 import InfoClientes from "layouts/clientes/infoClients";
-import DepositoForm from "layouts/depositos/depositoForm";
-import RetiroForm from "layouts/retiros/retiroForm";
+import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
+import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
 import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
 
 // Material Dashboard 2 React contexts

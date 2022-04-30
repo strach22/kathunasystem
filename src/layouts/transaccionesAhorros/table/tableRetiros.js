@@ -30,7 +30,7 @@ export default function data() {
             </MDTypography>
           </Link>
           <br />
-          <Link to={`${cliente.id}`}>
+          <Link to={`/retiros/${cliente.id}`}>
             <MDTypography variant="caption" color="error" fontWeight="medium">
               Retiro
             </MDTypography>

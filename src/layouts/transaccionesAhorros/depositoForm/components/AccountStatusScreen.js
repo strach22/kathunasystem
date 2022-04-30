@@ -1,5 +1,5 @@
 import DataTable from "examples/Tables/DataTable";
-import historial from "../../table/tableHistory";
+import historial from "../../../depositos/table/tableHistory";
 
 export default function AccountStatusScreen() {
   const { columns, rows } = historial();

@@ -1,10 +1,9 @@
 // layouts
 import Dashboard from "layouts/dashboard";
-import Depositos from "layouts/depositos";
 import Clientes from "layouts/clientes";
 import AddClients from "layouts/clientes/addClients";
 import SignIn from "layouts/authentication/sign-in";
-import Retiros from "layouts/retiros";
+import TransaccionesAhorros from "layouts/transaccionesAhorros";
 import Simulador from "layouts/simulador";
 import Creditos from "layouts/credito";
 import CargaClientes from "layouts/cargaClientes";
@@ -54,18 +53,10 @@ const routes = [
   {
     type: "collapse",
     name: "Transacciones Ahorros",
-    key: "retiros",
+    key: "transacciones-ahorros",
     icon: <Icon fontSize="small">iso</Icon>,
-    route: "/retiros",
-    component: <Retiros />,
-  },
-  {
-    type: "collapse",
-    name: "Depósitos",
-    key: "depositos",
-    icon: <Icon fontSize="small">add</Icon>,
-    route: "/depositos",
-    component: <Depositos />,
+    route: "/transacciones-ahorros",
+    component: <TransaccionesAhorros />,
   },
   {
     type: "collapse",

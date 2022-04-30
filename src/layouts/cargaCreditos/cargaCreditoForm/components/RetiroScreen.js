@@ -3,7 +3,7 @@ import MDTypography from "components/MDTypography";
 import ButtonOk from "elements/ButtonOk";
 import DatePickerH from "elements/DatePickerH";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
-import Form from "layouts/depositos/depositoForm/helpers/Form";
+import Form from "layouts/transaccionesAhorros/depositoForm/helpers/Form";
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
