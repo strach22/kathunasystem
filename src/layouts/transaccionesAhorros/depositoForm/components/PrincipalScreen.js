@@ -8,9 +8,9 @@ import { Card } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import { makeStyles } from "@mui/styles";
-import InfoScreen from "./InfoScreen";
+import InfoScreen from "layouts/transaccionesAhorros/helpers/InfoScreen";
+import AccountStatusScreen from "layouts/transaccionesAhorros/helpers/AccountStatusScreen";
 import DepositScreen from "./DepositScreen";
-import AccountStatusScreen from "./AccountStatusScreen";
 
 const useStyles = makeStyles({
   root: {

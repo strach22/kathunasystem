@@ -1,9 +1,9 @@
 import { Card, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import AccountStatusScreen from "layouts/transaccionesAhorros/helpers/AccountStatusScreen";
+import InfoScreen from "layouts/transaccionesAhorros/helpers/InfoScreen";
 import React from "react";
-import AccountStatusScreen from "./AccountStatusScreen";
-import InfoScreen from "./InfoScreen";
 import RetiroScreen from "./RetiroScreen";
 
 export default function PrincipalScreen() {

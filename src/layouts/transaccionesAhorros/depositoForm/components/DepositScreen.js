@@ -9,7 +9,7 @@ import TextArea from "elements/TextArea";
 import ButtonOk from "elements/ButtonOk";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ClientsContext from "context/Clients/ClientsContext";
-import Form from "../helpers/Form";
+import Form from "layouts/transaccionesAhorros/helpers/Form";
 
 export default function DepositScreen() {
   const errorValues = {

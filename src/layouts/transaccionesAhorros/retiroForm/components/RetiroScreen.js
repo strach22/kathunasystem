@@ -7,7 +7,7 @@ import DatePickerH from "elements/DatePickerH";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import useForm from "layouts/clientes/addClients/hooks/useForm";
-import Form from "layouts/transaccionesAhorros/depositoForm/helpers/Form";
+import Form from "layouts/transaccionesAhorros/helpers/Form";
 import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
