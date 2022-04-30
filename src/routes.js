@@ -53,19 +53,19 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Transacciones Ahorros",
+    key: "retiros",
+    icon: <Icon fontSize="small">iso</Icon>,
+    route: "/retiros",
+    component: <Retiros />,
+  },
+  {
+    type: "collapse",
     name: "Depósitos",
     key: "depositos",
     icon: <Icon fontSize="small">add</Icon>,
     route: "/depositos",
     component: <Depositos />,
-  },
-  {
-    type: "collapse",
-    name: "Retiros",
-    key: "retiros",
-    icon: <Icon fontSize="small">remove</Icon>,
-    route: "/retiros",
-    component: <Retiros />,
   },
   {
     type: "collapse",

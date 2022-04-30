@@ -12,6 +12,7 @@ export default function data() {
       { Header: "nombres", accessor: "firstName", align: "left" },
       { Header: "apellidos", accessor: "lastName", align: "left" },
       { Header: "documento", accessor: "identification", align: "center" },
+      { Header: "saldo", accessor: "savingBalance", align: "center" },
       { Header: "acción", accessor: "accion", align: "center" },
     ],
 
@@ -20,12 +21,21 @@ export default function data() {
       firstName: cliente.firstName,
       lastName: cliente.lastName,
       identification: cliente.identification,
+      savingBalance: cliente.savingBalance,
       accion: (
-        <Link to={`${cliente.id}`}>
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Retiro
-          </MDTypography>
-        </Link>
+        <>
+          <Link to={`/depositos/${cliente.id}`}>
+            <MDTypography variant="caption" color="info" fontWeight="medium">
+              Deposito
+            </MDTypography>
+          </Link>
+          <br />
+          <Link to={`${cliente.id}`}>
+            <MDTypography variant="caption" color="error" fontWeight="medium">
+              Retiro
+            </MDTypography>
+          </Link>
+        </>
       ),
     })),
   };
