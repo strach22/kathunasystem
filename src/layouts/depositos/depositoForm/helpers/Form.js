@@ -14,20 +14,20 @@ const useStyles = makeStyles({
     "& .MuiInputBase-adornedStart": {
       width: "70%",
       height: "35%",
-      marginBottom: "100px",
+      marginBottom: "5px",
       fontSize: "120%",
     },
     // Label
     "& .Subtitles": {
       marginBottom: "15px",
       color: "black",
-      // fontFamily: "cursive",
+      // fontFamily: "arial",
     },
     // Buttons
     "& .MuiButton-root": {
       width: "15%",
       color: "black",
-      margin: "0px 10px 0px 15px",
+      margin: "50px 10px 0px 15px",
     },
     "& #textAreaForm": {
       width: "90%",
