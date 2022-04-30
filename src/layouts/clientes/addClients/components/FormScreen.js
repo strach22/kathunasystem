@@ -75,17 +75,19 @@ export default function FormScreen() {
     if ("lastName" in fieldValues)
       tempo.lastName = fieldValues.lastName ? "" : "Este campo es obligatorio llenar";
     if ("identification" in fieldValues)
-      tempo.identification = /^[0-9]+$/.test(fieldValues.identification)
+      tempo.identification = /^[0-9]{10}$/.test(fieldValues.identification)
         ? ""
-        : "Este campo es obligatorio llenar";
+        : "Este campo es obligatorio llenar con 10 dígitos";
     if ("mobile" in fieldValues)
-      tempo.mobile = /^[0-9]+$/.test(fieldValues.mobile) ? "" : "Este campo es obligatorio llenar";
+      tempo.mobile = /^[0-9]{10}$/.test(fieldValues.mobile)
+        ? ""
+        : "Este campo es obligatorio llenar con 10 dígitos";
     if ("email" in fieldValues)
       tempo.email = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
         fieldValues.email
       )
         ? ""
-        : "La dirección de emal no es válido";
+        : "La dirección de email no es válido";
     if ("address" in fieldValues)
       tempo.address = fieldValues.address ? "" : "Este campo es obligatorio llenar";
 
@@ -98,9 +100,9 @@ export default function FormScreen() {
         ? ""
         : "Este campo es obligatorio llenar";
     if ("mobileRelationShip" in fieldValues)
-      tempo.mobileRelationShip = /^[0-9]+$/.test(fieldValues.mobileRelationShip)
+      tempo.mobileRelationShip = /^[0-9]{10}$/.test(fieldValues.mobileRelationShip)
         ? ""
-        : "Este campo es obligatorio llenar";
+        : "Este campo es obligatorio llenar con 10 dígitos";
     if ("relationShip" in fieldValues)
       tempo.relationShip = fieldValues.relationShip ? "" : "Este campo es obligatorio llenar";
 
@@ -124,13 +126,13 @@ export default function FormScreen() {
       if ("lastNameSpouse" in fieldValues)
         tempo.lastNameSpouse = fieldValues.lastNameSpouse ? "" : "Este campo es obligatorio llenar";
       if ("identificationSpouse" in fieldValues)
-        tempo.identificationSpouse = /^[0-9]+$/.test(fieldValues.identificationSpouse)
+        tempo.identificationSpouse = /^[0-9]{10}$/.test(fieldValues.identificationSpouse)
           ? ""
-          : "Este campo es obligatorio llenar";
+          : "Este campo es obligatorio llenar con 10 dígitos";
       if ("mobileSpouse" in fieldValues)
-        tempo.mobileSpouse = /^[0-9]+$/.test(fieldValues.mobileSpouse)
+        tempo.mobileSpouse = /^[0-9]{10}$/.test(fieldValues.mobileSpouse)
           ? ""
-          : "Este campo es obligatorio llenar";
+          : "Este campo es obligatorio llenar con 10 dígitos";
     }
     setErrors({
       ...tempo,
