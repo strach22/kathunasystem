@@ -3,13 +3,13 @@ import React, { useContext } from "react";
 import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import DatePickerH from "elements/DatePickerH";
-import useForm from "layouts/clientes/addClients/hooks/useForm";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import ButtonOk from "elements/ButtonOk";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ClientsContext from "context/Clients/ClientsContext";
 import Form from "layouts/transaccionesAhorros/helpers/Form";
+import useForm from "elements/hooks/useForm";
 
 export default function DepositScreen() {
   const errorValues = {
