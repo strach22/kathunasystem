@@ -28,18 +28,12 @@ function Dashboard() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox>
-              <Link to="/depositos">
-                <InfoIcon icon="add" title="Depósitos" />
+              <Link to="/transaccionesAhorros">
+                <InfoIcon icon="iso" title="Transacciones" />
               </Link>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <Link to="/retiros">
-                <InfoIcon color="error" icon="remove" title="Retiros" />
-              </Link>
-            </MDBox>
-          </Grid>
+
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <Link to="/creditos">
