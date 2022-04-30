@@ -28,8 +28,6 @@ export default function TableHistoryScreen({ worksheets }) {
           if (aux5 === "Retiro") dataBase[i].transactionValue *= -1;
           // delete dataBase[i].identification;
           // delete dataBase[i].type;
-          console.log(clients[j].id);
-          console.log(dataBase[i]);
           addClientHistory(clients[j].id, dataBase[i]);
         }
       }
