@@ -5,17 +5,22 @@ import PropTypes from "prop-types";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import { CircularProgress, Grid } from "@mui/material";
 import ClientsContext from "context/Clients/ClientsContext";
+import { useNavigate } from "react-router-dom";
 import ExcelExport from "../element/ExcelExport";
 import ActionReduce from "../element/ActionReduce";
 
 export default function TableClientsScreen({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { uploadClients } = useContext(ClientsContext);
 
   const handleUpload = () => {
-    if (dataBase) uploadClients(dataBase);
+    if (dataBase) {
+      uploadClients(dataBase);
+      navigate("/clientes");
+    }
   };
 
   const uploadFile = (e) => {
