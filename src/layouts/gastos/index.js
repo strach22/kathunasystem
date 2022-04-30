@@ -7,7 +7,7 @@ function gastos() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      Créditos
+      Gastos
       <Footer />
     </DashboardLayout>
   );
