@@ -3,8 +3,7 @@ import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import { useParams } from "react-router-dom";
 import MDBox from "components/MDBox";
-
-import ClientsContext from "../../../../context/Clients/ClientsContext";
+import ClientsContext from "context/Clients/ClientsContext";
 
 export default function InfoScreen() {
   const { id } = useParams();
