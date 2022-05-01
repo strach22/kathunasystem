@@ -117,7 +117,7 @@ export default function RetiroScreen() {
             onClick={resetForm}
             sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
           />
-          <Link to="/transaccionesAhorros">
+          <Link to="/transacciones-ahorros">
             <ButtonOk
               text="REGRESAR"
               onClick={resetForm}
