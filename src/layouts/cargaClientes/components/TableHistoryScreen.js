@@ -87,8 +87,8 @@ export default function TableHistoryScreen({ worksheets }) {
         <input id="excel-upload" type="file" onChange={uploadFile} />
       </div>
 
-      <Grid container>
-        {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "4%" }} />}
+      <Grid container sx={{ marginTop: "3%" }}>
+        {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
         {loading && <MDTypography>Cargando ...</MDTypography>}
       </Grid>
 
