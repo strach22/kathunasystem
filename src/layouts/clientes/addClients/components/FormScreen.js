@@ -7,7 +7,6 @@ import MDBox from "components/MDBox";
 import ButtonOk from "elements/ButtonOk";
 import useForm from "../../../../elements/hooks/useForm";
 import Form from "../helpers/Form";
-import clients from "../../../../data/clients.json";
 import FormList1 from "./list/FormList1";
 import FormList2 from "./list/FormList2";
 import FormListSpouse from "./list/FormListSpouse";
@@ -16,7 +15,7 @@ import FormListRelationShip from "./list/FormListRelationShip";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const { clientInfo, resetClientInfo, addClient } = useContext(ClientsContext);
+  const { clients, clientInfo, resetClientInfo, addClient } = useContext(ClientsContext);
   const navigate = useNavigate();
 
   const initialValues =

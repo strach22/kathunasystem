@@ -14,7 +14,7 @@ export default function TableClientsScreen({ worksheets }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
-  const { uploadClients } = useContext(ClientsContext);
+  const { clients, uploadClients } = useContext(ClientsContext);
 
   const handleUpload = () => {
     if (dataBase) {
@@ -39,27 +39,29 @@ export default function TableClientsScreen({ worksheets }) {
         for (let i = 0; i < data.length; i += 1) {
           const value = data[i].map((val) => val);
 
+          const id = clients.length + i + 1;
+
           const dataBaseTempo = {
-            id: String(value[0]),
-            firstName: value[1],
-            lastName: value[2],
-            identification: String(value[3]),
-            mobile: String(value[4]),
-            secondMobile: String(value[5]),
-            tariff: value[6],
-            civil: value[7],
-            birthDate: value[8],
-            creationDate: value[9],
-            address: value[10],
-            email: value[11],
-            firstNameSpouse: value[12],
-            lastNameSpouse: value[13],
-            identificationSpouse: String(value[14]),
-            mobileSpouse: String(value[15]),
-            relationShip: value[16],
-            firstNameRelationShip: value[17],
-            lastNameRelationShip: value[18],
-            mobileRelationShip: String(value[19]),
+            id: String(id),
+            firstName: value[0],
+            lastName: value[1],
+            identification: String(value[2]),
+            mobile: String(value[3]),
+            secondMobile: String(value[4]),
+            tariff: value[5],
+            civil: value[6],
+            birthDate: value[7],
+            creationDate: value[8],
+            address: value[9],
+            email: value[10],
+            firstNameSpouse: value[11],
+            lastNameSpouse: value[12],
+            identificationSpouse: String(value[13]),
+            mobileSpouse: String(value[14]),
+            relationShip: value[15],
+            firstNameRelationShip: value[16],
+            lastNameRelationShip: value[17],
+            mobileRelationShip: String(value[18]),
             savingBalance: 0,
             creditBalance: 0,
             savingHistory: [],
