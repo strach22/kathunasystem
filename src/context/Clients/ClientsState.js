@@ -68,15 +68,6 @@ function ClientsState({ children }) {
     });
   };
 
-  const addSavingValue = (id, data) => {
-    const ActClients = state.clients;
-    ActClients[id].savingHistory.push(data);
-    dispatch({
-      type: "UPLOAD_CLIENTS",
-      value: ActClients,
-    });
-  };
-
   const editClient = (info) => {
     const bitrhTempo = info.birthDate;
     const creationTempo = info.creationDate;
@@ -108,7 +99,6 @@ function ClientsState({ children }) {
         editClient,
         resetClientInfo,
         addClientHistory,
-        addSavingValue,
       }}
     >
       {children}
