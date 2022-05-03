@@ -13,15 +13,15 @@ import useForm from "elements/hooks/useForm";
 
 export default function DepositScreen() {
   const errorValues = {
-    actualBalance: "",
+    value: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("actualBalance" in fieldValues) {
-      tempo.actualBalance = /^[0-9]+$/.test(fieldValues.actualBalance)
+    if ("value" in fieldValues) {
+      tempo.value = /^[0-9]+$/.test(fieldValues.value)
         ? ""
         : "Obligatorio llenar el campo. No se permite letras";
     }
@@ -45,26 +45,32 @@ export default function DepositScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients } = useContext(ClientsContext);
-
-  const newId = clients.map((e) => e.id).indexOf(id);
+  const { clients, addClientHistory } = useContext(ClientsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validate()) {
-      // const newTransactionDate = values.transactionDate.toISOString().split("T")[0];
-      // values.transactionDate = newTransactionDate;
+      const auxSaving = clients[id - 1].savingBalance;
+      const auxBalance = parseInt(values.value, 10);
 
-      const auxSaving = clients[newId].savingBalance;
-      const auxBalance = parseInt(values.actualBalance, 10);
+      if (auxBalance !== 0) {
+        values.actualBalance = auxSaving + auxBalance;
 
-      values.value = auxSaving + auxBalance;
+        const newTransactionDate = values.transactionDate
+          .toISOString()
+          .split("T")[0]
+          .replace("-", "/")
+          .replace("-", "/");
+        values.transactionDate = newTransactionDate;
 
-      // addSavingValue(newId, values);
+        if (!values.observation) values.observation = "Ninguna";
 
-      resetForm();
-      navigate("/clientes");
+        addClientHistory(id, values);
+
+        resetForm();
+        navigate("/clientes");
+      }
     }
   };
 
@@ -89,10 +95,10 @@ export default function DepositScreen() {
             Valor a depositar:
           </MDTypography>
           <InputValue
-            name="actualBalance"
-            value={values.actualBalance}
+            name="value"
+            value={values.value}
             onChange={handleInputChange}
-            error={errors.actualBalance}
+            error={errors.value}
           />
         </Grid>
         <Grid item xs={7}>

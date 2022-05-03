@@ -37,6 +37,12 @@ const useStyles = makeStyles({
       borderRadius: 7,
       fontSize: "80%",
     },
+    // Alert
+    "& .MuiPaper-root": {
+      width: "80%",
+      marginBottom: "40px",
+      borderRadius: 8,
+    },
   },
 });
 

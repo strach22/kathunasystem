@@ -18,9 +18,9 @@ export default function PrincipalScreen() {
               py={3}
               px={2}
               variant="gradient"
-              bgColor="info"
               borderRadius="lg"
-              coloredShadow="info"
+              coloredShadow="error"
+              sx={{ background: "#BC2709" }}
             >
               <MDTypography variant="h5" color="white">
                 Datos del cliente
@@ -39,9 +39,9 @@ export default function PrincipalScreen() {
               py={3}
               px={2}
               variant="gradient"
-              bgColor="info"
               borderRadius="lg"
-              coloredShadow="info"
+              coloredShadow="error"
+              sx={{ background: "#BC2709" }}
             >
               <MDTypography variant="h5" color="white">
                 Crear Retiro
@@ -60,9 +60,9 @@ export default function PrincipalScreen() {
               py={3}
               px={2}
               variant="gradient"
-              bgColor="info"
               borderRadius="lg"
-              coloredShadow="info"
+              coloredShadow="error"
+              sx={{ background: "#BC2709" }}
             >
               <MDTypography variant="h5" color="white">
                 Historial de Estado de Cuenta

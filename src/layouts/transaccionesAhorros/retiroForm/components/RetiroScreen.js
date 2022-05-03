@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
-import { Grid } from "@mui/material";
+import React, { useContext } from "react";
+import { Alert, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import ClientsContext from "context/Clients/ClientsContext";
 import ButtonOk from "elements/ButtonOk";
@@ -8,20 +9,19 @@ import useForm from "elements/hooks/useForm";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import Form from "layouts/transaccionesAhorros/helpers/Form";
-import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function RetiroScreen() {
   const errorValues = {
-    actualBalance: "",
+    value: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("actualBalance" in fieldValues) {
-      tempo.actualBalance = /^[0-9]+$/.test(fieldValues.actualBalance)
+    if ("value" in fieldValues) {
+      tempo.value = /^[0-9]+$/.test(fieldValues.value)
         ? ""
         : "Obligatorio llenar el campo. No se permite letras";
     }
@@ -31,7 +31,7 @@ export default function RetiroScreen() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
+  const { values, errors, setErrors, handleInputChange, resetForm, ok, setOk } = useForm(
     {
       transactionDate: new Date(),
       actualBalance: 0,
@@ -40,35 +40,58 @@ export default function RetiroScreen() {
     },
     true,
     validate,
-    errorValues
+    errorValues,
+    false
   );
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients } = useContext(ClientsContext);
-
-  const newId = clients.map((e) => e.id).indexOf(id);
+  const { clients, addClientHistory } = useContext(ClientsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validate()) {
-      // const newTransactionDate = values.transactionDate.toISOString().split("T")[0];
-      // values.transactionDate = newTransactionDate;
+      const auxSaving = clients[id - 1].savingBalance;
+      const auxBalance = parseInt(values.value, 10);
 
-      const auxSaving = clients[newId].savingBalance;
-      const auxBalance = parseInt(values.actualBalance, 10);
+      if (auxBalance !== 0) {
+        if (auxSaving >= auxBalance) {
+          values.actualBalance = auxSaving - auxBalance;
 
-      values.value = auxSaving - auxBalance;
+          const newTransactionDate = values.transactionDate
+            .toISOString()
+            .split("T")[0]
+            .replace("-", "/")
+            .replace("-", "/");
+          values.transactionDate = newTransactionDate;
 
-      resetForm();
-      navigate("/clientes");
+          values.value *= -1;
+
+          if (!values.observation) values.observation = "Ninguna";
+
+          setOk(false);
+          addClientHistory(id, values);
+          resetForm();
+          navigate("/clientes");
+        } else {
+          setOk(true);
+        }
+      }
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
+        {ok && (
+          <Grid item xs={12}>
+            <Alert severity="error">
+              Error: No puede retirar: $ {values.value} porque solo cuenta con: ${" "}
+              {clients[id - 1].savingBalance} en su cuenta de ahorros
+            </Alert>
+          </Grid>
+        )}
         <Grid item xs={4}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha de la transacción:
@@ -87,10 +110,10 @@ export default function RetiroScreen() {
             Valor a retirar:
           </MDTypography>
           <InputValue
-            name="actualBalance"
-            value={values.actualBalance}
+            name="value"
+            value={values.value}
             onChange={handleInputChange}
-            error={errors.actualBalance}
+            error={errors.value}
           />
         </Grid>
         <Grid xs={7}>
@@ -122,7 +145,7 @@ export default function RetiroScreen() {
           <ButtonOk
             type="submit"
             text="DEBITAR"
-            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+            sx={{ background: "#D64E33", "&:hover": { background: "#D38B7D" } }}
           />
         </Grid>
       </Grid>
