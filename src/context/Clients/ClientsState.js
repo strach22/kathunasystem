@@ -61,6 +61,7 @@ function ClientsState({ children }) {
     const i = state.clients.map((e) => e.id).indexOf(id);
     const newClients = state.clients;
     newClients[i].savingHistory.push(data);
+    newClients[i].savingBalance = data.actualBalance;
     dispatch({
       type: "UPLOAD_CLIENTS",
       value: newClients,
