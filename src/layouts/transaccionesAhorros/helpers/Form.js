@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     // Buttons
     "& .MuiButton-root": {
       width: "15%",
-      color: "black",
+      color: "white",
       margin: "50px 10px 0px 15px",
     },
     "& #textAreaForm": {

@@ -107,23 +107,23 @@ export default function RetiroScreen() {
           />
         </Grid>
         <Grid item xs={12} lg={11}>
-          <ButtonOk
-            type="submit"
-            text="DEBITAR"
-            sx={{ background: "#42a5f5", "&:hover": { background: "#A4C7F7" } }}
-          />
-          <ButtonOk
-            text="RESETEAR"
-            onClick={resetForm}
-            sx={{ background: "#DF9325", "&:hover": { background: "#E8C38F" } }}
-          />
           <Link to="/transacciones-ahorros">
             <ButtonOk
               text="REGRESAR"
               onClick={resetForm}
-              sx={{ background: "#AEB0B2", "&:hover": { background: "#CCC9C5" } }}
+              sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
             />
           </Link>
+          <ButtonOk
+            text="RESETEAR"
+            onClick={resetForm}
+            sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
+          />
+          <ButtonOk
+            type="submit"
+            text="DEBITAR"
+            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+          />
         </Grid>
       </Grid>
     </Form>

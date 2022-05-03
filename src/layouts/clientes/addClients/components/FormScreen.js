@@ -274,10 +274,3 @@ export default function FormScreen() {
     </Form>
   );
 }
-
-/* <MDButton color="secondary" sx={{ marginLeft: 2 }} component={Link} to="/clientes">
-  REGRESAR
-</MDButton>
-<MDButton color="info" sx={{ marginLeft: 2 }} onClick={handleAgregar}>
-  AGREGAR
-</MDButton> */
