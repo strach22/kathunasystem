@@ -34,8 +34,8 @@ export default function DepositScreen() {
   const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
       transactionDate: new Date(),
-      actualBalance: 0,
-      value: 0,
+      actualBalance: "0",
+      value: "0",
       observation: "",
     },
     true,
@@ -69,7 +69,7 @@ export default function DepositScreen() {
         addClientHistory(id, values);
 
         resetForm();
-        navigate("/clientes");
+        navigate("/inicio");
       }
     }
   };

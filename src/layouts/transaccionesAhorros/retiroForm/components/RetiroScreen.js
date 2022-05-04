@@ -34,8 +34,8 @@ export default function RetiroScreen() {
   const { values, errors, setErrors, handleInputChange, resetForm, ok, setOk } = useForm(
     {
       transactionDate: new Date(),
-      actualBalance: 0,
-      value: 0,
+      actualBalance: "0",
+      value: "0",
       observation: "",
     },
     true,
@@ -73,7 +73,7 @@ export default function RetiroScreen() {
           setOk(false);
           addClientHistory(id, values);
           resetForm();
-          navigate("/clientes");
+          navigate("/inicio");
         } else {
           setOk(true);
         }
@@ -151,7 +151,7 @@ export default function RetiroScreen() {
             variant="text"
             size="large"
             type="submit"
-            sx={{ background: "#D64E33", "&:hover": { background: "#D38B7D" } }}
+            sx={{ background: "#BC2709", "&:hover": { background: "#D64E33" } }}
           >
             DEBITAR
           </MDButton>
