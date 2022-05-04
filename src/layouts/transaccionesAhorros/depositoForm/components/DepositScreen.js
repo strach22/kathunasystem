@@ -2,10 +2,10 @@
 import React, { useContext } from "react";
 import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
+import MDButton from "components/MDButton";
 import DatePickerH from "elements/DatePickerH";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
-import ButtonOk from "elements/ButtonOk";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ClientsContext from "context/Clients/ClientsContext";
 import Form from "layouts/transaccionesAhorros/helpers/Form";
@@ -116,22 +116,30 @@ export default function DepositScreen() {
         </Grid>
         <Grid item xs={12} lg={11}>
           <Link to="/transacciones-ahorros">
-            <ButtonOk
-              text="REGRESAR"
+            <MDButton
+              size="large"
               onClick={resetForm}
               sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-            />
+            >
+              REGRESAR
+            </MDButton>
           </Link>
-          <ButtonOk
-            text="RESETEAR"
+          <MDButton
+            size="large"
+            variant="text"
             onClick={resetForm}
             sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
-          />
-          <ButtonOk
+          >
+            RESETEAR
+          </MDButton>
+          <MDButton
+            variant="text"
+            size="large"
             type="submit"
-            text="DEPOSITAR"
             sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-          />
+          >
+            DEPOSITAR
+          </MDButton>
         </Grid>
       </Grid>
     </Form>

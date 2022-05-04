@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import Input from "../../../../../elements/Input";
 
@@ -60,15 +59,15 @@ export default function FormListRelationShip(props) {
   );
 }
 
-// FormListRelationShip.propTypes = {
-//   valFirstName: PropTypes.string.isRequired,
-//   valLastName: PropTypes.string.isRequired,
-//   valMobile: PropTypes.string.isRequired,
-//   valRelationShip: PropTypes.string.isRequired,
-//   handleInputChange: PropTypes.func.isRequired,
-//   errFirstName: PropTypes.string.isRequired,
-//   errLastName: PropTypes.string.isRequired,
-//   errMobile: PropTypes.string.isRequired,
-//   errRelationShip: PropTypes.string.isRequired,
-//   state: PropTypes.string.isRequired,
-// };
+FormListRelationShip.propTypes = {
+  valFirstName: PropTypes.string.isRequired,
+  valLastName: PropTypes.string.isRequired,
+  valMobile: PropTypes.string.isRequired,
+  valRelationShip: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  errFirstName: PropTypes.string.isRequired,
+  errLastName: PropTypes.string.isRequired,
+  errMobile: PropTypes.string.isRequired,
+  errRelationShip: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+};

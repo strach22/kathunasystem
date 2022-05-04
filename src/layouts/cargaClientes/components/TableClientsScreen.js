@@ -104,18 +104,38 @@ export default function TableClientsScreen({ worksheets }) {
 }
 
 TableClientsScreen.propTypes = {
-  worksheets: PropTypes.string.isRequired,
+  worksheets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      columns: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          value: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          nombres: PropTypes.string.isRequired,
+          apellidos: PropTypes.string.isRequired,
+          cedulaIdentidad: PropTypes.string.isRequired,
+          numeroTelefono: PropTypes.string.isRequired,
+          numeroTelefono2: PropTypes.string.isRequired,
+          tarifa: PropTypes.string.isRequired,
+          estadoCivil: PropTypes.string.isRequired,
+          fechaNacimiento: PropTypes.string.isRequired,
+          fechaCreacion: PropTypes.string.isRequired,
+          direccion: PropTypes.string.isRequired,
+          email: PropTypes.string.isRequired,
+          nombresConyugue: PropTypes.string.isRequired,
+          apellidosConyugue: PropTypes.string.isRequired,
+          cedulaIdentidadConyugue: PropTypes.string.isRequired,
+          telefonoConyugue: PropTypes.string.isRequired,
+          parentesco: PropTypes.string.isRequired,
+          nombresParentesco: PropTypes.string.isRequired,
+          apellidosParentesco: PropTypes.string.isRequired,
+          telefonoParentesco: PropTypes.string.isRequired,
+        })
+      ),
+    })
+  ).isRequired,
 };
-
-// const valDate = parseInt(dataBaseTempo.birthDate.substring(0, 2), 10);
-// const valMonth = parseInt(dataBaseTempo.birthDate.substring(3, 5), 10);
-// const valYear = parseInt(dataBaseTempo.birthDate.substring(6, 10), 10);
-
-// dataBaseTempo.birthDate = new Date();
-
-// dataBaseTempo.birthDate.setDate(valDate);
-// dataBaseTempo.birthDate.setMonth(valMonth);
-// dataBaseTempo.birthDate.setFullYear(valYear);
-
-// Si se quiere obtener en string:
-// values.birthDate.toISOString().split("T")[0];

@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { TextareaAutosize } from "@mui/material";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export default function TextArea(props) {
   const { name, minRows, maxRows, value, onChange, placeholder } = props;
@@ -19,8 +18,11 @@ export default function TextArea(props) {
   );
 }
 
-// TextArea.propTypes = {
-//   minRows: PropTypes.string.isRequired,
-//   maxRows: PropTypes.string.isRequired,
-//   placeholder: PropTypes.string.isRequired,
-// };
+TextArea.propTypes = {
+  name: PropTypes.string.isRequired,
+  minRows: PropTypes.number.isRequired,
+  maxRows: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};

@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { FormControl, FormHelperText, InputAdornment, OutlinedInput } from "@mui/material";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export default function InputValue(props) {
   const { name, value, onChange, error } = props;
@@ -21,8 +20,9 @@ export default function InputValue(props) {
   );
 }
 
-// InputValue.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.string.isRequired,
-// };
+InputValue.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+};

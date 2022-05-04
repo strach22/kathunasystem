@@ -2,8 +2,8 @@
 import React, { useContext } from "react";
 import { Alert, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
+import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
-import ButtonOk from "elements/ButtonOk";
 import DatePickerH from "elements/DatePickerH";
 import useForm from "elements/hooks/useForm";
 import InputValue from "elements/InputValue";
@@ -116,7 +116,7 @@ export default function RetiroScreen() {
             error={errors.value}
           />
         </Grid>
-        <Grid xs={7}>
+        <Grid item xs={7}>
           <MDTypography className="Subtitles" variant="h5">
             Observaciones:
           </MDTypography>
@@ -131,22 +131,30 @@ export default function RetiroScreen() {
         </Grid>
         <Grid item xs={12} lg={11}>
           <Link to="/transacciones-ahorros">
-            <ButtonOk
-              text="REGRESAR"
+            <MDButton
+              size="large"
               onClick={resetForm}
               sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-            />
+            >
+              REGRESAR
+            </MDButton>
           </Link>
-          <ButtonOk
-            text="RESETEAR"
+          <MDButton
+            size="large"
+            variant="text"
             onClick={resetForm}
             sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
-          />
-          <ButtonOk
+          >
+            RESETEAR
+          </MDButton>
+          <MDButton
+            variant="text"
+            size="large"
             type="submit"
-            text="DEBITAR"
             sx={{ background: "#D64E33", "&:hover": { background: "#D38B7D" } }}
-          />
+          >
+            DEBITAR
+          </MDButton>
         </Grid>
       </Grid>
     </Form>

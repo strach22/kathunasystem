@@ -42,6 +42,16 @@ export default function ExcelExport({ filename = "", worksheets = [], handleUplo
 
 ExcelExport.propTypes = {
   filename: PropTypes.string.isRequired,
-  worksheets: PropTypes.string.isRequired,
+  worksheets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      columns: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          value: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
   handleUpload: PropTypes.func.isRequired,
 };

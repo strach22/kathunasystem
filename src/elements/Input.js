@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { TextField } from "@mui/material";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export default function Input(props) {
   const { label, name, error, value, onChange, state } = props;
@@ -20,11 +19,11 @@ export default function Input(props) {
   );
 }
 
-// Input.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   error: PropTypes.string.isRequired,
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   state: PropTypes.string.isRequired,
-// };
+Input.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  state: PropTypes.string.isRequired,
+};

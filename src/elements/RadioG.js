@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -38,10 +37,15 @@ export default function RadioG(props) {
   );
 }
 
-// RadioG.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   items: PropTypes.string.isRequired,
-// };
+RadioG.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

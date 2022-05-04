@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
-import ButtonOk from "elements/ButtonOk";
+import MDButton from "components/MDButton";
 import useForm from "../../../../elements/hooks/useForm";
 import Form from "../helpers/Form";
 import FormList1 from "./list/FormList1";
@@ -254,22 +254,30 @@ export default function FormScreen() {
       </MDBox>
       <Grid item xs={12}>
         <Link to="/clientes">
-          <ButtonOk
-            text="REGRESAR"
+          <MDButton
+            size="large"
             onClick={resetClientInfo}
             sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-          />
+          >
+            REGRESAR
+          </MDButton>
         </Link>
-        <ButtonOk
-          text="RESETEAR"
+        <MDButton
+          size="large"
+          variant="text"
           onClick={resetForm}
           sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
-        />
-        <ButtonOk
+        >
+          RESETEAR
+        </MDButton>
+        <MDButton
+          variant="text"
+          size="large"
           type="submit"
-          text="AGREGAR"
           sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-        />
+        >
+          AGREGAR
+        </MDButton>
       </Grid>
     </Form>
   );

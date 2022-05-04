@@ -100,5 +100,25 @@ export default function TableHistoryScreen({ worksheets }) {
 }
 
 TableHistoryScreen.propTypes = {
-  worksheets: PropTypes.string.isRequired,
+  worksheets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      columns: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          value: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          cedulaIdentidad: PropTypes.string.isRequired,
+          tipoTransaccion: PropTypes.string.isRequired,
+          fecha: PropTypes.string.isRequired,
+          valorTransaccion: PropTypes.string.isRequired,
+          saldoFinal: PropTypes.string.isRequired,
+          observacion: PropTypes.string.isRequired,
+        })
+      ),
+    })
+  ).isRequired,
 };

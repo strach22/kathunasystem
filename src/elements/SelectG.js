@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export default function SelectG(props) {
   const { name, label, value, error = null, onChange, options } = props;
@@ -31,11 +30,16 @@ export default function SelectG(props) {
   );
 }
 
-// SelectG.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   label: PropTypes.string.isRequired,
-//   value: PropTypes.string.isRequired,
-//   error: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   options: PropTypes.string.isRequired,
-// };
+SelectG.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

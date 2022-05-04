@@ -7,20 +7,17 @@ export default function UploadClientsScreen() {
     {
       name: "Requisitos",
       columns: [
-        { label: "Id", value: "id" },
         { label: "Nombres", value: "nombres" },
         { label: "Apellidos", value: "apellidos" },
         { label: "Cédula de Identidad", value: "cedulaIdentidad" },
         { label: "Número de Teléfono", value: "numeroTelefono" },
         { label: "2do Número de Teléfono", value: "numeroTelefono2" },
-        { label: "Email", value: "email" },
         { label: "Tarifa", value: "tarifa" },
         { label: "Estado Civil", value: "estadoCivil" },
         { label: "Fecha de Nacimiento", value: "fechaNacimiento" },
         { label: "Fecha de Creación", value: "fechaCreacion" },
         { label: "Dirección", value: "direccion" },
-        { label: "Saldo de Ahorros", value: "saldoAhorros" },
-        { label: "Saldo de Crédito", value: "saldoCredito" },
+        { label: "Email", value: "email" },
         { label: "Nombres del Conyugue", value: "nombresConyugue" },
         { label: "Apellidos del Conyugue", value: "apellidosConyugue" },
         { label: "CI del Conyugue", value: "cedulaIdentidadConyugue" },
@@ -28,7 +25,7 @@ export default function UploadClientsScreen() {
         { label: "Parentesco", value: "parentesco" },
         { label: "Nombres del Parentesco", value: "nombresParentesco" },
         { label: "Apellidos del Parentesco", value: "apellidosParentesco" },
-        { label: "CI del Parentesco", value: "cedulaIdentidadParentesco" },
+        { label: "Teléfono del Parentesco", value: "cedulaIdentidadParentesco" },
       ],
       data: [
         {

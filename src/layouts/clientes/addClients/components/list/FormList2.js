@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import Input from "../../../../../elements/Input";
 import RadioG from "../../../../../elements/RadioG";
 import SelectG from "../../../../../elements/SelectG";
@@ -54,14 +53,13 @@ export default function FormList2(props) {
   );
 }
 
-// FormList2.propTypes = {
-//   valTariff: PropTypes.string.isRequired,
-//   valCivil: PropTypes.string.isRequired,
-//   valBirthDate: PropTypes.instanceOf(Date).isRequired,
-//   // valBirthDate: PropTypes.string.isRequired,
-//   valAddress: PropTypes.string.isRequired,
-//   handleInputChange: PropTypes.func.isRequired,
-//   errCivil: PropTypes.string.isRequired,
-//   errAddress: PropTypes.string.isRequired,
-//   state: PropTypes.string.isRequired,
-// };
+FormList2.propTypes = {
+  valTariff: PropTypes.string.isRequired,
+  valCivil: PropTypes.string.isRequired,
+  valBirthDate: PropTypes.instanceOf(Date).isRequired,
+  valAddress: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  errCivil: PropTypes.string.isRequired,
+  errAddress: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+};
