@@ -21,12 +21,10 @@ export default function CreditSimulatorScreen() {
             Tarifa:
           </MDTypography>
         </Grid>
-        <Grid item xs={4.5}>
-          <div className="LoanValue">
-            <InputValue />
-          </div>
+        <Grid item xs={4}>
+          <InputValue />
           <Grid container>
-            <Grid item xs={6} className="TimetoPay">
+            <Grid item xs={6}>
               <InputValue />
             </Grid>
             <Grid item xs={6}>
@@ -35,8 +33,25 @@ export default function CreditSimulatorScreen() {
           </Grid>
           <SelectG name="civil" label="Tarifa" options={ConstDate.getTariffItems()} />
         </Grid>
-        <Grid item xs={4}>
-          hola
+        <Grid item xs={4.5}>
+          <MDTypography className="SubtitlesInfo" variant="h6">
+            Valor de la cuota periódicamente:
+          </MDTypography>
+          <MDTypography className="SubtitlesValue" variant="h6">
+            $ 50
+          </MDTypography>
+          <MDTypography className="SubtitlesInfo" variant="h6">
+            Número de cuotas:
+          </MDTypography>
+          <MDTypography className="SubtitlesValue" variant="h6">
+            362
+          </MDTypography>
+          <MDTypography className="SubtitlesInfo" variant="h6">
+            Total interés a pagar:
+          </MDTypography>
+          <MDTypography className="SubtitlesValue" variant="h6">
+            $ 1852
+          </MDTypography>
         </Grid>
       </Grid>
     </Form>

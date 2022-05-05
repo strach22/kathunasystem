@@ -12,19 +12,29 @@ const useStyles = makeStyles({
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
-      fontSize: "90%",
-    },
-    // NumericInput
-    "& .LoanValue": {
       width: "100%",
-      marginBottom: "20px",
+      fontSize: "90%",
+      marginBottom: "25px",
     },
-    // NumericInput
-    "& .TimetoPay": {
-      width: "10%",
-      // height: "35%",
-      marginBottom: "5px",
-      // fontSize: "120%",
+    // Selector
+    "& .MuiFormControl-fullWidth": {
+      width: "100%",
+    },
+    // Selector
+    "& #demo-simple-select": {
+      width: "100%",
+      height: 44,
+      marginLeft: "8px",
+    },
+    // Label
+    "& .SubtitlesInfo": {
+      margin: "0px 0px 0px 40px",
+      color: "black",
+    },
+    // Label
+    "& .SubtitlesValue": {
+      margin: "0px 0px 30px 120px",
+      color: "grey",
     },
     // // Buttons
     // "& .MuiButton-root": {
