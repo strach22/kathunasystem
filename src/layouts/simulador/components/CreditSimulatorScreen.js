@@ -22,9 +22,11 @@ export default function CreditSimulatorScreen() {
           </MDTypography>
         </Grid>
         <Grid item xs={4.5}>
-          <InputValue />
+          <div className="LoanValue">
+            <InputValue />
+          </div>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={6} className="TimetoPay">
               <InputValue />
             </Grid>
             <Grid item xs={6}>

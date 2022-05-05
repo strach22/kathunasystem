@@ -11,11 +11,20 @@ const useStyles = makeStyles({
       color: "black",
     },
     // NumericInput
-    "& .MuiFormControl-root": {
-      width: "70%",
-      height: "35%",
+    "& .MuiInputBase-adornedStart": {
+      fontSize: "90%",
+    },
+    // NumericInput
+    "& .LoanValue": {
+      width: "100%",
+      marginBottom: "20px",
+    },
+    // NumericInput
+    "& .TimetoPay": {
+      width: "10%",
+      // height: "35%",
       marginBottom: "5px",
-      fontSize: "120%",
+      // fontSize: "120%",
     },
     // // Buttons
     // "& .MuiButton-root": {
