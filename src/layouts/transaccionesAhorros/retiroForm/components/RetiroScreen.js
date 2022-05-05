@@ -21,9 +21,9 @@ export default function RetiroScreen() {
     const tempo = { ...errors };
 
     if ("value" in fieldValues) {
-      tempo.value = /^[0-9]+$/.test(fieldValues.value)
+      tempo.value = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.value)
         ? ""
-        : "Obligatorio llenar el campo. No se permite letras";
+        : "Llenar en el Formato Correcto el Campo";
     }
     setErrors({
       ...tempo,
@@ -35,7 +35,7 @@ export default function RetiroScreen() {
     {
       transactionDate: new Date(),
       actualBalance: "0",
-      value: "0",
+      value: "0.00",
       observation: "",
     },
     true,
@@ -53,7 +53,7 @@ export default function RetiroScreen() {
 
     if (validate()) {
       const auxSaving = clients[id - 1].savingBalance;
-      const auxBalance = parseInt(values.value, 10);
+      const auxBalance = parseFloat(values.value, 10);
 
       if (auxBalance !== 0) {
         if (auxSaving >= auxBalance) {
