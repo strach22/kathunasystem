@@ -13,14 +13,14 @@ export default function data() {
   return {
     columns: [
       { Header: "Fecha", accessor: "transactionDate", align: "left" },
-      { Header: "Valor", accessor: "value", align: "left" },
-      { Header: "Balance Actual", accessor: "actualBalance", align: "left" },
-      { Header: "Observación", accessor: "observation", align: "center" },
+      { Header: "Valor", accessor: "transactionValue", align: "center" },
+      { Header: "Balance Actual", accessor: "actualBalance", align: "center" },
+      { Header: "Observación", accessor: "observation", align: "left" },
     ],
 
     rows: clients[i].savingHistory.map((info) => ({
       transactionDate: info.transactionDate,
-      value: info.value,
+      transactionValue: info.value,
       actualBalance: info.actualBalance,
       observation: info.observation,
     })),

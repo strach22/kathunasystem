@@ -13,13 +13,16 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
+import DataTable from "examples/Tables/DataTable";
 
 import ClientsContext from "../../../context/Clients/ClientsContext";
+import historial from "../../transaccionesAhorros/table/tableHistory";
 
 function infoClients() {
   const { id } = useParams();
   const { clients, editClient } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(id);
+  const { columns, rows } = historial();
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
       <Grid item xs={5.7}>
@@ -66,6 +69,17 @@ function infoClients() {
               <Divider />
               {getInfo("Saldo de Ahorros:", clients[i].savingBalance)}
               {getInfo("Saldo de Crédito:", clients[i].creditBalance)}
+            </MDBox>
+          </Grid>
+          <Grid item xs={10}>
+            <MDBox coloredShadow="secondary" pb={2}>
+              <DataTable
+                table={{ columns, rows }}
+                isSorted
+                showTotalEntries={false}
+                noEndBorder
+                entriesPerPage={false}
+              />
             </MDBox>
           </Grid>
           <Grid item xs={12} lg={11}>
