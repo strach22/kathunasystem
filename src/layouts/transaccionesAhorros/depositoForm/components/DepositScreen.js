@@ -99,6 +99,8 @@ export default function DepositScreen() {
             value={values.value}
             onChange={handleInputChange}
             error={errors.value}
+            icon="$"
+            position="start"
           />
         </Grid>
         <Grid item xs={7}>

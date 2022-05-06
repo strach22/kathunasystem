@@ -16,15 +16,30 @@ const useStyles = makeStyles({
       fontSize: "90%",
       marginBottom: "25px",
     },
+    // NumericInput
+    "& .MuiInputBase-adornedEnd": {
+      width: "100%",
+      fontSize: "90%",
+      marginBottom: "25px",
+    },
     // Selector
     "& .MuiFormControl-fullWidth": {
       width: "100%",
     },
+    // Label Selector
+    "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
+      fontSize: "100%",
+      color: "black",
+    },
+    // Small Label Selector
+    "& .MuiInputLabel-root": {
+      fontSize: "100%",
+    },
     // Selector
     "& #demo-simple-select": {
       width: "100%",
-      height: 44,
-      marginLeft: "8px",
+      height: 50,
+      marginLeft: "10px",
     },
     // Label
     "& .SubtitlesInfo": {
@@ -36,12 +51,13 @@ const useStyles = makeStyles({
       margin: "0px 0px 30px 120px",
       color: "grey",
     },
-    // // Buttons
-    // "& .MuiButton-root": {
-    //   width: "15%",
-    //   color: "white",
-    //   margin: "50px 10px 0px 15px",
-    // },
+    // Buttons
+    "& .MuiButton-root": {
+      width: "50%",
+      color: "white",
+      background: "#1A73E8",
+      "&:hover": { background: "#5499C7" },
+    },
     // "& #textAreaForm": {
     //   width: "90%",
     //   height: "35%",

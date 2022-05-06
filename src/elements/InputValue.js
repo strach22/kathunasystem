@@ -3,8 +3,7 @@ import { FormControl, FormHelperText, InputAdornment, OutlinedInput } from "@mui
 import PropTypes from "prop-types";
 
 export default function InputValue(props) {
-  const { name, value, onChange, error } = props;
-
+  const { name, value, onChange, error, icon, position } = props;
   return (
     <FormControl>
       <OutlinedInput
@@ -12,8 +11,17 @@ export default function InputValue(props) {
         name={name}
         value={value}
         onChange={onChange}
-        startAdornment={<InputAdornment position="start">$</InputAdornment>}
         {...(error && { error: true })}
+        startAdornment={
+          position === "start" && <InputAdornment position={position}>{icon}</InputAdornment>
+        }
+        endAdornment={
+          position === "end" && (
+            <InputAdornment position={position} sx={{ fontSize: "medium" }}>
+              {icon}
+            </InputAdornment>
+          )
+        }
       />
       {error && <FormHelperText error>{error}</FormHelperText>}
     </FormControl>
@@ -25,4 +33,6 @@ InputValue.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
 };
