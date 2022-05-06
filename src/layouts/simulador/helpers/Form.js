@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     // NumericInput
     "& .MuiInputBase-adornedEnd": {
       width: "100%",
-      fontSize: "90%",
+      fontSize: "100%",
       marginBottom: "25px",
     },
     // Selector

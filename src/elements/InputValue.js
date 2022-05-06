@@ -17,7 +17,7 @@ export default function InputValue(props) {
         }
         endAdornment={
           position === "end" && (
-            <InputAdornment position={position} sx={{ fontSize: "medium" }}>
+            <InputAdornment position={position} sx={{ fontWeight: "bold" }}>
               {icon}
             </InputAdornment>
           )

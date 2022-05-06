@@ -49,13 +49,12 @@ export default function DepositScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (validate()) {
-      const auxSaving = clients[id - 1].savingBalance;
+      const auxSaving = parseFloat(clients[id - 1].savingBalance, 10);
       const auxBalance = parseFloat(values.value, 10);
 
       if (auxBalance !== 0) {
-        values.actualBalance = auxSaving + auxBalance;
+        values.actualBalance = (auxSaving + auxBalance).toFixed(2);
 
         const newTransactionDate = values.transactionDate
           .toISOString()
