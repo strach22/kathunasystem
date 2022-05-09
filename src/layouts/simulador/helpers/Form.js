@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     "& .MuiInputBase-adornedStart": {
       width: "100%",
       fontSize: "80%",
-      marginBottom: "40px",
     },
     // NumericInput
     "& .MuiInputBase-adornedEnd": {
@@ -46,7 +45,7 @@ const useStyles = makeStyles({
       color: "white",
       background: "#1A73E8",
       "&:hover": { background: "#5499C7" },
-      marginBottom: "50px",
+      margin: "50px 0px 50px 0px",
     },
     // Label
     "& .SubtitlesInfo": {
@@ -56,6 +55,7 @@ const useStyles = makeStyles({
     // Label
     "& .SubtitlesValue": {
       color: "grey",
+      // color: "linear-gradient(#e66465, #9198e5);",
     },
   },
 });

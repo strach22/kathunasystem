@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
-import { Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import InputValue from "elements/InputValue";
 import SelectG from "elements/SelectG";
@@ -16,8 +16,9 @@ export default function CreditSimulatorScreen() {
         <MDTypography className="SubtitlesInfo" variant="h5">
           {category}
         </MDTypography>
+        <Divider sx={{ height: "3px" }} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={3}>
         <MDTypography className="SubtitlesValue" variant="h5">
           {info}
         </MDTypography>
@@ -33,40 +34,50 @@ export default function CreditSimulatorScreen() {
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("value" in fieldValues) {
-      tempo.value = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.value)
+    if ("loanValue" in fieldValues)
+      tempo.loanValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.loanValue)
         ? ""
         : "Llenar en el Formato Correcto el Campo";
-    }
+    if ("timePayYear" in fieldValues)
+      tempo.timePayYear = /^[0-9]+$/.test(fieldValues.timePayYear)
+        ? ""
+        : "Es Obligatorio Llenar este campo";
+    if ("timePayMonth" in fieldValues)
+      tempo.timePayMonth = /^[0-9]+$/.test(fieldValues.timePayMonth)
+        ? ""
+        : "Es Obligatorio Llenar este campo";
     setErrors({
       ...tempo,
     });
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  console.log(errorValues, validate);
+  const { values, errors, setErrors, handleInputChange } = useForm(
+    {
+      loanValue: "0.00",
+      timePayYear: "0",
+      timePayMonth: "0",
+      tariff: "",
+    },
+    true,
+    validate,
+    errorValues
+  );
 
-  const { values, errors, setErrors, handleInputChange } = useForm({
-    loanValue: "0.00",
-    timePayYear: "0",
-    timePayMonth: "0",
-    tariff: "",
-  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      console.log("hola diUks");
+    }
+  };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={2.5}>
           <MDTypography className="Subtitles" variant="h5">
             Valor del Préstamo:
           </MDTypography>
-          <InputValue
-            name="loanValue"
-            value={values.loanValue}
-            onChange={handleInputChange}
-            icon="$"
-            position="start"
-          />
         </Grid>
         <Grid item xs={1}>
           {}
@@ -75,12 +86,39 @@ export default function CreditSimulatorScreen() {
           <MDTypography className="Subtitles" variant="h5">
             Tiempo a Pagar:
           </MDTypography>
+        </Grid>
+        <Grid item xs={1}>
+          {}
+        </Grid>
+        <Grid item xs={2.5}>
+          <MDTypography className="Subtitles" variant="h5">
+            Tarifa:
+          </MDTypography>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item xs={2.5}>
+          <InputValue
+            name="loanValue"
+            value={values.loanValue}
+            onChange={handleInputChange}
+            error={errors.loanValue}
+            icon="$"
+            position="start"
+          />
+        </Grid>
+        <Grid item xs={1}>
+          {}
+        </Grid>
+        <Grid item xs={4}>
           <Grid container>
             <Grid item xs={6}>
               <InputValue
                 name="timePayYear"
                 value={values.timePayYear}
                 onChange={handleInputChange}
+                error={errors.timePayYear}
                 icon="años"
                 position="end"
               />
@@ -90,6 +128,7 @@ export default function CreditSimulatorScreen() {
                 name="timePayMonth"
                 value={values.timePayMonth}
                 onChange={handleInputChange}
+                error={errors.timePayMonth}
                 icon="meses"
                 position="end"
               />
@@ -100,9 +139,6 @@ export default function CreditSimulatorScreen() {
           {}
         </Grid>
         <Grid item xs={2.5}>
-          <MDTypography className="Subtitles" variant="h5">
-            Tarifa:
-          </MDTypography>
           <SelectG
             name="tariff"
             label="Tarifa"
@@ -111,13 +147,17 @@ export default function CreditSimulatorScreen() {
             options={ConstDate.getTariffItems()}
           />
         </Grid>
-        <Grid item xs={12}>
-          <MDButton size="large">GENERAR</MDButton>
-        </Grid>
-        {getInfo("Valor de la cuota periódicamente:", "$ 50")}
-        {getInfo("Número de cuotas:", "362")}
-        {getInfo("Total interés a pagar:", "$ 1852")}
       </Grid>
+
+      <Grid item xs={12}>
+        <MDButton variant="text" size="large" type="submit">
+          GENERAR
+        </MDButton>
+      </Grid>
+
+      {getInfo("Valor de la cuota periódicamente:", "$ 50")}
+      {getInfo("Número de cuotas:", "362")}
+      {getInfo("Total interés a pagar:", "$ 1852")}
     </Form>
   );
 }
