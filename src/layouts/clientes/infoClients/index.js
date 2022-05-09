@@ -17,6 +17,7 @@ import DataTable from "examples/Tables/DataTable";
 
 import ClientsContext from "../../../context/Clients/ClientsContext";
 import historial from "../../transaccionesAhorros/table/tableHistory";
+// import historial from "../table/tableClients";
 
 function infoClients() {
   const { id } = useParams();
@@ -74,11 +75,12 @@ function infoClients() {
           <Grid item xs={10}>
             <MDBox coloredShadow="secondary" pb={2}>
               <DataTable
+                canSearch
                 table={{ columns, rows }}
                 isSorted
                 showTotalEntries={false}
                 noEndBorder
-                entriesPerPage={false}
+                entriesPerPage={{ defaultValue: 8, entries: [5, 8] }}
               />
             </MDBox>
           </Grid>
