@@ -32,8 +32,9 @@ function DataTable({
   pagination,
   isSorted,
   noEndBorder,
+  defaultEntries,
 }) {
-  const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
+  const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : defaultEntries;
   const entries = entriesPerPage.entries
     ? entriesPerPage.entries.map((el) => el.toString())
     : ["5", "10", "15", "20", "25"];
@@ -252,6 +253,7 @@ function DataTable({
 
 // Setting default values for the props of DataTable
 DataTable.defaultProps = {
+  defaultEntries: 10,
   entriesPerPage: { defaultValue: 10, entries: [5, 10, 15, 20, 25] },
   canSearch: false,
   showTotalEntries: true,
@@ -262,6 +264,7 @@ DataTable.defaultProps = {
 
 // Typechecking props for the DataTable
 DataTable.propTypes = {
+  defaultEntries: PropTypes.number,
   entriesPerPage: PropTypes.oneOfType([
     PropTypes.shape({
       defaultValue: PropTypes.number,

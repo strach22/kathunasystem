@@ -75,12 +75,12 @@ function infoClients() {
           <Grid item xs={10}>
             <MDBox coloredShadow="secondary" pb={2}>
               <DataTable
-                canSearch
                 table={{ columns, rows }}
                 isSorted
                 showTotalEntries={false}
                 noEndBorder
-                entriesPerPage={{ defaultValue: 8, entries: [5, 8] }}
+                entriesPerPage={false}
+                defaultEntries={5}
               />
             </MDBox>
           </Grid>

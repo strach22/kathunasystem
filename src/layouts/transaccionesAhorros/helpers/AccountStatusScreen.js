@@ -10,7 +10,8 @@ export default function AccountStatusScreen() {
         isSorted
         showTotalEntries={false}
         noEndBorder
-        entriesPerPage={{ defaultValue: 8, entries: [5, 8] }}
+        entriesPerPage={false}
+        defaultEntries={5}
       />
     </div>
   );
