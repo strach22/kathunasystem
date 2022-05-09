@@ -1,6 +1,7 @@
 import React from "react";
 import { FormControl, FormHelperText, InputAdornment, OutlinedInput } from "@mui/material";
 import PropTypes from "prop-types";
+import MDTypography from "components/MDTypography";
 
 export default function InputValue(props) {
   const { name, value, onChange, error, icon, position } = props;
@@ -17,8 +18,10 @@ export default function InputValue(props) {
         }
         endAdornment={
           position === "end" && (
-            <InputAdornment position={position} sx={{ fontWeight: "bold" }}>
-              {icon}
+            <InputAdornment position={position}>
+              <MDTypography color="inherit" fontWeight="regular" variant="h6">
+                {icon}
+              </MDTypography>
             </InputAdornment>
           )
         }

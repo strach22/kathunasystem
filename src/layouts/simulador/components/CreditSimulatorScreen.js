@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React from "react";
 import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
@@ -9,7 +10,43 @@ import useForm from "elements/hooks/useForm";
 import Form from "../helpers/Form";
 
 export default function CreditSimulatorScreen() {
-  const { values, handleInputChange } = useForm({
+  const getInfo = (category, info) => (
+    <Grid container>
+      <Grid item xs={4.5}>
+        <MDTypography className="SubtitlesInfo" variant="h5">
+          {category}
+        </MDTypography>
+      </Grid>
+      <Grid item xs={6}>
+        <MDTypography className="SubtitlesValue" variant="h5">
+          {info}
+        </MDTypography>
+      </Grid>
+    </Grid>
+  );
+
+  const errorValues = {
+    value: "",
+  };
+
+  // eslint-disable-next-line consistent-return
+  const validate = (fieldValues = values) => {
+    const tempo = { ...errors };
+
+    if ("value" in fieldValues) {
+      tempo.value = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.value)
+        ? ""
+        : "Llenar en el Formato Correcto el Campo";
+    }
+    setErrors({
+      ...tempo,
+    });
+    if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
+  };
+
+  console.log(errorValues, validate);
+
+  const { values, errors, setErrors, handleInputChange } = useForm({
     loanValue: "0.00",
     timePayYear: "0",
     timePayMonth: "0",
@@ -19,18 +56,10 @@ export default function CreditSimulatorScreen() {
   return (
     <Form>
       <Grid container>
-        <Grid item xs={3.5}>
+        <Grid item xs={2.5}>
           <MDTypography className="Subtitles" variant="h5">
             Valor del Préstamo:
           </MDTypography>
-          <MDTypography className="Subtitles" variant="h5">
-            Tiempo a Pagar:
-          </MDTypography>
-          <MDTypography className="Subtitles" variant="h5">
-            Tarifa:
-          </MDTypography>
-        </Grid>
-        <Grid item xs={4}>
           <InputValue
             name="loanValue"
             value={values.loanValue}
@@ -38,6 +67,14 @@ export default function CreditSimulatorScreen() {
             icon="$"
             position="start"
           />
+        </Grid>
+        <Grid item xs={1}>
+          {}
+        </Grid>
+        <Grid item xs={4}>
+          <MDTypography className="Subtitles" variant="h5">
+            Tiempo a Pagar:
+          </MDTypography>
           <Grid container>
             <Grid item xs={6}>
               <InputValue
@@ -58,6 +95,14 @@ export default function CreditSimulatorScreen() {
               />
             </Grid>
           </Grid>
+        </Grid>
+        <Grid item xs={1}>
+          {}
+        </Grid>
+        <Grid item xs={2.5}>
+          <MDTypography className="Subtitles" variant="h5">
+            Tarifa:
+          </MDTypography>
           <SelectG
             name="tariff"
             label="Tarifa"
@@ -66,29 +111,12 @@ export default function CreditSimulatorScreen() {
             options={ConstDate.getTariffItems()}
           />
         </Grid>
-        <Grid item xs={4.5}>
-          <MDTypography className="SubtitlesInfo" variant="h6">
-            Valor de la cuota periódicamente:
-          </MDTypography>
-          <MDTypography className="SubtitlesValue" variant="h6">
-            $ 50
-          </MDTypography>
-          <MDTypography className="SubtitlesInfo" variant="h6">
-            Número de cuotas:
-          </MDTypography>
-          <MDTypography className="SubtitlesValue" variant="h6">
-            362
-          </MDTypography>
-          <MDTypography className="SubtitlesInfo" variant="h6">
-            Total interés a pagar:
-          </MDTypography>
-          <MDTypography className="SubtitlesValue" variant="h6">
-            $ 1852
-          </MDTypography>
-        </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <MDButton size="large">GENERAR</MDButton>
         </Grid>
+        {getInfo("Valor de la cuota periódicamente:", "$ 50")}
+        {getInfo("Número de cuotas:", "362")}
+        {getInfo("Total interés a pagar:", "$ 1852")}
       </Grid>
     </Form>
   );

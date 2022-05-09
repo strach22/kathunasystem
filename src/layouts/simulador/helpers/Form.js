@@ -7,20 +7,19 @@ const useStyles = makeStyles({
   root: {
     // Label
     "& .Subtitles": {
-      marginBottom: "40px",
+      marginBottom: "30px",
       color: "black",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
       width: "100%",
-      fontSize: "90%",
-      marginBottom: "25px",
+      fontSize: "80%",
+      marginBottom: "40px",
     },
     // NumericInput
     "& .MuiInputBase-adornedEnd": {
-      width: "100%",
-      fontSize: "100%",
-      marginBottom: "25px",
+      width: "90%",
+      fontSize: "80%",
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
@@ -28,50 +27,36 @@ const useStyles = makeStyles({
     },
     // Label Selector
     "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
-      fontSize: "100%",
+      fontSize: "80%",
       color: "black",
     },
     // Small Label Selector
     "& .MuiInputLabel-root": {
-      fontSize: "100%",
+      fontSize: "90%",
     },
     // Selector
     "& #demo-simple-select": {
       width: "100%",
-      height: 50,
+      height: 46,
       marginLeft: "10px",
+    },
+    // Buttons
+    "& .MuiButton-root": {
+      width: "25%",
+      color: "white",
+      background: "#1A73E8",
+      "&:hover": { background: "#5499C7" },
+      marginBottom: "50px",
     },
     // Label
     "& .SubtitlesInfo": {
-      margin: "0px 0px 0px 40px",
+      marginBottom: "20px",
       color: "black",
     },
     // Label
     "& .SubtitlesValue": {
-      margin: "0px 0px 30px 120px",
       color: "grey",
     },
-    // Buttons
-    "& .MuiButton-root": {
-      width: "50%",
-      color: "white",
-      background: "#1A73E8",
-      "&:hover": { background: "#5499C7" },
-    },
-    // "& #textAreaForm": {
-    //   width: "90%",
-    //   height: "35%",
-    //   padding: "2%",
-    //   border: "1px double #CDD4D5",
-    //   borderRadius: 7,
-    //   fontSize: "80%",
-    // },
-    // // Alert
-    // "& .MuiPaper-root": {
-    //   width: "80%",
-    //   marginBottom: "40px",
-    //   borderRadius: 8,
-    // },
   },
 });
 
