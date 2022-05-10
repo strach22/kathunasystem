@@ -54,8 +54,7 @@ const useStyles = makeStyles({
     },
     // Label
     "& .SubtitlesValue": {
-      color: "grey",
-      // color: "linear-gradient(#e66465, #9198e5);",
+      color: "#959291",
     },
   },
 });

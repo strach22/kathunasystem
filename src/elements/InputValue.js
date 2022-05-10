@@ -19,7 +19,12 @@ export default function InputValue(props) {
         endAdornment={
           position === "end" && (
             <InputAdornment position={position}>
-              <MDTypography color="inherit" fontWeight="regular" variant="h6">
+              <MDTypography
+                color="inherit"
+                fontWeight="regular"
+                variant="h6"
+                sx={{ fontSize: "90%" }}
+              >
                 {icon}
               </MDTypography>
             </InputAdornment>

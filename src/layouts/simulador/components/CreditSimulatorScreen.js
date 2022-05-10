@@ -13,13 +13,13 @@ export default function CreditSimulatorScreen() {
   const getInfo = (category, info) => (
     <Grid container>
       <Grid item xs={4.5}>
-        <MDTypography className="SubtitlesInfo" variant="h5">
+        <MDTypography className="SubtitlesInfo" variant="h6">
           {category}
         </MDTypography>
         <Divider sx={{ height: "3px" }} />
       </Grid>
       <Grid item xs={3}>
-        <MDTypography className="SubtitlesValue" variant="h5">
+        <MDTypography className="SubtitlesValue" variant="h6">
           {info}
         </MDTypography>
       </Grid>
@@ -27,7 +27,10 @@ export default function CreditSimulatorScreen() {
   );
 
   const errorValues = {
-    value: "",
+    loanValue: "",
+    timePayYear: "",
+    timePayMonth: "",
+    tariff: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -46,6 +49,8 @@ export default function CreditSimulatorScreen() {
       tempo.timePayMonth = /^[0-9]+$/.test(fieldValues.timePayMonth)
         ? ""
         : "Es Obligatorio Llenar este campo";
+    if ("tariff" in fieldValues)
+      tempo.tariff = fieldValues.tariff.length !== 0 ? "" : "Es obligatorio escoger una opción";
     setErrors({
       ...tempo,
     });
@@ -67,7 +72,11 @@ export default function CreditSimulatorScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("hola diUks");
+      const auxLoanValue = parseFloat(values.loanValue, 10);
+      const auxTimePayYear = parseFloat(values.timePayYear, 10);
+      const auxTimePayMonth = parseFloat(values.timePayMonth, 10);
+      if (auxLoanValue !== 0)
+        if (!(auxTimePayYear === 0 && auxTimePayMonth === 0)) console.log("hola Diuks");
     }
   };
 
@@ -145,6 +154,7 @@ export default function CreditSimulatorScreen() {
             value={values.tariff}
             onChange={handleInputChange}
             options={ConstDate.getTariffItems()}
+            error={errors.tariff}
           />
         </Grid>
       </Grid>
