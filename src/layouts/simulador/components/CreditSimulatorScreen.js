@@ -80,8 +80,9 @@ export default function CreditSimulatorScreen() {
       const auxTimePayMonth = parseFloat(values.timePayMonth, 10);
       if (auxLoanValue !== 0)
         if (!(auxTimePayYear === 0 && auxTimePayMonth === 0)) {
+          const interes = values.tariff === "Particular" ? 0.03 : 0.025;
           const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
-          const periodicFee = values.loanValue * (0.03 / (1 - (0.03 + 1) ** -periods));
+          const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
           const totalFee = periodicFee * periods - values.loanValue;
           setCuotaPeriodica(`$ ${periodicFee.toFixed(2)}`);
           setNumeroCuotas(periods);
