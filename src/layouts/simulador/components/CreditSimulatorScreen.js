@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
+import React, { useState } from "react";
 import { Divider, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import InputValue from "elements/InputValue";
@@ -10,6 +10,9 @@ import useForm from "elements/hooks/useForm";
 import Form from "../helpers/Form";
 
 export default function CreditSimulatorScreen() {
+  const [cuotaPeriodica, setCuotaPeriodica] = useState("$ 0");
+  const [numeroCuotas, setNumeroCuotas] = useState("0");
+  const [totalInteres, setTotalInteres] = useState("$ 0");
   const getInfo = (category, info) => (
     <Grid container>
       <Grid item xs={4.5}>
@@ -76,7 +79,13 @@ export default function CreditSimulatorScreen() {
       const auxTimePayYear = parseFloat(values.timePayYear, 10);
       const auxTimePayMonth = parseFloat(values.timePayMonth, 10);
       if (auxLoanValue !== 0)
-        if (!(auxTimePayYear === 0 && auxTimePayMonth === 0)) console.log("hola Diuks");
+        if (!(auxTimePayYear === 0 && auxTimePayMonth === 0)) {
+          const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
+          const periodicFee = values.loanValue * (0.03 / (1 - (0.03 + 1) ** -periods));
+          setCuotaPeriodica(`$ ${periodicFee.toFixed(2)}`);
+          setNumeroCuotas(periods);
+          setTotalInteres((periodicFee * periods - values.loanValue).toFixed(2));
+        }
     }
   };
 
@@ -165,9 +174,9 @@ export default function CreditSimulatorScreen() {
         </MDButton>
       </Grid>
 
-      {getInfo("Valor de la cuota periódicamente:", "$ 50")}
-      {getInfo("Número de cuotas:", "362")}
-      {getInfo("Total interés a pagar:", "$ 1852")}
+      {getInfo("Valor de la cuota periódicamente:", cuotaPeriodica)}
+      {getInfo("Número de cuotas:", numeroCuotas)}
+      {getInfo("Total interés a pagar:", totalInteres)}
     </Form>
   );
 }
