@@ -16,7 +16,7 @@ export default function CreditSimulatorScreen() {
         <MDTypography className="SubtitlesInfo" variant="h6">
           {category}
         </MDTypography>
-        <Divider sx={{ height: "3px" }} />
+        <Divider sx={{ height: "1px" }} />
       </Grid>
       <Grid item xs={3}>
         <MDTypography className="SubtitlesValue" variant="h6">
