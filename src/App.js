@@ -22,6 +22,7 @@ import InfoClientes from "layouts/clientes/infoClients";
 import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
 import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
 import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
+import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav } from "context";
@@ -93,6 +94,7 @@ export default function App() {
         <Route exact path="/depositos/:id" element={<DepositoForm />} />
         <Route exact path="/retiros/:id" element={<RetiroForm />} />
         <Route exact path="/cargar-creditos/:id" element={<CargaCreditoForm />} />
+        <Route exact path="/creditos/:id" element={<CrearCreditoForm />} />
         <Route path="/*" element={<Navigate to="/authentication/sign-in/" />} />
       </Routes>
     </ThemeProvider>
