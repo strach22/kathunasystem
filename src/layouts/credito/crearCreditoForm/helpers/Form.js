@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     },
     // Label
     "& .Subtitles2": {
-      marginTop: "25px",
+      margin: "30px 0px 25px 0px",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
@@ -40,23 +40,14 @@ const useStyles = makeStyles({
       height: 46,
       marginLeft: "10px",
     },
-    // // Buttons
-    // "& .MuiButton-root": {
-    //   width: "25%",
-    //   color: "white",
-    //   background: "#1A73E8",
-    //   "&:hover": { background: "#5499C7" },
-    //   margin: "50px 0px 50px 0px",
-    // },
-    // // Label
-    // "& .SubtitlesInfo": {
-    //   marginBottom: "20px",
-    //   color: "black",
-    // },
-    // // Label
-    // "& .SubtitlesValue": {
-    //   color: "#959291",
-    // },
+    // Buttons
+    "& .MuiButton-root": {
+      width: "25%",
+      color: "white",
+      background: "#1A73E8",
+      "&:hover": { background: "#5499C7" },
+      marginTop: "50px",
+    },
   },
 });
 

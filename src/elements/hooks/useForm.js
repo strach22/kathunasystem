@@ -13,8 +13,6 @@ export default function useForm(
 
   const [state, setState] = useState({ civil: "false", other: "true" });
 
-  // console.log(values);
-
   const handleInputChange = ({ target }) => {
     setValues({
       ...values,
