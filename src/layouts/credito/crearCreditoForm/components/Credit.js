@@ -23,9 +23,9 @@ export default function Credit() {
     const tempo = { ...errors };
 
     if ("loanValue" in fieldValues)
-      tempo.loanValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.loanValue)
+      tempo.loanValue = /^[0-9]+$/.test(fieldValues.loanValue)
         ? ""
-        : "Llenar en el Formato Correcto el Campo";
+        : "Es Obligatorio llenar con Números este Campo";
     if ("timePayYear" in fieldValues)
       tempo.timePayYear = /^[0-9]+$/.test(fieldValues.timePayYear)
         ? ""
@@ -46,7 +46,7 @@ export default function Credit() {
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
       creditDate: new Date(),
-      loanValue: "0.00",
+      loanValue: "0",
       timePayYear: "0",
       timePayMonth: "0",
       guarantor: "",

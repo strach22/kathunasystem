@@ -41,9 +41,9 @@ export default function CreditSimulatorScreen() {
     const tempo = { ...errors };
 
     if ("loanValue" in fieldValues)
-      tempo.loanValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.loanValue)
+      tempo.loanValue = /^[0-9]+$/.test(fieldValues.loanValue)
         ? ""
-        : "Llenar en el Formato Correcto el Campo";
+        : "Es Obligatorio Llenar con Números este Campo";
     if ("timePayYear" in fieldValues)
       tempo.timePayYear = /^[0-9]+$/.test(fieldValues.timePayYear)
         ? ""
@@ -62,7 +62,7 @@ export default function CreditSimulatorScreen() {
 
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
-      loanValue: "0.00",
+      loanValue: "0",
       timePayYear: "0",
       timePayMonth: "0",
       tariff: "",

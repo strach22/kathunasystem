@@ -13,6 +13,15 @@ const useStyles = makeStyles({
       margin: "30px",
       padding: "24px",
     },
+    // Label
+    "& .SubtitlesCreditInfo": {
+      marginBottom: "20px",
+      color: "black",
+    },
+    // Label
+    "& .SubtitlesCreditValue": {
+      color: "#959291",
+    },
   },
 });
 
