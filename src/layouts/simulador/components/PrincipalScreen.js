@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 export default function PrincipalScreen() {
+  const [parameters, setParameters] = useState({});
   const classes = useStyles();
   return (
     <MDBox pt={6} pb={3} mx={15}>
@@ -37,7 +38,7 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <CreditSimulatorScreen />
+              <CreditSimulatorScreen setParameters={setParameters} />
             </MDBox>
           </Card>
         </Grid>
@@ -58,7 +59,7 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <PaymentHistory />
+              <PaymentHistory parameters={parameters} />
             </MDBox>
           </Card>
         </Grid>

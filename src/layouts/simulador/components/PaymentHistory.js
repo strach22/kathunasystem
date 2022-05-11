@@ -1,8 +1,9 @@
 import DataTable from "examples/Tables/DataTable";
 import amortizacionTable from "../table/amortizacionTable";
 
-export default function AccountStatusScreen() {
-  const { columns, rows } = amortizacionTable();
+// eslint-disable-next-line react/prop-types
+export default function AccountStatusScreen({ parameters }) {
+  const { columns, rows } = amortizacionTable(parameters);
   return (
     <div>
       <DataTable

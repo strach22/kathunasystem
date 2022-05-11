@@ -9,7 +9,8 @@ import * as ConstDate from "elements/data/ConstDate";
 import useForm from "elements/hooks/useForm";
 import Form from "../helpers/Form";
 
-export default function CreditSimulatorScreen() {
+// eslint-disable-next-line react/prop-types
+export default function CreditSimulatorScreen({ setParameters }) {
   const [cuotaPeriodica, setCuotaPeriodica] = useState("$ 0");
   const [numeroCuotas, setNumeroCuotas] = useState("0");
   const [totalInteres, setTotalInteres] = useState("$ 0");
@@ -88,6 +89,7 @@ export default function CreditSimulatorScreen() {
           setCuotaPeriodica(`$ ${periodicFeeDesgravamen.toFixed(2)}`);
           setNumeroCuotas(periods);
           setTotalInteres(`$ ${totalFee.toFixed(2)}`);
+          setParameters({ loanValue: values.loanValue, periods, interes });
         }
     }
   };
