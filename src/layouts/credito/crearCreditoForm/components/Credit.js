@@ -33,21 +33,27 @@ export default function Credit() {
       tempo.timePayMonth = /^[0-9]+$/.test(fieldValues.timePayMonth)
         ? ""
         : "Es Obligatorio Llenar este campo";
-    if ("tariff" in fieldValues)
-      tempo.tariff = fieldValues.tariff.length !== 0 ? "" : "Es obligatorio escoger una opción";
+    if ("guarantor" in fieldValues)
+      tempo.guarantor =
+        fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
     setErrors({
       ...tempo,
     });
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, handleInputChange } = useForm({
-    creditDate: new Date(),
-    loanValue: "0.00",
-    timePayYear: "0",
-    timePayMonth: "0",
-    guarantor: "",
-  });
+  const { values, errors, setErrors, handleInputChange } = useForm(
+    {
+      creditDate: new Date(),
+      loanValue: "0.00",
+      timePayYear: "0",
+      timePayMonth: "0",
+      guarantor: "",
+    },
+    true,
+    validate,
+    errorValues
+  );
 
   const { sociosItems } = listItems();
 
