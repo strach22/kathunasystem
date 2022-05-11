@@ -110,6 +110,7 @@ export default function RetiroScreen() {
             Valor a retirar:
           </MDTypography>
           <InputValue
+            className="InputRetirValue"
             name="value"
             value={values.value}
             onChange={handleInputChange}

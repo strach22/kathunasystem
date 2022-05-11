@@ -94,6 +94,7 @@ export default function DepositScreen() {
             Valor a depositar:
           </MDTypography>
           <InputValue
+            className="InputDepositValue"
             name="value"
             value={values.value}
             onChange={handleInputChange}
