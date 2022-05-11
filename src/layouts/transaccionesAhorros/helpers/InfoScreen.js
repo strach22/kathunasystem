@@ -9,6 +9,7 @@ export default function InfoScreen() {
   const { id } = useParams();
   const { clients } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(id);
+
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
       <Grid item xs={6.8}>
@@ -21,10 +22,11 @@ export default function InfoScreen() {
       </Grid>
     </Grid>
   );
+
   return (
-    <MDBox mt={6} mb={3}>
+    <MDBox mt={1} mb={3}>
       <Grid container spacing={3}>
-        <Grid item xs={11}>
+        <Grid item xs={12}>
           <MDBox coloredShadow="secondary" pb={2}>
             <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
               Cliente # {id}
