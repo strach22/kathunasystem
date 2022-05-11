@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
 import { Grid } from "@mui/material";
+import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 import InputValue from "elements/InputValue";
 import DatePickerH from "elements/DatePickerH";
@@ -59,6 +60,10 @@ export default function Credit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (validate()) {
+      console.log("hola DiUks");
+    }
   };
 
   return (
@@ -94,6 +99,7 @@ export default function Credit() {
             name="loanValue"
             value={values.loanValue}
             onChange={handleInputChange}
+            error={errors.loanValue}
             icon="$"
             position="start"
           />
@@ -109,6 +115,7 @@ export default function Credit() {
                 name="timePayYear"
                 value={values.timePayYear}
                 onChange={handleInputChange}
+                error={errors.timePayYear}
                 icon="años"
                 position="end"
               />
@@ -119,6 +126,7 @@ export default function Credit() {
                 name="timePayMonth"
                 value={values.timePayMonth}
                 onChange={handleInputChange}
+                error={errors.timePayMonth}
                 icon="meses"
                 position="end"
               />
@@ -151,8 +159,15 @@ export default function Credit() {
             value={values.guarantor}
             onChange={handleInputChange}
             options={sociosItems}
+            error={errors.guarantor}
           />
         </Grid>
+      </Grid>
+
+      <Grid item xs={12}>
+        <MDButton variant="text" size="large" type="submit">
+          GENERAR
+        </MDButton>
       </Grid>
     </Form>
   );
