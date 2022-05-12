@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   root: {
     "& .css-1f19gdh": {
       margin: "30px",
-      padding: "30px",
+      padding: "40px",
     },
   },
 });
@@ -35,23 +35,25 @@ function infoClients() {
   const { clients, editClient } = useContext(ClientsContext);
   const i = clients.map((e) => e.id).indexOf(id);
   const { columns, rows } = historial();
+
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
-      <Grid item xs={5.7}>
+      <Grid item xs={12} md={5.7}>
         <MDTypography variant="h5">{category}</MDTypography>
       </Grid>
-      <Grid item xs={6}>
-        <MDTypography fontWeight="regular" variant="h5">
+      <Grid item xs={12} md={6}>
+        <MDTypography fontWeight="regular" variant="h6" color="text">
           {info}
         </MDTypography>
       </Grid>
     </Grid>
   );
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={6} pb={3} mx={15}>
-        <Grid container spacing={6} className={classes.root}>
+      <MDBox pt={6} pb={3}>
+        <Grid container spacing={10} className={classes.root}>
           <Grid item xs={12}>
             <Card>
               <MDBox
