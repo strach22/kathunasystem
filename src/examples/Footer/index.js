@@ -29,7 +29,7 @@ function Footer() {
         fontSize={size.sm}
         px={1.5}
       >
-        <MDTypography variant="body2" color="text.secondary" align="center" sx={{ mt: 8 }}>
+        <MDTypography variant="body2" color="secondary" align="center" sx={{ mt: 8 }}>
           {"Copyright © "}
           <Link color="inherit" href="https://www.facebook.com/k.sytem/?ref=pages_you_manage">
             Kathuna System
