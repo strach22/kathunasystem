@@ -45,7 +45,7 @@ export default function Credit() {
 
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
-      creditDate: new Date(),
+      initialDate: new Date(),
       loanValue: "0",
       timePayYear: "0",
       timePayMonth: "0",
@@ -138,9 +138,9 @@ export default function Credit() {
         </Grid>
         <Grid item xs={2.5}>
           <DatePickerH
-            name="creditDate"
+            name="initialDate"
             label="Fecha del Crédito"
-            value={values.creditDate}
+            value={values.initialDate}
             onChange={handleInputChange}
           />
         </Grid>
