@@ -42,11 +42,10 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "25%",
+      width: "20%",
       color: "white",
-      background: "#1A73E8",
-      "&:hover": { background: "#5499C7" },
       marginTop: "50px",
+      marginRight: "20px",
     },
   },
 });

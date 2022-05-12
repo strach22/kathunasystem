@@ -45,17 +45,7 @@ export default function FormScreen() {
           savingBalance: 0,
           creditBalance: 0,
           savingHistory: [],
-          credits: {
-            id: "",
-            initialDate: "",
-            loanValue: "",
-            interest: "",
-            periods: "",
-            actualLoan: "",
-            state: "",
-            guarantor: "",
-            creditHistory: [],
-          },
+          credits: [],
         };
 
   const errorValues = {

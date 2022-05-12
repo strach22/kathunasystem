@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 import InputValue from "elements/InputValue";
@@ -43,7 +44,7 @@ export default function Credit() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange } = useForm(
+  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
       initialDate: new Date(),
       loanValue: "0",
@@ -164,8 +165,22 @@ export default function Credit() {
         </Grid>
       </Grid>
 
-      <Grid item xs={12}>
-        <MDButton variant="text" size="large" type="submit">
+      <Grid item xs={12} lg={11}>
+        <Link to="/creditos">
+          <MDButton
+            size="large"
+            onClick={resetForm}
+            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+          >
+            REGRESAR
+          </MDButton>
+        </Link>
+        <MDButton
+          variant="text"
+          size="large"
+          type="submit"
+          sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+        >
           GENERAR
         </MDButton>
       </Grid>
