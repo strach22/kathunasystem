@@ -122,19 +122,15 @@ function infoClients() {
                   Historial Estado de Cuenta Ahorros
                 </MDTypography>
               </MDBox>
-              <MDBox pt={3}>
-                <Grid item xs={12}>
-                  <MDBox coloredShadow="secondary" pb={2}>
-                    <DataTable
-                      table={{ columns, rows }}
-                      isSorted
-                      showTotalEntries={false}
-                      noEndBorder
-                      entriesPerPage={false}
-                      defaultEntries={5}
-                    />
-                  </MDBox>
-                </Grid>
+              <MDBox coloredShadow="secondary" pt={3} pb={2}>
+                <DataTable
+                  table={{ columns, rows }}
+                  isSorted
+                  showTotalEntries={false}
+                  noEndBorder
+                  entriesPerPage={false}
+                  defaultEntries={5}
+                />
               </MDBox>
             </Card>
           </Grid>

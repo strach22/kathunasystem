@@ -55,7 +55,7 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Número de Cuotas
+                Tabla de Amortización
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
