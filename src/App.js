@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -18,11 +18,6 @@ import themeDark from "assets/theme-dark";
 
 // Material Dashboard 2 React routes
 import routes from "routes";
-import InfoClientes from "layouts/clientes/infoClients";
-import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
-import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
-import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
-import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav } from "context";
@@ -88,15 +83,7 @@ export default function App() {
           onMouseLeave={handleOnMouseLeave}
         />
       )}
-      <Routes>
-        {getRoutes(routes)}
-        <Route exact path="/clientes/:id" element={<InfoClientes />} />
-        <Route exact path="/depositos/:id" element={<DepositoForm />} />
-        <Route exact path="/retiros/:id" element={<RetiroForm />} />
-        <Route exact path="/cargar-creditos/:id" element={<CargaCreditoForm />} />
-        <Route exact path="/creditos/:id" element={<CrearCreditoForm />} />
-        <Route path="/*" element={<Navigate to="/authentication/sign-in/" />} />
-      </Routes>
+      <Routes>{getRoutes(routes)}</Routes>
     </ThemeProvider>
   );
 }

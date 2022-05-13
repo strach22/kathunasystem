@@ -13,17 +13,26 @@ import Informacion from "layouts/informacion";
 import Cobranzas from "layouts/cobranzas";
 import Gastos from "layouts/gastos";
 import Control from "layouts/control";
+import InfoClientes from "layouts/clientes/infoClients";
+import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
+import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
+import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
+import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 const routes = [
   {
-    type: "",
     name: "Sign In",
     key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
+    component: <SignIn />,
+  },
+  {
+    name: "Sign In *",
+    key: "sign-in *",
+    route: "/*",
     component: <SignIn />,
   },
   {
@@ -43,10 +52,8 @@ const routes = [
     component: <Clientes />,
   },
   {
-    type: "",
     name: "Agregar cliente",
     key: "agregar-clientes",
-    icon: <Icon fontSize="small">person_add</Icon>,
     route: "/agregar-clientes",
     component: <AddClients />,
   },
@@ -129,6 +136,36 @@ const routes = [
     icon: <Icon fontSize="small">settings</Icon>,
     route: "/control",
     component: <Control />,
+  },
+  {
+    name: "Clientes:id",
+    key: "clientes:id",
+    route: "/clientes/:id",
+    component: <InfoClientes />,
+  },
+  {
+    name: "Retiros/:id",
+    key: "retiros/:id",
+    route: "/retiros/:id",
+    component: <RetiroForm />,
+  },
+  {
+    name: "Depositos/:id",
+    key: "depositos/:id",
+    route: "/depositos/:id",
+    component: <DepositoForm />,
+  },
+  {
+    name: "Cargar-creditos/:id",
+    key: "cargar-creditos/:id",
+    route: "/cargar-creditos/:id",
+    component: <CargaCreditoForm />,
+  },
+  {
+    name: "Creditos/:id",
+    key: "creditos/:id",
+    route: "/creditos/:id",
+    component: <CrearCreditoForm />,
   },
 ];
 
