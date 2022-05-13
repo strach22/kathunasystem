@@ -21,11 +21,19 @@ export default function data() {
       lastName: cliente.lastName,
       identification: cliente.identification,
       accion: (
-        <Link to={`${cliente.id}`}>
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Crear Crédito
-          </MDTypography>
-        </Link>
+        <>
+          <Link to={`crear/${cliente.id}`}>
+            <MDTypography variant="caption" color="text" fontWeight="medium">
+              Crear Crédito
+            </MDTypography>
+          </Link>
+          <br />
+          <Link to={`ver/${cliente.id}`}>
+            <MDTypography variant="caption" color="text" fontWeight="medium">
+              Ver Crédito
+            </MDTypography>
+          </Link>
+        </>
       ),
     })),
   };

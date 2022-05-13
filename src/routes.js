@@ -18,6 +18,7 @@ import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
 import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
 import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
 import CrearCreditoForm from "layouts/credito/crearCreditoForm";
+import VerCreditoForm from "layouts/credito/verCreditoForm";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -162,10 +163,16 @@ const routes = [
     component: <CargaCreditoForm />,
   },
   {
-    name: "Creditos/:id",
-    key: "creditos/:id",
-    route: "/creditos/:id",
+    name: "Creditos/crear/:id",
+    key: "creditos/crear/:id",
+    route: "/creditos/crear/:id",
     component: <CrearCreditoForm />,
+  },
+  {
+    name: "Creditos/ver/:id",
+    key: "creditos/ver/:id",
+    route: "/creditos/ver/:id",
+    component: <VerCreditoForm />,
   },
 ];
 
