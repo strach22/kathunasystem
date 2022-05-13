@@ -27,7 +27,7 @@ export default function data() {
       tariff: cliente.tariff,
       accion: (
         <Link to={`${cliente.id}`}>
-          <MDTypography variant="caption" color="text" fontWeight="medium">
+          <MDTypography variant="caption" color="info" fontWeight="medium">
             Pagar crédito
           </MDTypography>
         </Link>

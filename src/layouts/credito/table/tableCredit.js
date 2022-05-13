@@ -23,13 +23,13 @@ export default function data() {
       accion: (
         <>
           <Link to={`crear/${cliente.id}`}>
-            <MDTypography variant="caption" color="text" fontWeight="medium">
+            <MDTypography variant="caption" color="success" fontWeight="medium">
               Crear Crédito
             </MDTypography>
           </Link>
           <br />
           <Link to={`ver/${cliente.id}`}>
-            <MDTypography variant="caption" color="text" fontWeight="medium">
+            <MDTypography variant="caption" color="info" fontWeight="medium">
               Ver Crédito
             </MDTypography>
           </Link>
