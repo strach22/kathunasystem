@@ -9,7 +9,6 @@ import Creditos from "layouts/credito";
 import CargaClientes from "layouts/cargaClientes";
 import CargaCreditos from "layouts/cargaCreditos";
 import Historial from "layouts/historial";
-import Informacion from "layouts/informacion";
 import Cobranzas from "layouts/cobranzas";
 import PagoClients from "layouts/cobranzas/pagoClients";
 import Gastos from "layouts/gastos";
@@ -122,14 +121,6 @@ const routes = [
     icon: <Icon fontSize="small">paid</Icon>,
     route: "/gastos",
     component: <Gastos />,
-  },
-  {
-    type: "collapse",
-    name: "Información",
-    key: "informacion",
-    icon: <Icon fontSize="small">account_balance</Icon>,
-    route: "/informacion",
-    component: <Informacion />,
   },
   {
     type: "collapse",
