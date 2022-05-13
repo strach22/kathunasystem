@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
-import { Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
@@ -8,8 +8,8 @@ import InputValue from "elements/InputValue";
 import DatePickerH from "elements/DatePickerH";
 import SelectG from "elements/SelectG";
 import useForm from "elements/hooks/useForm";
-import Form from "../helpers/Form";
-import listItems from "../helpers/sociosItems";
+import Form from "layouts/credito/helpers/Form";
+import listItems from "layouts/credito/helpers/sociosItems";
 
 export default function Credit() {
   const errorValues = {
@@ -19,12 +19,28 @@ export default function Credit() {
     guarantor: "",
   };
 
+  const getInfo = (category, info) => (
+    <Grid container>
+      <Grid item xs={8}>
+        <MDTypography className="SubtitlesCreditInfo" variant="h6">
+          {category}
+        </MDTypography>
+        <Divider sx={{ height: "1px" }} />
+      </Grid>
+      <Grid item xs={4}>
+        <MDTypography className="SubtitlesCreditValue" variant="h6">
+          {info}
+        </MDTypography>
+      </Grid>
+    </Grid>
+  );
+
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
     if ("loanValue" in fieldValues)
-      tempo.loanValue = /^[0-9]+$/.test(fieldValues.loanValue)
+      tempo.loanValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.loanValue)
         ? ""
         : "Es Obligatorio llenar con Números este Campo";
     if ("timePayYear" in fieldValues)
@@ -38,6 +54,10 @@ export default function Credit() {
     if ("guarantor" in fieldValues)
       tempo.guarantor =
         fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
+    if (/^[0]+$/.test(fieldValues.timePayYear) && /^[0]+$/.test(fieldValues.timePayMonth)) {
+      tempo.timePayMonth = "Es Obligatorio Llenar este campo";
+      tempo.timePayYear = "Es Obligatorio Llenar este campo";
+    }
     setErrors({
       ...tempo,
     });
@@ -148,41 +168,50 @@ export default function Credit() {
       </Grid>
 
       <Grid container>
-        <Grid item xs={12}>
-          <MDTypography className="Subtitles2" variant="h5">
-            Garante:
-          </MDTypography>
+        <Grid item xs={7}>
+          <Grid container>
+            <Grid item xs={12}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Garante:
+              </MDTypography>
+            </Grid>
+            <Grid item xs={12}>
+              <SelectG
+                name="guarantor"
+                label="Garante"
+                value={values.guarantor}
+                onChange={handleInputChange}
+                options={sociosItems}
+                error={errors.guarantor}
+              />
+            </Grid>
+          </Grid>
+          <Grid item xs={12} lg={11}>
+            <Link to="/creditos">
+              <MDButton
+                size="large"
+                onClick={resetForm}
+                sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+              >
+                REGRESAR
+              </MDButton>
+            </Link>
+            <MDButton
+              variant="text"
+              size="large"
+              type="submit"
+              sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+            >
+              GENERAR
+            </MDButton>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <SelectG
-            name="guarantor"
-            label="Garante"
-            value={values.guarantor}
-            onChange={handleInputChange}
-            options={sociosItems}
-            error={errors.guarantor}
-          />
+        <Grid item xs={5} sx={{ marginTop: "80px" }}>
+          {getInfo("Cuota a pagar periódicamente:", "$ 236.12")}
+          {getInfo("Cantidad de cuotas:", "38")}
+          {getInfo("Total interés a pagar:", "$ 2452.01")}
+          {getInfo("Valor del préstamo:", "$ 844205.19")}
         </Grid>
-      </Grid>
-
-      <Grid item xs={12} lg={11}>
-        <Link to="/creditos">
-          <MDButton
-            size="large"
-            onClick={resetForm}
-            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-          >
-            REGRESAR
-          </MDButton>
-        </Link>
-        <MDButton
-          variant="text"
-          size="large"
-          type="submit"
-          sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-        >
-          GENERAR
-        </MDButton>
       </Grid>
     </Form>
   );

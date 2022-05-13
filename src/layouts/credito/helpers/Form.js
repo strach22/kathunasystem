@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     // Label
     "& .Subtitles2": {
       margin: "30px 0px 25px 0px",
+      color: "black",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
@@ -20,14 +21,13 @@ const useStyles = makeStyles({
       fontSize: "80%",
     },
     // NumericInput
-    // "& .MuiInputBase-adornedEnd": {
     "& .InputTimeValue": {
       width: "90%",
       fontSize: "80%",
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
-      width: "50%",
+      width: "80%",
     },
     // Label Selector
     "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
@@ -42,10 +42,18 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "20%",
+      width: "30%",
       color: "white",
       marginTop: "50px",
       marginRight: "20px",
+    },
+    // Label
+    "& .SubtitlesCreditInfo": {
+      color: "black",
+    },
+    // Label
+    "& .SubtitlesCreditValue": {
+      color: "#959291",
     },
   },
 });

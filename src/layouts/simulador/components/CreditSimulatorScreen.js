@@ -42,7 +42,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
     const tempo = { ...errors };
 
     if ("loanValue" in fieldValues)
-      tempo.loanValue = /^[0-9]+$/.test(fieldValues.loanValue)
+      tempo.loanValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.loanValue)
         ? ""
         : "Es Obligatorio Llenar con Números este Campo";
     if ("timePayYear" in fieldValues)
@@ -55,6 +55,10 @@ export default function CreditSimulatorScreen({ setParameters }) {
         : "Es Obligatorio Llenar este campo";
     if ("tariff" in fieldValues)
       tempo.tariff = fieldValues.tariff.length !== 0 ? "" : "Es obligatorio escoger una opción";
+    if (/^[0]+$/.test(fieldValues.timePayYear) && /^[0]+$/.test(fieldValues.timePayMonth)) {
+      tempo.timePayMonth = "Es Obligatorio Llenar este campo";
+      tempo.timePayYear = "Es Obligatorio Llenar este campo";
+    }
     setErrors({
       ...tempo,
     });
@@ -76,21 +80,15 @@ export default function CreditSimulatorScreen({ setParameters }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const auxLoanValue = parseFloat(values.loanValue, 10);
-      const auxTimePayYear = parseFloat(values.timePayYear, 10);
-      const auxTimePayMonth = parseFloat(values.timePayMonth, 10);
-      if (auxLoanValue !== 0)
-        if (!(auxTimePayYear === 0 && auxTimePayMonth === 0)) {
-          const interes = values.tariff === "Particular" ? 0.025 : 0.015;
-          const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
-          const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
-          const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
-          const totalFee = periodicFee * periods - values.loanValue;
-          setCuotaPeriodica(`$ ${periodicFeeDesgravamen.toFixed(2)}`);
-          setNumeroCuotas(periods);
-          setTotalInteres(`$ ${totalFee.toFixed(2)}`);
-          setParameters({ loanValue: values.loanValue, periods, interes });
-        }
+      const interes = values.tariff === "Particular" ? 0.025 : 0.015;
+      const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
+      const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
+      const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
+      const totalFee = periodicFee * periods - values.loanValue;
+      setCuotaPeriodica(`$ ${periodicFeeDesgravamen.toFixed(2)}`);
+      setNumeroCuotas(periods);
+      setTotalInteres(`$ ${totalFee.toFixed(2)}`);
+      setParameters({ loanValue: values.loanValue, periods, interes });
     }
   };
 
