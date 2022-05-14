@@ -4,6 +4,7 @@ import DataTable from "examples/Tables/DataTable";
 import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
 import newCredit from "../../table/newCredit";
+import PruebaPDF from "./PruebaPDF";
 
 export default function CreditGenerated() {
   const { columns, rows } = newCredit();
@@ -35,6 +36,9 @@ export default function CreditGenerated() {
             REGRESAR
           </MDButton>
         </Link>
+      </Grid>
+      <Grid item xs={12}>
+        <PruebaPDF />
       </Grid>
     </Grid>
   );
