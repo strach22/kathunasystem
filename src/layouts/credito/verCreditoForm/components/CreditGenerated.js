@@ -3,11 +3,11 @@ import { Grid } from "@mui/material";
 import DataTable from "examples/Tables/DataTable";
 import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
-import newCredit from "../../table/newCredit";
+import CreditsInfo from "../../table/creditsInfo";
 import PruebaPDF from "./PruebaPDF";
 
 export default function CreditGenerated() {
-  const { columns, rows } = newCredit();
+  const { columns, rows } = CreditsInfo();
 
   return (
     <Grid container>

@@ -31,7 +31,7 @@ function ClientsState({ children }) {
 
   const addClient = (newClient) => {
     const newClients = state.clients;
-    const i = state.clients.map((e) => e.id).indexOf(newClient.id);
+    const i = newClients.map((e) => e.id).indexOf(newClient.id);
     if (i === -1) newClients.push(newClient);
     else newClients[i] = newClient;
 
@@ -58,10 +58,30 @@ function ClientsState({ children }) {
   };
 
   const addClientHistory = (id, data) => {
-    const i = state.clients.map((e) => e.id).indexOf(id);
     const newClients = state.clients;
+    const i = newClients.map((e) => e.id).indexOf(id);
     newClients[i].savingHistory.push(data);
     newClients[i].savingBalance = data.actualBalance;
+    dispatch({
+      type: "UPLOAD_CLIENTS",
+      value: newClients,
+    });
+  };
+
+  const addClientCredit = (id, data) => {
+    const newClients = state.clients;
+    const i = newClients.map((e) => e.id).indexOf(id);
+    newClients[i].credits.push(data);
+    dispatch({
+      type: "UPLOAD_CLIENTS",
+      value: newClients,
+    });
+  };
+  const addCreditHistory = (id, idFile, data) => {
+    const newClients = state.clients;
+    const i = newClients.map((e) => e.id).indexOf(id);
+    const i2 = newClients[i].map((e) => e.id).indexOf(idFile);
+    newClients[i].credits.creditHistory[i2].push(data);
     dispatch({
       type: "UPLOAD_CLIENTS",
       value: newClients,
@@ -99,6 +119,8 @@ function ClientsState({ children }) {
         editClient,
         resetClientInfo,
         addClientHistory,
+        addClientCredit,
+        addCreditHistory,
       }}
     >
       {children}
