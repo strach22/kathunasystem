@@ -1,8 +1,8 @@
-export default function data({ loanValue, periods, interes }) {
-  const periodicFee = loanValue * (interes / (1 - (interes + 1) ** -periods));
+export default function data({ loanValue, periods, interes: interest }) {
+  const periodicFee = loanValue * (interest / (1 - (interest + 1) ** -periods));
   const desgravamen = +(0.01 * loanValue) / periods;
   const periodicFeeDesgravamen = periodicFee + desgravamen;
-  let periodInteres = loanValue * interes;
+  let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
   let residue = loanValue - amortizedCapital;
   const rows = [];
@@ -15,7 +15,7 @@ export default function data({ loanValue, periods, interes }) {
       valorCuota: periodicFeeDesgravamen.toFixed(2),
       saldo: residue.toFixed(2),
     });
-    periodInteres = residue * interes;
+    periodInteres = residue * interest;
     amortizedCapital = periodicFee - periodInteres;
     residue -= amortizedCapital;
   }

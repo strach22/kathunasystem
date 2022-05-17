@@ -54,7 +54,7 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Crédito Generado
+                Créditos Generados
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>

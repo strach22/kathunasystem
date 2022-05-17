@@ -7,10 +7,10 @@ import MDButton from "components/MDButton";
 import pdfMake from "pdfmake/build/pdfmake";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import newCredit from "../../table/newCredit";
+import CreditsInfo from "../../table/creditsInfo";
 
 export default function CreditGenerated() {
-  const { columns, rows } = newCredit();
+  const { columns, rows } = CreditsInfo();
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
