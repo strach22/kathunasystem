@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
 import { Grid } from "@mui/material";
 import DataTable from "examples/Tables/DataTable";
@@ -20,10 +21,6 @@ export default function CreditGenerated() {
         opacity: 0.3,
         bold: true,
         italics: false,
-      },
-      pageSize: {
-        border: [true, true, true, true],
-        fillColor: "blue",
       },
       content: [
         { text: "CAJA DE AHORRO SAN PABLITO", style: "principalTitle" },
