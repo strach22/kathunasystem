@@ -93,7 +93,8 @@ export default function Credit() {
       const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
       const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
       const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
-      values.id = String(clients[id - 1].credits.length + 1);
+      const folders = clients.map((client) => client.credits).flat();
+      values.id = String(folders.length + 1);
       const newInitialDate = values.initialDate
         .toISOString()
         .split("T")[0]
