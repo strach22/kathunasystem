@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
 import { Grid } from "@mui/material";
 import DataTable from "examples/Tables/DataTable";
