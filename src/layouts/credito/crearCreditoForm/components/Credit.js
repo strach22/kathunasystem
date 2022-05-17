@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
+import React, { useContext } from "react";
 import { Divider, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 import InputValue from "elements/InputValue";
@@ -11,7 +11,13 @@ import useForm from "elements/hooks/useForm";
 import Form from "layouts/credito/helpers/Form";
 import listItems from "layouts/credito/helpers/sociosItems";
 
+// Context
+import ClientsContext from "context/Clients/ClientsContext";
+
 export default function Credit() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { clients, addClientCredit } = useContext(ClientsContext);
   const errorValues = {
     loanValue: "",
     timePayYear: "",
@@ -83,7 +89,23 @@ export default function Credit() {
     e.preventDefault();
 
     if (validate()) {
-      console.log("hola DiUks");
+      const interes = clients[id].tariff === "Particular" ? 0.025 : 0.015;
+      const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
+      const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
+      const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
+      values.id = String(clients[id - 1].credits.length + 1);
+      const newInitialDate = values.initialDate
+        .toISOString()
+        .split("T")[0]
+        .replace("-", "/")
+        .replace("-", "/");
+      values.initialDate = newInitialDate;
+      values.periods = String(periods);
+      values.state = "Pendiente";
+      values.actualLoan = values.loanValue;
+      values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
+      addClientCredit(id, values);
+      navigate(`/creditos/ver/${id}`);
     }
   };
 

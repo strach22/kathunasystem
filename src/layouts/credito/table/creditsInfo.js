@@ -14,20 +14,18 @@ export default function data() {
     columns: [
       { Header: "Carpeta", accessor: "id", align: "left" },
       { Header: "Valor Préstamo", accessor: "loanValue", align: "center" },
-      { Header: "Cuota", accessor: "periods", align: "center" },
-      { Header: "Valor a Pagar Mensaul", accessor: "monthlyPayment", align: "center" },
-      { Header: "Interés", accessor: "interest", align: "center" },
       { Header: "Deuda Pendiente", accessor: "actualLoan", align: "center" },
+      { Header: "Cuotas", accessor: "periods", align: "center" },
+      { Header: "Valor a Pagar Mensaul", accessor: "monthlyPayment", align: "center" },
       { Header: "Estado", accessor: "state", align: "center" },
     ],
 
     rows: clients[i].credits.map((info) => ({
       id: info.id,
       loanValue: info.loanValue,
+      actualLoan: info.actualLoan,
       periods: info.periods,
       monthlyPayment: info.monthlyPayment,
-      interest: info.interest,
-      actualLoan: info.actualLoan,
       state: info.state,
     })),
   };
