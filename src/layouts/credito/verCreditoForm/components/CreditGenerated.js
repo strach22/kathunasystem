@@ -3,9 +3,7 @@ import { Grid } from "@mui/material";
 import DataTable from "examples/Tables/DataTable";
 import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import pdfMake from "pdfmake/build/pdfmake";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import CreditsInfo from "../../table/creditsInfo";
 
