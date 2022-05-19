@@ -12,13 +12,62 @@ export default function AccountStatusScreen({ parameters }) {
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    console.log("hola Diuks");
     const tablaAmortizacionSimulador = {
       pageMargins: [40, 40, 40, 80],
       content: [
-        "First paragraph",
-        "Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines",
+        { text: "CAJA DE AHORRO SAN PABLITO", style: "principalTitle" },
+        { text: " ''SEMBRANDO EL FUTURO IMPULSANDO AL DESARROLLO'' ", style: "principalTitle" },
+        { text: "SAN PABLITO", style: "principalTitle" },
+
+        { text: " ", lineHeight: 1.5 },
+
+        { text: "TIPO DE TRANSACCIÓN", style: "secundaryTitle" },
+        { text: "SIMULADOR", style: "secundaryTitle", color: "red" },
+
+        {
+          text: "_________________________________________________________________",
+          style: "border",
+        },
       ],
+
+      styles: {
+        header: {
+          border: [true, true, true, true],
+          fillColor: "#eeffee",
+        },
+        principalTitle: {
+          alignment: "center",
+          color: "black",
+          fontSize: 12,
+          bold: true,
+          lineHeight: 1.25,
+        },
+        secundaryTitle: {
+          alignment: "center",
+          color: "black",
+          fontSize: 10,
+          bold: true,
+        },
+        border: {
+          fontSize: 15,
+          bold: true,
+          alignment: "center",
+          color: "black",
+          marginTop: 15,
+          marginBottom: 15,
+        },
+        rowData: {
+          fontSize: 10,
+          bold: true,
+          alignment: "left",
+          color: "black",
+        },
+        rowDataResp: {
+          fontSize: 9,
+          alignment: "left",
+          color: "#424141",
+        },
+      },
     };
 
     pdfMake.createPdf(tablaAmortizacionSimulador).download();
