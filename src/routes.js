@@ -19,6 +19,7 @@ import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
 import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
 import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 import VerCreditoForm from "layouts/credito/verCreditoForm";
+import VerCarpeta from "layouts/credito/verCarpeta";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -171,6 +172,12 @@ const routes = [
     key: "pagoClietns",
     route: "/cobranzas/:id",
     component: <PagoClients />,
+  },
+  {
+    name: "VerCarpeta",
+    key: "verCarpeta",
+    route: "/carpeta/:id",
+    component: <VerCarpeta />,
   },
 ];
 

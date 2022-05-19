@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 // Soft UI Dashboard React components
+import MDTypography from "components/MDTypography";
+
 import ClientsContext from "context/Clients/ClientsContext";
 
 export default function data() {
@@ -18,6 +21,7 @@ export default function data() {
       { Header: "Cuotas", accessor: "periods", align: "center" },
       { Header: "Valor a Pagar Mensaul", accessor: "monthlyPayment", align: "center" },
       { Header: "Estado", accessor: "state", align: "center" },
+      { Header: "acción", accessor: "accion", align: "center" },
     ],
 
     rows: clients[i].credits.map((info) => ({
@@ -27,6 +31,13 @@ export default function data() {
       periods: info.periods,
       monthlyPayment: info.monthlyPayment,
       state: info.state,
+      accion: (
+        <Link to={`/carpeta/${info.id}`}>
+          <MDTypography variant="caption" color="info" fontWeight="medium">
+            Ver Carpeta
+          </MDTypography>
+        </Link>
+      ),
     })),
   };
 }
