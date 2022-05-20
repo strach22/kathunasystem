@@ -32,7 +32,7 @@ export default function data() {
       monthlyPayment: info.monthlyPayment,
       state: info.state,
       accion: (
-        <Link to={`/carpeta/${info.id}`}>
+        <Link to={`/carpeta/${id}-${info.id}`}>
           <MDTypography variant="caption" color="info" fontWeight="medium">
             Ver Carpeta
           </MDTypography>

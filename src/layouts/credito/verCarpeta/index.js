@@ -11,13 +11,15 @@ import ClientsContext from "context/Clients/ClientsContext";
 function verCarpeta() {
   const { clients } = useContext(ClientsContext);
   const { id } = useParams();
-
-  const folderInfo = clients.filter((client) => client.credits.includes(id));
-  console.log(folderInfo);
+  const [idC, idF] = id.split("-");
+  const i = clients.map((e) => e.id).indexOf(idC);
+  const [folderInfo] = clients[i].credits.filter((folder) => folder.id === idF);
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      {folderInfo.loanValue}
+      Cliente: {clients[i].firstName}
+      <br />
+      Deuda Total: {folderInfo.loanValue}
       <Footer />
     </DashboardLayout>
   );
