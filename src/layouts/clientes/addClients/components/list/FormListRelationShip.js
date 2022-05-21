@@ -27,6 +27,7 @@ export default function FormListRelationShip(props) {
           onChange={handleInputChange}
           error={errFirstName}
           state={state}
+          read=""
         />
         <Input
           label="Apellidos"
@@ -35,6 +36,7 @@ export default function FormListRelationShip(props) {
           onChange={handleInputChange}
           error={errLastName}
           state={state}
+          read=""
         />
       </Grid>
       <Grid item xs={6}>
@@ -45,6 +47,7 @@ export default function FormListRelationShip(props) {
           onChange={handleInputChange}
           error={errMobile}
           state={state}
+          read=""
         />
         <Input
           label="Parentesco"
@@ -53,6 +56,7 @@ export default function FormListRelationShip(props) {
           onChange={handleInputChange}
           error={errRelationShip}
           state={state}
+          read=""
         />
       </Grid>
     </Grid>

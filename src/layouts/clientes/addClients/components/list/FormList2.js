@@ -48,6 +48,7 @@ export default function FormList2(props) {
         onChange={handleInputChange}
         error={errAddress}
         state={state}
+        read=""
       />
     </>
   );

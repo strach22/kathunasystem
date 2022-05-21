@@ -29,6 +29,7 @@ export default function FormList1(props) {
         onChange={handleInputChange}
         error={errFirstName}
         state={state}
+        read=""
       />
       <Input
         label="Apellidos"
@@ -37,6 +38,7 @@ export default function FormList1(props) {
         onChange={handleInputChange}
         error={errLastName}
         state={state}
+        read=""
       />
       <Input
         label="Cédula de Indentidad"
@@ -45,6 +47,7 @@ export default function FormList1(props) {
         onChange={handleInputChange}
         error={errIdentification}
         state={state}
+        read=""
       />
       <Input
         label="Número de teléfono"
@@ -53,6 +56,7 @@ export default function FormList1(props) {
         onChange={handleInputChange}
         error={errMobile}
         state={state}
+        read=""
       />
       <Input
         label="2do Número de teléfono (Opcional)"
@@ -61,6 +65,7 @@ export default function FormList1(props) {
         onChange={handleInputChange}
         state={state}
         error={errOther}
+        read=""
       />
       <Input
         label="Email"
@@ -69,6 +74,7 @@ export default function FormList1(props) {
         onChange={handleInputChange}
         error={errEmail}
         state={state}
+        read=""
       />
     </>
   );
