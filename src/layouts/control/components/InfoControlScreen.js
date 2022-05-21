@@ -72,12 +72,12 @@ export default function InfoControlScreen() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={4}>
-          <MDTypography className="Subtitles" variant="h5">
-            Nombre de la Caja de Ahorro:
+        <Grid item xs={2.5}>
+          <MDTypography className="Subtitles" variant="h6">
+            Nombre de la Caja de Ahorros
           </MDTypography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5.5}>
           <Input
             label="Caja de Ahorro"
             name="nameBank"
@@ -88,16 +88,18 @@ export default function InfoControlScreen() {
         </Grid>
         <Grid item xs={2}>
           <MDButton
+            className="OkBottom"
             variant="text"
             size="large"
             onClick={handleEdit}
-            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+            sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
           >
             EDITAR
           </MDButton>
         </Grid>
         <Grid item xs={2}>
           <MDButton
+            className="OkBottom"
             variant="text"
             size="large"
             type="submit"
@@ -109,7 +111,7 @@ export default function InfoControlScreen() {
 
         {verification && (
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={2.5}>
               <InputPassword
                 label="Password"
                 name="nameVerification"
@@ -118,8 +120,9 @@ export default function InfoControlScreen() {
                 error={errorNow}
               />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={9.5}>
               <MDButton
+                className="BottomVerification"
                 variant="text"
                 size="large"
                 onClick={handleVerification}
@@ -131,7 +134,7 @@ export default function InfoControlScreen() {
           </Grid>
         )}
         {read === "false" && (
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Alert severity="success">Puede Editar el Nombre de la Caja de Ahorros</Alert>
           </Grid>
         )}

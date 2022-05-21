@@ -7,7 +7,8 @@ export default function Input(props) {
 
   return (
     <TextField
-      id="outlined-password-input"
+      className="outlined-password-input"
+      id="outlined-password-input-label"
       variant="outlined"
       type="password"
       autoComplete="current-password"

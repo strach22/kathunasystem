@@ -9,6 +9,7 @@ export default function Input(props) {
     <TextField
       {...(state === "false" && { disabled: true })}
       {...(read === "true" && { InputProps: { readOnly: true } })}
+      className="Input-outlined-allPages"
       variant="outlined"
       label={label}
       name={name}

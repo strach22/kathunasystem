@@ -5,44 +5,44 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
-    // // DatePicker
-    // "& .Calendario": {
-    //   width: "50%",
-    //   marginBottom: "40px",
-    // },
-    // // NumericInput
-    // "& .MuiInputBase-adornedStart": {
-    //   width: "70%",
-    //   height: "35%",
-    //   marginBottom: "5px",
-    //   fontSize: "120%",
-    // },
-    // // Label
-    // "& .Subtitles": {
-    //   marginBottom: "15px",
-    //   color: "black",
-    //   // fontFamily: "arial",
-    // },
-    // // Buttons
-    // "& .MuiButton-root": {
-    //   width: "15%",
-    //   color: "white",
-    //   margin: "50px 10px 0px 15px",
-    // },
-    // "& #textAreaForm": {
-    //   width: "90%",
-    //   height: "35%",
-    //   padding: "2%",
-    //   border: "1px double #CDD4D5",
-    //   borderRadius: 7,
-    //   fontSize: "80%",
-    // },
-    // // Alert
-    // "& .MuiPaper-root": {
-    //   width: "80%",
-    //   marginBottom: "40px",
-    //   borderRadius: 8,
-    // },
+    // Label
+    "& .Subtitles": {
+      color: "black",
+    },
+    // Input
+    "& .Input-outlined-allPages": {
+      width: "90%",
+      marginLeft: "20px",
+    },
+    //  Label Input
+    "& .MuiOutlinedInput-input": {
+      fontSize: "120%",
+    },
+    // Buttons
+    "& .OkBottom": {
+      width: "80%",
+      marginLeft: "40px",
+    },
+    // Input Password
+    "& .outlined-password-input": {
+      width: "100%",
+      marginTop: "30px",
+    },
+    // Label Input Password
+    "& #outlined-password-input-label": {
+      fontSize: "115%",
+    },
+    // Buttons
+    "& .BottomVerification": {
+      width: "20%",
+      margin: "30px 0px 0px 70px",
+    },
+    // Alert
+    "& .MuiPaper-root": {
+      width: "100%",
+      marginTop: "30px",
+      borderRadius: 8,
+    },
   },
 });
 
