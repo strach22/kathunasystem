@@ -2,12 +2,13 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
+import PrincipalScreen from "./components/PrincipalScreen";
 
 function Control() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      Control
+      <PrincipalScreen />
       <Footer />
     </DashboardLayout>
   );
