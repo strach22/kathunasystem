@@ -9,6 +9,7 @@ export default function InputValue(props) {
     <FormControl>
       <OutlinedInput
         id="outlined-adornment-amount"
+        type="number"
         className={className}
         name={name}
         value={value}
