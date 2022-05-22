@@ -5,9 +5,18 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
+    // Label title
+    "& .title": {
+      color: "black",
+      marginBottom: "30px",
+    },
     // Label
     "& .Subtitles": {
       color: "black",
+    },
+    // Label
+    "& .Subtitles2": {
+      color: "gray",
     },
     // Input
     "& .Input-outlined-allPages": {
@@ -16,6 +25,15 @@ const useStyles = makeStyles({
     },
     //  Label Input
     "& .MuiOutlinedInput-input": {
+      fontSize: "130%",
+    },
+    //  Input Value
+    "& .InputInterest": {
+      width: "45%",
+      marginBottom: "40px",
+    },
+    // End Adornet Input Value
+    "& .css-8l5fgy-MuiTypography-root": {
       fontSize: "130%",
     },
     // Buttons

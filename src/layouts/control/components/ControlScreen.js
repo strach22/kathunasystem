@@ -18,10 +18,30 @@ export default function ControlScreen() {
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("nameVerification" in fieldValues) {
+    if ("particularSavingInterest" in fieldValues)
+      tempo.particularSavingInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(
+        fieldValues.particularSavingInterest
+      )
+        ? ""
+        : "Verifique el formato";
+    if ("particularCreditInterest" in fieldValues)
+      tempo.particularCreditInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(
+        fieldValues.particularCreditInterest
+      )
+        ? ""
+        : "Verifique el formato";
+    if ("socioSavingInterest" in fieldValues)
+      tempo.socioSavingInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.socioSavingInterest)
+        ? ""
+        : "Verifique el formato";
+    if ("socioCreditInterest" in fieldValues)
+      tempo.socioCreditInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.socioCreditInterest)
+        ? ""
+        : "Verifique el formato";
+    if ("nameVerification" in fieldValues)
       tempo.nameVerification =
-        fieldValues.nameVerification === "diUks" ? "" : "La Contraseña es Incorrecta";
-    }
+        fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
+
     setErrors({
       ...tempo,
     });
@@ -30,10 +50,10 @@ export default function ControlScreen() {
 
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
-      particularSavingInterest: "",
-      particularCreditInterest: "",
-      socioSavingInterest: "",
-      socioCreditInterest: "",
+      particularSavingInterest: "0.00",
+      particularCreditInterest: "0.00",
+      socioSavingInterest: "0.00",
+      socioCreditInterest: "0.00",
       nameVerification: "",
     },
     true,
@@ -62,7 +82,7 @@ export default function ControlScreen() {
 
   const handleVerification = (e) => {
     e.preventDefault();
-    if (values.nameVerification === "diUks") {
+    if (values.nameVerification === "123") {
       setRead("false");
       setVerification(false);
       values.nameVerification = "";
@@ -79,13 +99,13 @@ export default function ControlScreen() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <Grid item xs={12}>
-          <MDTypography className="Subtitles" variant="h5">
+          <MDTypography className="title" variant="h5">
             INTERÉS PARA CAJA DE AHORRO
           </MDTypography>
         </Grid>
 
         <Grid item xs={3}>
-          <MDTypography className="Subtitles" variant="h6">
+          <MDTypography className="Subtitles2" variant="h6">
             Clientes Particulares
           </MDTypography>
         </Grid>
@@ -96,13 +116,15 @@ export default function ControlScreen() {
             name="particularSavingInterest"
             value={values.particularSavingInterest}
             onChange={handleInputChange}
+            error={errors.particularSavingInterest}
             icon="%"
             position="end"
+            read={read}
           />
         </Grid>
 
         <Grid item xs={1.6}>
-          <MDTypography className="Subtitles" variant="h6">
+          <MDTypography className="Subtitles2" variant="h6">
             Socios
           </MDTypography>
         </Grid>
@@ -115,17 +137,18 @@ export default function ControlScreen() {
             onChange={handleInputChange}
             icon="%"
             position="end"
+            read={read}
           />
         </Grid>
 
         <Grid item xs={12}>
-          <MDTypography className="Subtitles" variant="h5">
+          <MDTypography className="title" variant="h5">
             INTERÉS PARA CRÉDITOS
           </MDTypography>
         </Grid>
 
         <Grid item xs={3}>
-          <MDTypography className="Subtitles" variant="h6">
+          <MDTypography className="Subtitles2" variant="h6">
             Clientes Particulares
           </MDTypography>
         </Grid>
@@ -133,16 +156,17 @@ export default function ControlScreen() {
         <Grid item xs={3.7}>
           <InputValue
             className="InputInterest"
-            name="particularSavingInterest"
-            value={values.particularSavingInterest}
+            name="particularCreditInterest"
+            value={values.particularCreditInterest}
             onChange={handleInputChange}
             icon="%"
             position="end"
+            read={read}
           />
         </Grid>
 
         <Grid item xs={1.6}>
-          <MDTypography className="Subtitles" variant="h6">
+          <MDTypography className="Subtitles2" variant="h6">
             Socios
           </MDTypography>
         </Grid>
@@ -150,11 +174,12 @@ export default function ControlScreen() {
         <Grid item xs={3.7}>
           <InputValue
             className="InputInterest"
-            name="socioSavingInterest"
-            value={values.socioSavingInterest}
+            name="socioCreditInterest"
+            value={values.socioCreditInterest}
             onChange={handleInputChange}
             icon="%"
             position="end"
+            read={read}
           />
         </Grid>
 
@@ -220,7 +245,7 @@ export default function ControlScreen() {
         )}
         {read === "false" && (
           <Grid item xs={12}>
-            <Alert severity="success">Puede Editar el Nombre de la Caja de Ahorros</Alert>
+            <Alert severity="success">Puede Editar el porcentaje de interés</Alert>
           </Grid>
         )}
       </Grid>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import MDTypography from "components/MDTypography";
 
 export default function InputValue(props) {
-  const { className, name, value, onChange, error, icon, position } = props;
+  const { className, name, value, onChange, error, icon, position, read } = props;
   return (
     <FormControl>
       <OutlinedInput
@@ -15,6 +15,7 @@ export default function InputValue(props) {
         value={value}
         onChange={onChange}
         {...(error && { error: true })}
+        {...(read === "true" && { readOnly: true })}
         startAdornment={
           position === "start" && <InputAdornment position={position}>{icon}</InputAdornment>
         }
@@ -46,4 +47,5 @@ InputValue.propTypes = {
   error: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
+  read: PropTypes.string.isRequired,
 };

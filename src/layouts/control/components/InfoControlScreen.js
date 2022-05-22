@@ -20,7 +20,7 @@ export default function InfoControlScreen() {
 
     if ("nameVerification" in fieldValues) {
       tempo.nameVerification =
-        fieldValues.nameVerification === "diUks" ? "" : "La Contraseña es Incorrecta";
+        fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
     }
     setErrors({
       ...tempo,
@@ -61,7 +61,7 @@ export default function InfoControlScreen() {
 
   const handleVerification = (e) => {
     e.preventDefault();
-    if (values.nameVerification === "diUks") {
+    if (values.nameVerification === "123") {
       setRead("false");
       setVerification(false);
       values.nameVerification = "";
