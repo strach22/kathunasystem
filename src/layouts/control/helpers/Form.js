@@ -12,30 +12,31 @@ const useStyles = makeStyles({
     // Input
     "& .Input-outlined-allPages": {
       width: "90%",
-      marginLeft: "20px",
+      marginBottom: "30px",
     },
     //  Label Input
     "& .MuiOutlinedInput-input": {
-      fontSize: "120%",
+      fontSize: "130%",
     },
     // Buttons
     "& .OkBottom": {
       width: "80%",
-      marginLeft: "40px",
+      marginTop: "20px",
     },
     // Input Password
     "& .outlined-password-input": {
-      width: "100%",
-      marginTop: "30px",
+      width: "85%",
     },
     // Label Input Password
     "& #outlined-password-input-label": {
       fontSize: "115%",
+      color: "black",
     },
     // Buttons
     "& .BottomVerification": {
-      width: "20%",
-      margin: "30px 0px 0px 70px",
+      width: "50%",
+      background: "#357ABB",
+      "&:hover": { background: "#5499C7" },
     },
     // Alert
     "& .MuiPaper-root": {
