@@ -145,7 +145,7 @@ function infoClients() {
               REGRESAR
             </MDButton>
             <MDButton
-              color="info"
+              color="success"
               component={Link}
               to="/agregar-clientes"
               sx={{ marginLeft: "15px", width: "12%" }}
