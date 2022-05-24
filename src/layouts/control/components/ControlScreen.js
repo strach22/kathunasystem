@@ -12,6 +12,10 @@ import Form from "../helpers/Form";
 export default function ControlScreen() {
   const errorValues = {
     nameVerification: "Colocar Contraseña",
+    socioCreditInterest: "",
+    socioSavingInterest: "",
+    particularCreditInterest: "",
+    particularSavingInterest: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -135,6 +139,7 @@ export default function ControlScreen() {
             name="socioSavingInterest"
             value={values.socioSavingInterest}
             onChange={handleInputChange}
+            error={errors.socioSavingInterest}
             icon="%"
             position="end"
             read={read}
@@ -142,7 +147,7 @@ export default function ControlScreen() {
         </Grid>
 
         <Grid item xs={12}>
-          <MDTypography className="title" variant="h5">
+          <MDTypography className="title2" variant="h5">
             INTERÉS PARA CRÉDITOS
           </MDTypography>
         </Grid>
@@ -159,6 +164,7 @@ export default function ControlScreen() {
             name="particularCreditInterest"
             value={values.particularCreditInterest}
             onChange={handleInputChange}
+            error={errors.particularCreditInterest}
             icon="%"
             position="end"
             read={read}
@@ -177,6 +183,7 @@ export default function ControlScreen() {
             name="socioCreditInterest"
             value={values.socioCreditInterest}
             onChange={handleInputChange}
+            error={errors.socioCreditInterest}
             icon="%"
             position="end"
             read={read}

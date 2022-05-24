@@ -10,6 +10,12 @@ const useStyles = makeStyles({
       color: "black",
       marginBottom: "30px",
     },
+    // Label title
+    "& .title2": {
+      color: "black",
+      marginBottom: "30px",
+      marginTop: "40px",
+    },
     // Label
     "& .Subtitles": {
       color: "black",
@@ -30,7 +36,6 @@ const useStyles = makeStyles({
     //  Input Value
     "& .InputInterest": {
       width: "45%",
-      marginBottom: "40px",
     },
     // End Adornet Input Value
     "& .css-8l5fgy-MuiTypography-root": {
@@ -39,7 +44,7 @@ const useStyles = makeStyles({
     // Buttons
     "& .OkBottom": {
       width: "80%",
-      marginTop: "20px",
+      marginTop: "60px",
     },
     // Input Password
     "& .outlined-password-input": {
