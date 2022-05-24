@@ -3,12 +3,16 @@ import { useReducer } from "react";
 import PropTypes from "prop-types";
 
 import clients from "../../data/clients.json";
+import controlInfo from "../../data/controlInfo.json";
 import ClientsContext from "./ClientsContext";
 
 function reducer(state, action) {
   switch (action.type) {
     case "UPLOAD_CLIENTS":
       return { ...state, clients: action.value };
+
+    case "UPLOAD_CONTROL_INFO":
+      return { ...state, controlInfo: action.value };
 
     case "EDIT_CLIENT":
       return { ...state, clientInfo: action.value };
@@ -23,6 +27,7 @@ function reducer(state, action) {
 }
 function ClientsState({ children }) {
   const initialstate = {
+    controlInfo,
     clients,
     clientInfo: null,
   };
@@ -46,6 +51,14 @@ function ClientsState({ children }) {
     dispatch({
       type: "UPLOAD_CLIENTS",
       value: newClients,
+    });
+  };
+
+  const uploadControlInfo = (info) => {
+    const newInfo = info;
+    dispatch({
+      type: "UPLOAD_CONTROL_INFO",
+      value: newInfo,
     });
   };
 
@@ -113,6 +126,7 @@ function ClientsState({ children }) {
       value={{
         clients: state.clients,
         clientInfo: state.clientInfo,
+        controlInfo: state.controlInfo,
         addClient,
         eraseClient,
         uploadClients,
@@ -121,6 +135,7 @@ function ClientsState({ children }) {
         addClientHistory,
         addClientCredit,
         addCreditHistory,
+        uploadControlInfo,
       }}
     >
       {children}
