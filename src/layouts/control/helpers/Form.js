@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     },
     //  Input Value
     "& .InputInterest": {
-      width: "45%",
+      width: "50%",
     },
     // End Adornet Input Value
     "& .css-8l5fgy-MuiTypography-root": {

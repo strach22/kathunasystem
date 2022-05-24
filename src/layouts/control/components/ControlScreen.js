@@ -16,6 +16,8 @@ export default function ControlScreen() {
     socioSavingInterest: "",
     particularCreditInterest: "",
     particularSavingInterest: "",
+    desgravament: "",
+    latePayment: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -42,6 +44,14 @@ export default function ControlScreen() {
       tempo.socioCreditInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.socioCreditInterest)
         ? ""
         : "Verifique el formato";
+    if ("desgravament" in fieldValues)
+      tempo.desgravament = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.desgravament)
+        ? ""
+        : "Verifique el formato";
+    if ("latePayment" in fieldValues)
+      tempo.latePayment = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.latePayment)
+        ? ""
+        : "Verifique el formato";
     if ("nameVerification" in fieldValues)
       tempo.nameVerification =
         fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
@@ -58,6 +68,8 @@ export default function ControlScreen() {
       particularCreditInterest: "0.00",
       socioSavingInterest: "0.00",
       socioCreditInterest: "0.00",
+      desgravament: "0.00",
+      latePayment: "0.00",
       nameVerification: "",
     },
     true,
@@ -71,8 +83,19 @@ export default function ControlScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setRead("true");
-    errors.nameVerification = "Colocar Contraseña";
+
+    const auxVerification = Object.keys(errors).map((key) => {
+      if (key === "nameVerification") return true;
+      if (errors[key] === "Verifique el formato") return false;
+      return true;
+    });
+
+    const auxValidation = auxVerification.filter((key) => key === false);
+
+    if (auxValidation.length === 0) {
+      setRead("true");
+      errors.nameVerification = "Colocar Contraseña";
+    }
   };
 
   const handleEdit = (e) => {
@@ -184,6 +207,50 @@ export default function ControlScreen() {
             value={values.socioCreditInterest}
             onChange={handleInputChange}
             error={errors.socioCreditInterest}
+            icon="%"
+            position="end"
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <MDTypography className="title2" variant="h5">
+            INTERÉS VARIOS
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={3}>
+          <MDTypography className="Subtitles2" variant="h6">
+            Fondo Desgravament
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={9}>
+          <InputValue
+            className="InputInterest"
+            name="desgravament"
+            value={values.desgravament}
+            onChange={handleInputChange}
+            error={errors.desgravament}
+            icon="%"
+            position="end"
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3} sx={{ margin: "25px 0px 60px 0px" }}>
+          <MDTypography className="Subtitles2" variant="h6">
+            Interés por Mora
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={9} sx={{ marginTop: "25px" }}>
+          <InputValue
+            className="InputInterest"
+            name="latePayment"
+            value={values.latePayment}
+            onChange={handleInputChange}
+            error={errors.latePayment}
             icon="%"
             position="end"
             read={read}
