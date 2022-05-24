@@ -12,16 +12,32 @@ import Form from "../helpers/Form";
 export default function InfoControlScreen() {
   const errorValues = {
     nameVerification: "Colocar Contraseña",
+    email: "",
+    ruc: "",
+    mobile: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("nameVerification" in fieldValues) {
+    if ("nameVerification" in fieldValues)
       tempo.nameVerification =
         fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
-    }
+    if ("email" in fieldValues)
+      tempo.email = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
+        fieldValues.email
+      )
+        ? ""
+        : "La dirección de email no es válido";
+    if ("ruc" in fieldValues)
+      tempo.ruc = /^[0-9]{13}$/.test(fieldValues.ruc)
+        ? ""
+        : "Este campo es obligatorio llenar con 13 dígitos";
+    if ("mobile" in fieldValues)
+      tempo.mobile = /^[0-9]{10}$/.test(fieldValues.mobile)
+        ? ""
+        : "Este campo es obligatorio llenar con 10 dígitos";
     setErrors({
       ...tempo,
     });
@@ -33,6 +49,10 @@ export default function InfoControlScreen() {
       nameBank: "",
       nameSlogan: "",
       nameLocation: "",
+      legalRepresentative: "",
+      email: "",
+      ruc: "",
+      mobile: "",
       nameVerification: "",
     },
     true,
@@ -46,8 +66,14 @@ export default function InfoControlScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setRead("true");
-    errors.nameVerification = "Colocar Contraseña";
+    if (errors.email !== "La dirección de email no es válido") {
+      if (errors.ruc !== "Este campo es obligatorio llenar con 13 dígitos") {
+        if (errors.mobile !== "Este campo es obligatorio llenar con 10 dígitos") {
+          setRead("true");
+          errors.nameVerification = "Colocar Contraseña";
+        }
+      }
+    }
   };
 
   const handleEdit = (e) => {
@@ -118,6 +144,69 @@ export default function InfoControlScreen() {
             name="nameLocation"
             value={values.nameLocation}
             onChange={handleInputChange}
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3.5}>
+          <MDTypography className="Subtitles" variant="h6">
+            Representante Legal
+          </MDTypography>
+        </Grid>
+        <Grid item xs={8.5}>
+          <Input
+            label="Representante Legal"
+            name="legalRepresentative"
+            value={values.legalRepresentative}
+            onChange={handleInputChange}
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3.5}>
+          <MDTypography className="Subtitles" variant="h6">
+            E-mail
+          </MDTypography>
+        </Grid>
+        <Grid item xs={8.5}>
+          <Input
+            label="correo@mail.com"
+            name="email"
+            value={values.email}
+            onChange={handleInputChange}
+            error={errors.email}
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3.5}>
+          <MDTypography className="Subtitles" variant="h6">
+            RUC
+          </MDTypography>
+        </Grid>
+        <Grid item xs={8.5}>
+          <Input
+            label="RUC"
+            name="ruc"
+            value={values.ruc}
+            onChange={handleInputChange}
+            error={errors.ruc}
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3.5}>
+          <MDTypography className="Subtitles" variant="h6">
+            Teléfono
+          </MDTypography>
+        </Grid>
+        <Grid item xs={8.5}>
+          <Input
+            label="Teléfono"
+            name="mobile"
+            value={values.mobile}
+            onChange={handleInputChange}
+            error={errors.mobile}
             read={read}
           />
         </Grid>

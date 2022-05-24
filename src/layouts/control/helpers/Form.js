@@ -44,7 +44,7 @@ const useStyles = makeStyles({
     // Buttons
     "& .OkBottom": {
       width: "80%",
-      marginTop: "60px",
+      marginTop: "30px",
     },
     // Input Password
     "& .outlined-password-input": {
