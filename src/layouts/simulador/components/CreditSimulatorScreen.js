@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import { Divider, Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
@@ -7,10 +7,15 @@ import InputValue from "elements/InputValue";
 import SelectG from "elements/SelectG";
 import * as ConstDate from "elements/data/ConstDate";
 import useForm from "elements/hooks/useForm";
+
+import ControlContext from "context/Control/ControlContext";
+
 import Form from "../helpers/Form";
 
 // eslint-disable-next-line react/prop-types
 export default function CreditSimulatorScreen({ setParameters }) {
+  const institutionInfo = useContext(ControlContext);
+  console.log(institutionInfo);
   const [cuotaPeriodica, setCuotaPeriodica] = useState("$ 0");
   const [numeroCuotas, setNumeroCuotas] = useState("0");
   const [totalInteres, setTotalInteres] = useState("$ 0");
@@ -80,7 +85,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const interes = values.tariff === "Particular" ? 0.025 : 0.015;
+      const interes = values.tariff === "Particular" ? 0.015 : 0.015;
       const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
       const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
       const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
