@@ -71,6 +71,7 @@ export default function InfoControlScreen() {
         if (errors.mobile !== "Este campo es obligatorio llenar con 10 dígitos") {
           setRead("true");
           errors.nameVerification = "Colocar Contraseña";
+          console.log("Aquí va el código");
         }
       }
     }

@@ -95,6 +95,7 @@ export default function ControlScreen() {
     if (auxValidation.length === 0) {
       setRead("true");
       errors.nameVerification = "Colocar Contraseña";
+      console.log("Aquí va el código");
     }
   };
 
