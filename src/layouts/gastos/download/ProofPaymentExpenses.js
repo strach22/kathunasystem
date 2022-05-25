@@ -4,6 +4,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { numbToLetters } from "../helpers/numbToLetters";
+import zfill from "../helpers/zfill";
 
 // eslint-disable-next-line react/prop-types
 export default function ProofPaymentExpenses({ info }) {
@@ -16,23 +17,6 @@ export default function ProofPaymentExpenses({ info }) {
     centPlural: "centavos",
     centSingular: "centavo",
   });
-
-  function zfill(number, width) {
-    const numberOutput = Math.abs(number);
-    const { length } = number.toString();
-    const zero = "0";
-
-    if (width <= length) {
-      if (number < 0) {
-        return `-${numberOutput.toString()}`;
-      }
-      return numberOutput.toString();
-    }
-    if (number < 0) {
-      return `-${zero.repeat(width - length)}${numberOutput.toString()}`;
-    }
-    return zero.repeat(width - length) + numberOutput.toString();
-  }
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
