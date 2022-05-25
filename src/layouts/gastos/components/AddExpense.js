@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
@@ -9,7 +10,11 @@ import TextArea from "elements/TextArea";
 import useForm from "elements/hooks/useForm";
 import Form from "../helpers/Form";
 
+import ClientsContext from "../../../context/Clients/ClientsContext";
+
 export default function AddExpense() {
+  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
+  const navigate = useNavigate();
   const errorValues = {
     expenseValue: "",
   };
@@ -43,7 +48,18 @@ export default function AddExpense() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("hola Diuks");
+      const newInitialDate = values.expenseDate
+        .toISOString()
+        .split("T")[0]
+        .replace("-", "/")
+        .replace("-", "/");
+      values.expenseDate = newInitialDate;
+      const newControlInfo = controlInfo;
+      values.id =
+        parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1;
+      newControlInfo.expensesHystory.push(values);
+      uploadControlInfo(newControlInfo);
+      navigate(`/inicio`);
     }
   };
 

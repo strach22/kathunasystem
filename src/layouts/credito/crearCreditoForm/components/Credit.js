@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Divider, Grid } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MDButton from "components/MDButton";
