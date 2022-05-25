@@ -13,8 +13,6 @@ import Form from "../helpers/Form";
 import ClientsContext from "../../../context/Clients/ClientsContext";
 
 export default function AddExpense() {
-  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
-  const navigate = useNavigate();
   const errorValues = {
     expenseValue: "",
   };
@@ -44,6 +42,9 @@ export default function AddExpense() {
     validate,
     errorValues
   );
+
+  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
