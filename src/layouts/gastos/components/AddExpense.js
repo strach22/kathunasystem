@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 import DatePickerH from "elements/DatePickerH";
@@ -21,8 +21,8 @@ export default function AddExpense() {
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("value" in fieldValues) {
-      tempo.value = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.value)
+    if ("expenseValue" in fieldValues) {
+      tempo.expenseValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.expenseValue)
         ? ""
         : "Llenar en el Formato Correcto el Campo";
     }
@@ -45,24 +45,33 @@ export default function AddExpense() {
 
   const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
   const navigate = useNavigate();
+  const [verification, setVerification] = useState("false");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const newInitialDate = values.expenseDate
-        .toISOString()
-        .split("T")[0]
-        .replace("-", "/")
-        .replace("-", "/");
-      values.expenseDate = newInitialDate;
-      const newControlInfo = controlInfo;
-      values.id =
-        parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1;
-      newControlInfo.expensesHystory.push(values);
-      uploadControlInfo(newControlInfo);
-      navigate(`/inicio`);
+      if (values.expenseValue === "0.00" || values.observation === "") {
+        setVerification("true");
+      } else {
+        const newInitialDate = values.expenseDate
+          .toISOString()
+          .split("T")[0]
+          .replace("-", "/")
+          .replace("-", "/");
+        values.expenseDate = newInitialDate;
+        const newControlInfo = controlInfo;
+        values.id =
+          parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1;
+        newControlInfo.expensesHystory.push(values);
+        uploadControlInfo(newControlInfo);
+        navigate(`/inicio`);
+      }
     }
   };
+
+  useEffect(() => {
+    setVerification("false");
+  }, [values]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -107,6 +116,11 @@ export default function AddExpense() {
             placeholder="Razón del Gasto"
           />
         </Grid>
+        {verification === "true" && (
+          <Grid item xs={12}>
+            <Alert severity="error">Debe ingresar un valor y/o la razón del gasto</Alert>
+          </Grid>
+        )}
         <Grid item xs={12} lg={11}>
           <MDButton
             variant="text"

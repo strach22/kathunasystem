@@ -1,9 +1,7 @@
-/* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
-/* eslint-disable func-names */
 /* eslint-disable default-case */
-// eslint-disable-next-line import/prefer-default-export
+/* eslint-disable func-names */
 export const numbToLetters = (function () {
   function Unidades(num) {
     switch (num) {
@@ -154,7 +152,7 @@ export const numbToLetters = (function () {
     return `${strMillones} ${strMiles}`;
   } // Millones()
 
-  return function numbToLetters(num, currency) {
+  return function numberToLetters(num, currency) {
     currency = currency || {};
     const data = {
       numero: num,
@@ -181,3 +179,5 @@ export const numbToLetters = (function () {
     return `${Millones(data.enteros)} ${data.letrasMonedaPlural} ${data.letrasCentavos}`;
   };
 })();
+
+export default numbToLetters;

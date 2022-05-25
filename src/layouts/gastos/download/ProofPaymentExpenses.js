@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
@@ -6,9 +7,7 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { numbToLetters } from "../helpers/numbToLetters";
 import zfill from "../helpers/zfill";
 
-// eslint-disable-next-line react/prop-types
 export default function ProofPaymentExpenses({ info }) {
-  // eslint-disable-next-line react/prop-types
   const { id, expenseDate, expenseValue, observation } = info;
 
   const lettersExpenseValue = numbToLetters(expenseValue, {
@@ -23,8 +22,6 @@ export default function ProofPaymentExpenses({ info }) {
     const tablaAmortizacionSimulador = {
       pageMargins: [40, 40, 40, 80],
       content: [
-        // { text: "COMPROBANTE DE EGRESOS", style: "secundaryTitle" },
-        // { text: "GASTOS DE CAJA", style: "secundaryTitle", color: "red" },
         {
           columns: [
             [
@@ -348,40 +345,10 @@ export default function ProofPaymentExpenses({ info }) {
         {
           text: "Beneficiario",
           alignment: "center",
-          style: "notesText",
+          fontSize: 10,
         },
       ],
 
-      //   styles: {
-      //     header: {
-      //       border: [true, true, true, true],
-      //       fillColor: "#eeffee",
-      //     },
-      //     principalTitle: {
-      //       alignment: "center",
-      //       color: "black",
-      //       fontSize: 12,
-      //       bold: true,
-      //       lineHeight: 1.25,
-      //     },
-      //     secundaryTitle: {
-      //       alignment: "center",
-      //       color: "black",
-      //       fontSize: 10,
-      //       bold: true,
-      //     },
-      //     rowData: {
-      //       fontSize: 10,
-      //       bold: true,
-      //       alignment: "left",
-      //       color: "black",
-      //     },
-      //     rowDataResp: {
-      //       fontSize: 9,
-      //       alignment: "left",
-      //       color: "#424141",
-      //     },
-      //   },
       styles: {
         border: {
           fontSize: 15,
@@ -391,23 +358,14 @@ export default function ProofPaymentExpenses({ info }) {
           marginTop: 15,
           marginBottom: 15,
         },
-        notesTitle: {
-          fontSize: 10,
-          bold: true,
-          margin: [0, 50, 0, 3],
-        },
-        notesText: {
-          fontSize: 10,
-        },
       },
       defaultStyle: {
         columnGap: 20,
-        // font: 'Quicksand',
       },
     };
 
-    // pdfMake.createPdf(tablaAmortizacionSimulador).download();
-    pdfMake.createPdf(tablaAmortizacionSimulador).open();
+    pdfMake.createPdf(tablaAmortizacionSimulador).download();
+    // pdfMake.createPdf(tablaAmortizacionSimulador).open();
   };
 
   return (
@@ -421,3 +379,14 @@ export default function ProofPaymentExpenses({ info }) {
     </MDButton>
   );
 }
+
+ProofPaymentExpenses.propTypes = {
+  info: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      expenseDate: PropTypes.string.isRequired,
+      expenseValue: PropTypes.string.isRequired,
+      observation: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
