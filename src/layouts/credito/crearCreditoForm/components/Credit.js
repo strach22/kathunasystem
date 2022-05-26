@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { useContext } from "react";
-import { Divider, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
@@ -17,29 +17,13 @@ import ClientsContext from "context/Clients/ClientsContext";
 export default function Credit() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientCredit } = useContext(ClientsContext);
+  const { clients, addClientCredit, controlInfo } = useContext(ClientsContext);
   const errorValues = {
     loanValue: "",
     timePayYear: "",
     timePayMonth: "",
     guarantor: "",
   };
-
-  const getInfo = (category, info) => (
-    <Grid container>
-      <Grid item xs={8}>
-        <MDTypography className="SubtitlesCreditInfo" variant="h6">
-          {category}
-        </MDTypography>
-        <Divider sx={{ height: "1px" }} />
-      </Grid>
-      <Grid item xs={4}>
-        <MDTypography className="SubtitlesCreditValue" variant="h6">
-          {info}
-        </MDTypography>
-      </Grid>
-    </Grid>
-  );
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
@@ -89,10 +73,14 @@ export default function Credit() {
     e.preventDefault();
 
     if (validate()) {
-      const interes = clients[id].tariff === "Particular" ? 0.025 : 0.015;
+      const interes =
+        clients[id].tariff === "Particular"
+          ? parseFloat(controlInfo.particularCreditInterest)
+          : parseFloat(controlInfo.partnerCreditInterest);
       const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
       const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
-      const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
+      const periodicFeeDesgravamen =
+        periodicFee + (parseFloat(controlInfo.desgravament) * values.loanValue) / periods;
       const folders = clients.map((client) => client.credits).flat();
       values.id = String(folders.length + 1);
       const newInitialDate = values.initialDate
@@ -228,12 +216,6 @@ export default function Credit() {
               GENERAR
             </MDButton>
           </Grid>
-        </Grid>
-        <Grid item xs={5} sx={{ marginTop: "80px" }}>
-          {getInfo("Cuota a pagar periódicamente:", "$ 236.12")}
-          {getInfo("Cantidad de cuotas:", "38")}
-          {getInfo("Total interés a pagar:", "$ 2452.01")}
-          {getInfo("Valor del préstamo:", "$ 844205.19")}
         </Grid>
       </Grid>
     </Form>

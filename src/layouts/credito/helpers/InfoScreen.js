@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import ClientsContext from "context/Clients/ClientsContext";
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";

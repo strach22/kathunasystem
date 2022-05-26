@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles } from "@mui/styles";
 import MDBox from "components/MDBox";
 import { Card, Grid } from "@mui/material";

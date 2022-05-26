@@ -192,7 +192,6 @@ export default function CreditSimulatorScreen({ setParameters }) {
           GENERAR
         </MDButton>
       </Grid>
-
       {getInfo("Valor de la cuota periódicamente:", cuotaPeriodica)}
       {getInfo("Número de cuotas:", numeroCuotas)}
       {getInfo("Total interés a pagar:", totalInteres)}
