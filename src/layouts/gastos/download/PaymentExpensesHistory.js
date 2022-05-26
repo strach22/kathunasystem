@@ -1,17 +1,31 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
+import { Workbook } from "react-excel-workbook";
+import { makeStyles } from "@mui/styles";
 
-// eslint-disable-next-line react/prop-types
+const useStyles = makeStyles({
+  root: {
+    // Button
+    "& .MuiButton-root": {
+      marginBottom: "20px",
+      marginRight: "1px",
+    },
+  },
+});
+
 export default function PaymentExpensesHistory({ rows }) {
+  const classes = useStyles();
+
   function buildTableBody(data, columns) {
     const body = [];
 
     const auxColumns = [
       { text: "Código", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Fecha del Gasto ", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      { text: "Fecha del Gasto", alignment: "center", bold: true, color: "white", fontSize: 15 },
       { text: "Valor", alignment: "center", bold: true, color: "white", fontSize: 15 },
       { text: "Observación", alignment: "center", bold: true, color: "white", fontSize: 15 },
     ];
@@ -112,6 +126,19 @@ export default function PaymentExpensesHistory({ rows }) {
     },
   };
 
+  const worksheets = [
+    {
+      name: "Historial de Gastos",
+      columns: [
+        { label: "Código", value: "id" },
+        { label: "Fecha del Gasto", value: "expenseDate" },
+        { label: "Valor", value: "expenseValue" },
+        { label: "Observación", value: "observation" },
+      ],
+      data: rows,
+    },
+  ];
+
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -125,19 +152,32 @@ export default function PaymentExpensesHistory({ rows }) {
   };
 
   return (
-    <Grid container>
-      <MDButton
-        variant="text"
-        size="medium"
-        sx={{ background: "#5499C7", "&:hover": { background: "#8CB0C8" } }}
+    <Grid container className={classes.root}>
+      <Workbook
+        filename="Historial-de-Gastos.xlsx"
+        element={
+          <MDButton
+            variant="text"
+            size="medium"
+            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+          >
+            Excel
+          </MDButton>
+        }
       >
-        Excel
-      </MDButton>
+        {worksheets.map(({ name, columns, data }) => (
+          <Workbook.Sheet name={name} data={data}>
+            {columns.map(({ label, value }) => (
+              <Workbook.Column label={label} value={value} />
+            ))}
+          </Workbook.Sheet>
+        ))}
+      </Workbook>
       <MDButton
         variant="text"
         size="medium"
         onClick={handleGeneratedPDF}
-        sx={{ background: "#5499C7", "&:hover": { background: "#8CB0C8" } }}
+        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         PDF
       </MDButton>
@@ -145,10 +185,21 @@ export default function PaymentExpensesHistory({ rows }) {
         variant="text"
         size="medium"
         onClick={handlePrintPDF}
-        sx={{ background: "#5499C7", "&:hover": { background: "#8CB0C8" } }}
+        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         Descargar
       </MDButton>
     </Grid>
   );
 }
+
+PaymentExpensesHistory.propTypes = {
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      expenseDate: PropTypes.string.isRequired,
+      expenseValue: PropTypes.string.isRequired,
+      observation: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
