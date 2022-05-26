@@ -86,16 +86,22 @@ export default function CreditSimulatorScreen({ setParameters }) {
     if (validate()) {
       const interes =
         values.tariff === "Particular"
-          ? controlInfo.particularCreditInterest
-          : controlInfo.partnerCreditInterest;
+          ? parseFloat(controlInfo.particularCreditInterest)
+          : parseFloat(controlInfo.partnerCreditInterest);
       const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
       const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
-      const periodicFeeDesgravamen = periodicFee + (0.01 * values.loanValue) / periods;
+      const periodicFeeDesgravamen =
+        periodicFee + (parseFloat(controlInfo.desgravament) * values.loanValue) / periods;
       const totalFee = periodicFee * periods - values.loanValue;
       setCuotaPeriodica(`$ ${periodicFeeDesgravamen.toFixed(2)}`);
       setNumeroCuotas(periods);
       setTotalInteres(`$ ${totalFee.toFixed(2)}`);
-      setParameters({ loanValue: values.loanValue, periods, interes });
+      setParameters({
+        loanValue: values.loanValue,
+        periods,
+        interes,
+        desgravament: parseFloat(controlInfo.desgravament),
+      });
     }
   };
 

@@ -1,19 +1,21 @@
 {
-  "partnerSavingsInterest": 0.005,
-  "particularSavingsInterest": 0.003,
-  "partnerCreditInterest": 0.015,
-  "particularCreditInterest": 0.025,
+  "partnerSavingsInterest": "0.005",
+  "particularSavingsInterest": "0.003",
+  "partnerCreditInterest": "0.015",
+  "particularCreditInterest": "0.025",
+  "desgravament":"0.01",
+  "latePayment":"0.00",
   "expensesHystory": [
     {
       "id": "1",
       "expenseDate": "2021/03/04",
-      "expenseValue": 100,
+      "expenseValue": "100",
       "observation": "Serivicios Básicos"
     },
     {
       "id": "2",
       "expenseDate": "2021/03/04",
-      "expenseValue": 30,
+      "expenseValue": "30",
       "observation": "Seguridad"
     }
   ]

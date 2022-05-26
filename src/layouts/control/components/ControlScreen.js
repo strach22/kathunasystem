@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Alert, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
@@ -7,13 +7,17 @@ import MDBox from "components/MDBox";
 import useForm from "elements/hooks/useForm";
 import InputValue from "elements/InputValue";
 import InputPassword from "elements/InputPassword";
+
+import ClientsContext from "context/Clients/ClientsContext";
+
 import Form from "../helpers/Form";
 
 export default function ControlScreen() {
+  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
   const errorValues = {
     nameVerification: "Colocar Contraseña",
-    socioCreditInterest: "",
-    socioSavingInterest: "",
+    partnerCreditInterest: "",
+    partnerSavingInterest: "",
     particularCreditInterest: "",
     particularSavingInterest: "",
     desgravament: "",
@@ -36,12 +40,12 @@ export default function ControlScreen() {
       )
         ? ""
         : "Verifique el formato";
-    if ("socioSavingInterest" in fieldValues)
-      tempo.socioSavingInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.socioSavingInterest)
+    if ("partnerSavingInterest" in fieldValues)
+      tempo.partnerSavingInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.partnerSavingInterest)
         ? ""
         : "Verifique el formato";
-    if ("socioCreditInterest" in fieldValues)
-      tempo.socioCreditInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.socioCreditInterest)
+    if ("partnerCreditInterest" in fieldValues)
+      tempo.partnerCreditInterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.partnerCreditInterest)
         ? ""
         : "Verifique el formato";
     if ("desgravament" in fieldValues)
@@ -64,12 +68,12 @@ export default function ControlScreen() {
 
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
-      particularSavingInterest: "0.00",
-      particularCreditInterest: "0.00",
-      socioSavingInterest: "0.00",
-      socioCreditInterest: "0.00",
-      desgravament: "0.00",
-      latePayment: "0.00",
+      particularSavingInterest: controlInfo.particularSavingInterest,
+      particularCreditInterest: controlInfo.particularCreditInterest,
+      partnerSavingInterest: controlInfo.partnerSavingInterest,
+      partnerCreditInterest: controlInfo.partnerCreditInterest,
+      desgravament: controlInfo.desgravament,
+      latePayment: controlInfo.latePayment,
       nameVerification: "",
     },
     true,
@@ -95,7 +99,14 @@ export default function ControlScreen() {
     if (auxValidation.length === 0) {
       setRead("true");
       errors.nameVerification = "Colocar Contraseña";
-      console.log("Aquí va el código");
+      const newControlInfo = controlInfo;
+      newControlInfo.particularSavingInterest = values.particularSavingInterest;
+      newControlInfo.particularCreditInterest = values.particularCreditInterest;
+      newControlInfo.partnerSavingInterest = values.partnerSavingInterest;
+      newControlInfo.partnerCreditInterest = values.partnerCreditInterest;
+      newControlInfo.desgravament = values.desgravament;
+      newControlInfo.latePayment = values.latePayment;
+      uploadControlInfo(newControlInfo);
     }
   };
 
@@ -160,10 +171,10 @@ export default function ControlScreen() {
         <Grid item xs={3.7}>
           <InputValue
             className="InputInterest"
-            name="socioSavingInterest"
-            value={values.socioSavingInterest}
+            name="partnerSavingInterest"
+            value={values.partnerSavingInterest}
             onChange={handleInputChange}
-            error={errors.socioSavingInterest}
+            error={errors.partnerSavingInterest}
             icon="%"
             position="end"
             read={read}
@@ -204,10 +215,10 @@ export default function ControlScreen() {
         <Grid item xs={3.7}>
           <InputValue
             className="InputInterest"
-            name="socioCreditInterest"
-            value={values.socioCreditInterest}
+            name="partnerCreditInterest"
+            value={values.partnerCreditInterest}
             onChange={handleInputChange}
-            error={errors.socioCreditInterest}
+            error={errors.partnerCreditInterest}
             icon="%"
             position="end"
             read={read}

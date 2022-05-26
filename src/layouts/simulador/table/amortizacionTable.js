@@ -1,6 +1,6 @@
-export default function data({ loanValue, periods, interes: interest }) {
+export default function data({ loanValue, periods, interes: interest, desgravament }) {
   const periodicFee = loanValue * (interest / (1 - (interest + 1) ** -periods));
-  const desgravamen = +(0.01 * loanValue) / periods;
+  const desgravamen = +(desgravament * loanValue) / periods;
   const periodicFeeDesgravamen = periodicFee + desgravamen;
   let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
@@ -24,7 +24,7 @@ export default function data({ loanValue, periods, interes: interest }) {
       { Header: "cuotas", accessor: "cuota", align: "center" },
       { Header: "interes periodo", accessor: "interesPeriodo", align: "center" },
       { Header: "capital amortizado", accessor: "capitalAmortizado", align: "center" },
-      { Header: "desrgavamen", accessor: "desgravamen", align: "center" },
+      { Header: "desgravamen", accessor: "desgravamen", align: "center" },
       { Header: "valor cuota", accessor: "valorCuota", align: "center" },
       { Header: "saldo", accessor: "saldo", align: "center" },
     ],
