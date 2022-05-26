@@ -7,23 +7,13 @@ const useStyles = makeStyles({
   root: {
     // Label
     "& .Subtitles": {
-      marginBottom: "25px",
+      marginBottom: "15px",
       color: "black",
     },
-    // Label
-    "& .Subtitles2": {
-      margin: "30px 0px 25px 0px",
-      color: "black",
-    },
-    // NumericInput
-    "& .MuiInputBase-adornedStart": {
-      width: "100%",
-      fontSize: "80%",
-    },
-    // NumericInput
-    "& .InputTimeValue": {
-      width: "90%",
-      fontSize: "80%",
+    // DatePicker
+    "& .Calendario": {
+      width: "60%",
+      marginBottom: "40px",
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
@@ -40,25 +30,30 @@ const useStyles = makeStyles({
       height: 46,
       marginLeft: "10px",
     },
+    // NumericInput
+    "& .MuiInputBase-adornedStart": {
+      width: "75%",
+      height: 55,
+      fontSize: "120%",
+    },
+    "& #textAreaForm": {
+      width: "80%",
+      height: "35%",
+      padding: "2%",
+      border: "1px double #CDD4D5",
+      borderRadius: 7,
+      fontSize: "80%",
+    },
     // Buttons
     "& .MuiButton-root": {
-      width: "30%",
+      width: "20%",
       color: "white",
-      marginTop: "50px",
-      marginRight: "20px",
-    },
-    // Label
-    "& .SubtitlesCreditInfo": {
-      color: "black",
-    },
-    // Label
-    "& .SubtitlesCreditValue": {
-      color: "#959291",
+      margin: "50px 10px 0px 15px",
     },
   },
 });
 
-export default function Form(props) {
+export default function FormSecundary(props) {
   const classes = useStyles();
 
   const { children, ...other } = props;

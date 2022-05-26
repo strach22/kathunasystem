@@ -94,17 +94,25 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
-                Carpeta # {idF}
-              </MDTypography>
-              {getInfo("Fecha de inicio:", folderInfo.initialDate)}
-              {getInfo("Deuda Total:", folderInfo.loanValue)}
-              {getInfo("Pagos Mensuales:", folderInfo.monthlyPayment)}
-              {getInfo("Intereses:", folderInfo.interest)}
-              {getInfo("Cuotas:", folderInfo.periods)}
-              {getInfo("Deuda Actual:", folderInfo.actualLoan)}
-              {getInfo("Estado:", folderInfo.state)}
-              {getInfo("Garante:", folderInfo.guarantor)}
+              <MDBox mt={6} mb={3}>
+                <Grid container spacing={3}>
+                  <Grid item xs={11}>
+                    <MDBox coloredShadow="secondary" pb={2}>
+                      <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
+                        Carpeta # {idF}
+                      </MDTypography>
+                      {getInfo("Fecha de inicio:", folderInfo.initialDate)}
+                      {getInfo("Deuda Total:", folderInfo.loanValue)}
+                      {getInfo("Pagos Mensuales:", folderInfo.monthlyPayment)}
+                      {getInfo("Intereses:", folderInfo.interest)}
+                      {getInfo("Cuotas:", folderInfo.periods)}
+                      {getInfo("Deuda Actual:", folderInfo.actualLoan)}
+                      {getInfo("Estado:", folderInfo.state)}
+                      {getInfo("Garante:", folderInfo.guarantor)}
+                    </MDBox>
+                  </Grid>
+                </Grid>
+              </MDBox>
             </MDBox>
           </Card>
         </Grid>

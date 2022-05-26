@@ -11,22 +11,25 @@ import InputValue from "elements/InputValue";
 import SelectG from "elements/SelectG";
 import TextArea from "elements/TextArea";
 import * as ConstDate from "elements/data/ConstDate";
-import Form from "layouts/credito/helpers/Form";
+import FormSecundary from "layouts/credito/helpers/FormSecundary";
 
 export default function MonthlyPayment() {
   const errorValues = {
     value: "",
+    paymentType: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("value" in fieldValues) {
+    if ("value" in fieldValues)
       tempo.value = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.value)
         ? ""
         : "Llenar en el Formato Correcto el Campo";
-    }
+    if ("paymentType" in fieldValues)
+      tempo.paymentType =
+        fieldValues.paymentType.length !== 0 ? "" : "Es obligatorio escoger una opción";
     setErrors({
       ...tempo,
     });
@@ -36,79 +39,64 @@ export default function MonthlyPayment() {
   const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
       transactionDate: new Date(),
-      actualBalance: "0",
+      paymentType: "",
       value: "0.00",
       observation: "",
+      id: "",
     },
     true,
     validate,
     errorValues
   );
 
-  const { id } = useParams();
+  const { clients } = useContext(ClientsContext);
+  // const { clients, addClientHistory } = useContext(ClientsContext);
   const navigate = useNavigate();
-  const { clients, addClientHistory } = useContext(ClientsContext);
+  const { id } = useParams();
+
+  const [idC, idF] = id.split("-");
+  const i = clients.map((e) => e.id).indexOf(idC);
+
+  console.log(i, idF);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const auxSaving = parseFloat(clients[id - 1].savingBalance, 10);
-      const auxBalance = parseFloat(values.value, 10);
-
-      if (auxBalance !== 0) {
-        values.actualBalance = (auxSaving + auxBalance).toFixed(2);
-
-        const newTransactionDate = values.transactionDate
-          .toISOString()
-          .split("T")[0]
-          .replace("-", "/")
-          .replace("-", "/");
-        values.transactionDate = newTransactionDate;
-
-        if (!values.observation) values.observation = "Ninguna";
-
-        addClientHistory(id, values);
-
-        resetForm();
-        navigate("/inicio");
-      }
+      resetForm();
+      navigate("/inicio");
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <FormSecundary onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={2.5}>
+        <Grid item xs={5.5}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha de Pago:
           </MDTypography>
-        </Grid>
-        <Grid item xs={3}>
           <DatePickerH
             name="transactionDate"
-            label="Fecha de transacción"
+            label="Fecha de Pago"
             value={values.transactionDate}
             onChange={handleInputChange}
           />
         </Grid>
-        <Grid item xs={2.5}>
+        <Grid item xs={6.5}>
           <MDTypography className="Subtitles" variant="h5">
             Forma de Pago:
           </MDTypography>
-        </Grid>
-        <Grid item xs={4}>
           <SelectG
-            name="guarantor"
-            label="Garante"
-            value={values.guarantor}
+            name="paymentType"
+            label="Forma de Pago"
+            value={values.paymentType}
             onChange={handleInputChange}
             options={ConstDate.getWaytoPay()}
-            error={errors.guarantor}
+            error={errors.paymentType}
           />
         </Grid>
         <Grid item xs={5.5}>
           <MDTypography className="Subtitles" variant="h5">
-            Valor a depositar:
+            Valor a Pagar:
           </MDTypography>
           <InputValue
             className="InputDepositValue"
@@ -134,7 +122,7 @@ export default function MonthlyPayment() {
           />
         </Grid>
         <Grid item xs={12} lg={11}>
-          <Link to="/cobranzas">
+          <Link to="/creditos">
             <MDButton
               size="large"
               variant="text"
@@ -150,10 +138,10 @@ export default function MonthlyPayment() {
             type="submit"
             sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
           >
-            DEPOSITAR
+            PAGAR
           </MDButton>
         </Grid>
       </Grid>
-    </Form>
+    </FormSecundary>
   );
 }
