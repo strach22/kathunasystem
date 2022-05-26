@@ -149,7 +149,7 @@ export default function PaymentExpensesHistory({ rows }) {
   const handlePrintPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-    pdfMake.createPdf(expensisHistoryPDF).download();
+    pdfMake.createPdf(expensisHistoryPDF).download("Historial-de-Gastos.pdf");
   };
 
   return (

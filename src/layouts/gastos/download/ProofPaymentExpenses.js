@@ -366,8 +366,7 @@ export default function ProofPaymentExpenses({ info }) {
       },
     };
 
-    pdfMake.createPdf(proofExpenses).download();
-    // pdfMake.createPdf(tablaAmortizacionSimulador).open();
+    pdfMake.createPdf(proofExpenses).download("Comprobante-de-Pago.pdf");
   };
 
   return (
