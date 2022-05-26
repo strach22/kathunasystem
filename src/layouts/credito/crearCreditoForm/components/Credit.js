@@ -91,7 +91,7 @@ export default function Credit() {
       values.initialDate = newInitialDate;
       values.periods = String(periods);
       values.state = "Pendiente";
-      values.actualLoan = values.loanValue;
+      values.actualLoan = (periodicFeeDesgravamen * periods).toFixed(2);
       values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
       values.interest = interes;
       addClientCredit(id, values);
