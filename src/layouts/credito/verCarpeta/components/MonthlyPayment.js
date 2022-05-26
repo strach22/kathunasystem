@@ -11,7 +11,7 @@ import InputValue from "elements/InputValue";
 import SelectG from "elements/SelectG";
 import TextArea from "elements/TextArea";
 import * as ConstDate from "elements/data/ConstDate";
-import Form from "layouts/cobranzas/helpers/Form";
+import Form from "layouts/credito/helpers/Form";
 
 export default function MonthlyPayment() {
   const errorValues = {

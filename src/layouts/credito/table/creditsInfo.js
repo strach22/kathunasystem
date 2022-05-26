@@ -34,7 +34,7 @@ export default function data() {
       accion: (
         <Link to={`/carpeta/${id}-${info.id}`}>
           <MDTypography variant="caption" color="info" fontWeight="medium">
-            Ver Carpeta
+            Ver/Pagar Carpeta
           </MDTypography>
         </Link>
       ),

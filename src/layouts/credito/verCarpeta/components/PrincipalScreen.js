@@ -6,6 +6,8 @@ import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 
 import ClientsContext from "context/Clients/ClientsContext";
+import MonthlyPayment from "./MonthlyPayment";
+import MonthlyPaymentHistory from "./MonthlyPaymentHistory";
 
 const useStyles = makeStyles({
   root: {
@@ -103,6 +105,48 @@ export default function PrincipalScreen() {
               {getInfo("Deuda Actual:", folderInfo.actualLoan)}
               {getInfo("Estado:", folderInfo.state)}
               {getInfo("Garante:", folderInfo.guarantor)}
+            </MDBox>
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card>
+            <MDBox
+              mx={2}
+              mt={-3}
+              py={3}
+              px={2}
+              variant="gradient"
+              bgColor="info"
+              borderRadius="lg"
+              coloredShadow="info"
+            >
+              <MDTypography variant="h5" color="white">
+                Pago Mensual de Cuota
+              </MDTypography>
+            </MDBox>
+            <MDBox pt={3}>
+              <MonthlyPayment />
+            </MDBox>
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card>
+            <MDBox
+              mx={2}
+              mt={-3}
+              py={3}
+              px={2}
+              variant="gradient"
+              bgColor="info"
+              borderRadius="lg"
+              coloredShadow="info"
+            >
+              <MDTypography variant="h5" color="white">
+                Historial de las Cuotas
+              </MDTypography>
+            </MDBox>
+            <MDBox pt={3}>
+              <MonthlyPaymentHistory />
             </MDBox>
           </Card>
         </Grid>

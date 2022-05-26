@@ -42,7 +42,7 @@ export default function PaymentExpensesHistory({ rows }) {
             text: row[column].toString(),
             alignment: "left",
             color: "black",
-            marginLeft: 10,
+            marginLeft: 25,
           });
         else dataRow.push({ text: row[column].toString(), alignment: "center", color: "black" });
       });
@@ -105,7 +105,8 @@ export default function PaymentExpensesHistory({ rows }) {
         },
         table: {
           headerRows: 1,
-          widths: ["auto", 110, 120, "*"],
+          widths: ["auto", "auto", "auto", "*"],
+          // widths: ["auto", 110, 120, "*"],
           body: buildTableBody(rows, ["id", "expenseDate", "expenseValue", "observation"]),
         },
       },

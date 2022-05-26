@@ -10,7 +10,6 @@ import CargaClientes from "layouts/cargaClientes";
 import CargaCreditos from "layouts/cargaCreditos";
 import Historial from "layouts/historial";
 import Cobranzas from "layouts/cobranzas";
-import PagoClients from "layouts/cobranzas/pagoClients";
 import Gastos from "layouts/gastos";
 import Control from "layouts/control";
 import InfoClientes from "layouts/clientes/infoClients";
@@ -166,12 +165,6 @@ const routes = [
     key: "creditos/ver/:id",
     route: "/creditos/ver/:id",
     component: <VerCreditoForm />,
-  },
-  {
-    name: "PagoClietns",
-    key: "pagoClietns",
-    route: "/cobranzas/:id",
-    component: <PagoClients />,
   },
   {
     name: "VerCarpeta",

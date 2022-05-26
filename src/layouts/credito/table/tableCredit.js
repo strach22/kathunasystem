@@ -30,7 +30,7 @@ export default function data() {
           <br />
           <Link to={`ver/${cliente.id}`}>
             <MDTypography variant="caption" color="info" fontWeight="medium">
-              Ver Créditos
+              Ver/Pagar Créditos
             </MDTypography>
           </Link>
         </>
