@@ -6,8 +6,25 @@ import MDButton from "components/MDButton";
 
 // eslint-disable-next-line react/prop-types
 export default function PaymentExpensesHistory({ rows }) {
-  // const { id, expenseDate, expenseValue, observation } = rows;
-  console.log(rows);
+  function buildTableBody(data, columns) {
+    const body = [];
+
+    const auxColumns = ["Código", "Fecha del Gasto ", "Valor", "Observación"];
+
+    body.push(auxColumns);
+
+    data.forEach((row) => {
+      const dataRow = [];
+
+      columns.forEach((column) => {
+        dataRow.push(row[column].toString());
+      });
+
+      body.push(dataRow);
+    });
+
+    return body;
+  }
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -44,6 +61,9 @@ export default function PaymentExpensesHistory({ rows }) {
         {
           layout: {
             defaultBorder: false,
+            fillColor(rowIndex) {
+              return rowIndex % 2 === 0 ? "#CCCCCC" : null;
+            },
             hLineColor(i) {
               if (i === 1 || i === 0) {
                 return "#bfdde8";
@@ -62,202 +82,15 @@ export default function PaymentExpensesHistory({ rows }) {
             paddingBottom() {
               return 2;
             },
-            fillColor() {
-              return "#fff";
-            },
+            // fillColor() {
+            //   return "#fff";
+            // },
           },
           table: {
             headerRows: 1,
-            widths: ["*", 80],
-            body: [
-              [
-                {
-                  text: "CODIGO",
-                  fillColor: "#eaf2f5",
-                  border: [false, true, false, true],
-                  margin: [0, 5, 0, 5],
-                  textTransform: "uppercase",
-                },
-                {
-                  text: "FECHA",
-                  border: [false, true, false, true],
-                  alignment: "right",
-                  fillColor: "#eaf2f5",
-                  margin: [0, 5, 0, 5],
-                  textTransform: "uppercase",
-                },
-                {
-                  text: "RAZÓN",
-                  border: [false, true, false, true],
-                  alignment: "right",
-                  fillColor: "#eaf2f5",
-                  margin: [0, 5, 0, 5],
-                  textTransform: "uppercase",
-                },
-                {
-                  text: "MONTO",
-                  fillColor: "#eaf2f5",
-                  border: [false, true, false, true],
-                  margin: [0, 5, 0, 5],
-                  textTransform: "uppercase",
-                },
-              ],
-              [
-                {
-                  text: "observation",
-                  border: [false, false, false, true],
-                  margin: [0, 5, 0, 5],
-                  alignment: "left",
-                },
-                {
-                  border: [false, false, false, true],
-                  text: "$ {expenseValue}",
-                  fillColor: "#f5f5f5",
-                  alignment: "right",
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-              [
-                {
-                  text: "---",
-                  border: [false, false, false, true],
-                  margin: [0, 5, 0, 5],
-                  alignment: "left",
-                  color: "white",
-                },
-                {
-                  text: "",
-                  border: [false, false, false, true],
-                  fillColor: "#f5f5f5",
-                  alignment: "right",
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-              [
-                {
-                  text: "---",
-                  border: [false, false, false, true],
-                  margin: [0, 5, 0, 5],
-                  alignment: "left",
-                  color: "white",
-                },
-                {
-                  text: "",
-                  border: [false, false, false, true],
-                  fillColor: "#f5f5f5",
-                  alignment: "right",
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-            ],
+            widths: ["*", "*", "*", "*"],
+            body: buildTableBody(rows, ["id", "expenseDate", "expenseValue", "observation"]),
           },
-        },
-        "\n",
-        "\n\n",
-        {
-          layout: {
-            defaultBorder: false,
-            hLineWidth() {
-              return 1;
-            },
-            vLineWidth() {
-              return 1;
-            },
-            hLineColor() {
-              return "#eaeaea";
-            },
-            vLineColor() {
-              return "#eaeaea";
-            },
-            paddingLeft() {
-              return 10;
-            },
-            paddingRight() {
-              return 10;
-            },
-            paddingTop() {
-              return 3;
-            },
-            paddingBottom() {
-              return 3;
-            },
-            fillColor() {
-              return "#fff";
-            },
-          },
-          table: {
-            headerRows: 1,
-            widths: ["*", "auto"],
-            body: [
-              [
-                {
-                  text: "Subtotal",
-                  border: [false, true, false, true],
-                  alignment: "right",
-                  margin: [0, 5, 0, 5],
-                },
-                {
-                  border: [false, true, false, true],
-                  text: "$ {expenseValue}",
-                  alignment: "right",
-                  fillColor: "#f5f5f5",
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-              [
-                {
-                  text: "Impuestos",
-                  border: [false, false, false, true],
-                  alignment: "right",
-                  margin: [0, 5, 0, 5],
-                },
-                {
-                  text: "$ 0",
-                  border: [false, false, false, true],
-                  fillColor: "#f5f5f5",
-                  alignment: "right",
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-              [
-                {
-                  text: "Total",
-                  bold: true,
-                  fontSize: 20,
-                  alignment: "right",
-                  border: [false, false, false, true],
-                  margin: [0, 5, 0, 5],
-                },
-                {
-                  text: "$ {expenseValue}",
-                  bold: true,
-                  fontSize: 20,
-                  alignment: "right",
-                  border: [false, false, false, true],
-                  fillColor: "#f5f5f5",
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-            ],
-          },
-        },
-        {
-          text: [
-            "La cantidad es: ",
-            { text: "lettersExpenseValue", fontSize: 10, bold: false, italics: true },
-          ],
-          fontSize: 10,
-          bold: true,
-          margin: [0, 25, 0, 60],
-        },
-        {
-          text: "____________________________",
-          style: "border",
-        },
-        {
-          text: "Beneficiario",
-          alignment: "center",
-          fontSize: 10,
         },
       ],
 
