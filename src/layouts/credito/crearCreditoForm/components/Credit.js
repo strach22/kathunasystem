@@ -75,12 +75,12 @@ export default function Credit() {
     if (validate()) {
       const interes =
         clients[id].tariff === "Particular"
-          ? parseFloat(controlInfo.particularCreditInterest)
-          : parseFloat(controlInfo.partnerCreditInterest);
+          ? parseFloat(controlInfo.particularCreditInterest) / 100
+          : parseFloat(controlInfo.partnerCreditInterest) / 100;
       const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
       const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
       const periodicFeeDesgravamen =
-        periodicFee + (parseFloat(controlInfo.desgravament) * values.loanValue) / periods;
+        periodicFee + ((parseFloat(controlInfo.desgravament) / 100) * values.loanValue) / periods;
       const folders = clients.map((client) => client.credits).flat();
       values.id = String(folders.length + 1);
       const newInitialDate = values.initialDate
@@ -93,6 +93,7 @@ export default function Credit() {
       values.state = "Pendiente";
       values.actualLoan = values.loanValue;
       values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
+      values.interest = interes;
       addClientCredit(id, values);
       navigate(`/creditos/ver/${id}`);
     }

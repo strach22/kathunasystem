@@ -6,11 +6,11 @@
   "email": "corrreo@mail.com",
   "ruc": "0000000000001",
   "mobile": "0999999999",
-  "partnerSavingInterest": "0.005",
-  "particularSavingInterest": "0.003",
-  "partnerCreditInterest": "0.015",
-  "particularCreditInterest": "0.025",
-  "desgravament": "0.01",
+  "partnerSavingInterest": "0.50",
+  "particularSavingInterest": "0.30",
+  "partnerCreditInterest": "1.50",
+  "particularCreditInterest": "2.50",
+  "desgravament": "1.00",
   "latePayment": "0.00",
   "expensesHystory": [
     {
