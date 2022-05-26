@@ -85,6 +85,8 @@ function ClientsState({ children }) {
     const newClients = state.clients;
     const i = newClients.map((e) => e.id).indexOf(id);
     newClients[i].credits.push(data);
+    newClients[i].creditBalance =
+      parseFloat(data.actualLoan) + parseFloat(newClients[i].creditBalance);
     dispatch({
       type: "UPLOAD_CLIENTS",
       value: newClients,

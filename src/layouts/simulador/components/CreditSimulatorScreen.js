@@ -100,7 +100,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
         loanValue: values.loanValue,
         periods,
         interes,
-        desgravament: parseFloat(controlInfo.desgravament),
+        desgravament: parseFloat(controlInfo.desgravament) / 100,
       });
     }
   };
