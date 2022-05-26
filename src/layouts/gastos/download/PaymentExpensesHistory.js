@@ -9,7 +9,12 @@ export default function PaymentExpensesHistory({ rows }) {
   function buildTableBody(data, columns) {
     const body = [];
 
-    const auxColumns = ["Código", "Fecha del Gasto ", "Valor", "Observación"];
+    const auxColumns = [
+      { text: "Código", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      { text: "Fecha del Gasto ", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      { text: "Valor", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      { text: "Observación", alignment: "center", bold: true, color: "white", fontSize: 15 },
+    ];
 
     body.push(auxColumns);
 
@@ -17,7 +22,15 @@ export default function PaymentExpensesHistory({ rows }) {
       const dataRow = [];
 
       columns.forEach((column) => {
-        dataRow.push(row[column].toString());
+        // dataRow.push(row[column].toString());
+        if (column === "observation")
+          dataRow.push({
+            text: row[column].toString(),
+            alignment: "left",
+            color: "black",
+            marginLeft: 10,
+          });
+        else dataRow.push({ text: row[column].toString(), alignment: "center", color: "black" });
       });
 
       body.push(dataRow);
@@ -26,90 +39,89 @@ export default function PaymentExpensesHistory({ rows }) {
     return body;
   }
 
+  const expensisHistoryPDF = {
+    pageMargins: [40, 40, 40, 80],
+    content: [
+      {
+        columns: [
+          [
+            {
+              text: "CAJA DE AHORRO SAN PABLITO",
+              color: "#333333",
+              width: "*",
+              fontSize: 18,
+              bold: true,
+              alignment: "center",
+              margin: [0, 0, 0, 3],
+            },
+            {
+              text: "HISTORIAL DE GASTOS",
+              color: "#333333",
+              width: "*",
+              fontSize: 15,
+              bold: true,
+              alignment: "center",
+            },
+          ],
+        ],
+      },
+      {
+        text: "_________________________________________________________________",
+        style: "border",
+      },
+      {
+        layout: {
+          defaultBorder: false,
+          fillColor(rowIndex) {
+            if (rowIndex === 0) return "#088FCA";
+            return rowIndex % 2 === 0 ? "#85B1C4" : "#D3D3D3";
+          },
+          paddingLeft() {
+            return 10;
+          },
+          paddingRight() {
+            return 10;
+          },
+          paddingTop() {
+            return 5;
+          },
+          paddingBottom() {
+            return 5;
+          },
+        },
+        table: {
+          headerRows: 1,
+          widths: ["auto", 110, 120, "*"],
+          body: buildTableBody(rows, ["id", "expenseDate", "expenseValue", "observation"]),
+        },
+      },
+    ],
+
+    styles: {
+      border: {
+        fontSize: 15,
+        bold: true,
+        alignment: "center",
+        color: "black",
+        marginTop: 20,
+        marginBottom: 40,
+      },
+    },
+    defaultStyle: {
+      columnGap: 20,
+    },
+  };
+
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    const expensisHistory = {
-      pageMargins: [40, 40, 40, 80],
-      content: [
-        {
-          columns: [
-            [
-              {
-                text: "CAJA DE AHORRO SAN PABLITO",
-                color: "#333333",
-                width: "*",
-                fontSize: 18,
-                bold: true,
-                alignment: "center",
-                margin: [0, 0, 0, 3],
-              },
-              {
-                text: "HISTORIAL DE GASTOS",
-                color: "#333333",
-                width: "*",
-                fontSize: 15,
-                bold: true,
-                alignment: "center",
-              },
-            ],
-          ],
-        },
-        {
-          text: "_________________________________________________________________",
-          style: "border",
-        },
-        {
-          layout: {
-            defaultBorder: false,
-            fillColor(rowIndex) {
-              return rowIndex % 2 === 0 ? "#CCCCCC" : null;
-            },
-            hLineColor(i) {
-              if (i === 1 || i === 0) {
-                return "#bfdde8";
-              }
-              return "#eaeaea";
-            },
-            paddingLeft() {
-              return 10;
-            },
-            paddingRight() {
-              return 10;
-            },
-            paddingTop() {
-              return 2;
-            },
-            paddingBottom() {
-              return 2;
-            },
-            // fillColor() {
-            //   return "#fff";
-            // },
-          },
-          table: {
-            headerRows: 1,
-            widths: ["*", "*", "*", "*"],
-            body: buildTableBody(rows, ["id", "expenseDate", "expenseValue", "observation"]),
-          },
-        },
-      ],
 
-      styles: {
-        border: {
-          fontSize: 15,
-          bold: true,
-          alignment: "center",
-          color: "black",
-          marginTop: 15,
-          marginBottom: 15,
-        },
-      },
-      defaultStyle: {
-        columnGap: 20,
-      },
-    };
+    pdfMake.createPdf(expensisHistoryPDF).open();
+  };
 
-    pdfMake.createPdf(expensisHistory).open();
+  const handlePrintPDF = () => {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+    pdfMake.createPdf(expensisHistoryPDF).download();
   };
 
   return (
@@ -132,6 +144,7 @@ export default function PaymentExpensesHistory({ rows }) {
       <MDButton
         variant="text"
         size="medium"
+        onClick={handlePrintPDF}
         sx={{ background: "#5499C7", "&:hover": { background: "#8CB0C8" } }}
       >
         Descargar

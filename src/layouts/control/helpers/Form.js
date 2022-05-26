@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     },
     //  Label Input
     "& .MuiOutlinedInput-input": {
-      fontSize: "130%",
+      fontSize: "110%",
     },
     //  Input Value
     "& .InputInterest": {

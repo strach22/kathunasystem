@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import ClientsContext from "context/Clients/ClientsContext";
 import { numbToLetters } from "../helpers/numbToLetters";
 import zfill from "../helpers/zfill";
 
 export default function ProofPaymentExpenses({ info }) {
   const { id, expenseDate, expenseValue, observation } = info;
+  const { controlInfo } = useContext(ClientsContext);
 
   const lettersExpenseValue = numbToLetters(expenseValue, {
     plural: "dólares estadounidenses",
@@ -26,7 +28,7 @@ export default function ProofPaymentExpenses({ info }) {
           columns: [
             [
               {
-                text: "CAJA DE AHORRO SAN PABLITO",
+                text: controlInfo.nameBank,
                 color: "#333333",
                 width: "*",
                 fontSize: 18,
@@ -35,7 +37,7 @@ export default function ProofPaymentExpenses({ info }) {
                 margin: [0, 0, 0, 3],
               },
               {
-                text: "''SEMBRANDO EL FUTURO IMPULSANDO AL DESARROLLO''",
+                text: `''${controlInfo.nameSlogan}''`,
                 color: "#333333",
                 width: "*",
                 fontSize: 15,
@@ -74,7 +76,7 @@ export default function ProofPaymentExpenses({ info }) {
                     ],
                   },
                   {
-                    text: "Nombre del Representante Legal",
+                    text: controlInfo.legalRepresentative,
                     bold: true,
                     color: "#333333",
                     fontSize: 11,
@@ -110,7 +112,7 @@ export default function ProofPaymentExpenses({ info }) {
                     ],
                   },
                   {
-                    text: "SAN PABLITO",
+                    text: controlInfo.nameLocation,
                     color: "#333333",
                     width: "*",
                     fontSize: 11,
