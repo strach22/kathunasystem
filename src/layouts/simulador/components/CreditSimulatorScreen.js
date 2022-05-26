@@ -113,15 +113,15 @@ export default function CreditSimulatorScreen({ setParameters }) {
             Valor del Préstamo:
           </MDTypography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={0.5}>
           {}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <MDTypography className="Subtitles" variant="h5">
             Tiempo a Pagar:
           </MDTypography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={0.5}>
           {}
         </Grid>
         <Grid item xs={2.5}>
@@ -143,10 +143,10 @@ export default function CreditSimulatorScreen({ setParameters }) {
             position="start"
           />
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={0.5}>
           {}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Grid container>
             <Grid item xs={6}>
               <InputValue
@@ -172,7 +172,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={0.5}>
           {}
         </Grid>
         <Grid item xs={2.5}>
