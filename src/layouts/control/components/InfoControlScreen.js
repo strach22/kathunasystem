@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Alert, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
@@ -7,9 +7,13 @@ import MDBox from "components/MDBox";
 import useForm from "elements/hooks/useForm";
 import Input from "elements/Input";
 import InputPassword from "elements/InputPassword";
+
+import ClientsContext from "context/Clients/ClientsContext";
+
 import Form from "../helpers/Form";
 
 export default function InfoControlScreen() {
+  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
   const errorValues = {
     nameVerification: "Colocar Contraseña",
     email: "",
@@ -46,13 +50,13 @@ export default function InfoControlScreen() {
 
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
-      nameBank: "",
-      nameSlogan: "",
-      nameLocation: "",
-      legalRepresentative: "",
-      email: "",
-      ruc: "",
-      mobile: "",
+      nameBank: controlInfo.nameBank,
+      nameSlogan: controlInfo.nameSlogan,
+      nameLocation: controlInfo.nameLocation,
+      legalRepresentative: controlInfo.legalRepresentative,
+      email: controlInfo.email,
+      ruc: controlInfo.ruc,
+      mobile: controlInfo.mobile,
       nameVerification: "",
     },
     true,
@@ -71,7 +75,15 @@ export default function InfoControlScreen() {
         if (errors.mobile !== "Este campo es obligatorio llenar con 10 dígitos") {
           setRead("true");
           errors.nameVerification = "Colocar Contraseña";
-          console.log("Aquí va el código");
+          const newControlInfo = controlInfo;
+          newControlInfo.nameBank = values.nameBank;
+          newControlInfo.nameSlogan = values.nameSlogan;
+          newControlInfo.nameLocation = values.nameLocation;
+          newControlInfo.legalRepresentative = values.legalRepresentative;
+          newControlInfo.email = values.email;
+          newControlInfo.ruc = values.ruc;
+          newControlInfo.mobile = values.mobile;
+          uploadControlInfo(newControlInfo);
         }
       }
     }
