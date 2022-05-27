@@ -14,7 +14,7 @@ export default function data({ loanValue, periods, interes: interest, desgravame
       capitalAmortizado: amortizedCapital.toFixed(2),
       desgravamen: desgravamen.toFixed(2),
       valorCuota: periodicFeeDesgravamen.toFixed(2),
-      saldo: residue.toFixed(2),
+      saldo: Math.abs(residue.toFixed(2)),
     });
     periodInteres = residue * interest;
     amortizedCapital = periodicFee - periodInteres;
