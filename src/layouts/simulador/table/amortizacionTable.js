@@ -5,9 +5,17 @@ export default function data({ loanValue, periods, interes: interest, desgravame
   let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
   let residue = loanValue - amortizedCapital;
-  const rows = [];
+  const rows = [
+    {
+      cuota: 0,
+      saldo: loanValue,
+      interesPeriodo: " ",
+      capitalAmortizado: " ",
+      desgravamen: " ",
+      valorCuota: " ",
+    },
+  ];
   for (let i = 1; i < periods + 1; i += 1) {
-    if (i === 1) rows.push({ cuota: 0, saldo: loanValue });
     rows.push({
       cuota: i,
       interesPeriodo: periodInteres.toFixed(2),
