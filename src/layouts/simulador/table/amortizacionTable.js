@@ -7,6 +7,7 @@ export default function data({ loanValue, periods, interes: interest, desgravame
   let residue = loanValue - amortizedCapital;
   const rows = [];
   for (let i = 1; i < periods + 1; i += 1) {
+    if (i === 1) rows.push({ cuota: 0, saldo: loanValue });
     rows.push({
       cuota: i,
       interesPeriodo: periodInteres.toFixed(2),
@@ -21,7 +22,7 @@ export default function data({ loanValue, periods, interes: interest, desgravame
   }
   return {
     columns: [
-      { Header: "cuotas", accessor: "cuota", align: "center" },
+      { Header: "periodo", accessor: "cuota", align: "center" },
       { Header: "interes periodo", accessor: "interesPeriodo", align: "center" },
       { Header: "capital amortizado", accessor: "capitalAmortizado", align: "center" },
       { Header: "desgravamen", accessor: "desgravamen", align: "center" },
