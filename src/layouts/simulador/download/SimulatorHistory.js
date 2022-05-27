@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -17,7 +18,6 @@ const useStyles = makeStyles({
   },
 });
 
-// eslint-disable-next-line react/prop-types
 export default function SimulatorHistory({ rows }) {
   const classes = useStyles();
   const { controlInfo } = useContext(ClientsContext);
@@ -26,12 +26,33 @@ export default function SimulatorHistory({ rows }) {
     const body = [];
 
     const auxColumns = [
-      { text: "Código", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      {
+        text: "Código",
+        alignment: "center",
+        bold: true,
+        color: "white",
+        fontSize: 15,
+        marginTop: 10,
+      },
       { text: "Interés Periodo", alignment: "center", bold: true, color: "white", fontSize: 15 },
       { text: "Capital Amortizado", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Desgravamen", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      {
+        text: "Desgravamen",
+        alignment: "center",
+        bold: true,
+        color: "white",
+        fontSize: 15,
+        marginTop: 10,
+      },
       { text: "Valor Cuota", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Saldo", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      {
+        text: "Saldo",
+        alignment: "center",
+        bold: true,
+        color: "white",
+        fontSize: 15,
+        marginTop: 10,
+      },
     ];
 
     body.push(auxColumns);
@@ -42,9 +63,8 @@ export default function SimulatorHistory({ rows }) {
       columns.forEach((column) => {
         dataRow.push({
           text: row[column].toString(),
-          alignment: "left",
+          alignment: "center",
           color: "black",
-          marginLeft: 25,
         });
       });
 
@@ -56,6 +76,18 @@ export default function SimulatorHistory({ rows }) {
 
   const simulatorPDF = {
     pageMargins: [40, 40, 40, 80],
+    background() {
+      return [
+        {
+          canvas: [
+            { type: "line", x1: 15, y1: 10, x2: 585, y2: 10, lineWidth: 1 }, // Up line
+            { type: "line", x1: 15, y1: 10, x2: 15, y2: 830, lineWidth: 1 }, // Left line
+            { type: "line", x1: 15, y1: 830, x2: 585, y2: 830, lineWidth: 1 }, // Bottom line
+            { type: "line", x1: 585, y1: 10, x2: 585, y2: 830, lineWidth: 1 }, // Rigth line
+          ],
+        },
+      ];
+    },
     content: [
       {
         columns: [
@@ -112,7 +144,19 @@ export default function SimulatorHistory({ rows }) {
       },
       {
         layout: {
-          defaultBorder: false,
+          // defaultBorder: false,
+          hLineWidth(i, node) {
+            return i === 0 || i === node.table.body.length ? 2 : 1;
+          },
+          vLineWidth(i, node) {
+            return i === 0 || i === node.table.widths.length ? 2 : 1;
+          },
+          hLineColor(i, node) {
+            return i === 0 || i === node.table.body.length ? "black" : "gray";
+          },
+          vLineColor(i, node) {
+            return i === 0 || i === node.table.widths.length ? "black" : "gray";
+          },
           fillColor(rowIndex) {
             if (rowIndex === 0) return "#088FCA";
             return rowIndex % 2 === 0 ? "#85B1C4" : "#D3D3D3";
@@ -181,6 +225,12 @@ export default function SimulatorHistory({ rows }) {
     }
   };
 
+  const handlePrintPDF = () => {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+    pdfMake.createPdf(simulatorPDF).download("Tabla-de-Amortización.pdf");
+  };
+
   return (
     <Grid container className={classes.root}>
       <Workbook
@@ -214,7 +264,7 @@ export default function SimulatorHistory({ rows }) {
       <MDButton
         variant="text"
         size="medium"
-        // onClick={handlePrintPDF}
+        onClick={handlePrintPDF}
         sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         Descargar
@@ -222,3 +272,16 @@ export default function SimulatorHistory({ rows }) {
     </Grid>
   );
 }
+
+SimulatorHistory.propTypes = {
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      cuota: PropTypes.string.isRequired,
+      interesPeriodo: PropTypes.string.isRequired,
+      capitalAmortizado: PropTypes.string.isRequired,
+      desgravamen: PropTypes.string.isRequired,
+      valorCuota: PropTypes.string.isRequired,
+      saldo: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

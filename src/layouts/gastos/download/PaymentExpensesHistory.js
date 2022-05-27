@@ -44,7 +44,6 @@ export default function PaymentExpensesHistory({ rows }) {
             text: row[column].toString(),
             alignment: "left",
             color: "black",
-            marginLeft: 25,
           });
         else dataRow.push({ text: row[column].toString(), alignment: "center", color: "black" });
       });
@@ -57,6 +56,18 @@ export default function PaymentExpensesHistory({ rows }) {
 
   const expensisHistoryPDF = {
     pageMargins: [40, 40, 40, 80],
+    background() {
+      return [
+        {
+          canvas: [
+            { type: "line", x1: 15, y1: 10, x2: 585, y2: 10, lineWidth: 1 }, // Up line
+            { type: "line", x1: 15, y1: 10, x2: 15, y2: 830, lineWidth: 1 }, // Left line
+            { type: "line", x1: 15, y1: 830, x2: 585, y2: 830, lineWidth: 1 }, // Bottom line
+            { type: "line", x1: 585, y1: 10, x2: 585, y2: 830, lineWidth: 1 }, // Rigth line
+          ],
+        },
+      ];
+    },
     content: [
       {
         columns: [
@@ -87,7 +98,19 @@ export default function PaymentExpensesHistory({ rows }) {
       },
       {
         layout: {
-          defaultBorder: false,
+          // defaultBorder: false,
+          hLineWidth(i, node) {
+            return i === 0 || i === node.table.body.length ? 2 : 1;
+          },
+          vLineWidth(i, node) {
+            return i === 0 || i === node.table.widths.length ? 2 : 1;
+          },
+          hLineColor(i, node) {
+            return i === 0 || i === node.table.body.length ? "black" : "gray";
+          },
+          vLineColor(i, node) {
+            return i === 0 || i === node.table.widths.length ? "black" : "gray";
+          },
           fillColor(rowIndex) {
             if (rowIndex === 0) return "#088FCA";
             return rowIndex % 2 === 0 ? "#85B1C4" : "#D3D3D3";
