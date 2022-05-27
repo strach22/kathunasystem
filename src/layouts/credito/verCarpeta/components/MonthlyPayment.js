@@ -49,20 +49,23 @@ export default function MonthlyPayment() {
     errorValues
   );
 
-  const { clients } = useContext(ClientsContext);
+  const { addCreditHistory } = useContext(ClientsContext);
   // const { clients, addClientHistory } = useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [idC, idF] = id.split("-");
-  const i = clients.map((e) => e.id).indexOf(idC);
-
-  console.log(i, idF);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      resetForm();
+      const newtransactionDate = values.transactionDate
+        .toISOString()
+        .split("T")[0]
+        .replace("-", "/")
+        .replace("-", "/");
+      values.transactionDate = newtransactionDate;
+      addCreditHistory(idC, idF, values);
       navigate("/inicio");
     }
   };

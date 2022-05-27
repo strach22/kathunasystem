@@ -92,6 +92,7 @@ function ClientsState({ children }) {
       value: newClients,
     });
   };
+
   const addCreditHistory = (id, idFile, data) => {
     const newClients = state.clients;
     const i = newClients.map((e) => e.id).indexOf(id);
