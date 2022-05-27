@@ -9,12 +9,12 @@ export default function data({ loanValue, periods, interes: interest, desgravame
   for (let i = 1; i < periods + 1; i += 1) {
     if (i === 1) {
       rows.push({
-        cuota: "0",
+        cuota: " ",
         saldo: loanValue,
-        interesPeriodo: "0",
-        capitalAmortizado: "0",
-        desgravamen: "0",
-        valorCuota: "0",
+        interesPeriodo: " ",
+        capitalAmortizado: " ",
+        desgravamen: " ",
+        valorCuota: " ",
       });
     }
     rows.push({
