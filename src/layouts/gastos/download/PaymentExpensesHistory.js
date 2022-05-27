@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import pdfMake from "pdfmake/build/pdfmake";
@@ -6,6 +6,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import { Workbook } from "react-excel-workbook";
 import { makeStyles } from "@mui/styles";
+import ClientsContext from "context/Clients/ClientsContext";
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
 
 export default function PaymentExpensesHistory({ rows }) {
   const classes = useStyles();
+  const { controlInfo } = useContext(ClientsContext);
 
   function buildTableBody(data, columns) {
     const body = [];
@@ -60,7 +62,7 @@ export default function PaymentExpensesHistory({ rows }) {
         columns: [
           [
             {
-              text: "CAJA DE AHORRO SAN PABLITO",
+              text: controlInfo.nameBank,
               color: "#333333",
               width: "*",
               fontSize: 18,
