@@ -42,24 +42,31 @@ export default function MonthlyPayment() {
       paymentType: "",
       value: "0.00",
       observation: "",
-      id: "",
     },
     true,
     validate,
     errorValues
   );
 
-  const { addCreditHistory } = useContext(ClientsContext);
+  const { clients, addCreditHistory } = useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [idC, idF] = id.split("-");
 
+  const i = clients.map((e) => e.id).indexOf(idC);
+  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const newTransactionDate = values.transactionDate;
+      const newTransactionDate = values.transactionDate
+        .toISOString()
+        .split("T")[0]
+        .replace("-", "/")
+        .replace("-", "/");
       values.transactionDate = newTransactionDate;
+      values.id = String(clients[i].credits[i2].creditHistory.length + 1);
       addCreditHistory(idC, idF, values);
       navigate("/inicio");
     }

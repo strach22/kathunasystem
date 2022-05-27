@@ -42,12 +42,18 @@
         "initialDate": "2022/01/10",
         "loanValue": "2800",
         "interest": "1.5",
-        "periods": "5",
+        "periods": "1",
         "actualLoan": "0",
         "state": "Finalizado",
         "guarantor": "Mihai Luna",
-        "monthlyPayment": "456",
-        "creditHistory": []
+        "monthlyPayment": "2898.00",
+        "creditHistory": [{
+          "id":"1",
+          "value":"2898.00",
+          "paymentType": "Efectivo",
+          "transactionDate":"2022/02/10",
+          "observation":"Pago completo"
+        }]
       },
       {
         "id": "3",

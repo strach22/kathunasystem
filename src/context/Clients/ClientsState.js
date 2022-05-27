@@ -96,8 +96,8 @@ function ClientsState({ children }) {
   const addCreditHistory = (id, idFile, data) => {
     const newClients = state.clients;
     const i = newClients.map((e) => e.id).indexOf(id);
-    const i2 = newClients[i].map((e) => e.id).indexOf(idFile);
-    newClients[i].credits.creditHistory[i2].push(data);
+    const i2 = newClients[i].credits.map((e) => e.id).indexOf(idFile);
+    newClients[i].credits[i2].creditHistory.push(data);
     dispatch({
       type: "UPLOAD_CLIENTS",
       value: newClients,
