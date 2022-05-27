@@ -50,7 +50,6 @@ export default function MonthlyPayment() {
   );
 
   const { addCreditHistory } = useContext(ClientsContext);
-  // const { clients, addClientHistory } = useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -59,12 +58,8 @@ export default function MonthlyPayment() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const newtransactionDate = values.transactionDate
-        .toISOString()
-        .split("T")[0]
-        .replace("-", "/")
-        .replace("-", "/");
-      values.transactionDate = newtransactionDate;
+      const newTransactionDate = values.transactionDate;
+      values.transactionDate = newTransactionDate;
       addCreditHistory(idC, idF, values);
       navigate("/inicio");
     }

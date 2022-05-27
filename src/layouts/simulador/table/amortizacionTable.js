@@ -5,19 +5,20 @@ export default function data({ loanValue, periods, interes: interest, desgravame
   let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
   let residue = loanValue - amortizedCapital;
-  const rows = [
-    {
-      cuota: 0,
-      saldo: loanValue,
-      interesPeriodo: " ",
-      capitalAmortizado: " ",
-      desgravamen: " ",
-      valorCuota: " ",
-    },
-  ];
+  const rows = [];
   for (let i = 1; i < periods + 1; i += 1) {
+    if (i === 1) {
+      rows.push({
+        cuota: "0",
+        saldo: loanValue,
+        interesPeriodo: " ",
+        capitalAmortizado: " ",
+        desgravamen: " ",
+        valorCuota: " ",
+      });
+    }
     rows.push({
-      cuota: i,
+      cuota: String(i),
       interesPeriodo: periodInteres.toFixed(2),
       capitalAmortizado: amortizedCapital.toFixed(2),
       desgravamen: desgravamen.toFixed(2),
