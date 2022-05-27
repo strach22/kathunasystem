@@ -11,10 +11,10 @@ export default function data({ loanValue, periods, interes: interest, desgravame
       rows.push({
         cuota: "0",
         saldo: loanValue,
-        interesPeriodo: " ",
-        capitalAmortizado: " ",
-        desgravamen: " ",
-        valorCuota: " ",
+        interesPeriodo: "0",
+        capitalAmortizado: "0",
+        desgravamen: "0",
+        valorCuota: "0",
       });
     }
     rows.push({
