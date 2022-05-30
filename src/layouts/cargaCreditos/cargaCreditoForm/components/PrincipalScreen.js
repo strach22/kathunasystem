@@ -200,12 +200,8 @@ export default function PrincipalScreen() {
                       Revisar todos los datos con mucho cuidado. NO SE PODRÁ REVERTIR LOS CAMBIOS.
                     </MDTypography>
                     <MDTypography gutterBottom>
-                      Para cargar el historial de ahorros completo de todos los clientes, repita los
-                      pasos anteriores.
-                    </MDTypography>
-                    <MDTypography gutterBottom>
-                      Primero debe cargar los datos de los clientes y después el historial de
-                      ahorro.
+                      Es obligatorio colocar el número de carpeta, la fecha de entrega del crédito,
+                      garante y el valor del préstamo.
                     </MDTypography>
                     <MDTypography gutterBottom>
                       Finalmente, seleccione el botón <b>Subir archivo</b> y se cargarán todos los

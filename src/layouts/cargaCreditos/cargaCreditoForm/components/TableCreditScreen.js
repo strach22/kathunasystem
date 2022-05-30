@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable object-shorthand */
 import React, { useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { CircularProgress, Grid } from "@mui/material";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
@@ -17,13 +17,12 @@ import listItems from "layouts/credito/helpers/sociosItems";
 export default function TableCreditScreen({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
 
   const errorValues = {
+    id: "",
     loanValue: "",
-    timePayYear: "",
-    timePayMonth: "",
     guarantor: "",
   };
 
@@ -35,21 +34,11 @@ export default function TableCreditScreen({ worksheets }) {
       tempo.loanValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.loanValue)
         ? ""
         : "Es Obligatorio llenar con Números este Campo";
-    if ("timePayYear" in fieldValues)
-      tempo.timePayYear = /^[0-9]+$/.test(fieldValues.timePayYear)
-        ? ""
-        : "Es Obligatorio Llenar este campo";
-    if ("timePayMonth" in fieldValues)
-      tempo.timePayMonth = /^[0-9]+$/.test(fieldValues.timePayMonth)
-        ? ""
-        : "Es Obligatorio Llenar este campo";
+    if ("id" in fieldValues)
+      tempo.id = /^[0-9]+$/.test(fieldValues.id) ? "" : "Es Obligatorio Llenar este campo";
     if ("guarantor" in fieldValues)
       tempo.guarantor =
         fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
-    if (/^[0]+$/.test(fieldValues.timePayYear) && /^[0]+$/.test(fieldValues.timePayMonth)) {
-      tempo.timePayMonth = "Es Obligatorio Llenar este campo";
-      tempo.timePayYear = "Es Obligatorio Llenar este campo";
-    }
     setErrors({
       ...tempo,
     });
@@ -59,9 +48,8 @@ export default function TableCreditScreen({ worksheets }) {
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
       initialDate: new Date(),
-      loanValue: "0",
-      timePayYear: "0",
-      timePayMonth: "0",
+      id: "",
+      loanValue: "",
       guarantor: "",
     },
     true,
@@ -73,7 +61,9 @@ export default function TableCreditScreen({ worksheets }) {
 
   const handleUpload = () => {
     console.log(dataBase);
-    navigate("/creditos");
+    console.log(values);
+    console.log(errors);
+    // navigate("/creditos");
   };
 
   const uploadFile = (e) => {
@@ -196,12 +186,12 @@ export default function TableCreditScreen({ worksheets }) {
             </Grid>
             <Grid item xs={3.38}>
               <InputValue
-                className="InputLoanValue"
-                name="loanValue"
-                value={values.loanValue}
+                className="InputId"
+                name="id"
+                value={values.id}
                 onChange={handleInputChange}
-                error={errors.loanValue}
-                icon="$"
+                error={errors.id}
+                icon="#"
                 position="start"
               />
             </Grid>
