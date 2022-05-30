@@ -91,7 +91,6 @@ const useStyles = makeStyles({
     "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
       fontSize: "80%",
       color: "black",
-      marginBottom: "40px",
     },
     // Selector
     "& #demo-simple-select": {

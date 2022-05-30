@@ -48,8 +48,8 @@ export default function TableCreditScreen({ worksheets }) {
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
       initialDate: new Date(),
-      id: "",
-      loanValue: "",
+      id: "0",
+      loanValue: "0",
       guarantor: "",
     },
     true,
@@ -63,8 +63,6 @@ export default function TableCreditScreen({ worksheets }) {
     e.preventDefault();
     if (validate()) {
       console.log(dataBase);
-      console.log(values);
-      console.log(errors);
       // navigate("/creditos");
     }
   };
@@ -173,7 +171,7 @@ export default function TableCreditScreen({ worksheets }) {
             </Grid>
           </Grid>
 
-          <Grid container>
+          <Grid container sx={{ marginBottom: "40px" }}>
             <Grid item xs={4.5}>
               <SelectG
                 name="guarantor"
