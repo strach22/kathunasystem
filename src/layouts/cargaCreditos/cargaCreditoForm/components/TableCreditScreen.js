@@ -59,11 +59,14 @@ export default function TableCreditScreen({ worksheets }) {
 
   const { sociosItems } = listItems();
 
-  const handleUpload = () => {
-    console.log(dataBase);
-    console.log(values);
-    console.log(errors);
-    // navigate("/creditos");
+  const handleUpload = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      console.log(dataBase);
+      console.log(values);
+      console.log(errors);
+      // navigate("/creditos");
+    }
   };
 
   const uploadFile = (e) => {
