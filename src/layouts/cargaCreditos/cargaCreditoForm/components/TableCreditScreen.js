@@ -1,11 +1,17 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable object-shorthand */
 import React, { useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress, Grid } from "@mui/material";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
 import ExcelExport from "layouts/cargaClientes/element/ExcelExport";
 import ActionReduce from "layouts/cargaClientes/element/ActionReduce";
-import { CircularProgress, Grid } from "@mui/material";
+import useForm from "elements/hooks/useForm";
+import InputValue from "elements/InputValue";
+import DatePickerH from "elements/DatePickerH";
+import SelectG from "elements/SelectG";
+import listItems from "layouts/credito/helpers/sociosItems";
 
 // eslint-disable-next-line react/prop-types
 export default function TableCreditScreen({ worksheets }) {
@@ -13,6 +19,57 @@ export default function TableCreditScreen({ worksheets }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
+
+  const errorValues = {
+    loanValue: "",
+    timePayYear: "",
+    timePayMonth: "",
+    guarantor: "",
+  };
+
+  // eslint-disable-next-line consistent-return
+  const validate = (fieldValues = values) => {
+    const tempo = { ...errors };
+
+    if ("loanValue" in fieldValues)
+      tempo.loanValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.loanValue)
+        ? ""
+        : "Es Obligatorio llenar con Números este Campo";
+    if ("timePayYear" in fieldValues)
+      tempo.timePayYear = /^[0-9]+$/.test(fieldValues.timePayYear)
+        ? ""
+        : "Es Obligatorio Llenar este campo";
+    if ("timePayMonth" in fieldValues)
+      tempo.timePayMonth = /^[0-9]+$/.test(fieldValues.timePayMonth)
+        ? ""
+        : "Es Obligatorio Llenar este campo";
+    if ("guarantor" in fieldValues)
+      tempo.guarantor =
+        fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
+    if (/^[0]+$/.test(fieldValues.timePayYear) && /^[0]+$/.test(fieldValues.timePayMonth)) {
+      tempo.timePayMonth = "Es Obligatorio Llenar este campo";
+      tempo.timePayYear = "Es Obligatorio Llenar este campo";
+    }
+    setErrors({
+      ...tempo,
+    });
+    if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
+  };
+
+  const { values, errors, setErrors, handleInputChange } = useForm(
+    {
+      initialDate: new Date(),
+      loanValue: "0",
+      timePayYear: "0",
+      timePayMonth: "0",
+      guarantor: "",
+    },
+    true,
+    validate,
+    errorValues
+  );
+
+  const { sociosItems } = listItems();
 
   const handleUpload = () => {
     console.log(dataBase);
@@ -64,6 +121,92 @@ export default function TableCreditScreen({ worksheets }) {
         <MDTypography variant="h5" sx={{ marginBottom: 2 }}>
           CARGAR CREDITO DEL CLIENTE
         </MDTypography>
+
+        <form onSubmit={handleUpload}>
+          <Grid container>
+            <Grid item xs={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
+                Fecha del Crédito:
+              </MDTypography>
+            </Grid>
+            <Grid item xs={1.5}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles" variant="h5">
+                Valor del Crédito:
+              </MDTypography>
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={4.5}>
+              <DatePickerH
+                name="initialDate"
+                label="Fecha del Crédito"
+                value={values.initialDate}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={1.5}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputLoanValue"
+                name="loanValue"
+                value={values.loanValue}
+                onChange={handleInputChange}
+                error={errors.loanValue}
+                icon="$"
+                position="start"
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={4.5}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Garante:
+              </MDTypography>
+            </Grid>
+            <Grid item xs={1.5}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Número de Carpeta:
+              </MDTypography>
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={4.5}>
+              <SelectG
+                name="guarantor"
+                label="Garante"
+                value={values.guarantor}
+                onChange={handleInputChange}
+                options={sociosItems}
+                error={errors.guarantor}
+              />
+            </Grid>
+            <Grid item xs={1.5}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputLoanValue"
+                name="loanValue"
+                value={values.loanValue}
+                onChange={handleInputChange}
+                error={errors.loanValue}
+                icon="$"
+                position="start"
+              />
+            </Grid>
+          </Grid>
+        </form>
 
         <ExcelExport
           filename="Credito-del-Cliente.xlsx"

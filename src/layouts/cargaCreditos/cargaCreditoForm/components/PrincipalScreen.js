@@ -64,6 +64,41 @@ const useStyles = makeStyles({
     "& .AlertDialog": {
       margin: "10px 0px 0px 60px",
     },
+    // Label
+    "& .Subtitles": {
+      marginBottom: "15px",
+      color: "#585858",
+    },
+    // Label
+    "& .Subtitles2": {
+      margin: "30px 0px 15px 0px",
+      color: "#585858",
+    },
+    // NumericInput
+    "& .MuiInputBase-adornedStart": {
+      width: "100%",
+      fontSize: "80%",
+    },
+    // Calendario
+    "& .MuiTextField-root": {
+      width: "100%",
+    },
+    // Selector
+    "& .MuiFormControl-fullWidth": {
+      width: "100%",
+    },
+    // Label Selector
+    "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
+      fontSize: "80%",
+      color: "black",
+      marginBottom: "40px",
+    },
+    // Selector
+    "& #demo-simple-select": {
+      width: "100%",
+      height: 46,
+      marginLeft: "10px",
+    },
   },
 });
 
