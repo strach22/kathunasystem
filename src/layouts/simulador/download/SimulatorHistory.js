@@ -226,9 +226,10 @@ export default function SimulatorHistory({ rows }) {
   };
 
   const handlePrintPDF = () => {
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-    pdfMake.createPdf(simulatorPDF).download("Tabla-de-Amortización.pdf");
+    if (!rows[0] === false) {
+      pdfMake.vfs = pdfFonts.pdfMake.vfs;
+      pdfMake.createPdf(simulatorPDF).download("Tabla-de-Amortización.pdf");
+    }
   };
 
   return (
