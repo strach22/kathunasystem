@@ -6,6 +6,7 @@ import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 
 import ClientsContext from "context/Clients/ClientsContext";
+import DownloadAmortization from "layouts/credito/download/DownloadAmortization";
 import MonthlyPayment from "./MonthlyPayment";
 import MonthlyPaymentHistory from "./MonthlyPaymentHistory";
 
@@ -96,6 +97,9 @@ export default function PrincipalScreen() {
             <MDBox pt={3}>
               <MDBox mt={6} mb={3}>
                 <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <DownloadAmortization />
+                  </Grid>
                   <Grid item xs={11}>
                     <MDBox coloredShadow="secondary" pb={2}>
                       <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>

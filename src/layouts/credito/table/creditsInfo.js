@@ -7,8 +7,6 @@ import { useParams, Link } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 
 import ClientsContext from "context/Clients/ClientsContext";
-import DownloadAmortization from "../download/DownloadAmortization";
-import DownloadChange from "../download/DownloadChange";
 
 export default function data() {
   const { clients } = useContext(ClientsContext);
@@ -23,8 +21,6 @@ export default function data() {
       { Header: "Cuotas", accessor: "periods", align: "center" },
       { Header: "Valor a Pagar Mensaul", accessor: "monthlyPayment", align: "center" },
       { Header: "Estado", accessor: "state", align: "center" },
-      { Header: "Tabla de Amortización", accessor: "downloadAmortization", align: "center" },
-      { Header: "Letra de Cambio", accessor: "downloadChange", align: "center" },
       { Header: "acción", accessor: "accion", align: "center" },
     ],
 
@@ -35,8 +31,6 @@ export default function data() {
       periods: info.periods,
       monthlyPayment: info.monthlyPayment,
       state: info.state,
-      downloadAmortization: <DownloadAmortization info={info} />,
-      downloadChange: <DownloadChange info={info} />,
       accion: (
         <Link to={`/carpeta/${id}-${info.id}`}>
           <MDTypography variant="caption" color="info" fontWeight="medium">

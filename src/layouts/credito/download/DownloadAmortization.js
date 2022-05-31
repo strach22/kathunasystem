@@ -2,19 +2,31 @@ import React, { useContext } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import ClientsContext from "context/Clients/ClientsContext";
 import zfill from "layouts/gastos/helpers/zfill";
 import { useParams } from "react-router-dom";
+import { Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
-// eslint-disable-next-line react/prop-types
-export default function DownloadAmortization({ info }) {
+const useStyles = makeStyles({
+  root: {
+    // Button
+    "& .MuiButton-root": {
+      marginBottom: "20px",
+      marginRight: "1px",
+    },
+  },
+});
+
+export default function DownloadAmortization() {
+  const classes = useStyles();
   const { clients, controlInfo } = useContext(ClientsContext);
   const { numId } = useParams();
   const i = clients.map((e) => e.numId).indexOf(numId);
 
-  // eslint-disable-next-line react/prop-types
-  const { id, initialDate, loanValue, monthlyPayment, periods, interest } = info;
+  console.log(clients[i].credits);
+
+  const { id, initialDate, loanValue, monthlyPayment, periods, interest } = clients[i].credits;
 
   const amortizationTablePDF = {
     pageMargins: [40, 40, 40, 80],
@@ -34,65 +46,19 @@ export default function DownloadAmortization({ info }) {
       {
         columns: [
           [
-            {
-              text: controlInfo.nameBank,
-              color: "#333333",
-              width: "*",
-              fontSize: 18,
-              bold: true,
-              alignment: "center",
-              margin: [0, 0, 0, 3],
-            },
+            { text: controlInfo.nameBank, style: "title", fontSize: 18 },
             {
               text: `''${controlInfo.nameSlogan}''`,
-              color: "#333333",
-              width: "*",
+              style: "title",
               fontSize: 15,
-              bold: true,
-              alignment: "center",
-              margin: [0, 0, 0, 3],
             },
+            { text: controlInfo.nameLocation, style: "title2" },
+            { text: "TIPO", style: "title", fontSize: 15 },
+            { text: "TABLA DE AMORTIZACIÓN", style: "subtitle" },
             {
-              text: controlInfo.nameLocation,
-              color: "#333333",
-              width: "*",
-              fontSize: 12,
-              bold: true,
-              alignment: "center",
-              margin: [10, 0, 0, 25],
-            },
-            {
-              text: "TIPO",
-              color: "#333333",
-              width: "*",
-              fontSize: 15,
-              bold: true,
-              alignment: "center",
-            },
-            {
-              text: "TABLA DE AMORTIZACIÓN",
-              color: "red",
-              width: "*",
-              fontSize: 13,
-              bold: true,
-              alignment: "center",
-            },
-            {
-              text: [
-                "CARPETA: ",
-                {
-                  text: zfill(parseInt(id, 10), 3),
-                  fontSize: 14,
-                  bold: true,
-                  italics: true,
-                  color: "red",
-                },
-              ],
-              color: "#333333",
-              width: "*",
+              text: ["CARPETA: ", { text: zfill(parseInt(id, 10), 3), style: "subtitle2" }],
+              style: "title",
               fontSize: 14,
-              bold: true,
-              alignment: "center",
             },
           ],
         ],
@@ -159,6 +125,34 @@ export default function DownloadAmortization({ info }) {
         marginTop: 15,
         marginBottom: 15,
       },
+      title: {
+        color: "#333333",
+        width: "*",
+        bold: true,
+        alignment: "center",
+        margin: [0, 0, 0, 3],
+      },
+      title2: {
+        color: "#333333",
+        width: "*",
+        fontSize: 12,
+        bold: true,
+        alignment: "center",
+        margin: [10, 0, 0, 25],
+      },
+      subtitle: {
+        color: "red",
+        width: "*",
+        fontSize: 13,
+        bold: true,
+        alignment: "center",
+      },
+      subtitle2: {
+        fontSize: 13,
+        bold: true,
+        italics: true,
+        color: "red",
+      },
       Col1: {
         color: "#aaaaab",
         bold: true,
@@ -200,13 +194,23 @@ export default function DownloadAmortization({ info }) {
   };
 
   return (
-    <MDButton
-      variant="text"
-      size="medium"
-      onClick={handleGeneratedPDF}
-      sx={{ background: "#5499C7", "&:hover": { background: "#8CB0C8" } }}
-    >
-      <PictureAsPdfIcon />
-    </MDButton>
+    <Grid container className={classes.root}>
+      <MDButton
+        variant="text"
+        size="medium"
+        onClick={handleGeneratedPDF}
+        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+      >
+        PDF
+      </MDButton>
+      <MDButton
+        variant="text"
+        size="medium"
+        // onClick={handlePrintPDF}
+        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+      >
+        Descargar
+      </MDButton>
+    </Grid>
   );
 }
