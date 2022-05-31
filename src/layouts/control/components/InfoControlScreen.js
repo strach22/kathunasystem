@@ -57,6 +57,7 @@ export default function InfoControlScreen() {
       email: controlInfo.email,
       ruc: controlInfo.ruc,
       mobile: controlInfo.mobile,
+      city: controlInfo.city,
       nameVerification: "",
     },
     true,
@@ -83,6 +84,7 @@ export default function InfoControlScreen() {
           newControlInfo.email = values.email;
           newControlInfo.ruc = values.ruc;
           newControlInfo.mobile = values.mobile;
+          newControlInfo.city = values.city;
           uploadControlInfo(newControlInfo);
         }
       }
@@ -220,6 +222,21 @@ export default function InfoControlScreen() {
             value={values.mobile}
             onChange={handleInputChange}
             error={errors.mobile}
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3.5}>
+          <MDTypography className="Subtitles" variant="h6">
+            Ciudad, País
+          </MDTypography>
+        </Grid>
+        <Grid item xs={8.5}>
+          <Input
+            label="Ciudad"
+            name="city"
+            value={values.city}
+            onChange={handleInputChange}
             read={read}
           />
         </Grid>
