@@ -19,6 +19,7 @@ import CargaCreditoForm from "layouts/cargaCreditos/cargaCreditoForm";
 import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 import VerCreditoForm from "layouts/credito/verCreditoForm";
 import VerCarpeta from "layouts/credito/verCarpeta";
+import PagarCredito from "layouts/credito/pagarCredito";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -171,6 +172,12 @@ const routes = [
     key: "verCarpeta",
     route: "/carpeta/:id",
     component: <VerCarpeta />,
+  },
+  {
+    name: "PagarCredito",
+    key: "pagarCredito",
+    route: "/credito/:id",
+    component: <PagarCredito />,
   },
 ];
 

@@ -32,11 +32,19 @@ export default function data() {
       monthlyPayment: info.monthlyPayment,
       state: info.state,
       accion: (
-        <Link to={`/carpeta/${id}-${info.id}`}>
-          <MDTypography variant="caption" color="info" fontWeight="medium">
-            Ver/Pagar Carpeta
-          </MDTypography>
-        </Link>
+        <>
+          <Link to={`/carpeta/${id}-${info.id}`}>
+            <MDTypography variant="caption" color="info" fontWeight="medium">
+              Ver Carpeta
+            </MDTypography>
+          </Link>
+          <br />
+          <Link to={`/credito/${id}-${info.id}`}>
+            <MDTypography variant="caption" color="success" fontWeight="medium">
+              Pagar Crédito
+            </MDTypography>
+          </Link>
+        </>
       ),
     })),
   };

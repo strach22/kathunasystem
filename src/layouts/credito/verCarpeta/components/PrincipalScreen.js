@@ -8,7 +8,7 @@ import MDTypography from "components/MDTypography";
 import ClientsContext from "context/Clients/ClientsContext";
 import DownloadAmortization from "layouts/credito/download/DownloadAmortization";
 import DownloadBillofExchange from "layouts/credito/download/DownloadBillofExchange";
-import MonthlyPayment from "./MonthlyPayment";
+import InfoScreenSecond from "layouts/credito/helpers/InfoScreenSecond";
 import MonthlyPaymentHistory from "./MonthlyPaymentHistory";
 
 const useStyles = makeStyles({
@@ -40,6 +40,7 @@ export default function PrincipalScreen() {
       </Grid>
     </Grid>
   );
+
   return (
     <MDBox pt={6} pb={3} mx={15}>
       <Grid container spacing={6} className={classes.root}>
@@ -60,22 +61,7 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <MDBox mt={6} mb={3}>
-                <Grid container spacing={3}>
-                  <Grid item xs={11}>
-                    <MDBox coloredShadow="secondary" pb={2}>
-                      <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
-                        Cliente # {idC}
-                      </MDTypography>
-                      {getInfo("Nombres:", clients[i].firstName)}
-                      {getInfo("Apellidos:", clients[i].lastName)}
-                      {getInfo("Documento de Identidad:", clients[i].identification)}
-                      {getInfo("Teléfono:", clients[i].mobile)}
-                      {getInfo("Saldo de Creditos:", clients[i].creditBalance)}
-                    </MDBox>
-                  </Grid>
-                </Grid>
-              </MDBox>
+              <InfoScreenSecond />
             </MDBox>
           </Card>
         </Grid>
@@ -119,27 +105,6 @@ export default function PrincipalScreen() {
                   </Grid>
                 </Grid>
               </MDBox>
-            </MDBox>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Card>
-            <MDBox
-              mx={2}
-              mt={-3}
-              py={3}
-              px={2}
-              variant="gradient"
-              bgColor="info"
-              borderRadius="lg"
-              coloredShadow="info"
-            >
-              <MDTypography variant="h5" color="white">
-                Pago Mensual de Cuota
-              </MDTypography>
-            </MDBox>
-            <MDBox pt={3}>
-              <MonthlyPayment />
             </MDBox>
           </Card>
         </Grid>
