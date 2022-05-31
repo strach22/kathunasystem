@@ -7,6 +7,7 @@ import MDTypography from "components/MDTypography";
 
 import ClientsContext from "context/Clients/ClientsContext";
 import DownloadAmortization from "layouts/credito/download/DownloadAmortization";
+import DownloadBillofExchange from "layouts/credito/download/DownloadBillofExchange";
 import MonthlyPayment from "./MonthlyPayment";
 import MonthlyPaymentHistory from "./MonthlyPaymentHistory";
 
@@ -99,6 +100,7 @@ export default function PrincipalScreen() {
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <DownloadAmortization />
+                    <DownloadBillofExchange />
                   </Grid>
                   <Grid item xs={11}>
                     <MDBox coloredShadow="secondary" pb={2}>

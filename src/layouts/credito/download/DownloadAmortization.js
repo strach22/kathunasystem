@@ -6,20 +6,8 @@ import ClientsContext from "context/Clients/ClientsContext";
 import zfill from "layouts/gastos/helpers/zfill";
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles({
-  root: {
-    // Button
-    "& .MuiButton-root": {
-      marginBottom: "20px",
-      marginRight: "1px",
-    },
-  },
-});
 
 export default function DownloadAmortization() {
-  const classes = useStyles();
   const [relationShip, setRelationShip] = useState({ name: "", type: "", ci: "" });
   const [aux1, setAux1] = useState(false);
   const { clients, controlInfo } = useContext(ClientsContext);
@@ -409,11 +397,11 @@ export default function DownloadAmortization() {
   const handleGeneratedPDF = () => {
     setAux1(true);
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.createPdf(amortizationTablePDF).open();
+    pdfMake.createPdf(amortizationTablePDF).download("Tabla-de-Amortización.pdf");
   };
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container>
       <MDButton
         variant="text"
         size="medium"
@@ -421,14 +409,6 @@ export default function DownloadAmortization() {
         sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         PDF
-      </MDButton>
-      <MDButton
-        variant="text"
-        size="medium"
-        // onClick={handlePrintPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-      >
-        Descargar
       </MDButton>
     </Grid>
   );
