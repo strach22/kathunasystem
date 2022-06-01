@@ -35,211 +35,227 @@ export default function DownloadBillofExchange() {
   const days = Math.floor(difference / (1000 * 60 * 60 * 24));
 
   const changeTablePDF = {
-    pageMargins: [40, 40, 40, 80],
+    pageMargins: [40, 40, 40, 40],
     background(currentPage) {
       return currentPage === 1
         ? [
             {
-              canvas: [{ type: "rect", x: 15, y: 15, w: 565, h: 305, r: 10, lineColor: "#000" }],
+              canvas: [
+                { type: "rect", x: 15, y: 15, w: 565, h: 300, r: 10, lineColor: "#000" },
+                { type: "rect", x: 15, y: 330, w: 565, h: 470, r: 10, lineColor: "#000" },
+              ],
             },
           ]
         : "";
     },
     content: [
       {
-        columns: [
-          [
-            {
-              stack: [
-                {
-                  columns: [
-                    {
-                      text: [
-                        "No: ",
-                        {
-                          text: zfill(parseInt(clients[i].credits[i2].id, 10), 3),
-                          style: "text1",
-                        },
-                      ],
-                      style: "title",
-                      fontSize: 10,
-                    },
-                    {
-                      text: ["VENCE: ", { text: lastMonth, style: "subtitle2" }],
-                      style: "title",
-                      fontSize: 10,
-                    },
-                    {
-                      text: [
-                        "POR: ",
-                        { text: clients[i].credits[i2].loanValue, style: "subtitle2" },
-                      ],
-                      style: "title",
-                      fontSize: 10,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+        stack: [
+          {
+            columns: [
+              {
+                text: [
+                  "No: ",
+                  { text: zfill(parseInt(clients[i].credits[i2].id, 10), 3), style: "text2" },
+                ],
+                style: "text1",
+                width: 130,
+              },
+              {
+                text: ["VENCE: ", { text: lastMonth, style: "text1" }],
+                style: "text1",
+                width: 200,
+              },
+              {
+                text: ["POR: $ ", { text: clients[i].credits[i2].loanValue, style: "text1" }],
+                style: "text1",
+                width: "*",
+              },
+            ],
+          },
         ],
       },
+      "\n",
       {
         text: [
           "LUGAR Y FECHA: ",
-          { text: controlInfo.city, style: "subtitle2" },
-          { text: " ", style: "subtitle2" },
-          { text: nowDate, style: "subtitle2" },
+          { text: controlInfo.city, style: "text3" },
+          { text: " " },
+          { text: nowDate, style: "text1" },
         ],
-        style: "title",
-        fontSize: 10,
+        style: "text1",
       },
       {
         text: [
           "A ",
-          { text: days, style: "subtitle2" },
-          {
-            text: " días se servirá(n) Ud(s), pagar por esta LETRA DE CAMBIO ",
-            style: "subtitle2",
-          },
+          { text: days, style: "text1" },
+          { text: " días se servirá(n) Ud(s), pagar por esta LETRA DE CAMBIO ", style: "text3" },
         ],
-        style: "title",
-        fontSize: 10,
+        style: "text1",
       },
+      "\n",
       {
         text: [
           "A la orden de ",
-          { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "subtitle2" },
+          { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "text1" },
         ],
-        style: "title",
-        fontSize: 10,
+        style: "text3",
       },
       {
         text: [
           "La cantidad de ",
-          { text: clients[i].credits[i2].loanValue, style: "subtitle2" },
-          { text: " dólares de los Estados Unidos de América", style: "subtitle2" },
+          { text: clients[i].credits[i2].loanValue, style: "text1" },
+          { text: " dólares de los Estados Unidos de América", style: "text1" },
         ],
-        style: "title",
-        fontSize: 10,
+        style: "text3",
       },
+      "\n",
       {
         text: [
           "Con interés del __________% por ciento anual, desde ",
-          { text: firstMonth, style: "subtitle2" },
+          { text: firstMonth, style: "text3" },
         ],
-        style: "title",
-        fontSize: 10,
+        style: "text3",
       },
       {
         text: "Sin protesto. Exímese de presentación para aceptación y pago; así como de avisos por falta de estos hechos.",
-        style: "title2",
+        style: "text3",
       },
+      "\n\n",
       {
-        columns: [
-          [
-            {
-              stack: [
-                {
-                  columns: [
-                    { text: "A:", style: "title", fontSize: 12 },
-                    {
-                      text: `${clients[i].firstName} ${clients[i].lastName}`,
-                      style: "title",
-                      fontSize: 12,
-                    },
-                    { text: "Atentamente", style: "title", fontSize: 12 },
-                  ],
-                },
-                {
-                  columns: [
-                    { text: "Dirección:", style: "title", fontSize: 12 },
-                    {
-                      text: controlInfo.nameLocation,
-                      style: "title",
-                      fontSize: 12,
-                    },
-                    {},
-                  ],
-                },
-                {
-                  columns: [
-                    { text: "Ciudad:", style: "title", fontSize: 12 },
-                    {
-                      text: controlInfo.city,
-                      style: "title",
-                      fontSize: 12,
-                    },
-                    { text: "________________", style: "title", fontSize: 12 },
-                  ],
-                },
-              ],
-            },
-          ],
+        stack: [
+          {
+            columns: [
+              { text: "A:", style: "text1", width: 70 },
+              {
+                text: `${clients[i].firstName} ${clients[i].lastName}`,
+                style: "text4",
+                width: 170,
+              },
+              { text: "Atentamente", style: "text3" },
+            ],
+          },
+          {
+            columns: [
+              { text: "Dirección:", style: "text1", width: 70 },
+              [{ text: controlInfo.nameLocation, style: "text4" }],
+            ],
+          },
+          {
+            columns: [
+              { text: "Ciudad:", style: "text1", width: 70 },
+              { text: controlInfo.city, style: "text4", width: 170 },
+              { text: "_________________________", style: "text3" },
+            ],
+          },
         ],
       },
+      "\n",
+      "\n\n",
+      "\n\n",
+      {
+        text: [
+          "ACEPTADA.- ",
+          {
+            text: "Valor recibido. El pago no podrá hacerse por partes ni aún por mi __________________________________________________ (nuestros) herederos. Me(nos) sujet(amos) a los jueces de esta ciudad y al trámite judicial que corresponda de acuerdo a la Ley, a la elección del demandante.",
+            style: "text3",
+          },
+        ],
+        style: "text1",
+      },
+      "\n",
+      {
+        text: [
+          "Lugar y fecha: ",
+          { text: controlInfo.city, style: "text1" },
+          { text: " __________________________", style: "text3" },
+        ],
+        style: "text5",
+      },
+      "\n",
+      { text: "__________________________", style: "text5" },
+      { text: "Firma", style: "text5" },
+      "\n",
+      {
+        text: [
+          "POR AVAL ",
+          {
+            text: "Me(nos) constituyo(imos) solidariamente responsable(s) con _____________________. Sin protesto; el pago no podrá hacerse por partes ni aún por ____________________ herederos. Estipulo(amos) las demás condiciones constantes de la letra y de aceptación.",
+            style: "text3",
+          },
+        ],
+        style: "text1",
+      },
+      "\n",
+      {
+        text: [
+          "Lugar y fecha: ",
+          { text: controlInfo.city, style: "text1" },
+          { text: " __________________________", style: "text3" },
+        ],
+        style: "text5",
+      },
+      "\n",
+      {
+        text: ["F. ", { text: "__________________________", style: "text3" }],
+        style: "text5",
+      },
+      "\n",
+      { text: "__________________________", style: "text5" },
+      "\n",
+      { text: controlInfo.nameSlogan, style: "text5" },
+      {
+        text: [
+          "PÁGUESE a la orden de ",
+          { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "text3" },
+          { text: " el valor de $ ", style: "text3" },
+          { text: clients[i].credits[i2].loanValue, style: "text1" },
+          { text: ". Sin Protesto. ", style: "text3" },
+        ],
+        style: "text3",
+      },
+      "\n",
+      {
+        text: [
+          "Lugar y fecha: ",
+          { text: controlInfo.city, style: "text1" },
+          { text: " __________________________", style: "text3" },
+        ],
+        style: "text5",
+      },
+      "\n",
+      { text: "__________________________", style: "text5" },
+      { text: "Firma", style: "text5" },
     ],
     styles: {
       text1: {
-        color: "#333333",
-        width: "*",
+        color: "black",
         bold: true,
-        alignment: "center",
-        margin: [0, 0, 0, 3],
+        alignment: "left",
+        marginBottom: 3,
+        fontSize: 13,
       },
-      title2: {
-        color: "#333333",
-        width: "*",
-        fontSize: 10,
-        bold: true,
-        alignment: "center",
-        margin: [10, 0, 0, 25],
-      },
-      subtitle: {
-        color: "red",
-        width: "*",
-        fontSize: 10,
-        bold: true,
-        alignment: "center",
-      },
-      subtitle2: {
-        fontSize: 10,
+      text2: {
+        fontSize: 12,
         bold: true,
         italics: true,
         color: "red",
       },
-      Col1: {
-        color: "#aaaaab",
-        bold: true,
-        fontSize: 11,
-        alignment: "left",
-        margin: [0, 0, 0, 3],
-      },
-      Col2: {
-        color: "black",
-        bold: false,
-        fontSize: 11,
-        alignment: "left",
-      },
-      table1: {
-        alignment: "center",
-        bold: true,
-        color: "white",
+      text3: {
         fontSize: 12,
-      },
-      signature1: {
-        alignment: "center",
         bold: false,
         color: "black",
-        fontSize: 10,
-        marginBottom: 1,
       },
-      signature2: {
-        alignment: "center",
-        bold: true,
+      text4: {
+        fontSize: 13,
+        bold: false,
         color: "black",
-        fontSize: 10,
-        marginBottom: 1,
+      },
+      text5: {
+        fontSize: 12,
+        bold: false,
+        color: "black",
+        alignment: "center",
       },
     },
     defaultStyle: {
