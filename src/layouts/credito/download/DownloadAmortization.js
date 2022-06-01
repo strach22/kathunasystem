@@ -32,13 +32,12 @@ export default function DownloadAmortization() {
       });
     }
   }, [aux1]);
-  let { loanValue, interest, periods, desgravament } = clients[i].credits[i2];
-  loanValue = parseInt(loanValue, 10);
-  interest = parseInt(interest, 10);
-  periods = parseInt(periods, 10);
-  desgravament = parseInt(desgravament, 10);
+  let { loanValue, interest, periods } = clients[i].credits[i2];
+  loanValue = parseFloat(loanValue);
+  interest = parseFloat(interest) / 100;
+  periods = parseFloat(periods);
   const periodicFee = loanValue * (interest / (1 - (interest + 1) ** -periods));
-  const desgravamen = +(desgravament * loanValue) / periods;
+  const desgravamen = +((controlInfo.desgravament / 100) * loanValue) / periods;
   const periodicFeeDesgravamen = periodicFee + desgravamen;
   let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
