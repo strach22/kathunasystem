@@ -32,26 +32,23 @@ export default function DownloadAmortization() {
       });
     }
   }, [aux1]);
-
-  const periodicFee =
-    clients[i].credits[i2].loanValue *
-    (clients[i].credits[i2].interest /
-      (1 - (clients[i].credits[i2].interest + 1) ** -clients[i].credits[i2].periods));
-
-  const desgravamen =
-    +(controlInfo.desgravament * clients[i].credits[i2].loanValue) / clients[i].credits[i2].periods;
-
+  let { loanValue, interest, periods, desgravament } = clients[i].credits[i2];
+  loanValue = parseInt(loanValue, 10);
+  interest = parseInt(interest, 10);
+  periods = parseInt(periods, 10);
+  desgravament = parseInt(desgravament, 10);
+  const periodicFee = loanValue * (interest / (1 - (interest + 1) ** -periods));
+  const desgravamen = +(desgravament * loanValue) / periods;
   const periodicFeeDesgravamen = periodicFee + desgravamen;
-  let periodInteres = clients[i].credits[i2].loanValue * clients[i].credits[i2].interest;
+  let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
-  let residue = clients[i].credits[i2].loanValue - amortizedCapital;
+  let residue = loanValue - amortizedCapital;
   const rows = [];
-
-  for (let aux = 1; aux < clients[i].credits[i2].periods + 1; aux += 1) {
-    if (aux === 1) {
+  for (let j = 1; j < periods + 1; j += 1) {
+    if (j === 1) {
       rows.push({
         cuota: " ",
-        saldo: clients[i].credits[i2].loanValue,
+        saldo: loanValue,
         interesPeriodo: " ",
         capitalAmortizado: " ",
         desgravamen: " ",
@@ -59,14 +56,14 @@ export default function DownloadAmortization() {
       });
     }
     rows.push({
-      cuota: String(aux),
+      cuota: String(j),
       interesPeriodo: periodInteres.toFixed(2),
       capitalAmortizado: amortizedCapital.toFixed(2),
       desgravamen: desgravamen.toFixed(2),
       valorCuota: periodicFeeDesgravamen.toFixed(2),
       saldo: Math.abs(residue).toFixed(2),
     });
-    periodInteres = residue * clients[i].credits[i2].interest;
+    periodInteres = residue * interest;
     amortizedCapital = periodicFee - periodInteres;
     residue -= amortizedCapital;
   }
