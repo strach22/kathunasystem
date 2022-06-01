@@ -79,6 +79,11 @@ const useStyles = makeStyles({
       width: "100%",
       fontSize: "80%",
     },
+    // NumericInput
+    "& .interestValueClass": {
+      width: "100%",
+      fontSize: "80%",
+    },
     // Calendario
     "& .MuiTextField-root": {
       width: "100%",

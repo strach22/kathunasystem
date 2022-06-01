@@ -8,6 +8,7 @@ export default function listItems() {
   const sociosItems = socios.map((val, index) => ({
     id: String(index + 1),
     title: `${val.firstName} ${val.lastName}`,
+    ci: val.identification,
   }));
   return { sociosItems };
 }

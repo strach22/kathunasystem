@@ -23,19 +23,35 @@ export default function TableCreditScreen({ worksheets }) {
   const errorValues = {
     id: "",
     loanValue: "",
+    interest: "",
+    periods: "",
+    actualLoan: "",
     guarantor: "",
+    monthlyPaymentValue: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
+    if ("id" in fieldValues)
+      tempo.id = /^[0-9]+$/.test(fieldValues.id) ? "" : "Es Obligatorio Llenar este campo";
     if ("loanValue" in fieldValues)
       tempo.loanValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.loanValue)
         ? ""
         : "Es Obligatorio llenar con Números este Campo";
-    if ("id" in fieldValues)
-      tempo.id = /^[0-9]+$/.test(fieldValues.id) ? "" : "Es Obligatorio Llenar este campo";
+    if ("actualLoan" in fieldValues)
+      tempo.actualLoan = /^[1-9]{1}[0-9]+$/.test(fieldValues.actualLoan)
+        ? ""
+        : "Es Obligatorio llenar con Números este Campo";
+    if ("monthlyPaymentValue" in fieldValues)
+      tempo.monthlyPaymentValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.monthlyPaymentValue)
+        ? ""
+        : "Es Obligatorio llenar con Números este Campo";
+    if ("periods" in fieldValues)
+      tempo.periods = /^[0-9]+$/.test(fieldValues.periods)
+        ? ""
+        : "Es Obligatorio Llenar este campo";
     if ("guarantor" in fieldValues)
       tempo.guarantor =
         fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
@@ -50,6 +66,10 @@ export default function TableCreditScreen({ worksheets }) {
       initialDate: new Date(),
       id: "0",
       loanValue: "0",
+      interest: "0",
+      periods: "0",
+      actualLoan: "0",
+      monthlyPaymentValue: "0",
       guarantor: "",
     },
     true,
@@ -85,15 +105,10 @@ export default function TableCreditScreen({ worksheets }) {
 
           const dataCreditsTempo = {
             id: String(value[0]),
-            quotaNumber: String(value[1]),
-            paymentDate: String(value[2]),
-            interest: String(value[3]),
-            amortizedCapital: String(value[4]),
-            desgravamen: String(value[5]),
-            quotaValue: String(value[6]),
-            remainingBalance: String(value[7]),
-            paymentType: value[8],
-            status: value[9],
+            transactionDate: String(value[1]),
+            value: String(value[2]),
+            paymentType: String(value[3]),
+            observation: String(value[4]),
           };
 
           dispatch({
@@ -115,23 +130,37 @@ export default function TableCreditScreen({ worksheets }) {
 
         <form onSubmit={handleUpload}>
           <Grid container>
-            <Grid item xs={4.5}>
+            <Grid item xs={3.38}>
               <MDTypography className="Subtitles" variant="h5">
-                Fecha del Crédito:
+                Número de Carpeta:
               </MDTypography>
             </Grid>
-            <Grid item xs={1.5}>
+            <Grid item xs={2}>
               {}
             </Grid>
             <Grid item xs={3.38}>
               <MDTypography className="Subtitles" variant="h5">
-                Valor del Crédito:
+                Fecha del Crédito:
               </MDTypography>
             </Grid>
           </Grid>
 
           <Grid container>
-            <Grid item xs={4.5}>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputId"
+                name="id"
+                value={values.id}
+                onChange={handleInputChange}
+                error={errors.id}
+                icon="#"
+                position="start"
+              />
+            </Grid>
+            <Grid item xs={2}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
               <DatePickerH
                 name="initialDate"
                 label="Fecha del Crédito"
@@ -139,9 +168,25 @@ export default function TableCreditScreen({ worksheets }) {
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={1.5}>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Valor del Crédito:
+              </MDTypography>
+            </Grid>
+            <Grid item xs={2}>
               {}
             </Grid>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Cuotas:
+              </MDTypography>
+            </Grid>
+          </Grid>
+
+          <Grid container>
             <Grid item xs={3.38}>
               <InputValue
                 className="InputLoanValue"
@@ -153,26 +198,98 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
+            <Grid item xs={2}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputLoanValue"
+                name="periods"
+                value={values.periods}
+                onChange={handleInputChange}
+                error={errors.periods}
+                icon="#"
+                position="start"
+              />
+            </Grid>
           </Grid>
 
           <Grid container>
-            <Grid item xs={4.5}>
+            <Grid item xs={3.38}>
               <MDTypography className="Subtitles2" variant="h5">
-                Garante:
+                Deuda Pendiente:
               </MDTypography>
             </Grid>
-            <Grid item xs={1.5}>
+            <Grid item xs={2}>
               {}
             </Grid>
             <Grid item xs={3.38}>
               <MDTypography className="Subtitles2" variant="h5">
-                Número de Carpeta:
+                Valor del Pago Mensual:
+              </MDTypography>
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputLoanValue"
+                name="actualLoan"
+                value={values.actualLoan}
+                onChange={handleInputChange}
+                error={errors.actualLoan}
+                icon="$"
+                position="start"
+              />
+            </Grid>
+            <Grid item xs={2}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputLoanValue"
+                name="monthlyPaymentValue"
+                value={values.monthlyPaymentValue}
+                onChange={handleInputChange}
+                error={errors.monthlyPaymentValue}
+                icon="$"
+                position="start"
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Interés:
+              </MDTypography>
+            </Grid>
+            <Grid item xs={2}>
+              {}
+            </Grid>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Garante:
               </MDTypography>
             </Grid>
           </Grid>
 
           <Grid container sx={{ marginBottom: "40px" }}>
-            <Grid item xs={4.5}>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="interestValueClass"
+                name="interest"
+                value={values.interest}
+                onChange={handleInputChange}
+                error={errors.interest}
+                icon="%"
+                position="end"
+              />
+            </Grid>
+            <Grid item xs={2}>
+              {}
+            </Grid>
+            <Grid item xs={5.62}>
               <SelectG
                 name="guarantor"
                 label="Garante"
@@ -180,20 +297,6 @@ export default function TableCreditScreen({ worksheets }) {
                 onChange={handleInputChange}
                 options={sociosItems}
                 error={errors.guarantor}
-              />
-            </Grid>
-            <Grid item xs={1.5}>
-              {}
-            </Grid>
-            <Grid item xs={3.38}>
-              <InputValue
-                className="InputId"
-                name="id"
-                value={values.id}
-                onChange={handleInputChange}
-                error={errors.id}
-                icon="#"
-                position="start"
               />
             </Grid>
           </Grid>
