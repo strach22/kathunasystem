@@ -46,7 +46,7 @@ export default function DownloadAmortization() {
   for (let j = 1; j < periods + 1; j += 1) {
     if (j === 1) {
       rows.push({
-        cuota: " ",
+        cuota: "0",
         saldo: loanValue,
         interesPeriodo: " ",
         capitalAmortizado: " ",
