@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable object-shorthand */
-import React, { useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { CircularProgress, Grid } from "@mui/material";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
@@ -12,6 +12,8 @@ import InputValue from "elements/InputValue";
 import DatePickerH from "elements/DatePickerH";
 import SelectG from "elements/SelectG";
 import listItems from "layouts/credito/helpers/sociosItems";
+import { useParams } from "react-router-dom";
+import ClientsContext from "context/Clients/ClientsContext";
 
 // eslint-disable-next-line react/prop-types
 export default function TableCreditScreen({ worksheets }) {
@@ -87,7 +89,17 @@ export default function TableCreditScreen({ worksheets }) {
     errorValues
   );
 
+  const { id } = useParams();
+  const { clients } = useContext(ClientsContext);
+  const [guarantor, setGuarantor] = useState([]);
+
   const { sociosItems } = listItems();
+
+  useEffect(() => {
+    const completeName = `${clients[id - 1].firstName} ${clients[id - 1].lastName}`;
+    setGuarantor(sociosItems.filter((val) => val.title !== completeName));
+    console.log("hola");
+  }, []);
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -305,7 +317,7 @@ export default function TableCreditScreen({ worksheets }) {
                 label="Garante"
                 value={values.guarantor}
                 onChange={handleInputChange}
-                options={sociosItems}
+                options={guarantor}
                 error={errors.guarantor}
               />
             </Grid>
