@@ -62,6 +62,7 @@ export default function AddExpense() {
         const newControlInfo = controlInfo;
         values.id =
           parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1;
+        newControlInfo.totalExpenses += parseInt(values.expenseValue, 10);
         newControlInfo.expensesHystory.push(values);
         uploadControlInfo(newControlInfo);
         navigate(`/inicio`);
