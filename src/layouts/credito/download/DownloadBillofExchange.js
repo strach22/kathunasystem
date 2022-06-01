@@ -265,7 +265,7 @@ export default function DownloadBillofExchange() {
 
   const handlePrintPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.createPdf(changeTablePDF).open();
+    pdfMake.createPdf(changeTablePDF).download("Letra-de-Cambio.pdf");
   };
 
   return (
