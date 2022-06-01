@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
@@ -83,10 +84,19 @@ export default function PrincipalScreen() {
             </MDBox>
             <MDBox pt={3}>
               <MDBox mt={6} mb={3}>
-                <Grid container spacing={3}>
+                <Grid container spacing={1}>
                   <Grid item xs={12}>
                     <DownloadAmortization />
                     <DownloadBillofExchange />
+                    <Link to="/creditos">
+                      <MDButton
+                        size="medium"
+                        variant="text"
+                        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+                      >
+                        REGRESAR
+                      </MDButton>
+                    </Link>
                   </Grid>
                   <Grid item xs={11}>
                     <MDBox coloredShadow="secondary" pb={2}>

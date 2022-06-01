@@ -5,7 +5,6 @@ import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
 import zfill from "layouts/gastos/helpers/zfill";
 import { useParams } from "react-router-dom";
-import { Grid } from "@mui/material";
 
 export default function DownloadAmortization() {
   const [relationShip, setRelationShip] = useState({ name: "", type: "", ci: "" });
@@ -397,15 +396,13 @@ export default function DownloadAmortization() {
   };
 
   return (
-    <Grid container>
-      <MDButton
-        variant="text"
-        size="medium"
-        onClick={handleGeneratedPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-      >
-        PDF
-      </MDButton>
-    </Grid>
+    <MDButton
+      variant="text"
+      size="medium"
+      onClick={handleGeneratedPDF}
+      sx={{ background: "#5079BA", "&:hover": { background: "#778FB6" } }}
+    >
+      TABLA DE AMORTIZACIÓN
+    </MDButton>
   );
 }

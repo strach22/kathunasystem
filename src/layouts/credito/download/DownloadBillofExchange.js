@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
 import zfill from "layouts/gastos/helpers/zfill";
@@ -157,7 +156,7 @@ export default function DownloadBillofExchange() {
         text: [
           "ACEPTADA.- ",
           {
-            text: "Valor recibido. El pago no podrá hacerse por partes ni aún por mi __________________________________________________ (nuestros) herederos. Me(nos) sujet(amos) a los jueces de esta ciudad y al trámite judicial que corresponda de acuerdo a la Ley, a la elección del demandante.",
+            text: "Valor recibido. El pago no podrá hacerse por partes ni aún por mi ________________ __________________________________ (nuestros) herederos. Me(nos) sujet(amos) a los jueces de esta ciudad y al trámite judicial que corresponda de acuerdo a la Ley, a la elección del demandante.",
             style: "text3",
           },
         ],
@@ -269,15 +268,13 @@ export default function DownloadBillofExchange() {
   };
 
   return (
-    <Grid container>
-      <MDButton
-        variant="text"
-        size="medium"
-        onClick={handlePrintPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-      >
-        Descargar
-      </MDButton>
-    </Grid>
+    <MDButton
+      variant="text"
+      size="medium"
+      onClick={handlePrintPDF}
+      sx={{ background: "#95BA50", "&:hover": { background: "#ACBD8C" } }}
+    >
+      LETRA DE CAMBIO
+    </MDButton>
   );
 }
