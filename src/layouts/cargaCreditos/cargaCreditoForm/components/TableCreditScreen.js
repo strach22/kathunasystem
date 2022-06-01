@@ -39,15 +39,19 @@ export default function TableCreditScreen({ worksheets }) {
     if ("loanValue" in fieldValues)
       tempo.loanValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.loanValue)
         ? ""
-        : "Es Obligatorio llenar con Números este Campo";
+        : "Es Obligatorio llenar este Campo";
     if ("actualLoan" in fieldValues)
-      tempo.actualLoan = /^[1-9]{1}[0-9]+$/.test(fieldValues.actualLoan)
+      tempo.actualLoan = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.actualLoan)
         ? ""
-        : "Es Obligatorio llenar con Números este Campo";
+        : "Es Obligatorio llenar este Campo";
     if ("monthlyPaymentValue" in fieldValues)
-      tempo.monthlyPaymentValue = /^[1-9]{1}[0-9]+$/.test(fieldValues.monthlyPaymentValue)
+      tempo.monthlyPaymentValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.monthlyPaymentValue)
         ? ""
-        : "Es Obligatorio llenar con Números este Campo";
+        : "Es Obligatorio llenar este Campo";
+    if ("interest" in fieldValues)
+      tempo.interest = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.interest)
+        ? ""
+        : "Es Obligatorio Llenar este campo";
     if ("periods" in fieldValues)
       tempo.periods = /^[0-9]+$/.test(fieldValues.periods)
         ? ""
@@ -55,6 +59,12 @@ export default function TableCreditScreen({ worksheets }) {
     if ("guarantor" in fieldValues)
       tempo.guarantor =
         fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
+    if (fieldValues.periods === "0") tempo.periods = "Es Obligatorio llenar este Campo";
+    if (fieldValues.id === "0") tempo.id = "Es Obligatorio llenar este Campo";
+    if (fieldValues.actualLoan === "0.00") tempo.actualLoan = "Es Obligatorio llenar este Campo";
+    if (fieldValues.interest === "0.00") tempo.interest = "Es Obligatorio llenar este Campo";
+    if (fieldValues.monthlyPaymentValue === "0.00")
+      tempo.monthlyPaymentValue = "Es Obligatorio llenar este Campo";
     setErrors({
       ...tempo,
     });
@@ -66,10 +76,10 @@ export default function TableCreditScreen({ worksheets }) {
       initialDate: new Date(),
       id: "0",
       loanValue: "0",
-      interest: "0",
+      interest: "0.00",
       periods: "0",
-      actualLoan: "0",
-      monthlyPaymentValue: "0",
+      actualLoan: "0.00",
+      monthlyPaymentValue: "0.00",
       guarantor: "",
     },
     true,

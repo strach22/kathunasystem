@@ -204,8 +204,9 @@ export default function PrincipalScreen() {
                       Revisar todos los datos con mucho cuidado. NO SE PODRÁ REVERTIR LOS CAMBIOS.
                     </MDTypography>
                     <MDTypography gutterBottom>
-                      Es obligatorio colocar el número de carpeta, la fecha de entrega del crédito,
-                      garante y el valor del préstamo.
+                      Es obligatorio colocar: Número de carpeta, Fecha de entrega del crédito, Valor
+                      del préstamo, Interés, Número de cuotas, Deuda pendiente, Valor de pago
+                      Mensual y Garante.
                     </MDTypography>
                     <MDTypography gutterBottom>
                       Finalmente, seleccione el botón <b>Subir archivo</b> y se cargarán todos los
