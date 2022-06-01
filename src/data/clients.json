@@ -21,7 +21,7 @@
     "lastNameRelationShip": "Millbank",
     "mobileRelationShip": "1465243942",
     "savingBalance": 50,
-    "creditBalance": 120,
+    "creditBalance": 5120,
     "savingHistory": [
       {
         "transactionDate": "2021/03/04",
@@ -61,7 +61,7 @@
         "loanValue": "5120",
         "interest": "1.5",
         "periods": "60",
-        "actualLoan": "120",
+        "actualLoan": "5120",
         "state": "Aprobado",
         "guarantor": "Mihai Luna",
         "monthlyPayment": "130.87",
@@ -90,7 +90,7 @@
     "firstNameRelationShip": "Orelee",
     "lastNameRelationShip": "Malkin",
     "mobileRelationShip": "1530752615",
-    "savingBalance": 0,
+    "savingBalance": 1000,
     "creditBalance": 0,
     "savingHistory": [],
     "credits": []
@@ -168,12 +168,12 @@
     "firstNameRelationShip": "Kate",
     "lastNameRelationShip": "Sappson",
     "mobileRelationShip": "1799967621",
-    "savingBalance": 0,
+    "savingBalance": 50,
     "creditBalance": 0,
     "savingHistory": [
       {
         "transactionDate": "2021/03/04",
-        "value": 30,
+        "value": 180,
         "actualBalance": 180,
         "observation": "Ninguna"
       },
@@ -249,7 +249,7 @@
     "firstNameRelationShip": "Karrah",
     "lastNameRelationShip": "Francescuzzi",
     "mobileRelationShip": "7132949588",
-    "savingBalance": 0,
+    "savingBalance": 2000,
     "creditBalance": 0,
     "savingHistory": [],
     "credits": []
@@ -314,7 +314,7 @@
     "firstNameRelationShip": "Candide",
     "lastNameRelationShip": "Peaddie",
     "mobileRelationShip": "4334600135",
-    "savingBalance": 0,
+    "savingBalance": 10000,
     "creditBalance": 0,
     "savingHistory": [],
     "credits": []

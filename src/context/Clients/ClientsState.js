@@ -71,6 +71,7 @@ function ClientsState({ children }) {
   };
 
   const addClientHistory = (id, data) => {
+    state.controlInfo.totalTransactions += data.value;
     const newClients = state.clients;
     const i = newClients.map((e) => e.id).indexOf(id);
     newClients[i].savingHistory.push(data);

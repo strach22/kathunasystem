@@ -1,90 +1,94 @@
 {
-    "nameBank": "CAJA DE AHORROS SAN PABLITO",
-    "nameSlogan": "SEMBRANDO EL FUTURO, IMPULSANDO AL DESARROLLO",
-    "nameLocation": "SAN PABLITO",
-    "legalRepresentative": "Representante Legal",
-    "email": "corrreo@mail.com",
-    "ruc": "0000000000001",
-    "mobile": "0999999999",
-    "city": "Quito, Ecuador",
-    "partnerSavingInterest": "0.50",
-    "particularSavingInterest": "0.30",
-    "partnerCreditInterest": "1.50",
-    "particularCreditInterest": "2.50",
-    "desgravament": "1.00",
-    "latePayment": "0.00",
-    "institutionSavings": "1000.00",
-    "expensesHystory": [{
-            "id": "1",
-            "expenseDate": "2021/03/04",
-            "expenseValue": "100.00",
-            "observation": "Serivicios Básicos"
-        },
-        {
-            "id": "2",
-            "expenseDate": "2021/08/26",
-            "expenseValue": "30.00",
-            "observation": "Seguridad"
-        },
-        {
-            "id": "3",
-            "expenseDate": "2021/07/22",
-            "expenseValue": "26.34",
-            "observation": "Transporte"
-        },
-        {
-            "id": "4",
-            "expenseDate": "2021/06/10",
-            "expenseValue": "93.21",
-            "observation": "Comida"
-        },
-        {
-            "id": "5",
-            "expenseDate": "2022/04/12",
-            "expenseValue": "900.00",
-            "observation": "Serivicios de Entretenimiento"
-        },
-        {
-            "id": "6",
-            "expenseDate": "2021/07/02",
-            "expenseValue": "456.31",
-            "observation": "Exportaciones"
-        },
-        {
-            "id": "7",
-            "expenseDate": "2021/01/17",
-            "expenseValue": "62.10",
-            "observation": "Serivicios de Limpieza"
-        },
-        {
-            "id": "8",
-            "expenseDate": "2022/04/09",
-            "expenseValue": "40.00",
-            "observation": "Alicuotas"
-        },
-        {
-            "id": "9",
-            "expenseDate": "2021/07/09",
-            "expenseValue": "325.00",
-            "observation": "Arriendo"
-        },
-        {
-            "id": "10",
-            "expenseDate": "2022/01/01",
-            "expenseValue": "235.12",
-            "observation": "Servicio Técnico"
-        },
-        {
-            "id": "11",
-            "expenseDate": "2021/11/18",
-            "expenseValue": "45.00",
-            "observation": "Billetes Falsos"
-        },
-        {
-            "id": "12",
-            "expenseDate": "2022/05/25",
-            "expenseValue": "146.20",
-            "observation": "Papelería"
-        }
-    ]
+  "nameBank": "CAJA DE AHORROS SAN PABLITO",
+  "nameSlogan": "SEMBRANDO EL FUTURO, IMPULSANDO AL DESARROLLO",
+  "nameLocation": "SAN PABLITO",
+  "legalRepresentative": "Representante Legal",
+  "email": "corrreo@mail.com",
+  "ruc": "0000000000001",
+  "mobile": "0999999999",
+  "city": "Quito, Ecuador",
+  "partnerSavingInterest": "0.50",
+  "particularSavingInterest": "0.30",
+  "partnerCreditInterest": "1.50",
+  "particularCreditInterest": "2.50",
+  "desgravament": "1.00",
+  "latePayment": "0.00",
+  "totalTransactions": 13100,
+  "totalCredits": -6022.0,
+  "totalExpenses": 2459.28,
+  "institutionSavings": 9537.28,
+  "expensesHystory": [
+    {
+      "id": "1",
+      "expenseDate": "2021/03/04",
+      "expenseValue": "100.00",
+      "observation": "Serivicios Básicos"
+    },
+    {
+      "id": "2",
+      "expenseDate": "2021/08/26",
+      "expenseValue": "30.00",
+      "observation": "Seguridad"
+    },
+    {
+      "id": "3",
+      "expenseDate": "2021/07/22",
+      "expenseValue": "26.34",
+      "observation": "Transporte"
+    },
+    {
+      "id": "4",
+      "expenseDate": "2021/06/10",
+      "expenseValue": "93.21",
+      "observation": "Comida"
+    },
+    {
+      "id": "5",
+      "expenseDate": "2022/04/12",
+      "expenseValue": "900.00",
+      "observation": "Serivicios de Entretenimiento"
+    },
+    {
+      "id": "6",
+      "expenseDate": "2021/07/02",
+      "expenseValue": "456.31",
+      "observation": "Exportaciones"
+    },
+    {
+      "id": "7",
+      "expenseDate": "2021/01/17",
+      "expenseValue": "62.10",
+      "observation": "Serivicios de Limpieza"
+    },
+    {
+      "id": "8",
+      "expenseDate": "2022/04/09",
+      "expenseValue": "40.00",
+      "observation": "Alicuotas"
+    },
+    {
+      "id": "9",
+      "expenseDate": "2021/07/09",
+      "expenseValue": "325.00",
+      "observation": "Arriendo"
+    },
+    {
+      "id": "10",
+      "expenseDate": "2022/01/01",
+      "expenseValue": "235.12",
+      "observation": "Servicio Técnico"
+    },
+    {
+      "id": "11",
+      "expenseDate": "2021/11/18",
+      "expenseValue": "45.00",
+      "observation": "Billetes Falsos"
+    },
+    {
+      "id": "12",
+      "expenseDate": "2022/05/25",
+      "expenseValue": "146.20",
+      "observation": "Papelería"
+    }
+  ]
 }
