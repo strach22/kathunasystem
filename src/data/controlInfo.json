@@ -13,80 +13,80 @@
   "particularCreditInterest": "2.50",
   "desgravament": "1.00",
   "latePayment": "0.00",
-  "totalTransactions": 13100,
-  "totalCredits": -6022.0,
-  "totalExpenses": 2459.28,
+  "totalTransactions": 10100.00,
+  "totalCredits": -6050.00,
+  "totalExpenses": 1649.28,
   "institutionSavings": 9537.28,
   "expensesHystory": [
     {
       "id": "1",
-      "expenseDate": "2021/03/04",
+      "expenseDate": "2022/02/04",
       "expenseValue": "100.00",
       "observation": "Serivicios Básicos"
     },
     {
       "id": "2",
-      "expenseDate": "2021/08/26",
+      "expenseDate": "2022/02/26",
       "expenseValue": "30.00",
       "observation": "Seguridad"
     },
     {
       "id": "3",
-      "expenseDate": "2021/07/22",
+      "expenseDate": "2022/03/22",
       "expenseValue": "26.34",
       "observation": "Transporte"
     },
     {
       "id": "4",
-      "expenseDate": "2021/06/10",
+      "expenseDate": "2022/03/30",
       "expenseValue": "93.21",
       "observation": "Comida"
     },
     {
       "id": "5",
       "expenseDate": "2022/04/12",
-      "expenseValue": "900.00",
+      "expenseValue": "90.00",
       "observation": "Serivicios de Entretenimiento"
     },
     {
       "id": "6",
-      "expenseDate": "2021/07/02",
+      "expenseDate": "2022/04/22",
       "expenseValue": "456.31",
       "observation": "Exportaciones"
     },
     {
       "id": "7",
-      "expenseDate": "2021/01/17",
+      "expenseDate": "2022/04/27",
       "expenseValue": "62.10",
       "observation": "Serivicios de Limpieza"
     },
     {
       "id": "8",
-      "expenseDate": "2022/04/09",
+      "expenseDate": "2022/05/09",
       "expenseValue": "40.00",
       "observation": "Alicuotas"
     },
     {
       "id": "9",
-      "expenseDate": "2021/07/09",
+      "expenseDate": "2022/05/21",
       "expenseValue": "325.00",
       "observation": "Arriendo"
     },
     {
       "id": "10",
-      "expenseDate": "2022/01/01",
+      "expenseDate": "2022/05/28",
       "expenseValue": "235.12",
       "observation": "Servicio Técnico"
     },
     {
       "id": "11",
-      "expenseDate": "2021/11/18",
+      "expenseDate": "2022/05/30",
       "expenseValue": "45.00",
       "observation": "Billetes Falsos"
     },
     {
       "id": "12",
-      "expenseDate": "2022/05/25",
+      "expenseDate": "2022/05/31",
       "expenseValue": "146.20",
       "observation": "Papelería"
     }

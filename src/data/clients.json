@@ -90,9 +90,14 @@
     "firstNameRelationShip": "Orelee",
     "lastNameRelationShip": "Malkin",
     "mobileRelationShip": "1530752615",
-    "savingBalance": 1000,
+    "savingBalance": 10000,
     "creditBalance": 0,
-    "savingHistory": [],
+    "savingHistory": [{
+      "transactionDate": "2022/02/04",
+      "value": 10000,
+      "actualBalance": 10000,
+      "observation": "Ninguna"
+    }],
     "credits": []
   },
   {
@@ -172,58 +177,46 @@
     "creditBalance": 0,
     "savingHistory": [
       {
-        "transactionDate": "2021/03/04",
+        "transactionDate": "2022/03/04",
         "value": 180,
         "actualBalance": 180,
         "observation": "Ninguna"
       },
       {
-        "transactionDate": "2021/03/05",
+        "transactionDate": "2022/03/05",
         "value": -30,
-        "actualBalance": 50,
+        "actualBalance": 150,
         "observation": "Ninguna"
       },
       {
-        "transactionDate": "2021/04/20",
-        "value": -50,
+        "transactionDate": "2022/03/20",
+        "value": -150,
         "actualBalance": 0,
         "observation": "El cliente retira todos sus ahorros"
       },
       {
-        "transactionDate": "2021/03/04",
+        "transactionDate": "2022/04/04",
         "value": 30,
-        "actualBalance": 180,
+        "actualBalance": 30,
         "observation": "Ninguna"
       },
       {
-        "transactionDate": "2021/03/05",
-        "value": -30,
-        "actualBalance": 50,
-        "observation": "Ninguna"
-      },
-      {
-        "transactionDate": "2021/04/20",
-        "value": -50,
-        "actualBalance": 0,
-        "observation": "El cliente retira todos sus ahorros"
-      },
-      {
-        "transactionDate": "2021/03/04",
+        "transactionDate": "2022/04/05",
         "value": 30,
-        "actualBalance": 180,
+        "actualBalance": 60,
         "observation": "Ninguna"
       },
       {
-        "transactionDate": "2021/03/05",
-        "value": -30,
-        "actualBalance": 50,
-        "observation": "Ninguna"
-      },
-      {
-        "transactionDate": "2021/04/20",
-        "value": -50,
+        "transactionDate": "2022/04/20",
+        "value": -60,
         "actualBalance": 0,
         "observation": "El cliente retira todos sus ahorros"
+      },
+      {
+        "transactionDate": "2022/04/04",
+        "value": 50,
+        "actualBalance": 50,
+        "observation": "Ninguna"
       }
     ],
     "credits": []
@@ -249,7 +242,7 @@
     "firstNameRelationShip": "Karrah",
     "lastNameRelationShip": "Francescuzzi",
     "mobileRelationShip": "7132949588",
-    "savingBalance": 2000,
+    "savingBalance": 0,
     "creditBalance": 0,
     "savingHistory": [],
     "credits": []
@@ -281,7 +274,7 @@
     "credits": [
       {
         "id": "2",
-        "initialDate": "2020/01/19",
+        "initialDate": "2022/04/19",
         "loanValue": "1000",
         "interest": "1.5",
         "periods": "2",
@@ -314,7 +307,7 @@
     "firstNameRelationShip": "Candide",
     "lastNameRelationShip": "Peaddie",
     "mobileRelationShip": "4334600135",
-    "savingBalance": 10000,
+    "savingBalance": 0,
     "creditBalance": 0,
     "savingHistory": [],
     "credits": []
