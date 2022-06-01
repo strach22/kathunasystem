@@ -12,6 +12,7 @@ export default function data() {
       { Header: "nombres", accessor: "firstName", align: "left" },
       { Header: "apellidos", accessor: "lastName", align: "left" },
       { Header: "documento", accessor: "identification", align: "center" },
+      { Header: "saldo", accessor: "creditBalance", align: "center" },
       { Header: "acción", accessor: "accion", align: "center" },
     ],
 
@@ -20,6 +21,7 @@ export default function data() {
       firstName: cliente.firstName,
       lastName: cliente.lastName,
       identification: cliente.identification,
+      creditBalance: cliente.creditBalance,
       accion: (
         <>
           <Link to={`crear/${cliente.id}`}>

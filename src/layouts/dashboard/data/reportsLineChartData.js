@@ -1,10 +1,18 @@
 export default {
-  sales: {
-    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: { label: "Mobile apps", data: [50, 40, 300, 320, 500, 350, 200, 230, 500] },
+  ahorros: {
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
+    datasets: { label: "Ahorros", data: [0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0] },
   },
-  tasks: {
-    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: { label: "Desktop apps", data: [50, 40, 300, 220, 500, 250, 400, 230, 500] },
+  creditos: {
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
+    datasets: { label: "Créditos", data: [0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0] },
+  },
+  gastos: {
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
+    datasets: { label: "Gastos", data: [0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0] },
+  },
+  total: {
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
+    datasets: { label: "Gastos", data: [0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0] },
   },
 };

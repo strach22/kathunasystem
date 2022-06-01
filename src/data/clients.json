@@ -24,13 +24,13 @@
     "creditBalance": 5120,
     "savingHistory": [
       {
-        "transactionDate": "2021/03/04",
-        "value": 30,
+        "transactionDate": "2022/03/04",
+        "value": 180,
         "actualBalance": 180,
         "observation": "Ninguna"
       },
       {
-        "transactionDate": "2021/03/04",
+        "transactionDate": "2022/03/14",
         "value": -30,
         "actualBalance": 50,
         "observation": "Ninguna"
@@ -237,7 +237,7 @@
     "secondMobile": "940205532",
     "tariff": "Socio",
     "civil": "Casado/a",
-    "birthDate": "2021/07/22",
+    "birthDate": "1988/07/22",
     "creationDate": "2021/11/30",
     "address": "El Aguacate",
     "email": "kfrancescuzzi5@wp.com",
@@ -263,7 +263,7 @@
     "secondMobile": "961686891",
     "tariff": "Socio",
     "civil": "Soltero/a",
-    "birthDate": "2021/06/02",
+    "birthDate": "1990/06/02",
     "creationDate": "2019/12/23",
     "address": "Naa Santa",
     "email": "jcrooke6@arizona.edu",
@@ -302,7 +302,7 @@
     "secondMobile": "933459460",
     "tariff": "Particular",
     "civil": "Soltero/a",
-    "birthDate": "2021/12/23",
+    "birthDate": "2001/12/23",
     "creationDate": "2021/12/29",
     "address": "Jeruk",
     "email": "cpeaddie7@economist.com",
@@ -328,7 +328,7 @@
     "secondMobile": "931760463",
     "tariff": "Particular",
     "civil": "Casado/a",
-    "birthDate": "2021/09/15",
+    "birthDate": "1990/09/15",
     "creationDate": "2021/07/29",
     "address": "Longford",
     "email": "jgarvagh8@delicious.com",
