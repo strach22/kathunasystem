@@ -15,7 +15,7 @@ export default {
     labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
     datasets: {
       label: "Gastos",
-      data: [0, 9940, 10000.45, 9778.41, 4841.32, 40500, 0, 0, 0, 0, 0, 0],
+      data: [0, 9940, 9870, 8920.45, 4841.32, 3192.04, 0, 0, 0, 0, 0, 0],
     },
   },
 };
