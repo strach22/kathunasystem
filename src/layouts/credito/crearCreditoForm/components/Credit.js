@@ -94,6 +94,7 @@ export default function Credit() {
       values.actualLoan = (periodicFeeDesgravamen * periods).toFixed(2);
       values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
       values.interest = interes;
+      values.creditHistory = [];
       addClientCredit(id, values);
       navigate(`/creditos/ver/${id}`);
     }
