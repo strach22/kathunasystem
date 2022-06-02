@@ -42,11 +42,12 @@
         "id": "1",
         "initialDate": "2022/01/10",
         "loanValue": "2800",
-        "interest": "1.5",
+        "interest": "2.5",
         "periods": "1",
         "actualLoan": "0",
         "state": "Finalizado",
         "guarantor": "Mihai Luna",
+        "identificationGuarantor": "7107830765",
         "monthlyPayment": "2898.00",
         "creditHistory": [{
           "id":"1",
@@ -60,12 +61,13 @@
         "id": "3",
         "initialDate": "2022/05/12",
         "loanValue": "5120",
-        "interest": "1.5",
+        "interest": "2.5",
         "periods": "60",
-        "actualLoan": "5120",
+        "actualLoan": "9990",
         "state": "Aprobado",
         "guarantor": "Mihai Luna",
-        "monthlyPayment": "130.87",
+        "identificationGuarantor": "7107830765",
+        "monthlyPayment": "166.50",
         "creditHistory": []
       }
     ]
@@ -281,15 +283,38 @@
     "credits": [
       {
         "id": "2",
-        "initialDate": "2022/04/19",
+        "initialDate": "2022/03/01",
         "loanValue": "1000",
         "interest": "1.5",
-        "periods": "2",
-        "actualLoan": "1022.56",
-        "state": "Aprobado",
+        "periods": "13",
+        "actualLoan": "860.10",
+        "state": "Entregado",
         "guarantor": "Alícia Mayor",
-        "monthlyPayment": "157",
-        "creditHistory": []
+        "identificationGuarantor": "2120703704",
+        "monthlyPayment": "86.01",
+        "creditHistory": [
+          {
+            "id":"1",
+            "value":"86.01",
+            "paymentType": "Efectivo",
+            "transactionDate":"2022/04/01",
+            "observation":"Pago completo"
+          },
+          {
+            "id":"2",
+            "value":"86.01",
+            "paymentType": "Cheque",
+            "transactionDate":"2022/05/01",
+            "observation":"Pago completo"
+          },
+          {
+            "id":"3",
+            "value":"86.01",
+            "paymentType": "Transferencia",
+            "transactionDate":"2022/06/01",
+            "observation":"Pago completo"
+          }
+        ]
       }
     ]
   },
