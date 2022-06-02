@@ -41,15 +41,14 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "25%",
+      width: "20%",
       color: "white",
       background: "#1A73E8",
       "&:hover": { background: "#5499C7" },
-      margin: "50px 0px 50px 0px",
+      marginTop: "10px",
     },
     // Label
     "& .SubtitlesInfo": {
-      marginBottom: "20px",
       color: "black",
     },
     // Label

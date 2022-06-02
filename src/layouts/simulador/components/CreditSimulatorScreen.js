@@ -18,9 +18,10 @@ export default function CreditSimulatorScreen({ setParameters }) {
   const [cuotaPeriodica, setCuotaPeriodica] = useState("$ 0");
   const [numeroCuotas, setNumeroCuotas] = useState("0");
   const [totalInteres, setTotalInteres] = useState("$ 0");
+
   const getInfo = (category, info) => (
     <Grid container>
-      <Grid item xs={4.5}>
+      <Grid item xs={8}>
         <MDTypography className="SubtitlesInfo" variant="h6">
           {category}
         </MDTypography>
@@ -108,12 +109,12 @@ export default function CreditSimulatorScreen({ setParameters }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={2.5}>
+        <Grid item xs={3.14}>
           <MDTypography className="Subtitles" variant="h5">
             Valor del Préstamo:
           </MDTypography>
         </Grid>
-        <Grid item xs={0.5}>
+        <Grid item xs={1.5}>
           {}
         </Grid>
         <Grid item xs={6}>
@@ -121,18 +122,10 @@ export default function CreditSimulatorScreen({ setParameters }) {
             Tiempo a Pagar:
           </MDTypography>
         </Grid>
-        <Grid item xs={0.5}>
-          {}
-        </Grid>
-        <Grid item xs={2.5}>
-          <MDTypography className="Subtitles" variant="h5">
-            Tarifa:
-          </MDTypography>
-        </Grid>
       </Grid>
 
       <Grid container>
-        <Grid item xs={2.5}>
+        <Grid item xs={3.14}>
           <InputValue
             className="InputLoanValue"
             name="loanValue"
@@ -143,7 +136,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
             position="start"
           />
         </Grid>
-        <Grid item xs={0.5}>
+        <Grid item xs={1.5}>
           {}
         </Grid>
         <Grid item xs={6}>
@@ -172,10 +165,13 @@ export default function CreditSimulatorScreen({ setParameters }) {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={0.5}>
-          {}
-        </Grid>
-        <Grid item xs={2.5}>
+      </Grid>
+
+      <Grid container>
+        <Grid item xs={3.14}>
+          <MDTypography className="Subtitles" variant="h5" sx={{ marginTop: "40px" }}>
+            Tarifa:
+          </MDTypography>
           <SelectG
             name="tariff"
             label="Tarifa"
@@ -185,16 +181,20 @@ export default function CreditSimulatorScreen({ setParameters }) {
             error={errors.tariff}
           />
         </Grid>
+        <Grid item xs={1.5}>
+          {}
+        </Grid>
+        <Grid item xs={7.3} sx={{ marginTop: "40px" }}>
+          {getInfo("Valor de la cuota periódicamente:", cuotaPeriodica)}
+          {getInfo("Número de cuotas:", numeroCuotas)}
+          {getInfo("Total interés a pagar:", totalInteres)}
+        </Grid>
+        <Grid item xs={12}>
+          <MDButton variant="text" size="large" type="submit">
+            GENERAR
+          </MDButton>
+        </Grid>
       </Grid>
-
-      <Grid item xs={12}>
-        <MDButton variant="text" size="large" type="submit">
-          GENERAR
-        </MDButton>
-      </Grid>
-      {getInfo("Valor de la cuota periódicamente:", cuotaPeriodica)}
-      {getInfo("Número de cuotas:", numeroCuotas)}
-      {getInfo("Total interés a pagar:", totalInteres)}
     </Form>
   );
 }
