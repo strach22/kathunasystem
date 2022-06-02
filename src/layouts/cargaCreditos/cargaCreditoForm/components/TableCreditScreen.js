@@ -63,7 +63,6 @@ export default function TableCreditScreen({ worksheets }) {
         fieldValues.guarantor.length !== 0 ? "" : "Es obligatorio escoger una opción";
     if (fieldValues.periods === "0") tempo.periods = "Es Obligatorio llenar este Campo";
     if (fieldValues.id === "0") tempo.id = "Es Obligatorio llenar este Campo";
-    if (fieldValues.actualLoan === "0.00") tempo.actualLoan = "Es Obligatorio llenar este Campo";
     if (fieldValues.interest === "0.00") tempo.interest = "Es Obligatorio llenar este Campo";
     if (fieldValues.monthlyPaymentValue === "0.00")
       tempo.monthlyPaymentValue = "Es Obligatorio llenar este Campo";
@@ -83,6 +82,9 @@ export default function TableCreditScreen({ worksheets }) {
       actualLoan: "0.00",
       monthlyPaymentValue: "0.00",
       guarantor: "",
+      state: "",
+      identificationGuarantor: "",
+      auxGuarantor: [],
     },
     true,
     validate,
@@ -90,21 +92,45 @@ export default function TableCreditScreen({ worksheets }) {
   );
 
   const { id } = useParams();
-  const { clients } = useContext(ClientsContext);
-  const [guarantor, setGuarantor] = useState([]);
+  const { clients, addClientCredit } = useContext(ClientsContext);
 
   const { sociosItems } = listItems();
 
   useEffect(() => {
     const completeName = `${clients[id - 1].firstName} ${clients[id - 1].lastName}`;
-    setGuarantor(sociosItems.filter((val) => val.title !== completeName));
-    console.log("hola");
+    values.auxGuarantor = sociosItems.filter((val) => val.title !== completeName);
   }, []);
 
   const handleUpload = (e) => {
     e.preventDefault();
+
     if (validate()) {
-      console.log(dataBase);
+      if (values.actualLoan === "0.00") values.state = "Finalizado";
+      else values.state = "Entregado";
+
+      values.identificationGuarantor = values.auxGuarantor.filter(
+        (val) => val.title === values.guarantor
+      );
+
+      const credit = {
+        id: values.id,
+        initialDate: values.initialDate
+          .toISOString()
+          .split("T")[0]
+          .replace("-", "/")
+          .replace("-", "/"),
+        loanValue: values.loanValue,
+        interest: values.interest,
+        periods: values.periods,
+        actualLoan: values.actualLoan,
+        state: values.state,
+        guarantor: values.guarantor,
+        identificationGuarantor: values.identificationGuarantor[0].ci,
+        monthlyPaymentValue: values.monthlyPaymentValue,
+        creditHistory: dataBase,
+      };
+
+      addClientCredit(id, credit);
       // navigate("/creditos");
     }
   };
@@ -317,7 +343,7 @@ export default function TableCreditScreen({ worksheets }) {
                 label="Garante"
                 value={values.guarantor}
                 onChange={handleInputChange}
-                options={guarantor}
+                options={values.auxGuarantor}
                 error={errors.guarantor}
               />
             </Grid>
