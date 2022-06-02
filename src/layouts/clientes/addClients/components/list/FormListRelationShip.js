@@ -9,11 +9,13 @@ export default function FormListRelationShip(props) {
     valLastName,
     valMobile,
     valRelationShip,
+    valIdentification,
     handleInputChange,
     errFirstName,
     errLastName,
     errMobile,
     errRelationShip,
+    errIdentification,
     state,
   } = props;
 
@@ -35,6 +37,15 @@ export default function FormListRelationShip(props) {
           value={valLastName}
           onChange={handleInputChange}
           error={errLastName}
+          state={state}
+          read=""
+        />
+        <Input
+          label="Cédula de Identidad"
+          name="identificationRelationShip"
+          value={valIdentification}
+          onChange={handleInputChange}
+          error={errIdentification}
           state={state}
           read=""
         />
@@ -68,10 +79,12 @@ FormListRelationShip.propTypes = {
   valLastName: PropTypes.string.isRequired,
   valMobile: PropTypes.string.isRequired,
   valRelationShip: PropTypes.string.isRequired,
+  valIdentification: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   errFirstName: PropTypes.string.isRequired,
   errLastName: PropTypes.string.isRequired,
   errMobile: PropTypes.string.isRequired,
   errRelationShip: PropTypes.string.isRequired,
+  errIdentification: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
 };

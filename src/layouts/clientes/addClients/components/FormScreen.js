@@ -42,6 +42,7 @@ export default function FormScreen() {
           firstNameRelationShip: "",
           lastNameRelationShip: "",
           mobileRelationShip: "",
+          identificationRelationShip: "",
           savingBalance: 0,
           creditBalance: 0,
           savingHistory: [],
@@ -60,6 +61,7 @@ export default function FormScreen() {
     firstNameRelationShip: "",
     lastNameRelationShip: "",
     mobileRelationShip: "",
+    identificationRelationShip: "",
     firstNameSpouse: "",
     lastNameSpouse: "",
     identificationSpouse: "",
@@ -101,6 +103,10 @@ export default function FormScreen() {
         : "Este campo es obligatorio llenar";
     if ("mobileRelationShip" in fieldValues)
       tempo.mobileRelationShip = /^[0-9]{10}$/.test(fieldValues.mobileRelationShip)
+        ? ""
+        : "Este campo es obligatorio llenar con 10 dígitos";
+    if ("identificationRelationShip" in fieldValues)
+      tempo.identificationRelationShip = /^[0-9]{10}$/.test(fieldValues.identificationRelationShip)
         ? ""
         : "Este campo es obligatorio llenar con 10 dígitos";
     if ("relationShip" in fieldValues)
@@ -245,11 +251,13 @@ export default function FormScreen() {
           valLastName={values.lastNameRelationShip}
           valMobile={values.mobileRelationShip}
           valRelationShip={values.relationShip}
+          valIdentification={values.identificationRelationShip}
           handleInputChange={handleInputChange}
           errFirstName={errors.firstNameRelationShip}
           errLastName={errors.lastNameRelationShip}
           errMobile={errors.mobileRelationShip}
           errRelationShip={errors.relationShip}
+          errIdentification={errors.identificationRelationShip}
           state={state.other}
         />
       </MDBox>

@@ -93,10 +93,14 @@ function infoClients() {
                     {getInfo("Documento Id del Conyugue:", clients[i].identificationSpouse)}
                     {getInfo("Teléfono del Conyugue:", clients[i].mobileSpouse)}
                     <Divider />
+                    {getInfo("Parentesco:", clients[i].relationShip)}
                     {getInfo("Nombres del Pariente:", clients[i].firstNameRelationShip)}
                     {getInfo("Apellidos del Pariente:", clients[i].lastNameRelationShip)}
                     {getInfo("Teléfono del Pariente:", clients[i].mobileRelationShip)}
-                    {getInfo("Parentesco:", clients[i].relationShip)}
+                    {getInfo(
+                      "Documento de Identidad del Pariente:",
+                      clients[i].identificationRelationShip
+                    )}
                     <Divider />
                     {getInfo("Saldo de Ahorros:", clients[i].savingBalance)}
                     {getInfo("Saldo de Crédito:", clients[i].creditBalance)}
