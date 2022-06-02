@@ -3,8 +3,8 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
-import zfill from "layouts/gastos/helpers/zfill";
 import { useParams } from "react-router-dom";
+import zfill from "elements/helpers/zfill";
 
 export default function DownloadAmortization() {
   const [relationShip, setRelationShip] = useState({ name: "", type: "", ci: "" });

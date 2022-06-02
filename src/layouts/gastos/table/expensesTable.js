@@ -14,8 +14,6 @@ export default function data() {
       { Header: "Comprobante PDF", accessor: "download", align: "center" },
     ],
 
-    // rows: controlInfo.expensesHystory,
-
     rows: controlInfo.expensesHystory.map((info) => ({
       id: info.id,
       expenseDate: info.expenseDate,

@@ -4,9 +4,9 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import zfill from "elements/helpers/zfill";
 import ClientsContext from "context/Clients/ClientsContext";
-import { numbToLetters } from "../helpers/numbToLetters";
-import zfill from "../helpers/zfill";
+import { numbToLetters } from "elements/helpers/numbToLetters";
 
 export default function ProofPaymentExpenses({ info }) {
   const { id, expenseDate, expenseValue, observation } = info;

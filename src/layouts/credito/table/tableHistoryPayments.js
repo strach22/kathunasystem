@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 // Soft UI Dashboard React components
 import ClientsContext from "../../../context/Clients/ClientsContext";
+import IndividualProofPayment from "../download/IndividualProofPayment";
 
 export default function data() {
   const { clients } = useContext(ClientsContext);
@@ -20,6 +21,7 @@ export default function data() {
       { Header: "Valor", accessor: "value", align: "center" },
       { Header: "Tipo de Pago", accessor: "paymentType", align: "center" },
       { Header: "Observación", accessor: "observation", align: "left" },
+      { Header: "Comprobante PDF", accessor: "download", align: "center" },
     ],
 
     rows: clients[i].credits[i2].creditHistory.map((info) => ({
@@ -28,6 +30,7 @@ export default function data() {
       value: info.value,
       paymentType: info.paymentType,
       observation: info.observation,
+      download: <IndividualProofPayment info={info} />,
     })),
   };
 }
