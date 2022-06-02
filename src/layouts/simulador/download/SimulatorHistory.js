@@ -26,33 +26,12 @@ export default function SimulatorHistory({ rows }) {
     const body = [];
 
     const auxColumns = [
-      {
-        text: "Código",
-        alignment: "center",
-        bold: true,
-        color: "white",
-        fontSize: 15,
-        marginTop: 10,
-      },
-      { text: "Interés Periodo", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Capital Amortizado", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      {
-        text: "Desgravamen",
-        alignment: "center",
-        bold: true,
-        color: "white",
-        fontSize: 15,
-        marginTop: 10,
-      },
-      { text: "Valor Cuota", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      {
-        text: "Saldo",
-        alignment: "center",
-        bold: true,
-        color: "white",
-        fontSize: 15,
-        marginTop: 10,
-      },
+      { text: "Periodo", style: "table1", marginTop: 7 },
+      { text: "Interes Periodo", style: "table1" },
+      { text: "Capital Amortizado", style: "table1" },
+      { text: "Desgravamen", style: "table1", marginTop: 7 },
+      { text: "Valor Cuota", style: "table1" },
+      { text: "Saldo", style: "table1", marginTop: 7 },
     ];
 
     body.push(auxColumns);
@@ -65,6 +44,7 @@ export default function SimulatorHistory({ rows }) {
           text: row[column].toString(),
           alignment: "center",
           color: "black",
+          fontSize: 10,
         });
       });
 
@@ -76,75 +56,32 @@ export default function SimulatorHistory({ rows }) {
 
   const simulatorPDF = {
     pageMargins: [40, 40, 40, 80],
-    background() {
-      return [
-        {
-          canvas: [
-            { type: "line", x1: 15, y1: 10, x2: 585, y2: 10, lineWidth: 1 }, // Up line
-            { type: "line", x1: 15, y1: 10, x2: 15, y2: 830, lineWidth: 1 }, // Left line
-            { type: "line", x1: 15, y1: 830, x2: 585, y2: 830, lineWidth: 1 }, // Bottom line
-            { type: "line", x1: 585, y1: 10, x2: 585, y2: 830, lineWidth: 1 }, // Rigth line
-          ],
-        },
-      ];
+    background(currentPage) {
+      return currentPage === 1
+        ? [
+            {
+              canvas: [{ type: "rect", x: 15, y: 15, w: 565, h: 160, r: 10, lineColor: "#000" }],
+            },
+          ]
+        : "";
     },
     content: [
       {
         columns: [
           [
-            {
-              text: controlInfo.nameBank,
-              color: "#333333",
-              width: "*",
-              fontSize: 18,
-              bold: true,
-              alignment: "center",
-              margin: [0, 0, 0, 3],
-            },
-            {
-              text: `''${controlInfo.nameSlogan}''`,
-              color: "#333333",
-              width: "*",
-              fontSize: 15,
-              bold: true,
-              alignment: "center",
-              margin: [0, 0, 0, 3],
-            },
-            {
-              text: controlInfo.nameLocation,
-              color: "#333333",
-              width: "*",
-              fontSize: 12,
-              bold: true,
-              alignment: "center",
-              margin: [10, 0, 0, 25],
-            },
-            {
-              text: "TIPO DE TRANSACCIÓN",
-              color: "#333333",
-              width: "*",
-              fontSize: 15,
-              bold: true,
-              alignment: "center",
-            },
-            {
-              text: "SIMULADOR",
-              color: "red",
-              width: "*",
-              fontSize: 13,
-              bold: true,
-              alignment: "center",
-            },
+            { text: controlInfo.nameBank, style: "title1", fontSize: 14 },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title1", fontSize: 12 },
+            { text: controlInfo.nameLocation, style: "title2" },
+            { text: "TIPO DE TRANSACCIÓN", style: "title1", fontSize: 12 },
+            { text: "SIMULADOR", style: "title3" },
           ],
         ],
       },
-      {
-        text: "_________________________________________________________________",
-        style: "border",
-      },
+      "\n",
+      "\n\n",
+      "\n\n",
       {
         layout: {
-          // defaultBorder: false,
           hLineWidth(i, node) {
             return i === 0 || i === node.table.body.length ? 2 : 1;
           },
@@ -158,8 +95,8 @@ export default function SimulatorHistory({ rows }) {
             return i === 0 || i === node.table.widths.length ? "black" : "gray";
           },
           fillColor(rowIndex) {
-            if (rowIndex === 0) return "#088FCA";
-            return rowIndex % 2 === 0 ? "#85B1C4" : "#D3D3D3";
+            if (rowIndex === 0) return "#3d5662";
+            return rowIndex % 2 === 0 ? "#e6fbff" : "#c6e6f5";
           },
           paddingLeft() {
             return 10;
@@ -176,7 +113,7 @@ export default function SimulatorHistory({ rows }) {
         },
         table: {
           headerRows: 1,
-          widths: ["auto", "auto", "auto", "auto", "auto", "auto"],
+          widths: [45, 73, 70, 79, 60, 60],
           body: buildTableBody(rows, [
             "cuota",
             "interesPeriodo",
@@ -189,13 +126,33 @@ export default function SimulatorHistory({ rows }) {
       },
     ],
     styles: {
-      border: {
-        fontSize: 15,
+      title1: {
+        color: "#333333",
+        width: "*",
         bold: true,
         alignment: "center",
-        color: "black",
-        marginTop: 20,
-        marginBottom: 40,
+        marginBottom: 3,
+      },
+      title2: {
+        color: "#333333",
+        width: "*",
+        fontSize: 10,
+        bold: true,
+        alignment: "center",
+        marginBottom: 25,
+      },
+      title3: {
+        color: "red",
+        width: "*",
+        fontSize: 12,
+        bold: true,
+        alignment: "center",
+      },
+      table1: {
+        alignment: "center",
+        bold: true,
+        color: "white",
+        fontSize: 12,
       },
     },
     defaultStyle: {

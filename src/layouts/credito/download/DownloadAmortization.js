@@ -31,6 +31,7 @@ export default function DownloadAmortization() {
       });
     }
   }, [aux1]);
+
   let { loanValue, interest, periods } = clients[i].credits[i2];
   loanValue = parseFloat(loanValue);
   interest = parseFloat(interest) / 100;
@@ -215,9 +216,6 @@ export default function DownloadAmortization() {
           },
           paddingBottom() {
             return 5;
-          },
-          marginTop() {
-            return 40;
           },
         },
         table: {
