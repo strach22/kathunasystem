@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable object-shorthand */
 import React, { useContext, useEffect, useReducer, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { CircularProgress, Grid } from "@mui/material";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
@@ -12,14 +12,13 @@ import InputValue from "elements/InputValue";
 import DatePickerH from "elements/DatePickerH";
 import SelectG from "elements/SelectG";
 import listItems from "layouts/credito/helpers/sociosItems";
-import { useParams } from "react-router-dom";
 import ClientsContext from "context/Clients/ClientsContext";
 
 // eslint-disable-next-line react/prop-types
 export default function TableCreditScreen({ worksheets }) {
   const [state, setState] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
 
   const errorValues = {
@@ -29,7 +28,7 @@ export default function TableCreditScreen({ worksheets }) {
     periods: "",
     actualLoan: "",
     guarantor: "",
-    monthlyPaymentValue: "",
+    monthlyPayment: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -46,8 +45,8 @@ export default function TableCreditScreen({ worksheets }) {
       tempo.actualLoan = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.actualLoan)
         ? ""
         : "Es Obligatorio llenar este Campo";
-    if ("monthlyPaymentValue" in fieldValues)
-      tempo.monthlyPaymentValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.monthlyPaymentValue)
+    if ("monthlyPayment" in fieldValues)
+      tempo.monthlyPayment = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.monthlyPayment)
         ? ""
         : "Es Obligatorio llenar este Campo";
     if ("interest" in fieldValues)
@@ -64,8 +63,8 @@ export default function TableCreditScreen({ worksheets }) {
     if (fieldValues.periods === "0") tempo.periods = "Es Obligatorio llenar este Campo";
     if (fieldValues.id === "0") tempo.id = "Es Obligatorio llenar este Campo";
     if (fieldValues.interest === "0.00") tempo.interest = "Es Obligatorio llenar este Campo";
-    if (fieldValues.monthlyPaymentValue === "0.00")
-      tempo.monthlyPaymentValue = "Es Obligatorio llenar este Campo";
+    if (fieldValues.monthlyPayment === "0.00")
+      tempo.monthlyPayment = "Es Obligatorio llenar este Campo";
     setErrors({
       ...tempo,
     });
@@ -80,7 +79,7 @@ export default function TableCreditScreen({ worksheets }) {
       interest: "0.00",
       periods: "0",
       actualLoan: "0.00",
-      monthlyPaymentValue: "0.00",
+      monthlyPayment: "0.00",
       guarantor: "",
       state: "",
       identificationGuarantor: "",
@@ -105,33 +104,39 @@ export default function TableCreditScreen({ worksheets }) {
     e.preventDefault();
 
     if (validate()) {
-      if (values.actualLoan === "0.00") values.state = "Finalizado";
-      else values.state = "Entregado";
+      if (dataBase) {
+        const auxFolder = clients.map((client) =>
+          client.credits.filter((val) => val.id === values.id)
+        );
+        if (auxFolder.flat().length === 0) {
+          if (values.actualLoan === "0.00") values.state = "Finalizado";
+          else values.state = "Entregado";
 
-      values.identificationGuarantor = values.auxGuarantor.filter(
-        (val) => val.title === values.guarantor
-      );
+          values.identificationGuarantor = values.auxGuarantor.filter(
+            (val) => val.title === values.guarantor
+          );
 
-      const credit = {
-        id: values.id,
-        initialDate: values.initialDate
-          .toISOString()
-          .split("T")[0]
-          .replace("-", "/")
-          .replace("-", "/"),
-        loanValue: values.loanValue,
-        interest: values.interest,
-        periods: values.periods,
-        actualLoan: values.actualLoan,
-        state: values.state,
-        guarantor: values.guarantor,
-        identificationGuarantor: values.identificationGuarantor[0].ci,
-        monthlyPaymentValue: values.monthlyPaymentValue,
-        creditHistory: dataBase,
-      };
-
-      addClientCredit(id, credit);
-      // navigate("/creditos");
+          const credit = {
+            id: values.id,
+            initialDate: values.initialDate
+              .toISOString()
+              .split("T")[0]
+              .replace("-", "/")
+              .replace("-", "/"),
+            loanValue: values.loanValue,
+            interest: values.interest,
+            periods: values.periods,
+            actualLoan: values.actualLoan,
+            state: values.state,
+            guarantor: values.guarantor,
+            identificationGuarantor: values.identificationGuarantor[0].ci,
+            monthlyPayment: values.monthlyPayment,
+            creditHistory: dataBase,
+          };
+          addClientCredit(id, credit);
+          navigate("/creditos");
+        }
+      }
     }
   };
 
@@ -296,10 +301,10 @@ export default function TableCreditScreen({ worksheets }) {
             <Grid item xs={3.38}>
               <InputValue
                 className="InputLoanValue"
-                name="monthlyPaymentValue"
-                value={values.monthlyPaymentValue}
+                name="monthlyPayment"
+                value={values.monthlyPayment}
                 onChange={handleInputChange}
-                error={errors.monthlyPaymentValue}
+                error={errors.monthlyPayment}
                 icon="$"
                 position="start"
               />
