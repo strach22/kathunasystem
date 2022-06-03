@@ -50,6 +50,11 @@ const useStyles = makeStyles({
       color: "white",
       margin: "50px 10px 0px 15px",
     },
+    // Alert
+    "& .MuiPaper-root": {
+      marginBottom: "25px",
+      borderRadius: 8,
+    },
   },
 });
 

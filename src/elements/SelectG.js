@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function SelectG(props) {
-  const { name, label, value, error = null, onChange, options } = props;
+  const { name, label, value, error = null, onChange, options, read } = props;
 
   return (
     <FormControl fullWidth>
@@ -18,6 +18,7 @@ export default function SelectG(props) {
         value={value}
         onChange={onChange}
         {...(error && { error: true })}
+        {...(read === "true" && { disabled: true })}
       >
         {options.map((item) => (
           <MenuItem key={item.id} value={item.title}>
@@ -42,4 +43,5 @@ SelectG.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
+  read: PropTypes.string.isRequired,
 };
