@@ -131,7 +131,7 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Historial de las Cuotas
+                Historial de Cuotas
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>

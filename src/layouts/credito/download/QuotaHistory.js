@@ -29,6 +29,34 @@ export default function QuotaHistory({ rows }) {
   const i = clients.map((e) => e.id).indexOf(idC);
   const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
+  function buildTableBody(data, columns) {
+    const body = [];
+
+    const auxColumns = [
+      { text: "Cuota", style: "table1" },
+      { text: "Fecha de Pago", style: "table1" },
+      { text: "Valor", style: "table1" },
+      { text: "Tipo de Pago", style: "table1" },
+      { text: "Observación", style: "table1" },
+    ];
+
+    body.push(auxColumns);
+
+    data.forEach((row) => {
+      const dataRow = [];
+
+      columns.forEach((column) => {
+        if (column === "observation")
+          dataRow.push({ text: row[column].toString(), style: "row1", alignment: "left" });
+        else dataRow.push({ text: row[column].toString(), style: "row1" });
+      });
+
+      body.push(dataRow);
+    });
+
+    return body;
+  }
+
   const quotaHistoryPDF = {
     pageMargins: [40, 40, 40, 80],
     background(currentPage) {
@@ -119,6 +147,49 @@ export default function QuotaHistory({ rows }) {
           ],
         ],
       },
+      {
+        layout: {
+          hLineWidth(aux, node) {
+            return aux === 0 || aux === node.table.body.length ? 2 : 1;
+          },
+          vLineWidth(aux, node) {
+            return aux === 0 || aux === node.table.widths.length ? 2 : 1;
+          },
+          hLineColor(aux, node) {
+            return aux === 0 || aux === node.table.body.length ? "black" : "gray";
+          },
+          vLineColor(aux, node) {
+            return aux === 0 || aux === node.table.widths.length ? "black" : "gray";
+          },
+          fillColor(rowIndex) {
+            if (rowIndex === 0) return "#3d5662";
+            return rowIndex % 2 === 0 ? "#e6fbff" : "#c6e6f5";
+          },
+          paddingLeft() {
+            return 10;
+          },
+          paddingRight() {
+            return 10;
+          },
+          paddingTop() {
+            return 5;
+          },
+          paddingBottom() {
+            return 5;
+          },
+        },
+        table: {
+          headerRows: 1,
+          widths: [40, 90, 70, 80, 130],
+          body: buildTableBody(rows, [
+            "id",
+            "transactionDate",
+            "value",
+            "paymentType",
+            "observation",
+          ]),
+        },
+      },
     ],
     styles: {
       title1: {
@@ -164,6 +235,11 @@ export default function QuotaHistory({ rows }) {
         color: "white",
         fontSize: 12,
       },
+      row1: {
+        alignment: "center",
+        color: "black",
+        fontSize: 10,
+      },
     },
     defaultStyle: {
       columnGap: 20,
@@ -185,10 +261,13 @@ export default function QuotaHistory({ rows }) {
   ];
 
   const handleGeneratedPDF = () => {
-    if (!rows[0] === false) {
-      pdfMake.vfs = pdfFonts.pdfMake.vfs;
-      pdfMake.createPdf(quotaHistoryPDF).open();
-    }
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    pdfMake.createPdf(quotaHistoryPDF).open();
+  };
+
+  const handlePrintPDF = () => {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    pdfMake.createPdf(quotaHistoryPDF).download("Historial-de-Cuotas.pdf");
   };
 
   return (
@@ -224,7 +303,7 @@ export default function QuotaHistory({ rows }) {
       <MDButton
         variant="text"
         size="medium"
-        // onClick={handlePrintPDF}
+        onClick={handlePrintPDF}
         sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         Descargar
