@@ -36,18 +36,6 @@ export default function MonthlyPayment() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
-    {
-      transactionDate: new Date(),
-      paymentType: "",
-      value: "0.00",
-      observation: "",
-    },
-    true,
-    validate,
-    errorValues
-  );
-
   const [read, setRead] = useState("false");
   const { clients, addCreditHistory } = useContext(ClientsContext);
   const navigate = useNavigate();
@@ -58,10 +46,25 @@ export default function MonthlyPayment() {
   const i = clients.map((e) => e.id).indexOf(idC);
   const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
+  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
+    {
+      transactionDate: new Date(),
+      paymentType: "",
+      value: clients[i].credits[i2].monthlyPayment,
+      observation: "",
+    },
+    true,
+    validate,
+    errorValues
+  );
+
   useEffect(() => {
-    const state = parseInt(clients[i].credits[i2].actualLoan, 10);
-    if (state === 0) setRead("true");
-  }, [clients[i].credits[i2].actualLoan]);
+    const nowState = clients[i].credits[i2].state;
+    if (nowState === "Creado" || nowState === "Aprobado" || nowState === "Finalizado") {
+      setRead("true");
+      values.value = "0.00";
+    }
+  }, [clients[i].credits[i2].state]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,8 +89,9 @@ export default function MonthlyPayment() {
         {read === "true" && (
           <Grid item xs={12}>
             <Alert severity="warning">
-              Se realizó el pago total del crédito satisfactoriamente, perteneciente a la la carpeta
-              # {idF}.
+              El estado actual del crédito se encuentra <b> {clients[i].credits[i2].state} </b>y,
+              por tal motivo, no se puede realizar el pago mensual. Este crédito pertenece a la{" "}
+              <b>carpeta # {idF}</b>.
             </Alert>
           </Grid>
         )}
