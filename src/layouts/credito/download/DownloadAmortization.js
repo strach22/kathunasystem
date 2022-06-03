@@ -27,7 +27,7 @@ export default function DownloadAmortization() {
       setRelationShip({
         name: `${clients[i].firstNameRelationShip} ${clients[i].lastNameRelationShip}`,
         type: clients[i].relationShip,
-        ci: "Poner CI Parentesco",
+        ci: clients[i].identificationRelationShip,
       });
     }
   }, [aux1]);
@@ -236,91 +236,115 @@ export default function DownloadAmortization() {
         },
       },
       {
-        columns: [
-          [
-            {
-              stack: [
-                {
-                  columns: [
-                    { text: "____________________________", width: 163, marginTop: 70 },
-                    { text: "____________________________", width: 163, marginTop: 70 },
-                    { text: "____________________________", width: 163, marginTop: 70 },
-                  ],
-                },
-                {
-                  columns: [
-                    {
-                      text: ["Sr.(a) ", { text: `${clients[i].firstName} ${clients[i].lastName}` }],
-                      width: 163,
-                      style: "signature1",
-                    },
-                    {
-                      text: ["Sr.(a) ", { text: relationShip.name }],
-                      width: 163,
-                      style: "signature1",
-                    },
-                    {
-                      text: ["Sr.(a) ", { text: clients[i].credits[i2].guarantor }],
-                      width: 163,
-                      style: "signature1",
-                    },
-                  ],
-                },
-                {
-                  columns: [
-                    { text: "DEUDOR", width: 163, style: "signature2" },
-                    { text: relationShip.type, width: 163, style: "signature2" },
-                    { text: "GARANTE", width: 163, style: "signature2" },
-                  ],
-                },
-                {
-                  columns: [
-                    {
-                      text: ["No C.I: ", { text: clients[i].identification }],
-                      width: 163,
-                      style: "signature2",
-                    },
-                    {
-                      text: ["No C.I: ", { text: relationShip.ci }],
-                      width: 163,
-                      style: "signature2",
-                    },
-                    {
-                      text: ["No C.I: ", { text: "Poner CI del Garante" }],
-                      width: 163,
-                      style: "signature2",
-                    },
-                  ],
-                },
-                {
-                  columns: [
-                    { text: "", width: 163 },
-                    { text: "____________________________", width: 163, marginTop: 70 },
-                    { text: "", width: 163 },
-                  ],
-                },
-                {
-                  columns: [
-                    { text: "", width: 163 },
-                    {
-                      text: ["Sr.(a) ", { text: controlInfo.legalRepresentative }],
-                      width: 163,
-                      style: "signature1",
-                    },
-                    { text: "", width: 163 },
-                  ],
-                },
-                {
-                  columns: [
-                    { text: "", width: 163 },
-                    { text: "GERENTE", width: 163, style: "signature2" },
-                    { text: "", width: 163 },
-                  ],
-                },
-              ],
-            },
+        layout: "noBorders",
+        table: {
+          dontBreakRows: true,
+          body: [
+            [
+              {
+                stack: [
+                  {
+                    columns: [
+                      { text: "____________________________", width: 163, marginTop: 70 },
+                      { text: "____________________________", width: 163, marginTop: 70 },
+                      { text: "____________________________", width: 163, marginTop: 70 },
+                    ],
+                  },
+                  {
+                    columns: [
+                      {
+                        text: [
+                          "Sr.(a) ",
+                          { text: `${clients[i].firstName} ${clients[i].lastName}` },
+                        ],
+                        width: 163,
+                        style: "signature1",
+                      },
+                      {
+                        text: ["Sr.(a) ", { text: relationShip.name }],
+                        width: 163,
+                        style: "signature1",
+                      },
+                      {
+                        text: ["Sr.(a) ", { text: clients[i].credits[i2].guarantor }],
+                        width: 163,
+                        style: "signature1",
+                      },
+                    ],
+                  },
+                  {
+                    columns: [
+                      { text: "DEUDOR", width: 163, style: "signature2" },
+                      { text: relationShip.type, width: 163, style: "signature2" },
+                      { text: "GARANTE", width: 163, style: "signature2" },
+                    ],
+                  },
+                  {
+                    columns: [
+                      {
+                        text: ["No C.I: ", { text: clients[i].identification }],
+                        width: 163,
+                        style: "signature2",
+                      },
+                      {
+                        text: ["No C.I: ", { text: relationShip.ci }],
+                        width: 163,
+                        style: "signature2",
+                      },
+                      {
+                        text: [
+                          "No C.I: ",
+                          { text: clients[i].credits[i2].identificationGuarantor },
+                        ],
+                        width: 163,
+                        style: "signature2",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           ],
-        ],
+        },
+      },
+      {
+        layout: "noBorders",
+        table: {
+          dontBreakRows: true,
+          body: [
+            [
+              {
+                stack: [
+                  {
+                    columns: [
+                      { text: "", width: 163 },
+                      { text: "____________________________", width: 163, marginTop: 70 },
+                      { text: "", width: 163 },
+                    ],
+                  },
+                  {
+                    columns: [
+                      { text: "", width: 163 },
+                      {
+                        text: ["Sr.(a) ", { text: controlInfo.legalRepresentative }],
+                        width: 163,
+                        style: "signature1",
+                      },
+                      { text: "", width: 163 },
+                    ],
+                  },
+                  {
+                    columns: [
+                      { text: "", width: 163 },
+                      { text: "GERENTE", width: 163, style: "signature2" },
+                      { text: "", width: 163 },
+                    ],
+                  },
+                ],
+              },
+            ],
+          ],
+        },
       },
     ],
     styles: {
