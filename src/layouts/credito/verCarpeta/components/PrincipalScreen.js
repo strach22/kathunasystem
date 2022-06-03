@@ -79,7 +79,7 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Información Carpeta
+                Información de la Carpeta
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
