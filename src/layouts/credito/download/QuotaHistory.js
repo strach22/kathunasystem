@@ -7,6 +7,8 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import { Workbook } from "react-excel-workbook";
 import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
+import zfill from "elements/helpers/zfill";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -20,7 +22,12 @@ const useStyles = makeStyles({
 
 export default function QuotaHistory({ rows }) {
   const classes = useStyles();
-  const { controlInfo } = useContext(ClientsContext);
+  const { clients, controlInfo } = useContext(ClientsContext);
+  const { id } = useParams();
+
+  const [idC, idF] = id.split("-");
+  const i = clients.map((e) => e.id).indexOf(idC);
+  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   const quotaHistoryPDF = {
     pageMargins: [40, 40, 40, 80],
@@ -29,7 +36,7 @@ export default function QuotaHistory({ rows }) {
         ? [
             {
               canvas: [
-                { type: "rect", x: 15, y: 15, w: 565, h: 305, r: 10, lineColor: "#000" },
+                { type: "rect", x: 15, y: 15, w: 565, h: 285, r: 10, lineColor: "#000" },
                 { type: "line", x1: 60, y1: 175, x2: 535, y2: 175, lineWidth: 2.5 },
               ],
             },
@@ -41,64 +48,82 @@ export default function QuotaHistory({ rows }) {
         columns: [
           [
             { text: controlInfo.nameBank, style: "title1", fontSize: 14 },
-            { text: `''${controlInfo.nameSlogan}''`, style: "title1", fontSize: 12 },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title1" },
             { text: controlInfo.nameLocation, style: "title2" },
-            { text: "TIPO DE TRANSACCIÓN", style: "title1", fontSize: 12 },
-            { text: "SIMULADOR", style: "title3" },
+            { text: "CREDITO OTORGADO", style: "title1" },
+            { text: "HISTORIAL DE CUOTAS", style: "title3" },
+            {
+              text: [
+                "CARPETA: ",
+                {
+                  text: zfill(parseInt(clients[i].credits[i2].id, 10), 3),
+                  style: "title3",
+                  italics: true,
+                },
+              ],
+              style: "title2",
+            },
           ],
         ],
       },
       "\n",
-      "\n\n",
-      "\n\n",
-      //   {
-      //     layout: {
-      //       hLineWidth(i, node) {
-      //         return i === 0 || i === node.table.body.length ? 2 : 1;
-      //       },
-      //       vLineWidth(i, node) {
-      //         return i === 0 || i === node.table.widths.length ? 2 : 1;
-      //       },
-      //       hLineColor(i, node) {
-      //         return i === 0 || i === node.table.body.length ? "black" : "gray";
-      //       },
-      //       vLineColor(i, node) {
-      //         return i === 0 || i === node.table.widths.length ? "black" : "gray";
-      //       },
-      //       fillColor(rowIndex) {
-      //         if (rowIndex === 0) return "#3d5662";
-      //         return rowIndex % 2 === 0 ? "#e6fbff" : "#c6e6f5";
-      //       },
-      //       paddingLeft() {
-      //         return 10;
-      //       },
-      //       paddingRight() {
-      //         return 10;
-      //       },
-      //       paddingTop() {
-      //         return 5;
-      //       },
-      //       paddingBottom() {
-      //         return 5;
-      //       },
-      //     },
-      //     table: {
-      //       headerRows: 1,
-      //       widths: [45, 73, 70, 79, 60, 60],
-      //       body: buildTableBody(rows, [
-      //         "cuota",
-      //         "interesPeriodo",
-      //         "capitalAmortizado",
-      //         "desgravamen",
-      //         "valorCuota",
-      //         "saldo",
-      //       ]),
-      //     },
-      //   },
+      {
+        columns: [
+          [
+            {
+              stack: [
+                {
+                  columns: [
+                    { text: "Cliente:", style: "Col1", width: 95 },
+                    { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "Col2" },
+                    { text: "Fecha de inicio:", style: "Col1", width: 80 },
+                    { text: clients[i].credits[i2].initialDate, style: "Col2", width: 80 },
+                  ],
+                },
+                {
+                  columns: [
+                    { text: "RUC:", style: "Col1", width: 95 },
+                    { text: clients[i].identification, style: "Col2" },
+                    { text: "Teléfono:", style: "Col1", width: 80 },
+                    { text: clients[i].mobile, style: "Col2", width: 80 },
+                  ],
+                },
+                {
+                  columns: [
+                    { text: "Dirección:", style: "Col1", width: 95 },
+                    [{ text: clients[i].address, style: "Col2" }],
+                  ],
+                },
+                {
+                  columns: [
+                    { text: "Valor Préstamo:", style: "Col1", width: 95 },
+                    { text: `$ ${clients[i].credits[i2].loanValue}`, style: "Col2" },
+                    { text: "Valor  Cuota:", style: "Col1", width: 80 },
+                    {
+                      text: `$ ${clients[i].credits[i2].monthlyPayment}`,
+                      style: "Col2",
+                      width: 80,
+                    },
+                  ],
+                },
+                {
+                  columns: [
+                    { text: "Número de Cuotas:", style: "Col1", width: 95, marginBottom: 80 },
+                    { text: clients[i].credits[i2].periods, style: "Col2" },
+                    { text: "Total Interés:", style: "Col1", width: 80 },
+                    { text: `${clients[i].credits[i2].interest} %`, style: "Col2", width: 80 },
+                  ],
+                },
+              ],
+            },
+          ],
+        ],
+      },
     ],
     styles: {
       title1: {
         color: "#333333",
+        fontSize: 12,
         width: "*",
         bold: true,
         alignment: "center",
@@ -106,8 +131,8 @@ export default function QuotaHistory({ rows }) {
       },
       title2: {
         color: "#333333",
-        width: "*",
         fontSize: 10,
+        width: "*",
         bold: true,
         alignment: "center",
         marginBottom: 25,
@@ -115,9 +140,23 @@ export default function QuotaHistory({ rows }) {
       title3: {
         color: "red",
         width: "*",
-        fontSize: 12,
+        fontSize: 11,
         bold: true,
         alignment: "center",
+        marginBottom: 2,
+      },
+      Col1: {
+        color: "#aaaaab",
+        bold: true,
+        fontSize: 11,
+        alignment: "left",
+        margin: [0, 0, 0, 3],
+      },
+      Col2: {
+        color: "black",
+        bold: false,
+        fontSize: 11,
+        alignment: "left",
       },
       table1: {
         alignment: "center",

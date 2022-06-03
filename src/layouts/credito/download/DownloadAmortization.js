@@ -169,9 +169,13 @@ export default function DownloadAmortization() {
                 {
                   columns: [
                     { text: "Valor Préstamo:", style: "Col1", width: 95 },
-                    { text: clients[i].credits[i2].loanValue, style: "Col2" },
+                    { text: `$ ${clients[i].credits[i2].loanValue}`, style: "Col2" },
                     { text: "Valor  Cuota:", style: "Col1", width: 80 },
-                    { text: clients[i].credits[i2].monthlyPayment, style: "Col2", width: 80 },
+                    {
+                      text: `$ ${clients[i].credits[i2].monthlyPayment}`,
+                      style: "Col2",
+                      width: 80,
+                    },
                   ],
                 },
                 {
@@ -179,7 +183,7 @@ export default function DownloadAmortization() {
                     { text: "Número de Cuotas:", style: "Col1", width: 95, marginBottom: 80 },
                     { text: clients[i].credits[i2].periods, style: "Col2" },
                     { text: "Total Interés:", style: "Col1", width: 80 },
-                    { text: clients[i].credits[i2].interest, style: "Col2", width: 80 },
+                    { text: `${clients[i].credits[i2].interest} %`, style: "Col2", width: 80 },
                   ],
                 },
               ],
