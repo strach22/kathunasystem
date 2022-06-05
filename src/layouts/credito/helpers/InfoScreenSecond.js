@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -29,9 +29,11 @@ export default function InfoScreenSecond() {
       <Grid container spacing={3}>
         <Grid item xs={11}>
           <MDBox coloredShadow="secondary" pb={2}>
-            <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
-              Cliente # {idC}
-            </MDTypography>
+            <Link to={`/clientes/${idC}`}>
+              <MDTypography padding={2} variant="h4" color="info" sx={{ textAlign: "center" }}>
+                Cliente # {idC}
+              </MDTypography>
+            </Link>
             {getInfo("Nombres:", clients[i].firstName)}
             {getInfo("Apellidos:", clients[i].lastName)}
             {getInfo("Documento de Identidad:", clients[i].identification)}
