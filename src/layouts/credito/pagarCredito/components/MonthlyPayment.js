@@ -37,7 +37,7 @@ export default function MonthlyPayment() {
   };
 
   const [read, setRead] = useState("false");
-  const { clients, addCreditHistory, editClient } = useContext(ClientsContext);
+  const { clients, addCreditHistory } = useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -70,12 +70,6 @@ export default function MonthlyPayment() {
     e.preventDefault();
     if (read === "false") {
       if (validate()) {
-        const actualCreditBalance = parseInt(clients[i].creditBalance, 10);
-        const actualValue = parseInt(values.value, 10);
-
-        clients[i].creditBalance = (actualCreditBalance - actualValue).toISOString();
-
-        editClient(clients[i]);
         const newTransactionDate = values.transactionDate
           .toISOString()
           .split("T")[0]
