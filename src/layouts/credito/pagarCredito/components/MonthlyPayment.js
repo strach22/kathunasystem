@@ -37,7 +37,7 @@ export default function MonthlyPayment() {
   };
 
   const [read, setRead] = useState("false");
-  const { clients, addCreditHistory } = useContext(ClientsContext);
+  const { clients, addCreditHistory, editClient } = useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -70,6 +70,12 @@ export default function MonthlyPayment() {
     e.preventDefault();
     if (read === "false") {
       if (validate()) {
+        const actualCreditBalance = parseInt(clients[i].creditBalance, 10);
+        const actualValue = parseInt(values.value, 10);
+
+        clients[i].creditBalance = (actualCreditBalance - actualValue).toISOString();
+
+        editClient(clients[i]);
         const newTransactionDate = values.transactionDate
           .toISOString()
           .split("T")[0]
@@ -89,9 +95,7 @@ export default function MonthlyPayment() {
         {read === "true" && (
           <Grid item xs={12}>
             <Alert severity="warning">
-              El estado actual del crédito se encuentra <b> {clients[i].credits[i2].state} </b>y,
-              por tal motivo, no se puede realizar el pago mensual. Este crédito pertenece a la{" "}
-              <b>carpeta # {idF}</b>.
+              El estado actual del crédito se encuentra <b> {clients[i].credits[i2].state} </b>
             </Alert>
           </Grid>
         )}

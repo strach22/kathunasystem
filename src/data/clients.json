@@ -22,7 +22,7 @@
     "mobileRelationShip": "1465243942",
     "identificationRelationShip": "3481313494",
     "savingBalance": 50,
-    "creditBalance": 5120,
+    "creditBalance": "9990",
     "savingHistory": [
       {
         "transactionDate": "2022/03/04",
@@ -278,7 +278,7 @@
     "mobileRelationShip": "7968492358",
     "identificationRelationShip": "5086591911",
     "savingBalance": 0,
-    "creditBalance": "1022.56",
+    "creditBalance": "860.10",
     "savingHistory": [],
     "credits": [
       {
