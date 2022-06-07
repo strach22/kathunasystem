@@ -1,10 +1,11 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import MDBox from "components/MDBox";
 import { Card, Grid } from "@mui/material";
+import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import ControlScreen from "./ControlScreen";
-import InfoControlScreen from "./InfoControlScreen";
+import InfoScreen from "layouts/credito/helpers/InfoScreen";
+
+import ApproveCredits from "./ApproveCredits";
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 
 export default function PrincipalScreen() {
   const classes = useStyles();
+
   return (
     <MDBox pt={6} pb={3} mx={15}>
       <Grid container spacing={6} className={classes.root}>
@@ -33,11 +35,11 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Información General
+                Datos del Cliente
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <InfoControlScreen />
+              <InfoScreen />
             </MDBox>
           </Card>
         </Grid>
@@ -54,11 +56,11 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Control de Variables
+                Aprobar Créditos
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <ControlScreen />
+              <ApproveCredits />
             </MDBox>
           </Card>
         </Grid>

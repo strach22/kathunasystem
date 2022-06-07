@@ -20,6 +20,7 @@ import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 import VerCreditoForm from "layouts/credito/verCreditoForm";
 import VerCarpeta from "layouts/credito/verCarpeta";
 import PagarCredito from "layouts/credito/pagarCredito";
+import ControlForm from "layouts/control/controlForm";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -178,6 +179,12 @@ const routes = [
     key: "pagarCredito",
     route: "/credito/:id",
     component: <PagarCredito />,
+  },
+  {
+    name: "Control/:id",
+    key: "control/:id",
+    route: "/control/:id",
+    component: <ControlForm />,
   },
 ];
 

@@ -2,236 +2,110 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import PrincipalScreen from "./components/PrincipalScreen";
+import { Card, Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import MDBox from "components/MDBox";
+import MDTypography from "components/MDTypography";
+import DataTable from "examples/Tables/DataTable";
+import InfoControlScreen from "./controlForm/components/InfoControlScreen";
+import ControlScreen from "./controlForm/components/ControlScreen";
+
+// Data
+import clientes from "./tables/tableCreditApproval";
+
+const useStyles = makeStyles({
+  root: {
+    "& .css-1f19gdh": {
+      margin: "30px",
+      padding: "24px",
+    },
+  },
+});
 
 function Control() {
+  const classes = useStyles();
+  const { columns, rows } = clientes();
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <PrincipalScreen />
+      <MDBox pt={6} pb={3} mx={15}>
+        <Grid container spacing={6} className={classes.root}>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  Información General
+                </MDTypography>
+              </MDBox>
+              <MDBox pt={3}>
+                <InfoControlScreen />
+              </MDBox>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  Control de Variables
+                </MDTypography>
+              </MDBox>
+              <MDBox pt={3}>
+                <ControlScreen />
+              </MDBox>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  Aprobar Créditos
+                </MDTypography>
+              </MDBox>
+              <MDBox>
+                <DataTable
+                  table={{ columns, rows }}
+                  isSorted
+                  canSearch
+                  showTotalEntries={false}
+                  noEndBorder
+                  entriesPerPage={false}
+                />
+              </MDBox>
+            </Card>
+          </Grid>
+        </Grid>
+      </MDBox>
       <Footer />
     </DashboardLayout>
   );
 }
 
 export default Control;
-
-// import pdfMake from "pdfmake/build/pdfmake";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
-
-// const handleGeneratedPDF = () => {
-//   pdfMake.vfs = pdfFonts.pdfMake.vfs;
-//   const tablaAmortizacion = {
-//     pageMargins: [40, 40, 40, 80],
-//     watermark: {
-//       text: "watermark",
-//       color: "orange",
-//       opacity: 0.3,
-//       bold: true,
-//       italics: false,
-//     },
-//     content: [
-//       { text: "CAJA DE AHORRO SAN PABLITO", style: "principalTitle" },
-//       { text: " ''SEMBRANDO EL FUTURO IMPULSANDO AL DESARROLLO'' ", style: "principalTitle" },
-//       { text: "SAN PABLITO", style: "principalTitle" },
-
-//       { text: " ", lineHeight: 1.5 },
-
-//       { text: "TIPO", style: "secundaryTitle" },
-//       { text: "TABLA DE AMORTIZACIÓN", style: "secundaryTitle", color: "red" },
-//       {
-//         text: [
-//           { text: "CARPETA: ", style: "secundaryTitle" },
-//           { text: "013", style: "secundaryTitle", color: "red", italics: true },
-//         ],
-//       },
-//       {
-//         text: "_________________________________________________________________",
-//         style: "border",
-//       },
-
-//       {
-//         style: "header",
-//         table: {
-//           widths: [80, 210, 60, 55, 35, 35],
-//           body: [
-//             [
-//               {
-//                 text: "Cliente:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "SEBASTIÁN FERNANDO LOVATO ENCARNACIÓN",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Fecha:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "2019/05/27",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Hora:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "10:42:07",
-//                 style: "rowDataResp",
-//               },
-//             ],
-//             [
-//               {
-//                 text: "RUC:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "1722163233",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Teléfono:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "0997105921",
-//                 style: "rowDataResp",
-//                 colSpan: 3,
-//               },
-//               "",
-//               "",
-//             ],
-//             [
-//               {
-//                 text: "Dirección:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "PUSUQUÍ ''EL JARDÍN Y LOS LUCEROS''",
-//                 style: "rowDataResp",
-//                 colSpan: 5,
-//               },
-//               "",
-//               "",
-//               "",
-//               "",
-//             ],
-//             [
-//               {
-//                 text: "Valor Préstamo:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "120000.00",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Valor Cuota:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "512.75",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Años:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "3",
-//                 style: "rowDataResp",
-//                 alignment: "center",
-//               },
-//             ],
-//             [
-//               {
-//                 text: "Número Cuotas:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "36",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Total Interés:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "40.26",
-//                 style: "rowDataResp",
-//               },
-//               {
-//                 text: "Meses:",
-//                 style: "rowData",
-//               },
-//               {
-//                 text: "0",
-//                 style: "rowDataResp",
-//                 alignment: "center",
-//               },
-//             ],
-//           ],
-//         },
-//         layout: {
-//           defaultBorder: false,
-//         },
-//       },
-//     ],
-
-//     styles: {
-//       header: {
-//         border: [true, true, true, true],
-//         fillColor: "#eeffee",
-//       },
-//       principalTitle: {
-//         alignment: "center",
-//         color: "black",
-//         fontSize: 12,
-//         bold: true,
-//         lineHeight: 1.25,
-//       },
-//       secundaryTitle: {
-//         alignment: "center",
-//         color: "black",
-//         fontSize: 10,
-//         bold: true,
-//       },
-//       border: {
-//         fontSize: 15,
-//         bold: true,
-//         alignment: "center",
-//         color: "black",
-//         marginTop: 15,
-//         marginBottom: 15,
-//       },
-//       rowData: {
-//         fontSize: 10,
-//         bold: true,
-//         alignment: "left",
-//         color: "black",
-//       },
-//       rowDataResp: {
-//         fontSize: 9,
-//         alignment: "left",
-//         color: "#424141",
-//       },
-//     },
-//   };
-
-//   pdfMake.createPdf(tablaAmortizacion).download();
-// };
-
-/* <MDButton
-  size="large"
-  variant="contained"
-  color="info"
-  sx={{
-    "&:hover": { background: "#5499C7" },
-    width: "100%",
-    marginTop: "50px",
-  }}
-  onClick={handleGeneratedPDF}
->
-  GENERAR PDF
-</MDButton>; */

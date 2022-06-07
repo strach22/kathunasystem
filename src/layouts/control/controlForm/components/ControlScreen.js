@@ -9,8 +9,7 @@ import InputValue from "elements/InputValue";
 import InputPassword from "elements/InputPassword";
 
 import ClientsContext from "context/Clients/ClientsContext";
-
-import Form from "../helpers/Form";
+import Form from "layouts/control/helpers/Form";
 
 export default function ControlScreen() {
   const { controlInfo, uploadControlInfo } = useContext(ClientsContext);

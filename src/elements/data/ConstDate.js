@@ -20,3 +20,10 @@ export const getWaytoPay = () => [
   { id: "2", title: "Transferencia" },
   { id: "3", title: "Cheques" },
 ];
+
+export const stateItems = () => [
+  { id: "Creado", title: "Creado" },
+  { id: "Aprobado", title: "Aprobado" },
+  { id: "Entregado", title: "Entregado" },
+  { id: "Finalizado", title: "Finalizado" },
+];
