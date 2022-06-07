@@ -90,7 +90,7 @@ export default function Credit() {
         .replace("-", "/");
       values.initialDate = newInitialDate;
       values.periods = String(periods);
-      values.state = "Pendiente";
+      values.state = "Creado";
       values.actualLoan = (periodicFeeDesgravamen * periods).toFixed(2);
       values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
       values.interest = interes;
