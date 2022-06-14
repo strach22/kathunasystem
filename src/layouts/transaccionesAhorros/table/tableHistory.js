@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 // Soft UI Dashboard React components
 import ClientsContext from "../../../context/Clients/ClientsContext";
+import ProofPaymentTransaction from "../download/ProofPaymentTransaction";
 
 export default function data() {
   const { clients } = useContext(ClientsContext);
@@ -16,6 +17,7 @@ export default function data() {
       { Header: "Valor", accessor: "transactionValue", align: "center" },
       { Header: "Balance Actual", accessor: "actualBalance", align: "center" },
       { Header: "Observación", accessor: "observation", align: "left" },
+      { Header: "Comprobante PDF", accessor: "download", align: "center" },
     ],
 
     rows: clients[i].savingHistory.map((info) => ({
@@ -23,6 +25,7 @@ export default function data() {
       transactionValue: info.value,
       actualBalance: info.actualBalance,
       observation: info.observation,
+      download: <ProofPaymentTransaction info={info} />,
     })),
   };
 }

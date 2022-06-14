@@ -21,6 +21,7 @@ export default function ControlScreen() {
     particularSavingInterest: "",
     desgravament: "",
     latePayment: "",
+    proofPaymentValue: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -55,6 +56,10 @@ export default function ControlScreen() {
       tempo.latePayment = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.latePayment)
         ? ""
         : "Verifique el formato";
+    if ("proofPaymentValue" in fieldValues)
+      tempo.proofPaymentValue = /^[0-9]+$/.test(fieldValues.proofPaymentValue)
+        ? ""
+        : "Colocar Números Enteros";
     if ("nameVerification" in fieldValues)
       tempo.nameVerification =
         fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
@@ -73,6 +78,7 @@ export default function ControlScreen() {
       partnerCreditInterest: controlInfo.partnerCreditInterest,
       desgravament: controlInfo.desgravament,
       latePayment: controlInfo.latePayment,
+      proofPaymentValue: controlInfo.proofPaymentValue,
       nameVerification: "",
     },
     true,
@@ -105,6 +111,7 @@ export default function ControlScreen() {
       newControlInfo.partnerCreditInterest = values.partnerCreditInterest;
       newControlInfo.desgravament = values.desgravament;
       newControlInfo.latePayment = values.latePayment;
+      newControlInfo.proofPaymentValue = values.proofPaymentValue;
       uploadControlInfo(newControlInfo);
     }
   };
@@ -249,7 +256,7 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3} sx={{ margin: "25px 0px 60px 0px" }}>
+        <Grid item xs={3} sx={{ marginTop: "25px" }}>
           <MDTypography className="Subtitles2" variant="h6">
             Interés por Mora
           </MDTypography>
@@ -264,6 +271,31 @@ export default function ControlScreen() {
             error={errors.latePayment}
             icon="%"
             position="end"
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <MDTypography className="title2" variant="h5">
+            COMPROBANTES DE PAGO
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={3} sx={{ marginBottom: "60px" }}>
+          <MDTypography className="Subtitles2" variant="h6">
+            Último Valor de Factura
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={9}>
+          <InputValue
+            className="InputInterest"
+            name="proofPaymentValue"
+            value={values.proofPaymentValue}
+            onChange={handleInputChange}
+            error={errors.proofPaymentValue}
+            icon="#"
+            position="start"
             read={read}
           />
         </Grid>
