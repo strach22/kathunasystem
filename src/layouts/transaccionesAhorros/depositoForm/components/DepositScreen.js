@@ -48,7 +48,19 @@ export default function DepositScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientHistory } = useContext(ClientsContext);
+  const { clients, addClientHistory, editSystemData, systemData } = useContext(ClientsContext);
+
+  const openSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = true;
+    newSystemData.SBinfo = {
+      color: "info",
+      icon: "check",
+      tittle: "Ahorros",
+      content: "Deposito agregado satisfactoriamente!!",
+    };
+    editSystemData(newSystemData);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,8 +81,8 @@ export default function DepositScreen() {
         if (!values.observation) values.observation = "Ninguna";
 
         addClientHistory(id, values);
-
         resetForm();
+        openSB();
         navigate("/inicio");
       }
     }

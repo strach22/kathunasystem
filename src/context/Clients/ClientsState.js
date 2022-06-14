@@ -14,6 +14,9 @@ function reducer(state, action) {
     case "UPLOAD_CONTROL_INFO":
       return { ...state, controlInfo: action.value };
 
+    case "UPLOAD_SYSTEM_DATA":
+      return { ...state, systemData: action.value };
+
     case "EDIT_CLIENT":
       return { ...state, clientInfo: action.value };
 
@@ -30,6 +33,15 @@ function ClientsState({ children }) {
     controlInfo,
     clients,
     clientInfo: null,
+    systemData: {
+      SBstate: false,
+      SBinfo: {
+        color: "success",
+        icon: "check",
+        tittle: "Clientes",
+        content: "Cliente Agregado",
+      },
+    },
   };
 
   const [state, dispatch] = useReducer(reducer, initialstate);
@@ -55,10 +67,9 @@ function ClientsState({ children }) {
   };
 
   const uploadControlInfo = (info) => {
-    const newInfo = info;
     dispatch({
       type: "UPLOAD_CONTROL_INFO",
-      value: newInfo,
+      value: info,
     });
   };
 
@@ -124,6 +135,13 @@ function ClientsState({ children }) {
     });
   };
 
+  const editSystemData = (data) => {
+    dispatch({
+      type: "UPLOAD_SYSTEM_DATA",
+      value: data,
+    });
+  };
+
   return (
     <ClientsContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -131,6 +149,7 @@ function ClientsState({ children }) {
         clients: state.clients,
         clientInfo: state.clientInfo,
         controlInfo: state.controlInfo,
+        systemData: state.systemData,
         addClient,
         eraseClient,
         uploadClients,
@@ -140,6 +159,7 @@ function ClientsState({ children }) {
         addClientCredit,
         addCreditHistory,
         uploadControlInfo,
+        editSystemData,
       }}
     >
       {children}
