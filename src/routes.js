@@ -11,6 +11,7 @@ import CargaCreditos from "layouts/cargaCreditos";
 import Historial from "layouts/historial";
 import Cobranzas from "layouts/cobranzas";
 import Gastos from "layouts/gastos";
+import AprobarCreditos from "layouts/aprobarCreditos";
 import Control from "layouts/control";
 import InfoClientes from "layouts/clientes/infoClients";
 import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
@@ -20,7 +21,7 @@ import CrearCreditoForm from "layouts/credito/crearCreditoForm";
 import VerCreditoForm from "layouts/credito/verCreditoForm";
 import VerCarpeta from "layouts/credito/verCarpeta";
 import PagarCredito from "layouts/credito/pagarCredito";
-import ControlForm from "layouts/control/controlForm";
+import ApproveCreditForm from "layouts/aprobarCreditos/approveCreditsForm";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -126,6 +127,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Aprobar Créditos",
+    key: "aprobar-creditos",
+    icon: <Icon fontSize="small">check</Icon>,
+    route: "/aprobar-creditos",
+    component: <AprobarCreditos />,
+  },
+  {
+    type: "collapse",
     name: "Control",
     key: "control",
     icon: <Icon fontSize="small">settings</Icon>,
@@ -181,10 +190,10 @@ const routes = [
     component: <PagarCredito />,
   },
   {
-    name: "Control/:id",
-    key: "control/:id",
-    route: "/control/:id",
-    component: <ControlForm />,
+    name: "Aprobar-creditos/:id",
+    key: "aprobar-creditos/:id",
+    route: "/aprobar-creditos/:id",
+    component: <ApproveCreditForm />,
   },
 ];
 

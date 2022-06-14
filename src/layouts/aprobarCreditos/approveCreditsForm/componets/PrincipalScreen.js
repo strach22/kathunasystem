@@ -4,7 +4,6 @@ import { Card, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import InfoScreen from "layouts/credito/helpers/InfoScreen";
-
 import ApproveCredits from "./ApproveCredits";
 
 const useStyles = makeStyles({

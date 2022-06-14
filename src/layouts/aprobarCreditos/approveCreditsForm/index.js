@@ -2,9 +2,9 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import PrincipalScreen from "./components/PrincipalScreen";
+import PrincipalScreen from "./componets/PrincipalScreen";
 
-function Approve() {
+function ApproveCredit() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -14,4 +14,4 @@ function Approve() {
   );
 }
 
-export default Approve;
+export default ApproveCredit;

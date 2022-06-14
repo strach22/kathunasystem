@@ -185,7 +185,7 @@ export default function ApproveCredits() {
         </Grid>
       )}
       <Grid item xs={3}>
-        <Link to="/control">
+        <Link to="/aprobar-creditos">
           <MDButton
             size="large"
             variant="contained"
