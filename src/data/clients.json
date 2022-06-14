@@ -28,13 +28,15 @@
         "transactionDate": "2022/03/04",
         "value": 180,
         "actualBalance": 180,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 1
       },
       {
         "transactionDate": "2022/03/14",
         "value": -30,
         "actualBalance": 50,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 3
       }
     ],
     "credits": [
@@ -54,23 +56,24 @@
           "value":"2898.00",
           "paymentType": "Efectivo",
           "transactionDate":"2022/02/10",
-          "observation":"Pago completo"
-        }]
-      },
-      {
-        "id": "3",
-        "initialDate": "2022/05/12",
-        "loanValue": "5120",
-        "interest": "2.5",
-        "periods": "60",
-        "actualLoan": "9990",
-        "state": "Aprobado",
-        "guarantor": "Mihai Luna",
-        "identificationGuarantor": "7107830765",
-        "monthlyPayment": "166.50",
-        "creditHistory": []
-      }
-    ]
+          "observation":"Pago completo",
+          "receipt": 2
+          }]
+        },
+        {
+          "id": "3",
+          "initialDate": "2022/05/12",
+          "loanValue": "5120",
+          "interest": "2.5",
+          "periods": "60",
+          "actualLoan": "9990",
+          "state": "Aprobado",
+          "guarantor": "Mihai Luna",
+          "identificationGuarantor": "7107830765",
+          "monthlyPayment": "166.50",
+          "creditHistory": []
+        }
+      ]
   },
   {
     "id": "2",
@@ -100,18 +103,19 @@
       "transactionDate": "2022/02/04",
       "value": 10000,
       "actualBalance": 10000,
-      "observation": "Ninguna"
-    }],
-    "credits": []
-  },
-  {
-    "id": "3",
-    "firstName": "Saida",
-    "lastName": "Boix",
-    "identification": "8522696589",
-    "mobile": "0943690176",
-    "secondMobile": "956944439",
-    "tariff": "Socio",
+      "observation": "Ninguna",
+      "receipt": 4
+      }],
+      "credits": []
+    },
+    {
+      "id": "3",
+      "firstName": "Saida",
+      "lastName": "Boix",
+      "identification": "8522696589",
+      "mobile": "0943690176",
+      "secondMobile": "956944439",
+      "tariff": "Socio",
     "civil": "Soltero/a",
     "birthDate": "2021/06/27",
     "creationDate": "2019/09/30",
@@ -187,43 +191,50 @@
         "transactionDate": "2022/03/04",
         "value": 180,
         "actualBalance": 180,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 5
       },
       {
         "transactionDate": "2022/03/05",
         "value": -30,
         "actualBalance": 150,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 7
       },
       {
         "transactionDate": "2022/03/20",
         "value": -150,
         "actualBalance": 0,
-        "observation": "El cliente retira todos sus ahorros"
+        "observation": "El cliente retira todos sus ahorros",
+        "receipt": 9
       },
       {
         "transactionDate": "2022/04/04",
         "value": 30,
         "actualBalance": 30,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 11
       },
       {
         "transactionDate": "2022/04/05",
         "value": 30,
         "actualBalance": 60,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 12
       },
       {
         "transactionDate": "2022/04/20",
         "value": -60,
         "actualBalance": 0,
-        "observation": "El cliente retira todos sus ahorros"
+        "observation": "El cliente retira todos sus ahorros",
+        "receipt": 13
       },
       {
         "transactionDate": "2022/04/04",
         "value": 50,
         "actualBalance": 50,
-        "observation": "Ninguna"
+        "observation": "Ninguna",
+        "receipt": 14
       }
     ],
     "credits": []
@@ -298,21 +309,24 @@
             "value":"86.01",
             "paymentType": "Efectivo",
             "transactionDate":"2022/04/01",
-            "observation":"Pago completo"
+            "observation":"Pago completo",
+            "receipt": 6
           },
           {
             "id":"2",
             "value":"86.01",
             "paymentType": "Cheque",
             "transactionDate":"2022/05/01",
-            "observation":"Pago completo"
+            "observation":"Pago completo",
+            "receipt": 8
           },
           {
             "id":"3",
             "value":"86.01",
             "paymentType": "Transferencia",
             "transactionDate":"2022/06/01",
-            "observation":"Pago completo"
+            "observation":"Pago completo",
+            "receipt": 10
           }
         ]
       }
