@@ -10,7 +10,7 @@ import zfill from "elements/helpers/zfill";
 
 export default function ProofPaymentTransaction({ info }) {
   const { controlInfo } = useContext(ClientsContext);
-  const { transactionDate, observation, value } = info;
+  const { receipt, transactionDate, observation, value } = info;
 
   const lettersExpenseValue = numbToLetters(value, {
     plural: "dólares estadounidenses",
@@ -47,7 +47,7 @@ export default function ProofPaymentTransaction({ info }) {
                     { text: controlInfo.legalRepresentative, style: "subtitle3", width: "*" },
                     { text: "Recibo No.", style: "subtitle1", width: 95 },
                     {
-                      text: zfill(parseInt(controlInfo.proofPaymentValue, 10), 3),
+                      text: zfill(receipt, 3),
                       style: "subtitle2",
                       width: 60,
                     },

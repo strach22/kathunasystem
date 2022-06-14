@@ -37,6 +37,7 @@ export default function RetiroScreen() {
       actualBalance: "0",
       value: "0.00",
       observation: "",
+      receipt: 0,
     },
     true,
     validate,
@@ -46,7 +47,8 @@ export default function RetiroScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientHistory, editSystemData, systemData } = useContext(ClientsContext);
+  const { clients, addClientHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
+    useContext(ClientsContext);
 
   const openSB = () => {
     const newSystemData = systemData;
@@ -81,6 +83,13 @@ export default function RetiroScreen() {
           values.value *= -1;
 
           if (!values.observation) values.observation = "Ninguna";
+
+          values.receipt = controlInfo.proofPaymentValue + 1;
+
+          const newControlInfo = controlInfo;
+          newControlInfo.proofPaymentValue = values.receipt;
+
+          uploadControlInfo(newControlInfo);
 
           setOk(false);
           addClientHistory(id, values);

@@ -40,6 +40,7 @@ export default function DepositScreen() {
       actualBalance: "0",
       value: "0.00",
       observation: "",
+      receipt: 0,
     },
     true,
     validate,
@@ -48,7 +49,8 @@ export default function DepositScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientHistory, editSystemData, systemData } = useContext(ClientsContext);
+  const { clients, addClientHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
+    useContext(ClientsContext);
 
   const openSB = () => {
     const newSystemData = systemData;
@@ -80,6 +82,12 @@ export default function DepositScreen() {
 
         if (!values.observation) values.observation = "Ninguna";
 
+        values.receipt = controlInfo.proofPaymentValue + 1;
+
+        const newControlInfo = controlInfo;
+        newControlInfo.proofPaymentValue = values.receipt;
+
+        uploadControlInfo(newControlInfo);
         addClientHistory(id, values);
         resetForm();
         openSB();
