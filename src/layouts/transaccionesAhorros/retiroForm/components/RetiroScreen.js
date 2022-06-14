@@ -36,6 +36,7 @@ export default function RetiroScreen() {
       transactionDate: new Date(),
       actualBalance: "0",
       value: "0.00",
+      paymentType: "Efectivo",
       observation: "",
       receipt: 0,
     },

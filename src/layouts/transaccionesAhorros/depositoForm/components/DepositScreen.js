@@ -1,33 +1,37 @@
 /* eslint-disable no-use-before-define */
 import React, { useContext } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import DatePickerH from "elements/DatePickerH";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import * as ConstDate from "elements/data/ConstDate";
+import Form from "layouts/transaccionesAhorros/helpers/Form";
+import useForm from "elements/hooks/useForm";
+import SelectG from "elements/SelectG";
 
 // Context
 import ClientsContext from "context/Clients/ClientsContext";
 
-import Form from "layouts/transaccionesAhorros/helpers/Form";
-import useForm from "elements/hooks/useForm";
-
 export default function DepositScreen() {
   const errorValues = {
     value: "",
+    paymentType: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("value" in fieldValues) {
+    if ("value" in fieldValues)
       tempo.value = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.value)
         ? ""
         : "Llenar en el Formato Correcto el Campo";
-    }
+    if ("paymentType" in fieldValues)
+      tempo.paymentType =
+        fieldValues.paymentType.length !== 0 ? "" : "Es obligatorio escoger una opción";
     setErrors({
       ...tempo,
     });
@@ -39,6 +43,7 @@ export default function DepositScreen() {
       transactionDate: new Date(),
       actualBalance: "0",
       value: "0.00",
+      paymentType: "",
       observation: "",
       receipt: 0,
     },
@@ -99,12 +104,10 @@ export default function DepositScreen() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha de la transacción:
           </MDTypography>
-        </Grid>
-        <Grid item xs={8}>
           <DatePickerH
             name="transactionDate"
             label="Fecha de transacción"
@@ -112,6 +115,21 @@ export default function DepositScreen() {
             onChange={handleInputChange}
           />
         </Grid>
+
+        <Grid item xs={7}>
+          <MDTypography className="Subtitles" variant="h5">
+            Forma de Pago:
+          </MDTypography>
+          <SelectG
+            name="paymentType"
+            label="Forma de Pago"
+            value={values.paymentType}
+            onChange={handleInputChange}
+            options={ConstDate.getWaytoPay()}
+            error={errors.paymentType}
+          />
+        </Grid>
+
         <Grid item xs={5}>
           <MDTypography className="Subtitles" variant="h5">
             Valor a depositar:

@@ -18,7 +18,7 @@ export const getTariffItems = () => [
 export const getWaytoPay = () => [
   { id: "1", title: "Efectivo" },
   { id: "2", title: "Transferencia" },
-  { id: "3", title: "Cheques" },
+  { id: "3", title: "Cheque" },
 ];
 
 export const stateItems = () => [

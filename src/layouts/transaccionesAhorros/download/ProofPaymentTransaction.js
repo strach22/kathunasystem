@@ -296,7 +296,9 @@ export default function ProofPaymentTransaction({ info }) {
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.createPdf(ProofPaymentTransactionPDF).open();
+    pdfMake
+      .createPdf(ProofPaymentTransactionPDF)
+      .download("Comprobante-de-pagos-transacción-ahorros.pdf");
   };
 
   return (

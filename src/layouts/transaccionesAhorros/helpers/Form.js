@@ -7,8 +7,23 @@ const useStyles = makeStyles({
   root: {
     // DatePicker
     "& .Calendario": {
-      width: "50%",
+      width: "60%",
       marginBottom: "40px",
+    },
+    // Selector
+    "& .MuiFormControl-fullWidth": {
+      width: "60%",
+    },
+    // Label Selector
+    "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
+      fontSize: "80%",
+      color: "black",
+    },
+    // Selector
+    "& #demo-simple-select": {
+      width: "100%",
+      height: 46,
+      marginLeft: "10px",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
@@ -21,7 +36,6 @@ const useStyles = makeStyles({
     "& .Subtitles": {
       marginBottom: "15px",
       color: "black",
-      // fontFamily: "arial",
     },
     // Buttons
     "& .MuiButton-root": {
