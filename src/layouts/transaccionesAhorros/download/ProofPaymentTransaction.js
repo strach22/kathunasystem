@@ -53,11 +53,7 @@ export default function ProofPaymentTransaction({ info }) {
                     { text: "Representante Legal", style: "subtitle1", width: 112 },
                     { text: controlInfo.legalRepresentative, style: "subtitle3", width: "*" },
                     { text: "Recibo No.", style: "subtitle1", width: 95 },
-                    {
-                      text: zfill(receipt, 4),
-                      style: "subtitle2",
-                      width: 60,
-                    },
+                    { text: zfill(receipt, 4), style: "subtitle2", width: 60 },
                   ],
                 },
                 {
