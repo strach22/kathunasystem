@@ -37,7 +37,8 @@ export default function MonthlyPayment() {
   };
 
   const [read, setRead] = useState("false");
-  const { clients, addCreditHistory, editSystemData, systemData } = useContext(ClientsContext);
+  const { clients, addCreditHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
+    useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -52,6 +53,7 @@ export default function MonthlyPayment() {
       paymentType: "",
       value: clients[i].credits[i2].monthlyPayment,
       observation: "",
+      receipt: 0,
     },
     true,
     validate,
@@ -88,6 +90,12 @@ export default function MonthlyPayment() {
           .replace("-", "/");
         values.transactionDate = newTransactionDate;
         values.id = String(clients[i].credits[i2].creditHistory.length + 1);
+        values.receipt = controlInfo.proofPaymentValue + 1;
+
+        const newControlInfo = controlInfo;
+        newControlInfo.proofPaymentValue = values.receipt;
+
+        uploadControlInfo(newControlInfo);
         addCreditHistory(idC, idF, values);
         openSB();
         navigate("/inicio");
