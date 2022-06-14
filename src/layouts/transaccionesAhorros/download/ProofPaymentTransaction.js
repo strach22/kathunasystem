@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MDButton from "components/MDButton";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -9,10 +9,17 @@ import { numbToLetters } from "elements/helpers/numbToLetters";
 import zfill from "elements/helpers/zfill";
 
 export default function ProofPaymentTransaction({ info }) {
-  const { controlInfo } = useContext(ClientsContext);
-  const { receipt, transactionDate, observation, value } = info;
+  const { transactionDate, value, actualBalance, observation, receipt } = info;
 
-  const lettersExpenseValue = numbToLetters(value, {
+  const [transactionType, setTransactionType] = useState("");
+  const { controlInfo } = useContext(ClientsContext);
+
+  useEffect(() => {
+    if (value > 0) setTransactionType("Depósito en");
+    else setTransactionType("Retiro de");
+  }, [value]);
+
+  const lettersExpenseValue = numbToLetters(Math.abs(value), {
     plural: "dólares estadounidenses",
     singular: "dólar estadounidense",
     centPlural: "centavos",
@@ -27,7 +34,7 @@ export default function ProofPaymentTransaction({ info }) {
             {
               canvas: [
                 { type: "rect", x: 15, y: 15, w: 565, h: 230, r: 10, lineColor: "#000" },
-                { type: "line", x1: 60, y1: 170, x2: 535, y2: 170, lineWidth: 2.5 },
+                { type: "line", x1: 60, y1: 175, x2: 535, y2: 175, lineWidth: 2.5 },
               ],
             },
           ]
@@ -47,7 +54,7 @@ export default function ProofPaymentTransaction({ info }) {
                     { text: controlInfo.legalRepresentative, style: "subtitle3", width: "*" },
                     { text: "Recibo No.", style: "subtitle1", width: 95 },
                     {
-                      text: zfill(receipt, 3),
+                      text: zfill(receipt, 4),
                       style: "subtitle2",
                       width: 60,
                     },
@@ -61,9 +68,16 @@ export default function ProofPaymentTransaction({ info }) {
                     { text: transactionDate, style: "subtitle2", width: 60 },
                   ],
                 },
+                {
+                  columns: [
+                    { text: "", width: "*" },
+                    { text: "Ahorros Total", style: "subtitle1", width: 95 },
+                    { text: `$ ${actualBalance}`, style: "subtitle2", width: 60 },
+                  ],
+                },
               ],
             },
-            { text: "HISTORIAL DE CUOTAS", style: "title1", marginTop: 40 },
+            { text: "HISTORIAL DE ESTADO DE CUENTA DE AHORROS", style: "title1", marginTop: 35 },
             { text: "COMPROBANTE DE PAGOS", style: "title1", color: "red" },
           ],
         ],
@@ -107,8 +121,16 @@ export default function ProofPaymentTransaction({ info }) {
               },
             ],
             [
-              { text: observation, style: "table2", border: [false, false, false, true] },
-              { text: `$ ${value}`, style: "table3", border: [false, false, false, true] },
+              {
+                text: `${transactionType} la caja de ahorros`,
+                style: "table2",
+                border: [false, false, false, true],
+              },
+              {
+                text: `$ ${Math.abs(value)}`,
+                style: "table3",
+                border: [false, false, false, true],
+              },
             ],
             [
               { text: "---", style: "table2", color: "white", border: [false, false, false, true] },
@@ -160,7 +182,7 @@ export default function ProofPaymentTransaction({ info }) {
           body: [
             [
               { text: "Subtotal", style: "table5", border: [false, true, false, true] },
-              { text: `$ ${value}`, style: "table3", border: [false, true, false, true] },
+              { text: `$ ${Math.abs(value)}`, style: "table3", border: [false, true, false, true] },
             ],
             [
               { text: "Impuestos", style: "table5", border: [false, false, false, true] },
@@ -169,7 +191,7 @@ export default function ProofPaymentTransaction({ info }) {
             [
               { text: "Total", style: "table4", border: [false, false, false, true] },
               {
-                text: `$ ${value}`,
+                text: `$ ${Math.abs(value)}`,
                 style: "table4",
                 fillColor: "#f5f5f5",
                 border: [false, false, false, true],
@@ -180,18 +202,17 @@ export default function ProofPaymentTransaction({ info }) {
       },
       "\n",
       {
-        text: [
-          "La cantidad es: ",
-          { text: lettersExpenseValue, fontSize: 10, bold: false, italics: true },
-        ],
-        fontSize: 10,
-        bold: true,
+        text: ["La cantidad es: ", { text: lettersExpenseValue, style: "text2" }],
+        style: "text1",
       },
-      "\n",
+      {
+        text: ["Observación: ", { text: observation, style: "text2" }],
+        style: "text1",
+      },
+      "\n\n",
       "\n\n",
       "\n\n",
       { text: "____________________________", style: "border" },
-      "\n",
       { text: "Beneficiario", alignment: "center", fontSize: 10 },
     ],
 
@@ -200,6 +221,7 @@ export default function ProofPaymentTransaction({ info }) {
         fontSize: 15,
         bold: true,
         alignment: "center",
+        marginBottom: 5,
       },
       title1: {
         color: "#333333",
@@ -255,6 +277,16 @@ export default function ProofPaymentTransaction({ info }) {
         alignment: "right",
         margin: [0, 5, 0, 5],
         fontSize: 12,
+      },
+      text1: {
+        fontSize: 10,
+        bold: true,
+        marginBottom: 5,
+      },
+      text2: {
+        fontSize: 10,
+        bold: false,
+        italics: true,
       },
     },
     defaultStyle: {
