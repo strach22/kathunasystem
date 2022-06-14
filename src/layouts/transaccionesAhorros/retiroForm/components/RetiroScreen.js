@@ -46,7 +46,19 @@ export default function RetiroScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientHistory } = useContext(ClientsContext);
+  const { clients, addClientHistory, editSystemData, systemData } = useContext(ClientsContext);
+
+  const openSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = true;
+    newSystemData.SBinfo = {
+      color: "info",
+      icon: "check",
+      tittle: "Ahorros",
+      content: "Retiro realizado satisfactoriamente!!",
+    };
+    editSystemData(newSystemData);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,6 +85,7 @@ export default function RetiroScreen() {
           setOk(false);
           addClientHistory(id, values);
           resetForm();
+          openSB();
           navigate("/inicio");
         } else {
           setOk(true);

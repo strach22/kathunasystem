@@ -1,11 +1,10 @@
 /* eslint-disable no-use-before-define */
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
-import MDSnackbar from "components/MDSnackbar";
 import useForm from "../../../../elements/hooks/useForm";
 import Form from "../helpers/Form";
 import FormList1 from "./list/FormList1";
@@ -16,26 +15,21 @@ import FormListRelationShip from "./list/FormListRelationShip";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const [successSB, setSuccessSB] = useState(false);
-  const { clients, clientInfo, resetClientInfo, addClient } = useContext(ClientsContext);
-  // const navigate = useNavigate();
+  const { clients, clientInfo, resetClientInfo, addClient, editSystemData, systemData } =
+    useContext(ClientsContext);
+  const navigate = useNavigate();
 
-  const openSuccessSB = () => setSuccessSB(true);
-  const closeSuccessSB = () => setSuccessSB(false);
-
-  const renderSuccessSB = (
-    <MDSnackbar
-      color="success"
-      icon="check"
-      title="Clientes"
-      content="Cliente agragado satisfactoriamente"
-      dateTime="11 mins ago"
-      open={successSB}
-      onClose={closeSuccessSB}
-      close={closeSuccessSB}
-      bgWhite
-    />
-  );
+  const openSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = true;
+    newSystemData.SBinfo = {
+      color: "info",
+      icon: "check",
+      tittle: "Clientes",
+      content: "Cliente agregarado satisfactoriamente!!",
+    };
+    editSystemData(newSystemData);
+  };
 
   const initialValues =
     clientInfo !== null
@@ -188,8 +182,8 @@ export default function FormScreen() {
       addClient(values);
       resetForm();
       resetClientInfo();
-      openSuccessSB();
-      // navigate("/clientes");
+      openSB();
+      navigate("/clientes");
     }
   };
 
@@ -308,7 +302,6 @@ export default function FormScreen() {
           AGREGAR
         </MDButton>
       </Grid>
-      {renderSuccessSB}
     </Form>
   );
 }

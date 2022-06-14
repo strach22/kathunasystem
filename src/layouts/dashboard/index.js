@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import MDSnackbar from "components/MDSnackbar";
+import MDbutton from "components/MDButton";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -19,12 +21,36 @@ import ClientsContext from "context/Clients/ClientsContext";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 function Dashboard() {
-  const { controlInfo } = useContext(ClientsContext);
+  const { controlInfo, editSystemData, systemData } = useContext(ClientsContext);
   const { ahorros, creditos, gastos, total } = reportsLineChartData;
+
+  const openSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = true;
+    editSystemData(newSystemData);
+  };
+  const closeSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = false;
+    editSystemData(newSystemData);
+  };
+
+  const renderSB = (
+    <MDSnackbar
+      color={systemData.SBinfo.color}
+      icon={systemData.SBinfo.icon}
+      title={systemData.SBinfo.tittle}
+      content={systemData.SBinfo.content}
+      open={systemData.SBstate}
+      onClose={closeSB}
+      close={closeSB}
+    />
+  );
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <MDbutton onClick={openSB}>Aplastar</MDbutton>
       <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
@@ -123,6 +149,7 @@ function Dashboard() {
           </Grid>
         </MDBox>
       </MDBox>
+      {renderSB}
       <Footer />
     </DashboardLayout>
   );

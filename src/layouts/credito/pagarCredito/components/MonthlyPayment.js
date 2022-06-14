@@ -37,7 +37,7 @@ export default function MonthlyPayment() {
   };
 
   const [read, setRead] = useState("false");
-  const { clients, addCreditHistory } = useContext(ClientsContext);
+  const { clients, addCreditHistory, editSystemData, systemData } = useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -66,6 +66,17 @@ export default function MonthlyPayment() {
     }
   }, [clients[i].credits[i2].state]);
 
+  const openSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = true;
+    newSystemData.SBinfo = {
+      color: "success",
+      icon: "check",
+      tittle: "Creditos",
+      content: "Pago de Credito satisfactorio!!",
+    };
+    editSystemData(newSystemData);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (read === "false") {
@@ -78,6 +89,7 @@ export default function MonthlyPayment() {
         values.transactionDate = newTransactionDate;
         values.id = String(clients[i].credits[i2].creditHistory.length + 1);
         addCreditHistory(idC, idF, values);
+        openSB();
         navigate("/inicio");
       }
     }
