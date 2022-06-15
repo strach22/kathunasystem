@@ -1,19 +1,11 @@
-/* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
-
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
+
 // Soft UI Dashboard React components
 import ClientsContext from "../../../context/Clients/ClientsContext";
 import IndividualProofPayment from "../download/IndividualProofPayment";
 
 export default function data() {
-  const [dataTempo, setDataTempo] = useState({
-    id: "",
-    transactionDate: "",
-    value: "",
-    paymentType: "",
-    observation: "",
-  });
   const { clients } = useContext(ClientsContext);
   const { id } = useParams();
   const [idC, idF] = id.split("-");
@@ -21,42 +13,59 @@ export default function data() {
   const i = clients.map((e) => e.id).indexOf(idC);
   const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
-  const aux1 = parseInt(clients[i].credits[i2].periods, 10);
+  const rows = clients[i].credits[i2].creditHistory.map((info) => ({
+    id: info.id,
+    transactionDate: info.transactionDate,
+    value: info.value,
+    paymentType: info.paymentType,
+    observation: info.observation,
+    download: <IndividualProofPayment info={info} />,
+  }));
 
-  for (let iaux = 0; iaux < aux1; iaux += 1) {
-    const aux2 = clients[i].credits[i2].creditHistory[iaux];
+  const totalPayments = clients[i].credits[i2].creditHistory.length;
+  const repetitions = parseInt(clients[i].credits[i2].periods, 10) - totalPayments;
 
-    if (aux2) {
-      setDataTempo({
-        id: aux2.id,
-        transactionDate: aux2.transactionDate,
-        value: aux2.value,
-        paymentType: aux2.paymentType,
-        observation: aux2.observation,
-      });
+  for (let j = 0; j < repetitions; j += 1) {
+    const auxInitialMonth = new Date(clients[i].credits[i2].initialDate);
+    const nowDate = new Date().toISOString().split("T")[0].replace("-", "/").replace("-", "/");
+
+    const auxNextMonth = auxInitialMonth;
+    auxNextMonth.setMonth(auxNextMonth.getMonth() + j + totalPayments + 1);
+    const nextMonth = auxNextMonth.toISOString().split("T")[0].replace("-", "/").replace("-", "/");
+
+    const auxDate1 = nowDate.split("/");
+    const auxDate2 = nextMonth.split("/");
+    const utcDate1 = Date.UTC(auxDate1[0], auxDate1[1] - 1, auxDate1[2]);
+    const utcDate2 = Date.UTC(auxDate2[0], auxDate2[1] - 1, auxDate2[2]);
+    const difference = utcDate2 - utcDate1;
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    let okPaymentType = "";
+    let okObservation = "";
+
+    if (days < 0) {
+      okPaymentType = "Retrasado";
+      okObservation = `${Math.abs(days)} días de mora`;
     } else {
-      console.log(dataTempo);
-      // const auxInitialMonth = new Date(clients[i].credits[i2].initialDate);
-      // const nowDate = new Date().toISOString().split("T")[0].replace("-", "/").replace("-", "/");
-      // console.log(auxInitialMonth, nowDate);
-      // setDataTempo({
-      //   id: iaux + 1,
-      //   transactionDate: aux2.transactionDate,
-      //   value: aux2.value,
-      //   paymentType: aux2.paymentType,
-      //   observation: aux2.observation,
-      // });
+      okPaymentType = "Pendiente";
+      okObservation = `En ${Math.abs(days)} días realizar el pago`;
     }
 
-    // dispatch({
-    //   type: "CLIENT_DATA",
-    //   payload: dataBaseTempo,
-    // });
+    const rowsTempo = {
+      id: j + totalPayments + 1,
+      transactionDate: nextMonth,
+      value: clients[i].credits[i2].monthlyPayment,
+      paymentType: okPaymentType,
+      observation: okObservation,
+      download: "No generado",
+    };
+
+    rows.push(rowsTempo);
   }
 
   return {
     columns: [
-      { Header: "id", accessor: "id", align: "left" },
+      { Header: "id", accessor: "id", align: "left", width: "80px" },
       { Header: "Fecha", accessor: "transactionDate", align: "left" },
       { Header: "Valor", accessor: "value", align: "center" },
       { Header: "Tipo de Pago", accessor: "paymentType", align: "center" },
@@ -64,13 +73,6 @@ export default function data() {
       { Header: "Comprobante PDF", accessor: "download", align: "center" },
     ],
 
-    rows: clients[i].credits[i2].creditHistory.map((info) => ({
-      id: info.id,
-      transactionDate: info.transactionDate,
-      value: info.value,
-      paymentType: info.paymentType,
-      observation: info.observation,
-      download: <IndividualProofPayment info={info} />,
-    })),
+    rows,
   };
 }

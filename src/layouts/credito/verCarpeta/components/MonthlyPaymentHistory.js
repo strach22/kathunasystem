@@ -13,7 +13,7 @@ export default function MonthlyPaymentHistory() {
         isSorted
         showTotalEntries={false}
         noEndBorder
-        entriesPerPage={false}
+        entriesPerPage
         defaultEntries={5}
       />
     </Grid>
