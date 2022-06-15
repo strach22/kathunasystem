@@ -30,6 +30,9 @@ export default function SelectG(props) {
     </FormControl>
   );
 }
+SelectG.defaultProps = {
+  read: "",
+};
 
 SelectG.propTypes = {
   name: PropTypes.string.isRequired,
@@ -43,5 +46,5 @@ SelectG.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
-  read: PropTypes.string.isRequired,
+  read: PropTypes.string,
 };
