@@ -7,7 +7,6 @@ import Grid from "@mui/material/Grid";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDSnackbar from "components/MDSnackbar";
-import MDbutton from "components/MDButton";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -24,11 +23,6 @@ function Dashboard() {
   const { controlInfo, editSystemData, systemData } = useContext(ClientsContext);
   const { ahorros, creditos, gastos, total } = reportsLineChartData;
 
-  const openSB = () => {
-    const newSystemData = systemData;
-    newSystemData.SBstate = true;
-    editSystemData(newSystemData);
-  };
   const closeSB = () => {
     const newSystemData = systemData;
     newSystemData.SBstate = false;
@@ -50,7 +44,6 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDbutton onClick={openSB}>Aplastar</MDbutton>
       <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>

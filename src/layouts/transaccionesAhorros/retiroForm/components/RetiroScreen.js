@@ -55,7 +55,7 @@ export default function RetiroScreen() {
     const newSystemData = systemData;
     newSystemData.SBstate = true;
     newSystemData.SBinfo = {
-      color: "info",
+      color: "error",
       icon: "check",
       tittle: "Ahorros",
       content: "Retiro realizado satisfactoriamente!!",
