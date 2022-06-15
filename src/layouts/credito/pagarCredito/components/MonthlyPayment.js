@@ -89,6 +89,8 @@ export default function MonthlyPayment() {
           .replace("-", "/")
           .replace("-", "/");
         values.transactionDate = newTransactionDate;
+        if (!values.observation) values.observation = "Ninguna";
+
         values.id = String(clients[i].credits[i2].creditHistory.length + 1);
         values.receipt = controlInfo.proofPaymentValue + 1;
 
