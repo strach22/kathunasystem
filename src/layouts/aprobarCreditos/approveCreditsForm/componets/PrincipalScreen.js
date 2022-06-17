@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import { Card, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import InfoScreen from "layouts/credito/helpers/InfoScreen";
+import InfoScreenSecond from "layouts/credito/helpers/InfoScreenSecond";
 import ApproveCredits from "./ApproveCredits";
 
 const useStyles = makeStyles({
@@ -38,7 +38,7 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3}>
-              <InfoScreen />
+              <InfoScreenSecond />
             </MDBox>
           </Card>
         </Grid>
