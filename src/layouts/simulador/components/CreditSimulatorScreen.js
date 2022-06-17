@@ -70,7 +70,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange } = useForm(
+  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
       loanValue: "0",
       timePayYear: "0",
@@ -81,6 +81,15 @@ export default function CreditSimulatorScreen({ setParameters }) {
     validate,
     errorValues
   );
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    resetForm();
+    setCuotaPeriodica("$ 0");
+    setNumeroCuotas("0");
+    setTotalInteres("$ 0");
+    setParameters({});
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -190,10 +199,20 @@ export default function CreditSimulatorScreen({ setParameters }) {
           {getInfo("Total interés a pagar:", totalInteres)}
         </Grid>
         <Grid item xs={12}>
-          <MDButton variant="text" size="large" type="submit">
+          <MDButton
+            variant="text"
+            size="large"
+            type="submit"
+            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+          >
             GENERAR
           </MDButton>
-          <MDButton variant="text" size="large" onClick={() => setParameters({})} color="error">
+          <MDButton
+            variant="text"
+            size="large"
+            onClick={handleReset}
+            sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
+          >
             RESETEAR
           </MDButton>
         </Grid>
