@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import MDButton from "components/MDButton";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -9,10 +10,11 @@ import { numbToLetters } from "elements/helpers/numbToLetters";
 import zfill from "elements/helpers/zfill";
 
 export default function ProofPaymentTransaction({ info }) {
-  const { transactionDate, value, actualBalance, observation, receipt } = info;
+  const { transactionDate, value, observation, receipt } = info;
 
   const [transactionType, setTransactionType] = useState("");
-  const { controlInfo } = useContext(ClientsContext);
+  const { clients, controlInfo } = useContext(ClientsContext);
+  const { id } = useParams();
 
   useEffect(() => {
     if (value > 0) setTransactionType("Depósito en");
@@ -68,7 +70,7 @@ export default function ProofPaymentTransaction({ info }) {
                   columns: [
                     { text: "", width: "*" },
                     { text: "Ahorros Total", style: "subtitle1", width: 95 },
-                    { text: `$ ${actualBalance}`, style: "subtitle2", width: 60 },
+                    { text: `$ ${clients[id - 1].savingBalance}`, style: "subtitle2", width: 60 },
                   ],
                 },
               ],

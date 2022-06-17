@@ -26,10 +26,10 @@ export default function PaymentExpensesHistory({ rows }) {
     const body = [];
 
     const auxColumns = [
-      { text: "Código", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Fecha del Gasto", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Valor", alignment: "center", bold: true, color: "white", fontSize: 15 },
-      { text: "Observación", alignment: "center", bold: true, color: "white", fontSize: 15 },
+      { text: "Código", style: "table1" },
+      { text: "Fecha del Gasto", style: "table1" },
+      { text: "Valor", style: "table1" },
+      { text: "Observación", style: "table1" },
     ];
 
     body.push(auxColumns);
@@ -38,14 +38,9 @@ export default function PaymentExpensesHistory({ rows }) {
       const dataRow = [];
 
       columns.forEach((column) => {
-        // dataRow.push(row[column].toString());
         if (column === "observation")
-          dataRow.push({
-            text: row[column].toString(),
-            alignment: "left",
-            color: "black",
-          });
-        else dataRow.push({ text: row[column].toString(), alignment: "center", color: "black" });
+          dataRow.push({ text: row[column].toString(), style: "table2", alignment: "left" });
+        else dataRow.push({ text: row[column].toString(), style: "table2" });
       });
 
       body.push(dataRow);
@@ -56,49 +51,32 @@ export default function PaymentExpensesHistory({ rows }) {
 
   const expensisHistoryPDF = {
     pageMargins: [40, 40, 40, 80],
-    background() {
-      return [
-        {
-          canvas: [
-            { type: "line", x1: 15, y1: 10, x2: 585, y2: 10, lineWidth: 1 }, // Up line
-            { type: "line", x1: 15, y1: 10, x2: 15, y2: 830, lineWidth: 1 }, // Left line
-            { type: "line", x1: 15, y1: 830, x2: 585, y2: 830, lineWidth: 1 }, // Bottom line
-            { type: "line", x1: 585, y1: 10, x2: 585, y2: 830, lineWidth: 1 }, // Rigth line
-          ],
-        },
-      ];
+    background(currentPage) {
+      return currentPage === 1
+        ? [
+            {
+              canvas: [{ type: "rect", x: 15, y: 15, w: 565, h: 160, r: 10, lineColor: "#000" }],
+            },
+          ]
+        : "";
     },
     content: [
       {
         columns: [
           [
-            {
-              text: controlInfo.nameBank,
-              color: "#333333",
-              width: "*",
-              fontSize: 18,
-              bold: true,
-              alignment: "center",
-              margin: [0, 0, 0, 3],
-            },
-            {
-              text: "HISTORIAL DE GASTOS",
-              color: "#333333",
-              width: "*",
-              fontSize: 15,
-              bold: true,
-              alignment: "center",
-            },
+            { text: controlInfo.nameBank, style: "title1", fontSize: 14 },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title1", fontSize: 12 },
+            { text: controlInfo.nameLocation, style: "title2" },
+            { text: "TIPO", style: "title1", fontSize: 12 },
+            { text: "HISTORIAL DE GASTOS", style: "title3" },
           ],
         ],
       },
-      {
-        text: "_________________________________________________________________",
-        style: "border",
-      },
+      "\n",
+      "\n\n",
+      "\n\n",
       {
         layout: {
-          // defaultBorder: false,
           hLineWidth(i, node) {
             return i === 0 || i === node.table.body.length ? 2 : 1;
           },
@@ -112,8 +90,8 @@ export default function PaymentExpensesHistory({ rows }) {
             return i === 0 || i === node.table.widths.length ? "black" : "gray";
           },
           fillColor(rowIndex) {
-            if (rowIndex === 0) return "#088FCA";
-            return rowIndex % 2 === 0 ? "#85B1C4" : "#D3D3D3";
+            if (rowIndex === 0) return "#3d5662";
+            return rowIndex % 2 === 0 ? "#e6fbff" : "#c6e6f5";
           },
           paddingLeft() {
             return 10;
@@ -130,21 +108,45 @@ export default function PaymentExpensesHistory({ rows }) {
         },
         table: {
           headerRows: 1,
-          widths: ["auto", "auto", "auto", "*"],
-          // widths: ["auto", 110, 120, "*"],
+          widths: ["auto", "auto", 60, "*"],
           body: buildTableBody(rows, ["id", "expenseDate", "expenseValue", "observation"]),
         },
       },
     ],
 
     styles: {
-      border: {
-        fontSize: 15,
+      title1: {
+        color: "#333333",
+        width: "*",
         bold: true,
         alignment: "center",
+        marginBottom: 3,
+      },
+      title2: {
+        color: "#333333",
+        width: "*",
+        fontSize: 10,
+        bold: true,
+        alignment: "center",
+        marginBottom: 25,
+      },
+      title3: {
+        color: "red",
+        width: "*",
+        fontSize: 12,
+        bold: true,
+        alignment: "center",
+      },
+      table1: {
+        alignment: "center",
+        bold: true,
+        color: "white",
+        fontSize: 12,
+      },
+      table2: {
+        alignment: "center",
         color: "black",
-        marginTop: 20,
-        marginBottom: 40,
+        fontSize: 10,
       },
     },
     defaultStyle: {
