@@ -42,27 +42,29 @@ export default function PrincipalScreen() {
             </MDBox>
           </Card>
         </Grid>
-        <Grid item xs={12}>
-          <Card>
-            <MDBox
-              mx={2}
-              mt={-3}
-              py={3}
-              px={2}
-              variant="gradient"
-              bgColor="info"
-              borderRadius="lg"
-              coloredShadow="info"
-            >
-              <MDTypography variant="h5" color="white">
-                Tabla de Amortización
-              </MDTypography>
-            </MDBox>
-            <MDBox pt={3}>
-              <PaymentHistory parameters={parameters} />
-            </MDBox>
-          </Card>
-        </Grid>
+        {parameters.periods && (
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  Tabla de Amortización
+                </MDTypography>
+              </MDBox>
+              <MDBox pt={3}>
+                <PaymentHistory parameters={parameters} />
+              </MDBox>
+            </Card>
+          </Grid>
+        )}
       </Grid>
     </MDBox>
   );
