@@ -193,6 +193,9 @@ export default function CreditSimulatorScreen({ setParameters }) {
           <MDButton variant="text" size="large" type="submit">
             GENERAR
           </MDButton>
+          <MDButton variant="text" size="large" onClick={() => setParameters({})} color="error">
+            RESETEAR
+          </MDButton>
         </Grid>
       </Grid>
     </Form>
