@@ -59,7 +59,7 @@ export default function ControlScreen() {
     if ("proofPaymentValue" in fieldValues)
       tempo.proofPaymentValue = /^[0-9]+$/.test(fieldValues.proofPaymentValue)
         ? ""
-        : "Colocar Números Enteros";
+        : "Verifique el formato";
     if ("nameVerification" in fieldValues)
       tempo.nameVerification =
         fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
