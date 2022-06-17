@@ -13,6 +13,7 @@ export default function SelectG(props) {
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
+        defaultValue="Entregado"
         label={label}
         name={name}
         value={value}

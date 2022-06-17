@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Alert, Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import DataTable from "examples/Tables/DataTable";
@@ -11,9 +12,49 @@ import ClientsContext from "context/Clients/ClientsContext";
 import useForm from "elements/hooks/useForm";
 import * as ConstDate from "elements/data/ConstDate";
 
+const useStyles = makeStyles({
+  root: {
+    // Selector
+    "& .MuiFormControl-fullWidth": {
+      width: "200px",
+    },
+    // Selector
+    "& #demo-simple-select": {
+      width: "100%",
+      height: 46,
+      marginLeft: "10px",
+    },
+    // Buttons
+    "& .OkBottom": {
+      width: "80%",
+      marginTop: "40px",
+    },
+    // Input Password
+    "& .outlined-password-input": {
+      width: "85%",
+    },
+    // Label Input Password
+    "& #outlined-password-input-label": {
+      fontSize: "115%",
+      color: "black",
+    },
+    // Buttons
+    "& .BottomVerification": {
+      width: "50%",
+      background: "#357ABB",
+      "&:hover": { background: "#5499C7" },
+    },
+    // Alert
+    "& .MuiPaper-root": {
+      width: "100%",
+      marginTop: "30px",
+      borderRadius: 8,
+    },
+  },
+});
+
 export default function ApproveCredits() {
   const errorValues = {
-    nameVerification: "Colocar Contraseña",
     actualState: "",
   };
 
@@ -21,9 +62,6 @@ export default function ApproveCredits() {
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("nameVerification" in fieldValues)
-      tempo.nameVerification =
-        fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
     if ("actualState" in fieldValues)
       tempo.actualState =
         fieldValues.actualState.length !== 0 ? "" : "Es obligatorio escoger una opción";
@@ -33,16 +71,7 @@ export default function ApproveCredits() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange } = useForm(
-    {
-      actualState: "",
-      nameVerification: "",
-    },
-    true,
-    validate,
-    errorValues
-  );
-
+  const classes = useStyles();
   const { clients } = useContext(ClientsContext);
   const { id } = useParams();
 
@@ -50,15 +79,25 @@ export default function ApproveCredits() {
   const i = clients.map((e) => e.id).indexOf(idC);
   const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
-  const [read, setRead] = useState("true");
+  const { values, errors, setErrors, handleInputChange } = useForm(
+    {
+      actualState: clients[i].credits[i2].state,
+      nameVerification: "",
+      read: "true",
+    },
+    true,
+    validate,
+    errorValues
+  );
+
   const [verification, setVerification] = useState(false);
   const [errorNow, setErrorNow] = useState("");
 
   const columns = [
-    { Header: "Carpeta", accessor: "id", align: "left" },
-    { Header: "Valor Préstamo", accessor: "loanValue", align: "center" },
-    { Header: "Estado Actual", accessor: "state", align: "center" },
-    { Header: "Cambiar Estado", accessor: "accion", align: "center" },
+    { Header: "Carpeta", accessor: "id", align: "center", width: "15%" },
+    { Header: "Valor Préstamo", accessor: "loanValue", align: "center", width: "25%" },
+    { Header: "Estado Actual", accessor: "state", align: "center", width: "25%" },
+    { Header: "Cambiar Estado", accessor: "accion", align: "center", width: "35%" },
   ];
 
   const rows = [
@@ -69,12 +108,12 @@ export default function ApproveCredits() {
       accion: (
         <SelectG
           name="actualState"
-          label="Cambiar Estado"
+          label="Estado Actual"
           value={values.actualState}
           onChange={handleInputChange}
           options={ConstDate.stateItems()}
           error={errors.actualState}
-          read={read}
+          read={values.read}
         />
       ),
     },
@@ -82,21 +121,22 @@ export default function ApproveCredits() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (validate()) {
-      setRead("true");
-      errors.nameVerification = "Colocar Contraseña";
-      console.log("diuks");
+    if (values.read === "false") {
+      if (validate()) {
+        values.read = "true";
+        console.log("diuks");
+      }
     }
   };
 
   const handleEdit = (e) => {
     e.preventDefault();
-    errors.nameVerification = "Colocar Contraseña";
 
-    if (read === "true") {
+    values.nameVerification = "";
+    setErrorNow("");
+
+    if (values.read === "true") {
       setVerification(!verification);
-      values.nameVerification = "";
     }
   };
 
@@ -104,11 +144,13 @@ export default function ApproveCredits() {
     e.preventDefault();
 
     if (values.nameVerification === "123") {
-      setRead("false");
+      values.read = "false";
       setVerification(false);
       values.nameVerification = "";
+    } else if (values.nameVerification) {
+      setErrorNow("La Contraseña es Incorrecta");
     } else {
-      setErrorNow(errors.nameVerification);
+      setErrorNow("Colocar Contraseña");
     }
   };
 
@@ -117,7 +159,7 @@ export default function ApproveCredits() {
   }, [values.nameVerification]);
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid item xs={12}>
         <DataTable
           table={{ columns, rows }}
@@ -128,19 +170,19 @@ export default function ApproveCredits() {
           defaultEntries={5}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <Link to="/aprobar-creditos">
           <MDButton
+            className="OkBottom"
+            variant="text"
             size="large"
-            variant="contained"
-            color="secondary"
             sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
           >
             REGRESAR
           </MDButton>
         </Link>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <MDButton
           className="OkBottom"
           variant="text"
@@ -151,7 +193,7 @@ export default function ApproveCredits() {
           EDITAR
         </MDButton>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <MDButton
           className="OkBottom"
           variant="text"
@@ -198,7 +240,7 @@ export default function ApproveCredits() {
           </MDBox>
         </Grid>
       )}
-      {read === "false" && (
+      {values.read === "false" && (
         <Grid item xs={12}>
           <Alert severity="success">Puede Editar el Estado del Crédito</Alert>
         </Grid>

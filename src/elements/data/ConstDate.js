@@ -24,5 +24,6 @@ export const getWaytoPay = () => [
 export const stateItems = () => [
   { id: "1", title: "Creado" },
   { id: "2", title: "Aprobado" },
+  { id: "2", title: "Denegado" },
   { id: "3", title: "Entregado" },
 ];
