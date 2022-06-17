@@ -168,14 +168,6 @@ export default function DepositScreen() {
             </MDButton>
           </Link>
           <MDButton
-            size="large"
-            variant="text"
-            onClick={resetForm}
-            sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
-          >
-            RESETEAR
-          </MDButton>
-          <MDButton
             variant="text"
             size="large"
             type="submit"
