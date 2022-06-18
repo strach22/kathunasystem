@@ -72,7 +72,7 @@ export default function ApproveCredits() {
   };
 
   const classes = useStyles();
-  const { clients } = useContext(ClientsContext);
+  const { clients, updateCreditState } = useContext(ClientsContext);
   const { id } = useParams();
 
   const [idC, idF] = id.split("-");
@@ -124,7 +124,7 @@ export default function ApproveCredits() {
     if (values.read === "false") {
       if (validate()) {
         values.read = "true";
-        console.log("diuks");
+        updateCreditState(idC, idF, values.actualState);
       }
     }
   };
