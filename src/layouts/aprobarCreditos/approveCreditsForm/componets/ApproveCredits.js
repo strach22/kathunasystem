@@ -102,8 +102,8 @@ export default function ApproveCredits() {
 
   const rows = [
     {
-      id: i2,
-      loanValue: clients[i].credits[i2].loanValue,
+      id: idF,
+      loanValue: `$ ${clients[i].credits[i2].loanValue}`,
       state: clients[i].credits[i2].state,
       accion: (
         <SelectG
