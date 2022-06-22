@@ -127,14 +127,16 @@ function infoClients() {
                 </MDTypography>
               </MDBox>
               <MDBox coloredShadow="secondary" pt={3} pb={2}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted
-                  showTotalEntries={false}
-                  noEndBorder
-                  entriesPerPage={false}
-                  defaultEntries={5}
-                />
+                <div>
+                  <DataTable
+                    table={{ columns, rows }}
+                    isSorted
+                    showTotalEntries={false}
+                    noEndBorder
+                    entriesPerPage={false}
+                    defaultEntries={5}
+                  />
+                </div>
               </MDBox>
             </Card>
           </Grid>

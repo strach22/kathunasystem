@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Alert, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import MDButton from "components/MDButton";
@@ -54,6 +54,18 @@ const useStyles = makeStyles({
 });
 
 export default function ApproveCredits() {
+  const navigate = useNavigate();
+  const openSB = () => {
+    const newSystemData = systemData;
+    newSystemData.SBstate = true;
+    newSystemData.SBinfo = {
+      color: "info",
+      icon: "check",
+      tittle: "Aprobar Créditos",
+      content: "Credito modificado satisfactoriamente!!",
+    };
+    editSystemData(newSystemData);
+  };
   const errorValues = {
     actualState: "",
   };
@@ -72,7 +84,7 @@ export default function ApproveCredits() {
   };
 
   const classes = useStyles();
-  const { clients, updateCreditState } = useContext(ClientsContext);
+  const { clients, updateCreditState, editSystemData, systemData } = useContext(ClientsContext);
   const { id } = useParams();
 
   const [idC, idF] = id.split("-");
@@ -125,6 +137,8 @@ export default function ApproveCredits() {
       if (validate()) {
         values.read = "true";
         updateCreditState(idC, idF, values.actualState);
+        openSB();
+        navigate("/inicio");
       }
     }
   };

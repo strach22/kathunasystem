@@ -183,7 +183,7 @@ export default function FormScreen() {
       resetForm();
       resetClientInfo();
       openSB();
-      navigate("/clientes");
+      navigate("/inicio");
     }
   };
 
