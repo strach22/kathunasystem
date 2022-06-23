@@ -5,6 +5,7 @@ import { Alert, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
+import MDTypography from "components/MDTypography";
 import DataTable from "examples/Tables/DataTable";
 import SelectG from "elements/SelectG";
 import InputPassword from "elements/InputPassword";
@@ -114,7 +115,13 @@ export default function ApproveCredits() {
 
   const rows = [
     {
-      id: idF,
+      id: (
+        <Link to={`/carpeta/${idC}-${idF}`}>
+          <MDTypography variant="caption" color="info" fontWeight="medium">
+            {idF}
+          </MDTypography>
+        </Link>
+      ),
       loanValue: `$ ${clients[i].credits[i2].loanValue}`,
       state: clients[i].credits[i2].state,
       accion: (

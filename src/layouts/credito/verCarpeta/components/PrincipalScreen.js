@@ -122,7 +122,7 @@ export default function PrincipalScreen() {
                     </MDButton>
                   </Link>
                   {folderInfo.state !== "Finalizado" && folderInfo.state !== "Entregado" && (
-                    <Link to="/aprobar-creditos">
+                    <Link to={`/aprobar-creditos/${idC}-${idF}`}>
                       <MDButton
                         size="medium"
                         color="success"

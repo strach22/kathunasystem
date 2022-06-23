@@ -22,7 +22,13 @@ export default function tableCreditApproval() {
 
     const rowsTempo = {
       id: infoclientsCredits[0].id,
-      folder: folderOfCredits[i],
+      folder: (
+        <Link to={`/carpeta/${infoclientsCredits[0].id}-${folderOfCredits[i]}`}>
+          <MDTypography variant="caption" color="info" fontWeight="medium">
+            {folderOfCredits[i]}
+          </MDTypography>
+        </Link>
+      ),
       firstName: infoclientsCredits[0].firstName,
       lastName: infoclientsCredits[0].lastName,
       identification: infoclientsCredits[0].identification,
