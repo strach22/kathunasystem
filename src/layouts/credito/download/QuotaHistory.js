@@ -278,7 +278,7 @@ export default function QuotaHistory({ rows }) {
           <MDButton
             variant="text"
             size="medium"
-            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+            sx={{ margin: "10px", background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
           >
             Excel
           </MDButton>
@@ -296,7 +296,7 @@ export default function QuotaHistory({ rows }) {
         variant="text"
         size="medium"
         onClick={handleGeneratedPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+        sx={{ margin: "10px", background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         PDF
       </MDButton>
@@ -304,7 +304,7 @@ export default function QuotaHistory({ rows }) {
         variant="text"
         size="medium"
         onClick={handlePrintPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+        sx={{ margin: "10px", background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         Descargar
       </MDButton>
