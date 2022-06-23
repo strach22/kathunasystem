@@ -142,6 +142,7 @@ export default function DepositScreen() {
             error={errors.value}
             icon="$"
             position="start"
+            read=""
           />
         </Grid>
         <Grid item xs={7}>

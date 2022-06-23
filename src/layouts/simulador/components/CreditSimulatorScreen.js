@@ -143,6 +143,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
             error={errors.loanValue}
             icon="$"
             position="start"
+            read=""
           />
         </Grid>
         <Grid item xs={1.5}>
@@ -159,6 +160,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
                 error={errors.timePayYear}
                 icon="años"
                 position="end"
+                read=""
               />
             </Grid>
             <Grid item xs={6}>
@@ -170,6 +172,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
                 error={errors.timePayMonth}
                 icon="meses"
                 position="end"
+                read=""
               />
             </Grid>
           </Grid>

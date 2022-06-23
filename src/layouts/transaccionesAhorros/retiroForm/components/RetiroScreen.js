@@ -140,6 +140,7 @@ export default function RetiroScreen() {
             error={errors.value}
             icon="$"
             position="start"
+            read=""
           />
         </Grid>
         <Grid item xs={7}>
