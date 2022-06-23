@@ -18,7 +18,6 @@ import DataTable from "examples/Tables/DataTable";
 
 import ClientsContext from "../../../context/Clients/ClientsContext";
 import historial from "../../transaccionesAhorros/table/tableHistory";
-// import historial from "../table/tableClients";
 
 const useStyles = makeStyles({
   root: {

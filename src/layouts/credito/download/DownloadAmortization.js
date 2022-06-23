@@ -422,12 +422,7 @@ export default function DownloadAmortization() {
   };
 
   return (
-    <MDButton
-      variant="text"
-      size="medium"
-      onClick={handleGeneratedPDF}
-      sx={{ background: "#5079BA", "&:hover": { background: "#778FB6" } }}
-    >
+    <MDButton size="medium" color="text" onClick={handleGeneratedPDF}>
       TABLA DE AMORTIZACIÓN
     </MDButton>
   );

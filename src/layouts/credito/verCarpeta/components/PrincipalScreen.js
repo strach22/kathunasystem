@@ -61,7 +61,7 @@ export default function PrincipalScreen() {
                 Datos del cliente
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox pt={1}>
               <InfoScreenSecond />
             </MDBox>
           </Card>
@@ -85,18 +85,13 @@ export default function PrincipalScreen() {
             <MDBox pt={3}>
               <MDBox mt={6} mb={3}>
                 <Grid container spacing={1}>
-                  <Grid item xs={12}>
-                    <DownloadAmortization />
-                    <DownloadBillofExchange />
-                    <Link to="/creditos">
-                      <MDButton
-                        size="medium"
-                        variant="text"
-                        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-                      >
-                        REGRESAR
-                      </MDButton>
-                    </Link>
+                  <Grid item xs={12} sx={{ display: "flex" }}>
+                    <MDBox m={1}>
+                      <DownloadAmortization />
+                    </MDBox>
+                    <MDBox m={1}>
+                      <DownloadBillofExchange />
+                    </MDBox>
                   </Grid>
                   <Grid item xs={11}>
                     <MDBox coloredShadow="secondary" pb={2}>
@@ -113,6 +108,30 @@ export default function PrincipalScreen() {
                       {getInfo("Garante:", folderInfo.guarantor)}
                     </MDBox>
                   </Grid>
+                  <Link to={`/creditos/ver/${idC}`}>
+                    <MDButton
+                      size="medium"
+                      variant="text"
+                      sx={{
+                        margin: "15px",
+                        background: "#7B809A",
+                        "&:hover": { background: "#99A3A4" },
+                      }}
+                    >
+                      REGRESAR
+                    </MDButton>
+                  </Link>
+                  <Link to="/aprobar-creditos">
+                    <MDButton
+                      size="medium"
+                      color="success"
+                      sx={{
+                        margin: "15px 0",
+                      }}
+                    >
+                      APROBAR CRÉDITOS
+                    </MDButton>
+                  </Link>
                 </Grid>
               </MDBox>
             </MDBox>
