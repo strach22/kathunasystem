@@ -21,7 +21,7 @@ export default function data() {
         quotaValue: "112.66",
         interest: "2%",
         finalValue: "150.89",
-        state: "Pendiente",
+        state: "Entregado",
       },
     ],
   };

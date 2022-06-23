@@ -4,7 +4,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import PrincipalScreen from "./components/PrincipalScreen";
 
-function pagoClients() {
+function cobranzaClients() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -14,4 +14,4 @@ function pagoClients() {
   );
 }
 
-export default pagoClients;
+export default cobranzaClients;
