@@ -7,6 +7,7 @@ import ClientsContext from "../../../context/Clients/ClientsContext";
 
 export default function data() {
   const { clients } = useContext(ClientsContext);
+
   return {
     columns: [
       { Header: "código", accessor: "id", align: "left" },
