@@ -23,12 +23,22 @@ function Dashboard() {
   const { controlInfo, editSystemData, systemData } = useContext(ClientsContext);
   const { ahorros, creditos, gastos, total } = reportsLineChartData;
 
+  for (let i = 0; i < 6; i += 1) {
+    ahorros.labels.pop();
+    ahorros.datasets.data.pop();
+    creditos.labels.pop();
+    creditos.datasets.data.pop();
+    gastos.labels.pop();
+    gastos.datasets.data.pop();
+    total.labels.pop();
+    total.datasets.data.pop();
+  }
+
   const closeSB = () => {
     const newSystemData = systemData;
     newSystemData.SBstate = false;
     editSystemData(newSystemData);
   };
-
   const renderSB = (
     <MDSnackbar
       color={systemData.SBinfo.color}
