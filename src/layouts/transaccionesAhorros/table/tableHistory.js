@@ -13,7 +13,8 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Fecha", accessor: "transactionDate", align: "left" },
+      { Header: "Comprobante", accessor: "receipt", align: "left" },
+      { Header: "Fecha", accessor: "transactionDate", align: "center" },
       { Header: "Valor", accessor: "transactionValue", align: "center" },
       { Header: "Balance Actual", accessor: "actualBalance", align: "center" },
       { Header: "Tipo de Pago", accessor: "paymentType", align: "center" },
@@ -22,6 +23,7 @@ export default function data() {
     ],
 
     rows: clients[i].savingHistory.map((info) => ({
+      receipt: info.receipt,
       transactionDate: info.transactionDate,
       transactionValue: info.value,
       actualBalance: info.actualBalance,
