@@ -104,6 +104,7 @@ export default function PrincipalScreen() {
                       {getInfo("Intereses:", folderInfo.interest)}
                       {getInfo("Cuotas:", folderInfo.periods)}
                       {getInfo("Deuda Actual:", folderInfo.actualLoan)}
+                      {getInfo("Encaje:", folderInfo.reserve)}
                       {getInfo("Estado:", folderInfo.state)}
                       {getInfo("Garante:", folderInfo.guarantor)}
                     </MDBox>
