@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import { useParams } from "react-router-dom";
 // Soft UI Dashboard React components
@@ -8,7 +8,7 @@ import ProofPaymentTransaction from "../download/ProofPaymentTransaction";
 
 export default function data() {
   const { clients } = useContext(ClientsContext);
-  const { id } = useParams();
+  const id = useMemo(() => useParams().id, []);
   const i = clients.map((e) => e.id).indexOf(id);
 
   return {

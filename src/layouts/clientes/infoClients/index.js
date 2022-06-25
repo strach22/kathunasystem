@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -30,8 +30,9 @@ const useStyles = makeStyles({
 
 function infoClients() {
   const classes = useStyles();
-  const { id } = useParams();
   const { clients, editClient } = useContext(ClientsContext);
+  const id = useMemo(() => useParams().id, []);
+
   const i = clients.map((e) => e.id).indexOf(id);
   const { columns, rows } = historial();
 
