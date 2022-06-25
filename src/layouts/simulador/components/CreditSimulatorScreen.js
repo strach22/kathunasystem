@@ -205,18 +205,18 @@ export default function CreditSimulatorScreen({ setParameters }) {
           <MDButton
             variant="text"
             size="large"
-            type="submit"
-            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-          >
-            GENERAR
-          </MDButton>
-          <MDButton
-            variant="text"
-            size="large"
             onClick={handleReset}
             sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
           >
             RESETEAR
+          </MDButton>
+          <MDButton
+            variant="text"
+            size="large"
+            type="submit"
+            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+          >
+            GENERAR
           </MDButton>
         </Grid>
       </Grid>
