@@ -112,30 +112,6 @@ function ClientsState({ children }) {
     });
   };
 
-  // Agregar historial de crédito
-  const addCreditHistory = (id, idFile, data) => {
-    const newClients = state.clients;
-    const i = newClients.map((e) => e.id).indexOf(id);
-    const i2 = newClients[i].credits.map((e) => e.id).indexOf(idFile);
-    newClients[i].credits[i2].creditHistory.push(data);
-    dispatch({
-      type: "UPDATE_CLIENTS",
-      value: newClients,
-    });
-  };
-
-  // Cambiar el estado del crédito
-  const updateCreditState = (id, idFile, newState) => {
-    const newClients = state.clients;
-    const i = newClients.map((e) => e.id).indexOf(id);
-    const i2 = newClients[i].credits.map((e) => e.id).indexOf(idFile);
-    newClients[i].credits[i2].state = newState;
-    dispatch({
-      type: "UPDATE_CLIENTS",
-      value: newClients,
-    });
-  };
-
   // Guardar datos para editar cliente
   const editClient = (info) => {
     const bitrhTempo = info.birthDate;
@@ -179,8 +155,6 @@ function ClientsState({ children }) {
         addClientHistory,
         updateClients,
         addClientCredit,
-        addCreditHistory,
-        updateCreditState,
         uploadControlInfo,
         editSystemData,
       }}

@@ -37,7 +37,7 @@ export default function MonthlyPayment() {
   };
 
   const [read, setRead] = useState("false");
-  const { clients, addCreditHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
+  const { clients, updateClients, editSystemData, systemData, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -98,7 +98,9 @@ export default function MonthlyPayment() {
         newControlInfo.proofPaymentValue = values.receipt;
 
         uploadControlInfo(newControlInfo);
-        addCreditHistory(idC, idF, values);
+        const newClients = clients;
+        newClients[i].credits[i2].creditHistory.push(values);
+        updateClients(newClients);
         openSB();
         navigate("/inicio");
       }
