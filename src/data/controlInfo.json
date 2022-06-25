@@ -13,6 +13,7 @@
   "particularCreditInterest": "2.50",
   "desgravament": "1.00",
   "latePayment": "0.00",
+  "reserveIterest":10,
   "proofPaymentValue": 14,
   "totalTransactions": 10100.00,
   "totalCredits": -6050.00,

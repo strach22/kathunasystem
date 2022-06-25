@@ -21,6 +21,7 @@ export default function ControlScreen() {
     particularSavingInterest: "",
     desgravament: "",
     latePayment: "",
+    reserveIterest: "",
     proofPaymentValue: "",
   };
 
@@ -60,6 +61,10 @@ export default function ControlScreen() {
       tempo.proofPaymentValue = /^[0-9]+$/.test(fieldValues.proofPaymentValue)
         ? ""
         : "Verifique el formato";
+    if ("reserveIterest" in fieldValues)
+      tempo.reserveIterest = /^[0-9]+$/.test(fieldValues.reserveIterest)
+        ? ""
+        : "Verifique el formato";
     if ("nameVerification" in fieldValues)
       tempo.nameVerification =
         fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
@@ -78,6 +83,7 @@ export default function ControlScreen() {
       partnerCreditInterest: controlInfo.partnerCreditInterest,
       desgravament: controlInfo.desgravament,
       latePayment: controlInfo.latePayment,
+      reserveIterest: controlInfo.reserveIterest,
       proofPaymentValue: controlInfo.proofPaymentValue,
       nameVerification: "",
     },
@@ -112,6 +118,8 @@ export default function ControlScreen() {
       newControlInfo.desgravament = values.desgravament;
       newControlInfo.latePayment = values.latePayment;
       newControlInfo.proofPaymentValue = values.proofPaymentValue;
+      newControlInfo.reserveIterest = values.reserveIterest;
+
       uploadControlInfo(newControlInfo);
     }
   };
@@ -269,6 +277,25 @@ export default function ControlScreen() {
             value={values.latePayment}
             onChange={handleInputChange}
             error={errors.latePayment}
+            icon="%"
+            position="end"
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={3} sx={{ marginTop: "25px" }}>
+          <MDTypography className="Subtitles2" variant="h6">
+            Interés de Encaje
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={9} sx={{ marginTop: "25px" }}>
+          <InputValue
+            className="InputInterest"
+            name="reserveIterest"
+            value={values.reserveIterest}
+            onChange={handleInputChange}
+            error={errors.reserveIterest}
             icon="%"
             position="end"
             read={read}
