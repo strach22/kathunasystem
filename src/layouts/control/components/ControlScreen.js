@@ -62,7 +62,7 @@ export default function ControlScreen() {
         ? ""
         : "Verifique el formato";
     if ("reserveIterest" in fieldValues)
-      tempo.reserveIterest = /^[0-9]+$/.test(fieldValues.reserveIterest)
+      tempo.reserveIterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.reserveIterest)
         ? ""
         : "Verifique el formato";
     if ("nameVerification" in fieldValues)
@@ -157,7 +157,7 @@ export default function ControlScreen() {
           </MDTypography>
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Clientes Particulares
           </MDTypography>
@@ -176,7 +176,7 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={1.6}>
+        <Grid item xs={1.7}>
           <MDTypography className="Subtitles2" variant="h6">
             Socios
           </MDTypography>
@@ -201,7 +201,7 @@ export default function ControlScreen() {
           </MDTypography>
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Clientes Particulares
           </MDTypography>
@@ -220,7 +220,7 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={1.6}>
+        <Grid item xs={1.7}>
           <MDTypography className="Subtitles2" variant="h6">
             Socios
           </MDTypography>
@@ -245,13 +245,13 @@ export default function ControlScreen() {
           </MDTypography>
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Fondo Desgravament
           </MDTypography>
         </Grid>
 
-        <Grid item xs={9}>
+        <Grid item xs={3.7}>
           <InputValue
             className="InputInterest"
             name="desgravament"
@@ -264,7 +264,26 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3} sx={{ marginTop: "25px" }}>
+        <Grid item xs={1.7}>
+          <MDTypography className="Subtitles2" variant="h6">
+            Interés Encaje
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={3.7}>
+          <InputValue
+            className="InputInterest"
+            name="reserveIterest"
+            value={values.reserveIterest}
+            onChange={handleInputChange}
+            error={errors.reserveIterest}
+            icon="%"
+            position="end"
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={2.9} sx={{ marginTop: "25px" }}>
           <MDTypography className="Subtitles2" variant="h6">
             Interés por Mora
           </MDTypography>
@@ -283,32 +302,13 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3} sx={{ marginTop: "25px" }}>
-          <MDTypography className="Subtitles2" variant="h6">
-            Interés de Encaje
-          </MDTypography>
-        </Grid>
-
-        <Grid item xs={9} sx={{ marginTop: "25px" }}>
-          <InputValue
-            className="InputInterest"
-            name="reserveIterest"
-            value={values.reserveIterest}
-            onChange={handleInputChange}
-            error={errors.reserveIterest}
-            icon="%"
-            position="end"
-            read={read}
-          />
-        </Grid>
-
         <Grid item xs={12}>
           <MDTypography className="title2" variant="h5">
             COMPROBANTES DE PAGO
           </MDTypography>
         </Grid>
 
-        <Grid item xs={3} sx={{ marginBottom: "60px" }}>
+        <Grid item xs={2.9} sx={{ marginBottom: "60px" }}>
           <MDTypography className="Subtitles2" variant="h6">
             Último Valor de Factura
           </MDTypography>
