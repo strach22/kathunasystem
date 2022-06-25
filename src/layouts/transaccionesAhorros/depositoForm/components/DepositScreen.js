@@ -54,19 +54,17 @@ export default function DepositScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
+  const { clients, addClientHistory, sbNotification, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
 
   const openSB = () => {
-    const newSystemData = systemData;
-    newSystemData.SBstate = true;
-    newSystemData.SBinfo = {
+    const SBinfo = {
       color: "info",
       icon: "check",
       tittle: "Ahorros",
       content: "Deposito agregado satisfactoriamente!!",
     };
-    editSystemData(newSystemData);
+    sbNotification(SBinfo);
   };
 
   const handleSubmit = (e) => {

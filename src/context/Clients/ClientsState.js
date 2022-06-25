@@ -111,6 +111,16 @@ function ClientsState({ children }) {
     });
   };
 
+  const sbNotification = (info) => {
+    const newSystemData = state.systemData;
+    newSystemData.SBstate = true;
+    newSystemData.SBinfo = info;
+    dispatch({
+      type: "UPDATE_SYSTEM_DATA",
+      value: newSystemData,
+    });
+  };
+
   return (
     <ClientsContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -126,6 +136,7 @@ function ClientsState({ children }) {
         addClientCredit,
         uploadControlInfo,
         editSystemData,
+        sbNotification,
       }}
     >
       {children}
