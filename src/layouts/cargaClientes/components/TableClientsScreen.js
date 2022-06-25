@@ -14,11 +14,11 @@ export default function TableClientsScreen({ worksheets }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
-  const { clients, uploadClients } = useContext(ClientsContext);
+  const { clients, updateClients } = useContext(ClientsContext);
 
   const handleUpload = () => {
     if (dataBase) {
-      uploadClients(dataBase);
+      updateClients(clients.concat(dataBase));
       navigate("/clientes");
     }
   };

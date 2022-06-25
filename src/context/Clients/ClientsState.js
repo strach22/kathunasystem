@@ -53,23 +53,27 @@ function ClientsState({ children }) {
     });
   };
 
+  // Guardar datos para editar cliente
+  const editClient = (info) => {
+    const bitrhTempo = info.birthDate;
+    const creationTempo = info.creationDate;
+    const newInfo = info;
+    newInfo.birthDate = new Date(bitrhTempo);
+    newInfo.creationDate = new Date(creationTempo);
+    dispatch({
+      type: "EDIT_CLIENT",
+      value: newInfo,
+    });
+  };
+
+  const resetClientInfo = () => {
+    dispatch({
+      type: "RESET_CLIENT_INFO",
+      value: null,
+    });
+  };
+
   const updateClients = (newClients) => {
-    dispatch({
-      type: "UPDATE_CLIENTS",
-      value: newClients,
-    });
-  };
-
-  const uploadClients = (data) => {
-    const newClients = state.clients.concat(data);
-    dispatch({
-      type: "UPDATE_CLIENTS",
-      value: newClients,
-    });
-  };
-
-  const eraseClient = (id) => {
-    const newClients = state.clients.filter((client) => client.id !== id);
     dispatch({
       type: "UPDATE_CLIENTS",
       value: newClients,
@@ -100,26 +104,6 @@ function ClientsState({ children }) {
     });
   };
 
-  // Guardar datos para editar cliente
-  const editClient = (info) => {
-    const bitrhTempo = info.birthDate;
-    const creationTempo = info.creationDate;
-    const newInfo = info;
-    newInfo.birthDate = new Date(bitrhTempo);
-    newInfo.creationDate = new Date(creationTempo);
-    dispatch({
-      type: "EDIT_CLIENT",
-      value: newInfo,
-    });
-  };
-
-  const resetClientInfo = () => {
-    dispatch({
-      type: "RESET_CLIENT_INFO",
-      value: null,
-    });
-  };
-
   const editSystemData = (data) => {
     dispatch({
       type: "UPDATE_SYSTEM_DATA",
@@ -135,8 +119,6 @@ function ClientsState({ children }) {
         clientInfo: state.clientInfo,
         controlInfo: state.controlInfo,
         systemData: state.systemData,
-        eraseClient,
-        uploadClients,
         editClient,
         resetClientInfo,
         addClientHistory,
