@@ -8,13 +8,13 @@ import ClientsContext from "./ClientsContext";
 
 function reducer(state, action) {
   switch (action.type) {
-    case "UPLOAD_CLIENTS":
+    case "UPDATE_CLIENTS":
       return { ...state, clients: action.value };
 
-    case "UPLOAD_CONTROL_INFO":
+    case "UPDATE_CONTROL_INFO":
       return { ...state, controlInfo: action.value };
 
-    case "UPLOAD_SYSTEM_DATA":
+    case "UPDATE_SYSTEM_DATA":
       return { ...state, systemData: action.value };
 
     case "EDIT_CLIENT":
@@ -46,6 +46,13 @@ function ClientsState({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialstate);
 
+  const uploadControlInfo = (info) => {
+    dispatch({
+      type: "UPDATE_CONTROL_INFO",
+      value: info,
+    });
+  };
+
   const addClient = (newClient) => {
     const newClients = state.clients;
     const i = newClients.map((e) => e.id).indexOf(newClient.id);
@@ -53,7 +60,7 @@ function ClientsState({ children }) {
     else newClients[i] = newClient;
 
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
       value: newClients,
     });
   };
@@ -61,22 +68,15 @@ function ClientsState({ children }) {
   const uploadClients = (data) => {
     const newClients = state.clients.concat(data);
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
       value: newClients,
-    });
-  };
-
-  const uploadControlInfo = (info) => {
-    dispatch({
-      type: "UPLOAD_CONTROL_INFO",
-      value: info,
     });
   };
 
   const eraseClient = (id) => {
     const newClients = state.clients.filter((client) => client.id !== id);
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
       value: newClients,
     });
   };
@@ -88,7 +88,14 @@ function ClientsState({ children }) {
     newClients[i].savingHistory.push(data);
     newClients[i].savingBalance = data.actualBalance;
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
+      value: newClients,
+    });
+  };
+
+  const updateClients = (newClients) => {
+    dispatch({
+      type: "UPDATE_CLIENTS",
       value: newClients,
     });
   };
@@ -100,7 +107,7 @@ function ClientsState({ children }) {
     newClients[i].creditBalance =
       parseFloat(data.actualLoan) + parseFloat(newClients[i].creditBalance);
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
       value: newClients,
     });
   };
@@ -112,7 +119,7 @@ function ClientsState({ children }) {
     const i2 = newClients[i].credits.map((e) => e.id).indexOf(idFile);
     newClients[i].credits[i2].creditHistory.push(data);
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
       value: newClients,
     });
   };
@@ -124,7 +131,7 @@ function ClientsState({ children }) {
     const i2 = newClients[i].credits.map((e) => e.id).indexOf(idFile);
     newClients[i].credits[i2].state = newState;
     dispatch({
-      type: "UPLOAD_CLIENTS",
+      type: "UPDATE_CLIENTS",
       value: newClients,
     });
   };
@@ -151,7 +158,7 @@ function ClientsState({ children }) {
 
   const editSystemData = (data) => {
     dispatch({
-      type: "UPLOAD_SYSTEM_DATA",
+      type: "UPDATE_SYSTEM_DATA",
       value: data,
     });
   };
@@ -170,6 +177,7 @@ function ClientsState({ children }) {
         editClient,
         resetClientInfo,
         addClientHistory,
+        updateClients,
         addClientCredit,
         addCreditHistory,
         updateCreditState,

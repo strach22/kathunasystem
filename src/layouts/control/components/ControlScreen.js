@@ -21,7 +21,7 @@ export default function ControlScreen() {
     particularSavingInterest: "",
     desgravament: "",
     latePayment: "",
-    reserveIterest: "",
+    reserveInterest: "",
     proofPaymentValue: "",
   };
 
@@ -61,8 +61,8 @@ export default function ControlScreen() {
       tempo.proofPaymentValue = /^[0-9]+$/.test(fieldValues.proofPaymentValue)
         ? ""
         : "Verifique el formato";
-    if ("reserveIterest" in fieldValues)
-      tempo.reserveIterest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.reserveIterest)
+    if ("reserveInterest" in fieldValues)
+      tempo.reserveItnerest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.reserveInterest)
         ? ""
         : "Verifique el formato";
     if ("nameVerification" in fieldValues)
@@ -83,7 +83,7 @@ export default function ControlScreen() {
       partnerCreditInterest: controlInfo.partnerCreditInterest,
       desgravament: controlInfo.desgravament,
       latePayment: controlInfo.latePayment,
-      reserveIterest: controlInfo.reserveIterest,
+      reserveInterest: controlInfo.reserveInterest,
       proofPaymentValue: controlInfo.proofPaymentValue,
       nameVerification: "",
     },
@@ -118,7 +118,7 @@ export default function ControlScreen() {
       newControlInfo.desgravament = values.desgravament;
       newControlInfo.latePayment = values.latePayment;
       newControlInfo.proofPaymentValue = values.proofPaymentValue;
-      newControlInfo.reserveIterest = values.reserveIterest;
+      newControlInfo.reserveInterest = values.reserveInterest;
 
       uploadControlInfo(newControlInfo);
     }
@@ -273,10 +273,10 @@ export default function ControlScreen() {
         <Grid item xs={3.7}>
           <InputValue
             className="InputInterest"
-            name="reserveIterest"
-            value={values.reserveIterest}
+            name="reserveInterest"
+            value={values.reserveInterest}
             onChange={handleInputChange}
-            error={errors.reserveIterest}
+            error={errors.reserveInterest}
             icon="%"
             position="end"
             read={read}

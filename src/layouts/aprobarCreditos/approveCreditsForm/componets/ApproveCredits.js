@@ -85,7 +85,8 @@ export default function ApproveCredits() {
   };
 
   const classes = useStyles();
-  const { clients, updateCreditState, editSystemData, systemData } = useContext(ClientsContext);
+  const { clients, editSystemData, systemData, updateClients, controlInfo } =
+    useContext(ClientsContext);
   const { id } = useParams();
 
   const [idC, idF] = id.split("-");
@@ -143,7 +144,13 @@ export default function ApproveCredits() {
     if (values.read === "false") {
       if (validate()) {
         values.read = "true";
-        updateCreditState(idC, idF, values.actualState);
+        const newClients = clients;
+
+        if (values.actualState === "Entregado")
+          newClients[i].credits[i2].reserve =
+            (newClients[i].credits[i2].loanValue * controlInfo.reserveInterest) / 100;
+        newClients[i].credits[i2].state = values.actualState;
+        updateClients(newClients);
         openSB();
         navigate("/inicio");
       }

@@ -96,6 +96,7 @@ export default function Credit() {
       values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
       values.interest = interes;
       values.creditHistory = [];
+      values.reserve = 0;
       addClientCredit(id, values);
       navigate(`/creditos/ver/${id}`);
     }
