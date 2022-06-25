@@ -8,7 +8,7 @@ export default function data(clients) {
       { Header: "encaje", accessor: "reserve", align: "center" },
     ],
     rows2: clients
-      .filter((cliente) => cliente.credits.length > 0)
+      .filter((cliente) => cliente.credits.reduce((acc, c) => acc + c.reserve, 0) > 0)
       .map((cliente) => ({
         id: cliente.id,
         firstName: cliente.firstName,
