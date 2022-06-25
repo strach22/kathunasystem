@@ -83,6 +83,7 @@ export default function Credit() {
       const periodicFeeDesgravamen =
         periodicFee + ((parseFloat(controlInfo.desgravament) / 100) * values.loanValue) / periods;
       const folders = clients.map((client) => client.credits).flat();
+
       values.id = String(folders.length + 1);
       const newInitialDate = values.initialDate
         .toISOString()
@@ -90,13 +91,18 @@ export default function Credit() {
         .replace("-", "/")
         .replace("-", "/");
       values.initialDate = newInitialDate;
-      values.periods = String(periods);
+      values.loanValue = parseFloat(values.loanValue, 10);
+      values.periods = periods;
       values.state = "Creado";
-      values.actualLoan = (periodicFeeDesgravamen * periods).toFixed(2);
-      values.monthlyPayment = periodicFeeDesgravamen.toFixed(2);
+      values.actualLoan = periodicFeeDesgravamen * periods;
+      values.monthlyPayment = periodicFeeDesgravamen;
       values.interest = interes;
       values.creditHistory = [];
       values.reserve = 0;
+
+      delete values.timePayMonth;
+      delete values.timePayYear;
+
       addClientCredit(id, values);
       navigate(`/creditos/ver/${id}`);
     }

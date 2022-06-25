@@ -51,7 +51,7 @@ export default function MonthlyPayment() {
     {
       transactionDate: new Date(),
       paymentType: "",
-      value: clients[i].credits[i2].monthlyPayment,
+      value: clients[i].credits[i2].monthlyPayment.toFixed(2),
       observation: "",
       receipt: 0,
     },
@@ -79,6 +79,9 @@ export default function MonthlyPayment() {
     };
     editSystemData(newSystemData);
   };
+
+  console.log(clients[i].credits[i2]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (read === "false") {
@@ -92,8 +95,9 @@ export default function MonthlyPayment() {
         if (!values.observation) values.observation = "Ninguna";
 
         values.id = String(clients[i].credits[i2].creditHistory.length + 1);
-        values.receipt = controlInfo.proofPaymentValue + 1;
+        values.value = parseFloat(values.value, 10);
 
+        values.receipt = controlInfo.proofPaymentValue + 1;
         const newControlInfo = controlInfo;
         newControlInfo.proofPaymentValue = values.receipt;
 

@@ -18,7 +18,7 @@ export default function data(clients) {
       firstName: cliente.firstName,
       lastName: cliente.lastName,
       identification: cliente.identification,
-      creditBalance: cliente.creditBalance,
+      creditBalance: `$ ${cliente.creditBalance.toFixed(2)}`,
       accion: (
         <>
           <Link to={`crear/${cliente.id}`}>

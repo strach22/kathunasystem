@@ -26,10 +26,10 @@ export default function data() {
 
     rows: clients[i].credits.map((info) => ({
       id: info.id,
-      loanValue: info.loanValue,
-      actualLoan: info.actualLoan,
+      loanValue: `$ ${info.loanValue}`,
+      actualLoan: `$ ${info.actualLoan.toFixed(2)}`,
       periods: info.periods,
-      monthlyPayment: info.monthlyPayment,
+      monthlyPayment: `$ ${info.monthlyPayment.toFixed(2)}`,
       state: info.state,
       accion: (
         <>

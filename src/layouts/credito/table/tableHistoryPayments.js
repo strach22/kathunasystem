@@ -17,14 +17,14 @@ export default function data() {
   const rows = clients[i].credits[i2].creditHistory.map((info) => ({
     id: info.id,
     transactionDate: info.transactionDate,
-    value: info.value,
+    value: `$ ${info.value}`,
     paymentType: info.paymentType,
     observation: info.observation,
     download: <IndividualProofPayment info={info} />,
   }));
 
   const totalPayments = clients[i].credits[i2].creditHistory.length;
-  const repetitions = parseInt(clients[i].credits[i2].periods, 10) - totalPayments;
+  const repetitions = clients[i].credits[i2].periods - totalPayments;
 
   for (let j = 0; j < repetitions; j += 1) {
     const auxInitialMonth = new Date(clients[i].credits[i2].initialDate);
@@ -55,7 +55,7 @@ export default function data() {
     const rowsTempo = {
       id: j + totalPayments + 1,
       transactionDate: nextMonth,
-      value: clients[i].credits[i2].monthlyPayment,
+      value: `$ ${clients[i].credits[i2].monthlyPayment.toFixed(2)}`,
       paymentType: okPaymentType,
       observation: okObservation,
       download: "No generado",

@@ -38,7 +38,7 @@ export default function InfoScreenSecond() {
             {getInfo("Apellidos:", clients[i].lastName)}
             {getInfo("Documento de Identidad:", clients[i].identification)}
             {getInfo("Teléfono:", clients[i].mobile)}
-            {getInfo("Saldo de Creditos:", clients[i].creditBalance)}
+            {getInfo("Saldo de Creditos:", `$ ${clients[i].creditBalance.toFixed(2)}`)}
           </MDBox>
         </Grid>
       </Grid>

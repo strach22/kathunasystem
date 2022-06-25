@@ -99,12 +99,12 @@ export default function PrincipalScreen() {
                         Carpeta # {idF}
                       </MDTypography>
                       {getInfo("Fecha de inicio:", folderInfo.initialDate)}
-                      {getInfo("Deuda Total:", folderInfo.loanValue)}
-                      {getInfo("Pagos Mensuales:", folderInfo.monthlyPayment)}
+                      {getInfo("Deuda Total:", `$ ${folderInfo.loanValue}`)}
+                      {getInfo("Pagos Mensuales:", `$ ${folderInfo.monthlyPayment.toFixed(2)}`)}
                       {getInfo("Intereses:", folderInfo.interest)}
                       {getInfo("Cuotas:", folderInfo.periods)}
-                      {getInfo("Deuda Actual:", folderInfo.actualLoan)}
-                      {getInfo("Encaje:", folderInfo.reserve)}
+                      {getInfo("Deuda Actual:", `$ ${folderInfo.actualLoan.toFixed(2)}`)}
+                      {getInfo("Encaje:", `$ ${folderInfo.reserve.toFixed(2)}`)}
                       {getInfo("Estado:", folderInfo.state)}
                       {getInfo("Garante:", folderInfo.guarantor)}
                     </MDBox>

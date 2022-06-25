@@ -22,7 +22,7 @@
     "mobileRelationShip": "1465243942",
     "identificationRelationShip": "3481313494",
     "savingBalance": 50,
-    "creditBalance": "9990",
+    "creditBalance": 9990,
     "savingHistory": [
       {
         "transactionDate": "2022/03/04",
@@ -45,15 +45,15 @@
       {
         "id": "1",
         "initialDate": "2022/01/10",
-        "loanValue": "2800",
-        "interest": "2.5",
-        "periods": "1",
-        "actualLoan": "0",
+        "loanValue": 2800,
+        "interest": 2.5,
+        "periods": 1,
+        "actualLoan": 0,
         "reserve": 0,
         "state": "Finalizado",
         "guarantor": "Mihai Luna",
         "identificationGuarantor": "7107830765",
-        "monthlyPayment": "2898.00",
+        "monthlyPayment": 2898.00,
         "creditHistory": [
           {
             "id":"1",
@@ -68,15 +68,15 @@
       {
         "id": "3",
         "initialDate": "2022/05/12",
-        "loanValue": "5120",
-        "interest": "2.5",
-        "periods": "60",
-        "actualLoan": "9990",
+        "loanValue": 5120,
+        "interest": 2.5,
+        "periods": 60,
+        "actualLoan": 9990,
         "reserve":0,
         "state": "Aprobado",
         "guarantor": "Mihai Luna",
         "identificationGuarantor": "7107830765",
-        "monthlyPayment": "166.50",
+        "monthlyPayment": 166.50,
         "creditHistory": []
       }
     ]
@@ -305,21 +305,21 @@
     "mobileRelationShip": "7968492358",
     "identificationRelationShip": "5086591911",
     "savingBalance": 0,
-    "creditBalance": "860.10",
+    "creditBalance": 860.10,
     "savingHistory": [],
     "credits": [
       {
         "id": "2",
         "initialDate": "2022/03/01",
-        "loanValue": "1000",
-        "interest": "1.5",
-        "periods": "13",
-        "actualLoan": "860.10",
+        "loanValue": 1000,
+        "interest": 1.5,
+        "periods": 13,
+        "actualLoan": 860.10,
         "reserve":100,
         "state": "Entregado",
         "guarantor": "Alícia Mayor",
         "identificationGuarantor": "2120703704",
-        "monthlyPayment": "86.01",
+        "monthlyPayment": 86.01,
         "creditHistory": [
           {
             "id":"1",

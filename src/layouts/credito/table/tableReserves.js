@@ -14,7 +14,7 @@ export default function data(clients) {
         firstName: cliente.firstName,
         lastName: cliente.lastName,
         identification: cliente.identification,
-        reserve: cliente.credits.reduce((acc, c) => acc + c.reserve, 0),
+        reserve: `$ ${cliente.credits.reduce((acc, c) => acc + c.reserve, 0).toFixed(2)}`,
       })),
   };
 }
