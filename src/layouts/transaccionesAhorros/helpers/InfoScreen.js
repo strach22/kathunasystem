@@ -37,7 +37,7 @@ export default function InfoScreen() {
             {getInfo("Apellidos:", clients[i].lastName)}
             {getInfo("Documento de Identidad:", clients[i].identification)}
             {getInfo("Teléfono:", clients[i].mobile)}
-            {getInfo("Saldo de Ahorros:", clients[i].savingBalance)}
+            {getInfo("Saldo de Ahorros:", `$ ${clients[i].savingBalance.toFixed(2)}`)}
           </MDBox>
         </Grid>
       </Grid>

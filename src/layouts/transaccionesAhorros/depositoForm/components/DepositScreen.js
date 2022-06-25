@@ -57,8 +57,6 @@ export default function DepositScreen() {
   const { clients, addClientHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
 
-  console.log(clients[id - 1]);
-
   const openSB = () => {
     const newSystemData = systemData;
     newSystemData.SBstate = true;
@@ -74,11 +72,9 @@ export default function DepositScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      const auxSaving = parseFloat(clients[id - 1].savingBalance, 10);
-      const auxBalance = parseFloat(values.value, 10);
-
-      if (auxBalance !== 0) {
-        values.actualBalance = (auxSaving + auxBalance).toFixed(2);
+      if (parseFloat(values.value, 10) !== 0) {
+        values.value = parseFloat(values.value, 10);
+        values.actualBalance = parseFloat(clients[id - 1].savingBalance, 10) + values.value;
 
         const newTransactionDate = values.transactionDate
           .toISOString()

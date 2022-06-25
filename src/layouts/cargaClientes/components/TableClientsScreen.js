@@ -40,15 +40,15 @@ export default function TableClientsScreen({ worksheets }) {
           const value = data[i].map((val) => val);
 
           const id = clients.length + i + 1;
-          const [birthYear, birthMonth, birthNowDate] = value[7].split("/");
-          const [creationYear, creationMonth, creationNowDate] = value[8].split("/");
+          // const [birthYear, birthMonth, birthNowDate] = value[7].split("/");
+          // const [creationYear, creationMonth, creationNowDate] = value[8].split("/");
 
-          const newBirthYear = parseInt(birthYear, 10);
-          const newBirthMonth = parseInt(birthMonth, 10);
-          const newBirthNowDate = parseInt(birthNowDate, 10);
-          const newCreationYear = parseInt(creationYear, 10);
-          const newCreationMonth = parseInt(creationMonth, 10);
-          const newCreationNowDate = parseInt(creationNowDate, 10);
+          // const newBirthYear = parseInt(birthYear, 10);
+          // const newBirthMonth = parseInt(birthMonth, 10);
+          // const newBirthNowDate = parseInt(birthNowDate, 10);
+          // const newCreationYear = parseInt(creationYear, 10);
+          // const newCreationMonth = parseInt(creationMonth, 10);
+          // const newCreationNowDate = parseInt(creationNowDate, 10);
 
           const dataBaseTempo = {
             id: String(id),
@@ -59,8 +59,10 @@ export default function TableClientsScreen({ worksheets }) {
             secondMobile: String(value[4]),
             tariff: value[5],
             civil: value[6],
-            birthDate: new Date(newBirthYear, newBirthMonth - 1, newBirthNowDate, 12),
-            creationDate: new Date(newCreationYear, newCreationMonth - 1, newCreationNowDate, 12),
+            // birthDate: new Date(newBirthYear, newBirthMonth - 1, newBirthNowDate, 12),
+            // creationDate: new Date(newCreationYear, newCreationMonth - 1, newCreationNowDate, 12),
+            birthDate: value[7],
+            creationDate: value[8],
             address: value[9],
             email: value[10],
             firstNameSpouse: value[11],

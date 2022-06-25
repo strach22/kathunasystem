@@ -25,8 +25,8 @@ export default function data() {
     rows: clients[i].savingHistory.map((info) => ({
       receipt: info.receipt,
       transactionDate: info.transactionDate,
-      transactionValue: info.value,
-      actualBalance: info.actualBalance,
+      transactionValue: `$ ${info.value}`,
+      actualBalance: `$ ${info.actualBalance.toFixed(2)}`,
       paymentType: info.paymentType,
       observation: info.observation,
       download: <ProofPaymentTransaction info={info} />,

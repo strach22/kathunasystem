@@ -21,7 +21,7 @@ export default function data() {
       firstName: cliente.firstName,
       lastName: cliente.lastName,
       identification: cliente.identification,
-      savingBalance: cliente.savingBalance,
+      savingBalance: `$ ${cliente.savingBalance.toFixed(2)}`,
       accion: (
         <>
           <Link to={`/depositos/${cliente.id}`}>

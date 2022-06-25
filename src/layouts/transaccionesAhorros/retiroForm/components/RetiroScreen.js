@@ -67,12 +67,10 @@ export default function RetiroScreen() {
     e.preventDefault();
 
     if (validate()) {
-      const auxSaving = parseFloat(clients[id - 1].savingBalance, 10);
-      const auxBalance = parseFloat(values.value, 10);
-
-      if (auxBalance !== 0) {
-        if (auxSaving >= auxBalance) {
-          values.actualBalance = (auxSaving - auxBalance).toFixed(2);
+      if (parseFloat(values.value, 10) !== 0) {
+        if (parseFloat(clients[id - 1].savingBalance, 10) >= parseFloat(values.value, 10)) {
+          values.value = parseFloat(values.value, 10);
+          values.actualBalance = parseFloat(clients[id - 1].savingBalance, 10) - values.value;
 
           const newTransactionDate = values.transactionDate
             .toISOString()
