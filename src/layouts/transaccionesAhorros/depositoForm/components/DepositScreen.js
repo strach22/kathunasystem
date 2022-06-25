@@ -58,13 +58,12 @@ export default function DepositScreen() {
     useContext(ClientsContext);
 
   const openSB = () => {
-    const SBinfo = {
+    sbNotification({
       color: "info",
       icon: "check",
       tittle: "Ahorros",
       content: "Deposito agregado satisfactoriamente!!",
-    };
-    sbNotification(SBinfo);
+    });
   };
 
   const handleSubmit = (e) => {

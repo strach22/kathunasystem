@@ -15,20 +15,17 @@ import FormListRelationShip from "./list/FormListRelationShip";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const { clients, clientInfo, resetClientInfo, updateClients, editSystemData, systemData } =
+  const { clients, clientInfo, resetClientInfo, updateClients, sbNotification } =
     useContext(ClientsContext);
   const navigate = useNavigate();
 
   const openSB = () => {
-    const newSystemData = systemData;
-    newSystemData.SBstate = true;
-    newSystemData.SBinfo = {
+    sbNotification({
       color: "info",
       icon: "check",
       tittle: "Clientes",
       content: `Cliente ${clientInfo ? "modificado" : "agregarado"} satisfactoriamente!!`,
-    };
-    editSystemData(newSystemData);
+    });
   };
 
   const initialValues =

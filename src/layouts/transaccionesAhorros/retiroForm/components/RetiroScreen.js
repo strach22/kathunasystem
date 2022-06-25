@@ -52,13 +52,12 @@ export default function RetiroScreen() {
     useContext(ClientsContext);
 
   const openSB = () => {
-    const SBinfo = {
+    sbNotification({
       color: "error",
       icon: "check",
       tittle: "Ahorros",
       content: "Retiro realizado satisfactoriamente!!",
-    };
-    sbNotification(SBinfo);
+    });
   };
 
   const handleSubmit = (e) => {
