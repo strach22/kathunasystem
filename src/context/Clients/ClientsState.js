@@ -53,12 +53,7 @@ function ClientsState({ children }) {
     });
   };
 
-  const addClient = (newClient) => {
-    const newClients = state.clients;
-    const i = newClients.map((e) => e.id).indexOf(newClient.id);
-    if (i === -1) newClients.push(newClient);
-    else newClients[i] = newClient;
-
+  const updateClients = (newClients) => {
     dispatch({
       type: "UPDATE_CLIENTS",
       value: newClients,
@@ -87,13 +82,6 @@ function ClientsState({ children }) {
     const i = newClients.map((e) => e.id).indexOf(id);
     newClients[i].savingHistory.push(data);
     newClients[i].savingBalance = data.actualBalance;
-    dispatch({
-      type: "UPDATE_CLIENTS",
-      value: newClients,
-    });
-  };
-
-  const updateClients = (newClients) => {
     dispatch({
       type: "UPDATE_CLIENTS",
       value: newClients,
@@ -147,7 +135,6 @@ function ClientsState({ children }) {
         clientInfo: state.clientInfo,
         controlInfo: state.controlInfo,
         systemData: state.systemData,
-        addClient,
         eraseClient,
         uploadClients,
         editClient,

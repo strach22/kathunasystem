@@ -15,7 +15,7 @@ import FormListRelationShip from "./list/FormListRelationShip";
 import ClientsContext from "../../../../context/Clients/ClientsContext";
 
 export default function FormScreen() {
-  const { clients, clientInfo, resetClientInfo, addClient, editSystemData, systemData } =
+  const { clients, clientInfo, resetClientInfo, updateClients, editSystemData, systemData } =
     useContext(ClientsContext);
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ export default function FormScreen() {
       color: "info",
       icon: "check",
       tittle: "Clientes",
-      content: "Cliente agregarado satisfactoriamente!!",
+      content: `Cliente ${clientInfo ? "modificado" : "agregarado"} satisfactoriamente!!`,
     };
     editSystemData(newSystemData);
   };
@@ -179,8 +179,14 @@ export default function FormScreen() {
       values.birthDate = newBirthDate;
       values.creationDate = newCreationDate;
 
-      if (values.id === "0") values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
-      addClient(values);
+      const newClients = clients;
+      if (values.id === "0") {
+        values.id = String(parseInt(clients[clients.length - 1].id, 10) + 1);
+        newClients.push(values);
+      } else {
+        newClients[clients.map((el) => el.id).indexOf(values.id)] = values;
+      }
+      updateClients(newClients);
       resetForm();
       resetClientInfo();
       openSB();
@@ -300,7 +306,7 @@ export default function FormScreen() {
           type="submit"
           sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
         >
-          AGREGAR
+          {clientInfo ? "EDITAR" : "AGREGAR"}
         </MDButton>
       </Grid>
     </Form>

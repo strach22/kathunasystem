@@ -1,11 +1,14 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
+import { useContext } from "react";
 import { Card, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import FormScreen from "./FormScreen";
 
+import ClientsContext from "../../../../context/Clients/ClientsContext";
+
 export default function PrincipalScreen() {
+  const { clientInfo } = useContext(ClientsContext);
   return (
     <MDBox pt={6} pb={3} mx={15}>
       <Grid container spacing={6}>
@@ -22,7 +25,7 @@ export default function PrincipalScreen() {
               coloredShadow="info"
             >
               <MDTypography variant="h5" color="white">
-                Agregar Clientes
+                {clientInfo ? "Editar Cliente" : "Agregar Cliente"}
               </MDTypography>
             </MDBox>
             <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
