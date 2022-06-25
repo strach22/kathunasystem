@@ -37,7 +37,7 @@ export default function MonthlyPayment() {
   };
 
   const [read, setRead] = useState("false");
-  const { clients, updateClients, editSystemData, systemData, controlInfo, uploadControlInfo } =
+  const { clients, updateClients, sbNotification, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -69,18 +69,13 @@ export default function MonthlyPayment() {
   }, [clients[i].credits[i2].state]);
 
   const openSB = () => {
-    const newSystemData = systemData;
-    newSystemData.SBstate = true;
-    newSystemData.SBinfo = {
+    sbNotification({
       color: "success",
       icon: "check",
       tittle: "Creditos",
       content: "Pago de Credito satisfactorio!!",
-    };
-    editSystemData(newSystemData);
+    });
   };
-
-  console.log(clients[i].credits[i2]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

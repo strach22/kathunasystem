@@ -57,15 +57,12 @@ const useStyles = makeStyles({
 export default function ApproveCredits() {
   const navigate = useNavigate();
   const openSB = () => {
-    const newSystemData = systemData;
-    newSystemData.SBstate = true;
-    newSystemData.SBinfo = {
+    sbNotification({
       color: "info",
       icon: "check",
       tittle: "Aprobar Créditos",
       content: "Credito modificado satisfactoriamente!!",
-    };
-    editSystemData(newSystemData);
+    });
   };
   const errorValues = {
     actualState: "",
@@ -85,8 +82,7 @@ export default function ApproveCredits() {
   };
 
   const classes = useStyles();
-  const { clients, editSystemData, systemData, updateClients, controlInfo } =
-    useContext(ClientsContext);
+  const { clients, sbNotification, updateClients, controlInfo } = useContext(ClientsContext);
   const { id } = useParams();
 
   const [idC, idF] = id.split("-");
