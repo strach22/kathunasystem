@@ -1,11 +1,8 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 // Soft UI Dashboard React components
 import MDTypography from "components/MDTypography";
-import ClientsContext from "../../../context/Clients/ClientsContext";
 
-export default function data() {
-  const { clients } = useContext(ClientsContext);
+export default function data(clients) {
   return {
     columns: [
       { Header: "código", accessor: "id", align: "left", width: "15%" },

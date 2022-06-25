@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
@@ -13,9 +15,14 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import clientes from "./table/tableCredit";
+import clientsReserves from "./table/tableReserves";
+
+import ClientsContext from "../../context/Clients/ClientsContext";
 
 function Creditos() {
-  const { columns, rows } = clientes();
+  const { clients } = useContext(ClientsContext);
+  const { columns, rows } = clientes(clients);
+  const { columns2, rows2 } = clientsReserves(clients);
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -40,6 +47,34 @@ function Creditos() {
               <MDBox>
                 <DataTable
                   table={{ columns, rows }}
+                  isSorted
+                  canSearch
+                  showTotalEntries={false}
+                  noEndBorder
+                  entriesPerPage={false}
+                />
+              </MDBox>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  Clientes con Encaje
+                </MDTypography>
+              </MDBox>
+              <MDBox>
+                <DataTable
+                  table={{ columns: columns2, rows: rows2 }}
                   isSorted
                   canSearch
                   showTotalEntries={false}
