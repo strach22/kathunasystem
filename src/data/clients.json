@@ -57,7 +57,7 @@
         "creditHistory": [
           {
             "id":"1",
-            "value":"2898.00",
+            "value":2898.00,
             "paymentType": "Efectivo",
             "transactionDate":"2022/02/10",
             "observation":"Pago completo",
@@ -323,7 +323,7 @@
         "creditHistory": [
           {
             "id":"1",
-            "value":"86.01",
+            "value":86.01,
             "paymentType": "Efectivo",
             "transactionDate":"2022/04/01",
             "observation":"Pago completo",
@@ -331,7 +331,7 @@
           },
           {
             "id":"2",
-            "value":"86.01",
+            "value":86.01,
             "paymentType": "Cheque",
             "transactionDate":"2022/05/01",
             "observation":"Pago completo",
@@ -339,7 +339,7 @@
           },
           {
             "id":"3",
-            "value":"86.01",
+            "value":86.01,
             "paymentType": "Transferencia",
             "transactionDate":"2022/06/01",
             "observation":"Pago completo",
