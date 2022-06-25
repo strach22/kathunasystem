@@ -57,6 +57,8 @@ export default function DepositScreen() {
   const { clients, addClientHistory, editSystemData, systemData, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
 
+  console.log(clients[id - 1]);
+
   const openSB = () => {
     const newSystemData = systemData;
     newSystemData.SBstate = true;
