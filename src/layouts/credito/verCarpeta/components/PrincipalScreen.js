@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import MDButton from "components/MDButton";
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 export default function PrincipalScreen() {
   const classes = useStyles();
   const { clients } = useContext(ClientsContext);
-  const { id } = useParams();
+  const id = useMemo(() => useParams().id, []);
   const [idC, idF] = id.split("-");
   const i = clients.map((e) => e.id).indexOf(idC);
   const [folderInfo] = clients[i].credits.filter((folder) => folder.id === idF);
@@ -61,7 +61,7 @@ export default function PrincipalScreen() {
                 Datos del cliente
               </MDTypography>
             </MDBox>
-            <MDBox pt={1}>
+            <MDBox pt={3}>
               <InfoScreenSecond />
             </MDBox>
           </Card>

@@ -25,7 +25,7 @@ export default function InfoScreenSecond() {
   );
 
   return (
-    <MDBox mt={6} mb={3}>
+    <MDBox mt={1} mb={3}>
       <Grid container spacing={3}>
         <Grid item xs={11}>
           <MDBox coloredShadow="secondary" pb={2}>

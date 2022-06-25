@@ -15,9 +15,10 @@ import listItems from "layouts/credito/helpers/sociosItems";
 import ClientsContext from "context/Clients/ClientsContext";
 
 export default function Credit() {
+  const { clients, addClientCredit, controlInfo } = useContext(ClientsContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  const { clients, addClientCredit, controlInfo } = useContext(ClientsContext);
+
   const errorValues = {
     loanValue: "",
     timePayYear: "",

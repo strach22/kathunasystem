@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import { useParams, Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import ClientsContext from "context/Clients/ClientsContext";
 
 export default function data() {
   const { clients } = useContext(ClientsContext);
-  const { id } = useParams();
+  const id = useMemo(() => useParams().id, []);
   const i = clients.map((e) => e.id).indexOf(id);
 
   return {

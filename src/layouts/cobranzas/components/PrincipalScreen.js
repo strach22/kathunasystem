@@ -50,5 +50,3 @@ export default function PrincipalScreen() {
     </DashboardLayout>
   );
 }
-
-// const id = useMemo(() => useParams().id, []);
