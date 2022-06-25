@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/kathuna-system/static/js/main.5bb6ebf3.js",
+    "main.js": "/kathuna-system/static/js/main.cb8aa53e.js",
     "static/media/bgkathuna.png": "/kathuna-system/static/media/bgkathuna.d589369bfa0f1dd33bdc.png",
     "static/media/logo-ct.png": "/kathuna-system/static/media/logo-ct.cd2f88eca06df83c9954.png",
     "index.html": "/kathuna-system/index.html",
-    "main.5bb6ebf3.js.map": "/kathuna-system/static/js/main.5bb6ebf3.js.map"
+    "main.cb8aa53e.js.map": "/kathuna-system/static/js/main.cb8aa53e.js.map"
   },
   "entrypoints": [
-    "static/js/main.5bb6ebf3.js"
+    "static/js/main.cb8aa53e.js"
   ]
 }
