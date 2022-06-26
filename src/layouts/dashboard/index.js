@@ -59,7 +59,11 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox>
               <Link to="/transacciones-ahorros">
-                <InfoIcon icon="iso" title="Ahorros" count={`$ ${controlInfo.totalTransactions}`} />
+                <InfoIcon
+                  icon="iso"
+                  title="Ahorros"
+                  count={`$ ${controlInfo.totalTransactions.toFixed(2)}`}
+                />
               </Link>
             </MDBox>
           </Grid>
@@ -70,7 +74,7 @@ function Dashboard() {
                   color="success"
                   icon="credit_card"
                   title="Créditos"
-                  count={`$ ${controlInfo.totalCredits}`}
+                  count={`$ ${controlInfo.totalCredits.toFixed(2)}`}
                 />
               </Link>
             </MDBox>
@@ -82,7 +86,7 @@ function Dashboard() {
                   color="warning"
                   icon="paid"
                   title="Gastos"
-                  count={`$ ${controlInfo.totalExpenses}`}
+                  count={`$ ${controlInfo.totalExpenses.toFixed(2)}`}
                 />
               </Link>
             </MDBox>

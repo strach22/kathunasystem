@@ -7,13 +7,13 @@
   "ruc": "0000000000001",
   "mobile": "0999999999",
   "city": "Quito, Ecuador",
-  "partnerSavingInterest": 0.50,
-  "particularSavingInterest": 0.30,
-  "partnerCreditInterest": 1.50,
-  "particularCreditInterest": 2.50,
-  "desgravament": 1.00,
-  "latePayment": 0.00,
-  "reserveInterest": 10.00,
+  "partnerSavingInterest": 0.5,
+  "particularSavingInterest": 0.3,
+  "partnerCreditInterest": 1.5,
+  "particularCreditInterest": 2.5,
+  "desgravament": 1.0,
+  "latePayment": 0.0,
+  "reserveInterest": 10.0,
   "proofPaymentValue": 14,
   "totalTransactions": 10100.00,
   "totalCredits": -6050.00,
@@ -23,13 +23,13 @@
     {
       "id": "1",
       "expenseDate": "2022/02/04",
-      "expenseValue": 100.00,
+      "expenseValue": 100.0,
       "observation": "Serivicios Básicos"
     },
     {
       "id": "2",
       "expenseDate": "2022/02/26",
-      "expenseValue": 30.00,
+      "expenseValue": 30.0,
       "observation": "Seguridad"
     },
     {
@@ -47,7 +47,7 @@
     {
       "id": "5",
       "expenseDate": "2022/04/12",
-      "expenseValue": 90.00,
+      "expenseValue": 90.0,
       "observation": "Serivicios de Entretenimiento"
     },
     {
@@ -59,19 +59,19 @@
     {
       "id": "7",
       "expenseDate": "2022/04/27",
-      "expenseValue": 62.10,
+      "expenseValue": 62.1,
       "observation": "Serivicios de Limpieza"
     },
     {
       "id": "8",
       "expenseDate": "2022/05/09",
-      "expenseValue": 40.00,
+      "expenseValue": 40.0,
       "observation": "Alicuotas"
     },
     {
       "id": "9",
       "expenseDate": "2022/05/21",
-      "expenseValue": 325.00,
+      "expenseValue": 325.0,
       "observation": "Arriendo"
     },
     {
@@ -83,14 +83,70 @@
     {
       "id": "11",
       "expenseDate": "2022/05/30",
-      "expenseValue": 45.00,
+      "expenseValue": 45.0,
       "observation": "Billetes Falsos"
     },
     {
       "id": "12",
       "expenseDate": "2022/05/31",
-      "expenseValue": 146.20,
+      "expenseValue": 146.2,
       "observation": "Papelería"
+    }
+  ],
+  "incomesHystory": [
+    {
+      "id": "1",
+      "incomeDate": "2022/02/04",
+      "incomeValue": 10.0,
+      "observation": "Serivicios Básicos"
+    },
+    {
+      "id": "2",
+      "incomeDate": "2022/03/04",
+      "incomeValue": 10.0,
+      "observation": "Seguridad"
+    },
+    {
+      "id": "3",
+      "incomeDate": "2022/03/05",
+      "incomeValue": 10.0,
+      "observation": "Transporte"
+    },
+    {
+      "id": "4",
+      "incomeDate": "2022/03/05",
+      "incomeValue": 10.0,
+      "observation": "Comida"
+    },
+    {
+      "id": "5",
+      "incomeDate": "2022/03/01",
+      "incomeValue": 90.0,
+      "observation": "Serivicios de Entretenimiento"
+    },
+    {
+      "id": "6",
+      "incomeDate": "2022/04/01",
+      "incomeValue": 456.31,
+      "observation": "Exportaciones"
+    },
+    {
+      "id": "7",
+      "incomeDate": "2022/04/01",
+      "incomeValue": 62.1,
+      "observation": "Serivicios de Limpieza"
+    },
+    {
+      "id": "8",
+      "incomeDate": "2022/04/29",
+      "incomeValue": 40.0,
+      "observation": "Alicuotas"
+    },
+    {
+      "id": "9",
+      "incomeDate": "2022/05/24",
+      "incomeValue": 325.0,
+      "observation": "Arriendo"
     }
   ]
 }
