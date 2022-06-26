@@ -88,11 +88,18 @@ function infoClients() {
                     {getInfo("Dirección:", clients[i].address)}
                     {getInfo("Correo Electrónico:", clients[i].email)}
                     <Divider />
-                    {getInfo("Nombres del Conyugue:", clients[i].firstNameSpouse)}
-                    {getInfo("Apellidos del Conyugue:", clients[i].lastNameSpouse)}
-                    {getInfo("Documento Id del Conyugue:", clients[i].identificationSpouse)}
-                    {getInfo("Teléfono del Conyugue:", clients[i].mobileSpouse)}
-                    <Divider />
+                    {clients[i].identificationSpouse && (
+                      <>
+                        {getInfo("Nombres del Conyugue:", clients[i].firstNameSpouse)}
+                        {getInfo("Apellidos del Conyugue:", clients[i].lastNameSpouse)}
+                        {getInfo(
+                          "Documento de  Identidad del Conyugue:",
+                          clients[i].identificationSpouse
+                        )}
+                        {getInfo("Teléfono del Conyugue:", clients[i].mobileSpouse)}
+                        <Divider />
+                      </>
+                    )}
                     {getInfo("Parentesco:", clients[i].relationShip)}
                     {getInfo("Nombres del Pariente:", clients[i].firstNameRelationShip)}
                     {getInfo("Apellidos del Pariente:", clients[i].lastNameRelationShip)}
