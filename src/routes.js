@@ -120,7 +120,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Gastos",
+    name: "Ingresos/Gastos",
     key: "gastos",
     icon: <Icon fontSize="small">paid</Icon>,
     route: "/gastos",
