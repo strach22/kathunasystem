@@ -29,6 +29,7 @@ export default function TableCreditScreen({ worksheets }) {
     actualLoan: "",
     guarantor: "",
     monthlyPayment: "",
+    reserve: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -49,6 +50,10 @@ export default function TableCreditScreen({ worksheets }) {
       tempo.monthlyPayment = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.monthlyPayment)
         ? ""
         : "Es Obligatorio llenar este Campo";
+    if ("reserve" in fieldValues)
+      tempo.reserve = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.reserve)
+        ? ""
+        : "Es Obligatorio llenar este Campo";
     if ("interest" in fieldValues)
       tempo.interest = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.interest)
         ? ""
@@ -63,6 +68,7 @@ export default function TableCreditScreen({ worksheets }) {
     if (fieldValues.periods === "0") tempo.periods = "Es Obligatorio llenar este Campo";
     if (fieldValues.id === "0") tempo.id = "Es Obligatorio llenar este Campo";
     if (fieldValues.interest === "0.00") tempo.interest = "Es Obligatorio llenar este Campo";
+    if (fieldValues.reserve === "0.00") tempo.reserve = "Es Obligatorio llenar este Campo";
     if (fieldValues.monthlyPayment === "0.00")
       tempo.monthlyPayment = "Es Obligatorio llenar este Campo";
     setErrors({
@@ -80,6 +86,7 @@ export default function TableCreditScreen({ worksheets }) {
       periods: "0",
       actualLoan: "0.00",
       monthlyPayment: "0.00",
+      reserve: "0.00",
       guarantor: "",
       state: "",
       identificationGuarantor: "",
@@ -123,16 +130,20 @@ export default function TableCreditScreen({ worksheets }) {
               .split("T")[0]
               .replace("-", "/")
               .replace("-", "/"),
-            loanValue: values.loanValue,
-            interest: values.interest,
-            periods: values.periods,
-            actualLoan: values.actualLoan,
+            loanValue: parseFloat(values.loanValue, 10),
+            interest: parseFloat(values.interest, 10),
+            periods: parseFloat(values.periods, 10),
+            actualLoan: parseFloat(values.actualLoan, 10),
+            reserve: parseFloat(values.reserve, 10),
             state: values.state,
             guarantor: values.guarantor,
             identificationGuarantor: values.identificationGuarantor[0].ci,
-            monthlyPayment: values.monthlyPayment,
+            monthlyPayment: parseFloat(values.monthlyPayment, 10),
             creditHistory: dataBase,
           };
+
+          console.log(credit);
+
           addClientCredit(id, credit);
           navigate("/creditos");
         }
@@ -158,10 +169,11 @@ export default function TableCreditScreen({ worksheets }) {
 
           const dataCreditsTempo = {
             id: String(value[0]),
-            transactionDate: String(value[1]),
-            value: String(value[2]),
-            paymentType: String(value[3]),
-            observation: String(value[4]),
+            receipt: parseFloat(value[1], 10),
+            transactionDate: String(value[2]),
+            value: parseFloat(value[3], 10),
+            paymentType: value[4],
+            observation: value[5],
           };
 
           dispatch({
@@ -314,7 +326,7 @@ export default function TableCreditScreen({ worksheets }) {
           <Grid container>
             <Grid item xs={3.38}>
               <MDTypography className="Subtitles2" variant="h5">
-                Interés:
+                Encaje Bancario:
               </MDTypography>
             </Grid>
             <Grid item xs={2}>
@@ -323,6 +335,41 @@ export default function TableCreditScreen({ worksheets }) {
             <Grid item xs={3.38}>
               <MDTypography className="Subtitles2" variant="h5">
                 Garante:
+              </MDTypography>
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={3.38}>
+              <InputValue
+                className="InputLoanValue"
+                name="reserve"
+                value={values.reserve}
+                onChange={handleInputChange}
+                error={errors.reserve}
+                icon="$"
+                position="start"
+              />
+            </Grid>
+            <Grid item xs={2}>
+              {}
+            </Grid>
+            <Grid item xs={5.62}>
+              <SelectG
+                name="guarantor"
+                label="Garante"
+                value={values.guarantor}
+                onChange={handleInputChange}
+                options={values.auxGuarantor}
+                error={errors.guarantor}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={3.38}>
+              <MDTypography className="Subtitles2" variant="h5">
+                Interés:
               </MDTypography>
             </Grid>
           </Grid>
@@ -337,19 +384,6 @@ export default function TableCreditScreen({ worksheets }) {
                 error={errors.interest}
                 icon="%"
                 position="end"
-              />
-            </Grid>
-            <Grid item xs={2}>
-              {}
-            </Grid>
-            <Grid item xs={5.62}>
-              <SelectG
-                name="guarantor"
-                label="Garante"
-                value={values.guarantor}
-                onChange={handleInputChange}
-                options={values.auxGuarantor}
-                error={errors.guarantor}
               />
             </Grid>
           </Grid>
