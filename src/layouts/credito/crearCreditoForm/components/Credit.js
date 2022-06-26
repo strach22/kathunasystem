@@ -76,12 +76,12 @@ export default function Credit() {
     if (validate()) {
       const interes =
         clients[id].tariff === "Particular"
-          ? parseFloat(controlInfo.particularCreditInterest) / 100
-          : parseFloat(controlInfo.partnerCreditInterest) / 100;
+          ? controlInfo.particularCreditInterest / 100
+          : controlInfo.partnerCreditInterest / 100;
       const periods = values.timePayYear * 12 + parseInt(values.timePayMonth, 10);
       const periodicFee = values.loanValue * (interes / (1 - (interes + 1) ** -periods));
       const periodicFeeDesgravamen =
-        periodicFee + ((parseFloat(controlInfo.desgravament) / 100) * values.loanValue) / periods;
+        periodicFee + ((controlInfo.desgravament / 100) * values.loanValue) / periods;
       const folders = clients.map((client) => client.credits).flat();
 
       values.id = String(folders.length + 1);
