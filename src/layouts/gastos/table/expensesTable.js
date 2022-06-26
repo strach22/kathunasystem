@@ -17,7 +17,7 @@ export default function data() {
     rows: controlInfo.expensesHystory.map((info) => ({
       id: info.id,
       expenseDate: info.expenseDate,
-      expenseValue: info.expenseValue,
+      expenseValue: `$ ${info.expenseValue}`,
       observation: info.observation,
       download: <ProofPaymentExpenses info={info} />,
     })),

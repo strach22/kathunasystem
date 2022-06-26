@@ -49,6 +49,7 @@ export default function AddExpense() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (validate()) {
       if (values.expenseValue === "0.00" || values.observation === "") {
         setVerification("true");
@@ -60,11 +61,14 @@ export default function AddExpense() {
           .replace("-", "/");
         values.expenseDate = newInitialDate;
         const newControlInfo = controlInfo;
-        values.id =
-          parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1;
-        newControlInfo.totalExpenses += parseInt(values.expenseValue, 10);
+        values.id = String(
+          parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1
+        );
+        values.expenseValue = parseFloat(values.expenseValue, 10);
+        newControlInfo.totalExpenses += values.expenseValue;
         newControlInfo.expensesHystory.push(values);
         uploadControlInfo(newControlInfo);
+
         navigate(`/inicio`);
       }
     }

@@ -7,13 +7,13 @@
   "ruc": "0000000000001",
   "mobile": "0999999999",
   "city": "Quito, Ecuador",
-  "partnerSavingInterest": "0.50",
-  "particularSavingInterest": "0.30",
-  "partnerCreditInterest": "1.50",
-  "particularCreditInterest": "2.50",
-  "desgravament": "1.00",
-  "latePayment": "0.00",
-  "reserveInterest": "10.00",
+  "partnerSavingInterest": 0.50,
+  "particularSavingInterest": 0.30,
+  "partnerCreditInterest": 1.50,
+  "particularCreditInterest": 2.50,
+  "desgravament": 1.00,
+  "latePayment": 0.00,
+  "reserveInterest": 10.00,
   "proofPaymentValue": 14,
   "totalTransactions": 10100.00,
   "totalCredits": -6050.00,
@@ -23,74 +23,73 @@
     {
       "id": "1",
       "expenseDate": "2022/02/04",
-      "expenseValue": "100.00",
+      "expenseValue": 100.00,
       "observation": "Serivicios Básicos"
     },
     {
       "id": "2",
       "expenseDate": "2022/02/26",
-      "expenseValue": "30.00",
+      "expenseValue": 30.00,
       "observation": "Seguridad"
     },
     {
       "id": "3",
       "expenseDate": "2022/03/22",
-      "expenseValue": "26.34",
+      "expenseValue": 26.34,
       "observation": "Transporte"
     },
     {
       "id": "4",
       "expenseDate": "2022/03/30",
-      "expenseValue": "93.21",
+      "expenseValue": 93.21,
       "observation": "Comida"
     },
     {
       "id": "5",
       "expenseDate": "2022/04/12",
-      "expenseValue": "90.00",
+      "expenseValue": 90.00,
       "observation": "Serivicios de Entretenimiento"
     },
     {
       "id": "6",
       "expenseDate": "2022/04/22",
-      "expenseValue": "456.31",
+      "expenseValue": 456.31,
       "observation": "Exportaciones"
     },
     {
       "id": "7",
       "expenseDate": "2022/04/27",
-      "expenseValue": "62.10",
+      "expenseValue": 62.10,
       "observation": "Serivicios de Limpieza"
     },
     {
       "id": "8",
       "expenseDate": "2022/05/09",
-      "expenseValue": "40.00",
+      "expenseValue": 40.00,
       "observation": "Alicuotas"
     },
     {
       "id": "9",
       "expenseDate": "2022/05/21",
-      "expenseValue": "325.00",
+      "expenseValue": 325.00,
       "observation": "Arriendo"
     },
     {
       "id": "10",
       "expenseDate": "2022/05/28",
-      "expenseValue": "235.12",
-      "observation": "Servicio Técnico",
-      "receipt": 24
+      "expenseValue": 235.12,
+      "observation": "Servicio Técnico"
     },
     {
       "id": "11",
       "expenseDate": "2022/05/30",
-      "expenseValue": "45.00",
+      "expenseValue": 45.00,
       "observation": "Billetes Falsos"
     },
     {
       "id": "12",
       "expenseDate": "2022/05/31",
-      "expenseValue": "146.20",
+      "expenseValue": 146.20,
       "observation": "Papelería"
     }
   ]

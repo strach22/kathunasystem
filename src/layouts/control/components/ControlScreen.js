@@ -110,15 +110,16 @@ export default function ControlScreen() {
     if (auxValidation.length === 0) {
       setRead("true");
       errors.nameVerification = "Colocar Contraseña";
+
       const newControlInfo = controlInfo;
-      newControlInfo.particularSavingInterest = values.particularSavingInterest;
-      newControlInfo.particularCreditInterest = values.particularCreditInterest;
-      newControlInfo.partnerSavingInterest = values.partnerSavingInterest;
-      newControlInfo.partnerCreditInterest = values.partnerCreditInterest;
-      newControlInfo.desgravament = values.desgravament;
-      newControlInfo.latePayment = values.latePayment;
+      newControlInfo.particularSavingInterest = parseFloat(values.particularSavingInterest, 10);
+      newControlInfo.particularCreditInterest = parseFloat(values.particularCreditInterest, 10);
+      newControlInfo.partnerSavingInterest = parseFloat(values.partnerSavingInterest, 10);
+      newControlInfo.partnerCreditInterest = parseFloat(values.partnerCreditInterest, 10);
+      newControlInfo.desgravament = parseFloat(values.desgravament, 10);
+      newControlInfo.latePayment = parseFloat(values.latePayment, 10);
       newControlInfo.proofPaymentValue = values.proofPaymentValue;
-      newControlInfo.reserveInterest = values.reserveInterest;
+      newControlInfo.reserveInterest = parseFloat(values.reserveInterest, 10);
 
       uploadControlInfo(newControlInfo);
     }
