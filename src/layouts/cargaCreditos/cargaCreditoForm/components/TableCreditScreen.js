@@ -142,8 +142,6 @@ export default function TableCreditScreen({ worksheets }) {
             creditHistory: dataBase,
           };
 
-          console.log(credit);
-
           addClientCredit(id, credit);
           navigate("/creditos");
         }
