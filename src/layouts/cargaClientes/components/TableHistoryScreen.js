@@ -18,16 +18,10 @@ export default function TableHistoryScreen({ worksheets }) {
 
   const handleUpload = () => {
     if (dataBase) {
-      const aux1 = dataBase.length;
-      const aux2 = clients.length;
-
-      for (let i = 0; i < aux1; i += 1) {
-        for (let j = 0; j < aux2; j += 1) {
-          const aux3 = dataBase[i].identification;
-          const aux4 = parseInt(clients[j].identification, 10);
-          const aux5 = dataBase[i].type;
-          if (aux3 === aux4) {
-            if (aux5 === "Retiro") dataBase[i].transactionValue *= -1;
+      for (let i = 0; i < dataBase.length; i += 1) {
+        for (let j = 0; j < clients.length; j += 1) {
+          if (dataBase[i].identification === clients[j].identification) {
+            if (dataBase[i].type === "Retiro") dataBase[i].transactionValue *= -1;
             delete dataBase[i].identification;
             delete dataBase[i].type;
             addClientHistory(clients[j].id, dataBase[i]);
@@ -55,12 +49,14 @@ export default function TableHistoryScreen({ worksheets }) {
           const value = data[i].map((val) => val);
 
           const savingHistoryTempo = {
-            identification: value[0],
-            type: value[1],
-            transactionDate: value[2],
-            value: value[3],
-            actualBalance: value[4],
-            observation: value[5],
+            receipt: value[0],
+            identification: String(value[1]),
+            type: value[2],
+            transactionDate: value[3],
+            value: value[4],
+            actualBalance: value[5],
+            paymentType: value[6],
+            observation: value[7],
           };
 
           dispatch({
