@@ -32,7 +32,7 @@ export default function AddExpense() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange } = useForm(
+  const { values, errors, sbNotification, setErrors, handleInputChange } = useForm(
     {
       expenseDate: new Date(),
       expenseValue: "0.00",
@@ -68,7 +68,12 @@ export default function AddExpense() {
         newControlInfo.totalExpenses += values.expenseValue;
         newControlInfo.expensesHystory.push(values);
         uploadControlInfo(newControlInfo);
-
+        sbNotification({
+          color: "info",
+          icon: "check",
+          tittle: "Agregar Gasto",
+          content: "Gasto agregado satisfactoriamente!!",
+        });
         navigate(`/inicio`);
       }
     }
@@ -127,6 +132,14 @@ export default function AddExpense() {
           </Grid>
         )}
         <Grid item xs={12} lg={11}>
+          <MDButton
+            variant="text"
+            size="large"
+            onClick={() => navigate("/historial-gastos")}
+            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+          >
+            Historial
+          </MDButton>
           <MDButton
             variant="text"
             size="large"

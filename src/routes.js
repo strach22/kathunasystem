@@ -11,6 +11,8 @@ import CargaCreditos from "layouts/cargaCreditos";
 import Historial from "layouts/historial";
 import Cobranzas from "layouts/cobranzas";
 import Gastos from "layouts/gastos";
+import HistorialG from "layouts/gastos/historialGastos/gastos";
+import HistorialI from "layouts/gastos/historialGastos/ingresos";
 import AprobarCreditos from "layouts/aprobarCreditos";
 import Control from "layouts/control";
 import Reports from "layouts/reportes";
@@ -125,6 +127,20 @@ const routes = [
     icon: <Icon fontSize="small">paid</Icon>,
     route: "/gastos",
     component: <Gastos />,
+  },
+  {
+    name: "historialGastos",
+    key: "historialGastos",
+    icon: <Icon fontSize="small">paid</Icon>,
+    route: "/historial-gastos",
+    component: <HistorialG />,
+  },
+  {
+    name: "historialIngresos",
+    key: "historialIngresos",
+    icon: <Icon fontSize="small">paid</Icon>,
+    route: "/historial-ingresos",
+    component: <HistorialI />,
   },
   {
     type: "collapse",

@@ -12,17 +12,17 @@ import Form from "../helpers/Form";
 
 import ClientsContext from "../../../context/Clients/ClientsContext";
 
-export default function AddExpense() {
+export default function AddIncome() {
   const errorValues = {
-    expenseValue: "",
+    incomeValue: "",
   };
 
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
 
-    if ("expenseValue" in fieldValues) {
-      tempo.expenseValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.expenseValue)
+    if ("incomeValue" in fieldValues) {
+      tempo.incomeValue = /^[0-9]{1,10}.[0-9]{2}$/.test(fieldValues.incomeValue)
         ? ""
         : "Llenar en el Formato Correcto el Campo";
     }
@@ -34,8 +34,8 @@ export default function AddExpense() {
 
   const { values, errors, setErrors, handleInputChange } = useForm(
     {
-      expenseDate: new Date(),
-      expenseValue: "0.00",
+      incomeDate: new Date(),
+      incomeValue: "0.00",
       observation: "",
     },
     true,
@@ -43,7 +43,7 @@ export default function AddExpense() {
     errorValues
   );
 
-  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
+  const { controlInfo, sbNotification, uploadControlInfo } = useContext(ClientsContext);
   const navigate = useNavigate();
   const [verification, setVerification] = useState("false");
 
@@ -51,24 +51,29 @@ export default function AddExpense() {
     e.preventDefault();
 
     if (validate()) {
-      if (values.expenseValue === "0.00" || values.observation === "") {
+      if (values.incomeValue === "0.00" || values.observation === "") {
         setVerification("true");
       } else {
-        const newInitialDate = values.expenseDate
+        const newInitialDate = values.incomeDate
           .toISOString()
           .split("T")[0]
           .replace("-", "/")
           .replace("-", "/");
-        values.expenseDate = newInitialDate;
+        values.incomeDate = newInitialDate;
         const newControlInfo = controlInfo;
         values.id = String(
-          parseInt(controlInfo.expensesHystory[controlInfo.expensesHystory.length - 1].id, 10) + 1
+          parseInt(controlInfo.incomesHystory[controlInfo.incomesHystory.length - 1].id, 10) + 1
         );
-        values.expenseValue = parseFloat(values.expenseValue, 10);
-        newControlInfo.totalIncomes += values.expenseValue;
+        values.incomeValue = parseFloat(values.incomeValue, 10);
+        newControlInfo.totalIncomes += values.incomeValue;
         newControlInfo.incomesHystory.push(values);
         uploadControlInfo(newControlInfo);
-
+        sbNotification({
+          color: "info",
+          icon: "check",
+          tittle: "Agregar Ingreso",
+          content: "Ingreso agregado satisfactoriamente!!",
+        });
         navigate(`/inicio`);
       }
     }
@@ -88,9 +93,9 @@ export default function AddExpense() {
         </Grid>
         <Grid item xs={8}>
           <DatePickerH
-            name="expenseDate"
+            name="incomeDate"
             label="Fecha del ingreso"
-            value={values.expenseDate}
+            value={values.incomeDate}
             onChange={handleInputChange}
           />
         </Grid>
@@ -99,11 +104,11 @@ export default function AddExpense() {
             Valor del Ingreso:
           </MDTypography>
           <InputValue
-            className="InputExpenseValue"
-            name="expenseValue"
-            value={values.expenseValue}
+            className="InputIncomeValue"
+            name="incomeValue"
+            value={values.incomeValue}
             onChange={handleInputChange}
-            error={errors.expenseValue}
+            error={errors.incomeValue}
             icon="$"
             position="start"
           />
@@ -127,6 +132,14 @@ export default function AddExpense() {
           </Grid>
         )}
         <Grid item xs={12} lg={11}>
+          <MDButton
+            variant="text"
+            size="large"
+            onClick={() => navigate("/historial-ingresos")}
+            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+          >
+            Historial
+          </MDButton>
           <MDButton
             variant="text"
             size="large"

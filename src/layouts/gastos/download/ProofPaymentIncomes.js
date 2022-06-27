@@ -8,18 +8,18 @@ import zfill from "elements/helpers/zfill";
 import ClientsContext from "context/Clients/ClientsContext";
 import { numbToLetters } from "elements/helpers/numbToLetters";
 
-export default function ProofPaymentExpenses({ info }) {
-  const { id, expenseDate, expenseValue, observation } = info;
+export default function ProofPaymentIncomes({ info }) {
+  const { id, incomeDate, incomeValue, observation } = info;
   const { controlInfo } = useContext(ClientsContext);
 
-  const lettersExpenseValue = numbToLetters(expenseValue, {
+  const lettersIncomeValue = numbToLetters(incomeValue, {
     plural: "dólares estadounidenses",
     singular: "dólar estadounidense",
     centPlural: "centavos",
     centSingular: "centavo",
   });
 
-  const proofPaymentExpensesPDF = {
+  const proofPaymentIncomesPDF = {
     pageMargins: [40, 40, 40, 80],
     background(currentPage) {
       return currentPage === 1
@@ -54,13 +54,13 @@ export default function ProofPaymentExpenses({ info }) {
                     { text: "Dirección", style: "subtitle1", width: 112 },
                     { text: controlInfo.nameLocation, style: "subtitle3", width: "*" },
                     { text: "Fecha de Emisión", style: "subtitle1", width: 95 },
-                    { text: expenseDate, style: "subtitle2", width: 60 },
+                    { text: incomeDate, style: "subtitle2", width: 60 },
                   ],
                 },
               ],
             },
-            { text: "GASTOS DE CAJA", style: "title1", marginTop: 35 },
-            { text: "COMPROBANTE DE EGRESO", style: "title1", color: "red" },
+            { text: "INGRESOS DE CAJA", style: "title1", marginTop: 35 },
+            { text: "COMPROBANTE DE INGRESO", style: "title1", color: "red" },
           ],
         ],
       },
@@ -104,7 +104,7 @@ export default function ProofPaymentExpenses({ info }) {
             ],
             [
               { text: observation, style: "table2", border: [false, false, false, true] },
-              { text: `$ ${expenseValue}`, style: "table3", border: [false, false, false, true] },
+              { text: `$ ${incomeValue}`, style: "table3", border: [false, false, false, true] },
             ],
             [
               { text: "---", style: "table2", color: "white", border: [false, false, false, true] },
@@ -156,7 +156,7 @@ export default function ProofPaymentExpenses({ info }) {
           body: [
             [
               { text: "Subtotal", style: "table5", border: [false, true, false, true] },
-              { text: `$ ${expenseValue}`, style: "table3", border: [false, true, false, true] },
+              { text: `$ ${incomeValue}`, style: "table3", border: [false, true, false, true] },
             ],
             [
               { text: "Impuestos", style: "table5", border: [false, false, false, true] },
@@ -165,7 +165,7 @@ export default function ProofPaymentExpenses({ info }) {
             [
               { text: "Total", style: "table4", border: [false, false, false, true] },
               {
-                text: `$ ${expenseValue}`,
+                text: `$ ${incomeValue}`,
                 style: "table4",
                 fillColor: "#f5f5f5",
                 border: [false, false, false, true],
@@ -176,7 +176,7 @@ export default function ProofPaymentExpenses({ info }) {
       },
       "\n",
       {
-        text: ["La cantidad es: ", { text: lettersExpenseValue, style: "text2" }],
+        text: ["La cantidad es: ", { text: lettersIncomeValue, style: "text2" }],
         style: "text1",
       },
       "\n\n",
@@ -266,7 +266,7 @@ export default function ProofPaymentExpenses({ info }) {
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.createPdf(proofPaymentExpensesPDF).download("COMPROBANTE-DE-PAGOS.pdf");
+    pdfMake.createPdf(proofPaymentIncomesPDF).download("COMPROBANTE-DE-PAGOS.pdf");
   };
 
   return (
@@ -281,7 +281,7 @@ export default function ProofPaymentExpenses({ info }) {
   );
 }
 
-ProofPaymentExpenses.propTypes = {
+ProofPaymentIncomes.propTypes = {
   info: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

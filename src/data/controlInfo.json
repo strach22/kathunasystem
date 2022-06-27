@@ -98,55 +98,55 @@
       "id": "1",
       "incomeDate": "2022/02/04",
       "incomeValue": 10.0,
-      "observation": "Serivicios Básicos"
+      "observation": "Apertura cuenta"
     },
     {
       "id": "2",
       "incomeDate": "2022/03/04",
       "incomeValue": 10.0,
-      "observation": "Seguridad"
+      "observation": "Apertura cuenta"
     },
     {
       "id": "3",
       "incomeDate": "2022/03/05",
       "incomeValue": 10.0,
-      "observation": "Transporte"
+      "observation": "Apertura cuenta"
     },
     {
       "id": "4",
       "incomeDate": "2022/03/05",
       "incomeValue": 10.0,
-      "observation": "Comida"
+      "observation": "Apertura cuenta"
     },
     {
       "id": "5",
       "incomeDate": "2022/03/01",
-      "incomeValue": 90.0,
-      "observation": "Serivicios de Entretenimiento"
+      "incomeValue": 10.0,
+      "observation": "Apertura cuenta"
     },
     {
       "id": "6",
       "incomeDate": "2022/04/01",
-      "incomeValue": 456.31,
-      "observation": "Exportaciones"
+      "incomeValue": 10.0,
+      "observation": "Apertura cuenta"
     },
     {
       "id": "7",
       "incomeDate": "2022/04/01",
-      "incomeValue": 62.1,
-      "observation": "Serivicios de Limpieza"
+      "incomeValue": 10.0,
+      "observation": "Apertura cuenta"
     },
     {
       "id": "8",
       "incomeDate": "2022/04/29",
-      "incomeValue": 40.0,
-      "observation": "Alicuotas"
+      "incomeValue": 10.0,
+      "observation": "Apertura cuenta"
     },
     {
       "id": "9",
       "incomeDate": "2022/05/24",
-      "incomeValue": 325.0,
-      "observation": "Arriendo"
+      "incomeValue": 10.0,
+      "observation": "Apertura cuenta"
     }
   ]
 }
