@@ -46,17 +46,15 @@ export default function TableHistoryScreen({ worksheets }) {
         data.shift();
 
         for (let i = 0; i < data.length; i += 1) {
-          const value = data[i].map((val) => val);
-
           const savingHistoryTempo = {
-            receipt: value[0],
-            identification: String(value[1]),
-            type: value[2],
-            transactionDate: value[3],
-            value: value[4],
-            actualBalance: value[5],
-            paymentType: value[6],
-            observation: value[7],
+            receipt: data[i][0],
+            identification: String(data[i][1]),
+            type: data[i][2],
+            transactionDate: data[i][3],
+            value: data[i][4],
+            actualBalance: data[i][5],
+            paymentType: data[i][6],
+            observation: data[i][7],
           };
 
           dispatch({
@@ -85,7 +83,7 @@ export default function TableHistoryScreen({ worksheets }) {
 
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
-        {loading && <MDTypography>Cargando ...</MDTypography>}
+        {loading && <MDTypography>Cargando % </MDTypography>}
       </Grid>
 
       <div className="excel-table-import">

@@ -37,8 +37,6 @@ export default function TableClientsScreen({ worksheets }) {
         data.shift();
 
         for (let i = 0; i < data.length; i += 1) {
-          const value = data[i].map((val) => val);
-
           const id = clients.length + i + 1;
           // const [birthYear, birthMonth, birthNowDate] = value[7].split("/");
           // const [creationYear, creationMonth, creationNowDate] = value[8].split("/");
@@ -52,28 +50,28 @@ export default function TableClientsScreen({ worksheets }) {
 
           const dataBaseTempo = {
             id: String(id),
-            firstName: value[0],
-            lastName: value[1],
-            identification: String(value[2]),
-            mobile: String(value[3]),
-            secondMobile: !value[4] ? "" : String(value[4]),
-            tariff: value[5],
-            civil: value[6],
+            firstName: data[i][0],
+            lastName: data[i][1],
+            identification: String(data[i][2]),
+            mobile: String(data[i][3]),
+            secondMobile: !data[i][4] ? "" : String(data[i][4]),
+            tariff: data[i][5],
+            civil: data[i][6],
             // birthDate: new Date(newBirthYear, newBirthMonth - 1, newBirthNowDate, 12),
             // creationDate: new Date(newCreationYear, newCreationMonth - 1, newCreationNowDate, 12),
-            birthDate: value[7],
-            creationDate: value[8],
-            address: value[9],
-            email: value[10],
-            firstNameSpouse: !value[11] ? "" : value[11],
-            lastNameSpouse: !value[12] ? "" : value[12],
-            identificationSpouse: !value[13] ? "" : String(value[13]),
-            mobileSpouse: !value[14] ? "" : String(value[14]),
-            relationShip: value[15],
-            firstNameRelationShip: value[16],
-            lastNameRelationShip: value[17],
-            identificationRelationShip: String(value[18]),
-            mobileRelationShip: String(value[19]),
+            birthDate: data[i][7],
+            creationDate: data[i][8],
+            address: data[i][9],
+            email: data[i][10],
+            firstNameSpouse: !data[i][11] ? "" : data[i][11],
+            lastNameSpouse: !data[i][12] ? "" : data[i][12],
+            identificationSpouse: !data[i][13] ? "" : String(data[i][13]),
+            mobileSpouse: !data[i][14] ? "" : String(data[i][14]),
+            relationShip: data[i][15],
+            firstNameRelationShip: data[i][16],
+            lastNameRelationShip: data[i][17],
+            identificationRelationShip: String(data[i][18]),
+            mobileRelationShip: String(data[i][19]),
             savingBalance: 0,
             creditBalance: 0,
             savingHistory: [],
