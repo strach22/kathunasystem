@@ -1,17 +1,19 @@
 /* eslint-disable object-shorthand */
 import React, { useContext, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CircularProgress, Grid } from "@mui/material";
+import { Alert, CircularProgress, Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
 import ClientsContext from "context/Clients/ClientsContext";
+// import DataTable from "examples/Tables/DataTable";
 import ActionReduce from "../element/ActionReduce";
 import ExcelExport from "../element/ExcelExport";
 
 export default function TableHistoryScreen({ worksheets }) {
   const [stateData, setSatateData] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
+  const [invalidIdentification, setInvalidIdentification] = useState([]);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { clients, addClientHistory } = useContext(ClientsContext);
@@ -32,11 +34,8 @@ export default function TableHistoryScreen({ worksheets }) {
       const aux2 = aux.filter((val) => val);
 
       if (aux2.length > 0) {
-        const out = [...new Set(aux2)];
-        console.log(out, "asd");
-      }
-
-      navigate("/inicio");
+        setInvalidIdentification([...new Set(aux2)]);
+      } else navigate("/inicio");
     }
   };
 
@@ -75,6 +74,12 @@ export default function TableHistoryScreen({ worksheets }) {
     });
   };
 
+  const columns = [{ Header: "Cédula de Idenditad", accessor: "identification", align: "center" }];
+
+  const rows = invalidIdentification.map((info) => ({
+    identification: info,
+  }));
+
   return (
     <div className="excel-import-container">
       <div className="file-upload">
@@ -92,6 +97,21 @@ export default function TableHistoryScreen({ worksheets }) {
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
         {loading && <MDTypography>Cargando ... </MDTypography>}
+        {/* {invalidIdentification.length > 0 && getInfo()} */}
+        {invalidIdentification.length > 0 && (
+          <Alert severity="warning">
+            Por favor, revisar los siguientes usuarios:
+            {JSON.stringify(columns)}
+            {JSON.stringify(rows)}
+            {/* <DataTable
+              table={{ columns, rows }}
+              isSorted={false}
+              showTotalEntries={false}
+              noEndBorder
+              entriesPerPage={false}
+            /> */}
+          </Alert>
+        )}
       </Grid>
 
       <div className="excel-table-import">
