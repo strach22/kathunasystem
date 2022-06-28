@@ -21,13 +21,21 @@ export default function TableHistoryScreen({ worksheets }) {
       for (let i = 0; i < dataBase.length; i += 1) {
         for (let j = 0; j < clients.length; j += 1) {
           if (dataBase[i].identification === clients[j].identification) {
-            if (dataBase[i].type === "Retiro") dataBase[i].transactionValue *= -1;
+            if (dataBase[i].type === "Retiro") dataBase[i].value *= -1;
             delete dataBase[i].identification;
             delete dataBase[i].type;
             addClientHistory(clients[j].id, dataBase[i]);
           }
         }
       }
+      const aux = dataBase.map((val) => val.identification);
+      const aux2 = aux.filter((val) => val);
+
+      if (aux2.length > 0) {
+        const out = [...new Set(aux2)];
+        console.log(out, "asd");
+      }
+
       navigate("/inicio");
     }
   };
@@ -83,7 +91,7 @@ export default function TableHistoryScreen({ worksheets }) {
 
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
-        {loading && <MDTypography>Cargando % </MDTypography>}
+        {loading && <MDTypography>Cargando ... </MDTypography>}
       </Grid>
 
       <div className="excel-table-import">
