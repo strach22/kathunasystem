@@ -1,14 +1,33 @@
 /* eslint-disable object-shorthand */
 import React, { useContext, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert, CircularProgress, Grid } from "@mui/material";
+import {
+  Alert,
+  CircularProgress,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from "@mui/material";
 import PropTypes from "prop-types";
+import { styled } from "@mui/styles";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
 import ClientsContext from "context/Clients/ClientsContext";
-// import DataTable from "examples/Tables/DataTable";
 import ActionReduce from "../element/ActionReduce";
 import ExcelExport from "../element/ExcelExport";
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    // backgroundColor: "#fff3e0",
+    backgroundColor: theme.palette.action.hover,
+  },
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 export default function TableHistoryScreen({ worksheets }) {
   const [stateData, setSatateData] = useState({ cols: [], rows: [] });
@@ -74,12 +93,6 @@ export default function TableHistoryScreen({ worksheets }) {
     });
   };
 
-  const columns = [{ Header: "Cédula de Idenditad", accessor: "identification", align: "center" }];
-
-  const rows = invalidIdentification.map((info) => ({
-    identification: info,
-  }));
-
   return (
     <div className="excel-import-container">
       <div className="file-upload">
@@ -97,26 +110,33 @@ export default function TableHistoryScreen({ worksheets }) {
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
         {loading && <MDTypography>Cargando ... </MDTypography>}
-        {/* {invalidIdentification.length > 0 && getInfo()} */}
         {invalidIdentification.length > 0 && (
-          <Alert severity="warning">
-            Por favor, revisar los siguientes usuarios:
-            {JSON.stringify(columns)}
-            {JSON.stringify(rows)}
-            {/* <DataTable
-              table={{ columns, rows }}
-              isSorted={false}
-              showTotalEntries={false}
-              noEndBorder
-              entriesPerPage={false}
-            /> */}
-          </Alert>
+          <div>
+            <Alert severity="warning">
+              No están registrados en el sistema los usuarios con el siguiente número de cédula. Por
+              favor, registrar a los usuarios y volver a cargar el historial de transacciones de
+              ahorro únicamente de los mecionados.
+            </Alert>
+            <TableContainer sx={{ width: "70%", marginLeft: "15%" }}>
+              <Table>
+                <TableBody>
+                  {invalidIdentification.map((info) => (
+                    <StyledTableRow>
+                      <TableCell align="center" sx={{ fontSize: 14 }}>{`CI: ${info}`}</TableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
         )}
       </Grid>
 
-      <div className="excel-table-import">
-        <OutTable data={stateData.rows} columns={stateData.cols} tableClassName="excel-table" />
-      </div>
+      {!invalidIdentification.length > 0 && (
+        <div className="excel-table-import">
+          <OutTable data={stateData.rows} columns={stateData.cols} tableClassName="excel-table" />
+        </div>
+      )}
     </div>
   );
 }
