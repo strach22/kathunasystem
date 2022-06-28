@@ -63,6 +63,12 @@ const useStyles = makeStyles({
     "& .AlertDialog": {
       margin: "10px 0px 0px 60px",
     },
+    // Alert
+    "& .MuiPaper-root": {
+      width: "100%",
+      marginBottom: "40px",
+      borderRadius: 8,
+    },
   },
 });
 
