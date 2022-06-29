@@ -56,14 +56,6 @@ const useStyles = makeStyles({
 
 export default function ApproveCredits() {
   const navigate = useNavigate();
-  const openSB = () => {
-    sbNotification({
-      color: "info",
-      icon: "check",
-      tittle: "Aprobar Créditos",
-      content: "Credito modificado satisfactoriamente!!",
-    });
-  };
   const errorValues = {
     actualState: "",
   };
@@ -147,7 +139,12 @@ export default function ApproveCredits() {
             (newClients[i].credits[i2].loanValue * controlInfo.reserveInterest) / 100;
         newClients[i].credits[i2].state = values.actualState;
         updateClients(newClients);
-        openSB();
+        sbNotification({
+          color: "info",
+          icon: "check",
+          tittle: "Aprobar Créditos",
+          content: "Credito modificado satisfactoriamente!!",
+        });
         navigate("/inicio");
       }
     }

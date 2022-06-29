@@ -68,15 +68,6 @@ export default function MonthlyPayment() {
     }
   }, [clients[i].credits[i2].state]);
 
-  const openSB = () => {
-    sbNotification({
-      color: "success",
-      icon: "check",
-      tittle: "Creditos",
-      content: "Pago de Credito satisfactorio!!",
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (read === "false") {
@@ -100,7 +91,12 @@ export default function MonthlyPayment() {
         const newClients = clients;
         newClients[i].credits[i2].creditHistory.push(values);
         updateClients(newClients);
-        openSB();
+        sbNotification({
+          color: "success",
+          icon: "check",
+          tittle: "Creditos",
+          content: "Pago de Credito satisfactorio!!",
+        });
         navigate("/inicio");
       }
     }

@@ -51,15 +51,6 @@ export default function RetiroScreen() {
   const { clients, addClientHistory, sbNotification, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
 
-  const openSB = () => {
-    sbNotification({
-      color: "error",
-      icon: "check",
-      tittle: "Ahorros",
-      content: "Retiro realizado satisfactoriamente!!",
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -90,7 +81,12 @@ export default function RetiroScreen() {
           setOk(false);
           addClientHistory(id, values);
           resetForm();
-          openSB();
+          sbNotification({
+            color: "error",
+            icon: "check",
+            tittle: "Ahorros",
+            content: "Retiro realizado satisfactoriamente!!",
+          });
           navigate("/inicio");
         } else {
           setOk(true);

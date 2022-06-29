@@ -57,15 +57,6 @@ export default function DepositScreen() {
   const { clients, addClientHistory, sbNotification, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
 
-  const openSB = () => {
-    sbNotification({
-      color: "info",
-      icon: "check",
-      tittle: "Ahorros",
-      content: "Deposito agregado satisfactoriamente!!",
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -90,7 +81,12 @@ export default function DepositScreen() {
         uploadControlInfo(newControlInfo);
         addClientHistory(id, values);
         resetForm();
-        openSB();
+        sbNotification({
+          color: "info",
+          icon: "check",
+          tittle: "Ahorros",
+          content: "Deposito agregado satisfactoriamente!!",
+        });
         navigate("/inicio");
       }
     }

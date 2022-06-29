@@ -19,15 +19,6 @@ export default function FormScreen() {
     useContext(ClientsContext);
   const navigate = useNavigate();
 
-  const openSB = () => {
-    sbNotification({
-      color: "info",
-      icon: "check",
-      tittle: "Clientes",
-      content: `Cliente ${clientInfo ? "modificado" : "agregarado"} satisfactoriamente!!`,
-    });
-  };
-
   const initialValues =
     clientInfo !== null
       ? clientInfo
@@ -186,7 +177,12 @@ export default function FormScreen() {
       updateClients(newClients);
       resetForm();
       resetClientInfo();
-      openSB();
+      sbNotification({
+        color: "info",
+        icon: "check",
+        tittle: "Clientes",
+        content: `Cliente ${clientInfo ? "modificado" : "agregarado"} satisfactoriamente!!`,
+      });
       navigate("/inicio");
     }
   };
