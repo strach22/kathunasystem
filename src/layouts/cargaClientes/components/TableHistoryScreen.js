@@ -33,35 +33,38 @@ export default function TableHistoryScreen({ worksheets }) {
   const [stateData, setSatateData] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
   const [invalidIdentification, setInvalidIdentification] = useState([]);
+  const [invalidReceipt, setInvalidReceipt] = useState([]);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { clients, addClientHistory, controlInfo, uploadControlInfo } = useContext(ClientsContext);
 
   const handleUpload = () => {
     if (dataBase) {
-      const receiptNumber = dataBase.map((val) => val.receipt);
-
       const aux3 = clients.map((val) => val.savingHistory);
-      const aux4 = aux3.filter((val) => !val.receipt === []);
-      console.log(aux4);
+      const aux4 = aux3.filter((val) => val.length);
+      const aux5 = aux4.flat();
 
       for (let i = 0; i < dataBase.length; i += 1) {
         for (let j = 0; j < clients.length; j += 1) {
           if (dataBase[i].identification === clients[j].identification) {
-            // const aux2 = clients.filter((val) =>
-            //   val.savingHistory.some((saving) => saving.receipt === dataBase[i].receipt)
-            // );
+            const aux6 = aux5.find((val) => val.receipt === dataBase[i].receipt);
+            console.log(aux6);
 
-            if (dataBase[i].type === "Retiro") dataBase[i].value *= -1;
-            delete dataBase[i].identification;
-            delete dataBase[i].type;
-            addClientHistory(clients[j].id, dataBase[i]);
+            if (!aux6) {
+              if (dataBase[i].type === "Retiro") dataBase[i].value *= -1;
+              delete dataBase[i].identification;
+              delete dataBase[i].type;
+              addClientHistory(clients[j].id, dataBase[i]);
+            } else {
+              setInvalidReceipt(aux6);
+            }
           }
         }
       }
       const IDnumber = dataBase.map((val) => val.identification);
       const onlyIDnumber = IDnumber.filter((val) => val);
 
+      const receiptNumber = dataBase.map((val) => val.receipt);
       const maxReceiptNumber = receiptNumber.reduce((a, b) => Math.max(a, b));
 
       const newControlInfo = controlInfo;
@@ -69,6 +72,8 @@ export default function TableHistoryScreen({ worksheets }) {
         newControlInfo.proofPaymentValue = maxReceiptNumber;
 
       uploadControlInfo(newControlInfo);
+
+      console.log(invalidReceipt);
 
       if (onlyIDnumber.length > 0) {
         setInvalidIdentification([...new Set(onlyIDnumber)]);
