@@ -32,7 +32,7 @@ export default function AddExpense() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, sbNotification, setErrors, handleInputChange } = useForm(
+  const { values, errors, setErrors, handleInputChange } = useForm(
     {
       expenseDate: new Date(),
       expenseValue: "0.00",
@@ -43,7 +43,7 @@ export default function AddExpense() {
     errorValues
   );
 
-  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
+  const { controlInfo, uploadControlInfo, sbNotification } = useContext(ClientsContext);
   const navigate = useNavigate();
   const [verification, setVerification] = useState("false");
 
