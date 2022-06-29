@@ -35,13 +35,23 @@ export default function TableHistoryScreen({ worksheets }) {
   const [invalidIdentification, setInvalidIdentification] = useState([]);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
-  const { clients, addClientHistory } = useContext(ClientsContext);
+  const { clients, addClientHistory, controlInfo, uploadControlInfo } = useContext(ClientsContext);
 
   const handleUpload = () => {
     if (dataBase) {
+      const receiptNumber = dataBase.map((val) => val.receipt);
+
+      const aux3 = clients.map((val) => val.savingHistory);
+      const aux4 = aux3.filter((val) => !val.receipt === []);
+      console.log(aux4);
+
       for (let i = 0; i < dataBase.length; i += 1) {
         for (let j = 0; j < clients.length; j += 1) {
           if (dataBase[i].identification === clients[j].identification) {
+            // const aux2 = clients.filter((val) =>
+            //   val.savingHistory.some((saving) => saving.receipt === dataBase[i].receipt)
+            // );
+
             if (dataBase[i].type === "Retiro") dataBase[i].value *= -1;
             delete dataBase[i].identification;
             delete dataBase[i].type;
@@ -49,11 +59,19 @@ export default function TableHistoryScreen({ worksheets }) {
           }
         }
       }
-      const aux = dataBase.map((val) => val.identification);
-      const aux2 = aux.filter((val) => val);
+      const IDnumber = dataBase.map((val) => val.identification);
+      const onlyIDnumber = IDnumber.filter((val) => val);
 
-      if (aux2.length > 0) {
-        setInvalidIdentification([...new Set(aux2)]);
+      const maxReceiptNumber = receiptNumber.reduce((a, b) => Math.max(a, b));
+
+      const newControlInfo = controlInfo;
+      if (maxReceiptNumber > controlInfo.proofPaymentValue)
+        newControlInfo.proofPaymentValue = maxReceiptNumber;
+
+      uploadControlInfo(newControlInfo);
+
+      if (onlyIDnumber.length > 0) {
+        setInvalidIdentification([...new Set(onlyIDnumber)]);
       } else navigate("/inicio");
     }
   };
