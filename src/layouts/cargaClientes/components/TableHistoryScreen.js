@@ -1,6 +1,6 @@
 /* eslint-disable object-shorthand */
 import React, { useContext, useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
   Alert,
   CircularProgress,
@@ -34,7 +34,8 @@ export default function TableHistoryScreen({ worksheets }) {
   const [invalidIdentification, setInvalidIdentification] = useState([]);
   const [invalidIdentificationReceipt, setInvalidIdentificationReceipt] = useState([]);
   const [invalidReceipt, setInvalidReceipt] = useState([]);
-  const navigate = useNavigate();
+  const [repeatSavingHistory, setRepeatSavingHistory] = useState([]);
+  // const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { clients, addClientHistory, controlInfo, uploadControlInfo } = useContext(ClientsContext);
 
@@ -46,11 +47,14 @@ export default function TableHistoryScreen({ worksheets }) {
       const repeatedReceipts = [];
       const idNumbersOut = [];
       let onlyIDNumbersOut = [];
+      const aux4 = [];
 
       for (let i = 0; i < dataBase.length; i += 1) {
-        const aux7 = onlySavingHistoyValues.find((val) => val.receipt === dataBase[i].receipt);
-        if (aux7 !== undefined) {
-          repeatedReceipts.push(aux7.receipt);
+        const findReceipts = onlySavingHistoyValues.find(
+          (val) => val.receipt === dataBase[i].receipt
+        );
+        if (findReceipts !== undefined) {
+          repeatedReceipts.push(findReceipts.receipt);
           idNumbersOut.push(dataBase[i].identification);
           onlyIDNumbersOut = [...new Set(idNumbersOut)];
         }
@@ -66,6 +70,23 @@ export default function TableHistoryScreen({ worksheets }) {
             delete dataBase[i].identification;
 
             if (!saveSavingHistory) {
+              const aux = clients[j].savingHistory.filter(
+                (val) => val.transactionDate === dataBase[i].transactionDate
+              );
+
+              if (aux.length > 0) {
+                const aux2 = aux.filter((val) => val.value === dataBase[i].value);
+
+                if (aux2.length > 0) {
+                  const aux3 = aux2.filter(
+                    (val) => val.actualBalance === dataBase[i].actualBalance
+                  );
+                  if (aux3.length > 0) {
+                    aux4.push(aux3);
+                  }
+                }
+              }
+
               if (dataBase[i].type === "Retiro") dataBase[i].value *= -1;
               delete dataBase[i].type;
               addClientHistory(clients[j].id, dataBase[i]);
@@ -73,6 +94,8 @@ export default function TableHistoryScreen({ worksheets }) {
           }
         }
       }
+
+      setRepeatSavingHistory(aux4);
 
       const IDnumber = dataBase.map((val) => val.identification);
       const onlyIDnumber = IDnumber.filter((val) => val);
@@ -91,9 +114,12 @@ export default function TableHistoryScreen({ worksheets }) {
         repeatedReceipts.sort((a, b) => a - b);
         setInvalidReceipt(repeatedReceipts);
         setInvalidIdentificationReceipt(onlyIDNumbersOut);
-      } else navigate("/inicio");
+      }
+      // else navigate("/inicio");
     }
   };
+
+  console.log(repeatSavingHistory, "asd");
 
   const uploadFile = (e) => {
     setLoading(true);
