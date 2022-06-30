@@ -21,7 +21,6 @@ import ExcelExport from "../element/ExcelExport";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
-    // backgroundColor: "#fff3e0",
     backgroundColor: theme.palette.action.hover,
   },
   "&:last-child td, &:last-child th": {
@@ -33,6 +32,7 @@ export default function TableHistoryScreen({ worksheets }) {
   const [stateData, setSatateData] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
   const [invalidIdentification, setInvalidIdentification] = useState([]);
+  const [invalidIdentificationReceipt, setInvalidIdentificationReceipt] = useState([]);
   const [invalidReceipt, setInvalidReceipt] = useState([]);
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
@@ -40,27 +40,40 @@ export default function TableHistoryScreen({ worksheets }) {
 
   const handleUpload = () => {
     if (dataBase) {
-      const aux3 = clients.map((val) => val.savingHistory);
-      const aux4 = aux3.filter((val) => val.length);
-      const aux5 = aux4.flat();
+      const savingHistoryValues = clients.map((val) => val.savingHistory);
+      const onlySavingHistoyValues = savingHistoryValues.filter((val) => val.length).flat();
+
+      const repeatedReceipts = [];
+      const idNumbersOut = [];
+      let onlyIDNumbersOut = [];
+
+      for (let i = 0; i < dataBase.length; i += 1) {
+        const aux7 = onlySavingHistoyValues.find((val) => val.receipt === dataBase[i].receipt);
+        if (aux7 !== undefined) {
+          repeatedReceipts.push(aux7.receipt);
+          idNumbersOut.push(dataBase[i].identification);
+          onlyIDNumbersOut = [...new Set(idNumbersOut)];
+        }
+      }
 
       for (let i = 0; i < dataBase.length; i += 1) {
         for (let j = 0; j < clients.length; j += 1) {
           if (dataBase[i].identification === clients[j].identification) {
-            const aux6 = aux5.find((val) => val.receipt === dataBase[i].receipt);
-            console.log(aux6);
+            const saveSavingHistory = onlyIDNumbersOut.find(
+              (val) => val === dataBase[i].identification
+            );
 
-            if (!aux6) {
+            delete dataBase[i].identification;
+
+            if (!saveSavingHistory) {
               if (dataBase[i].type === "Retiro") dataBase[i].value *= -1;
-              delete dataBase[i].identification;
               delete dataBase[i].type;
               addClientHistory(clients[j].id, dataBase[i]);
-            } else {
-              setInvalidReceipt(aux6);
             }
           }
         }
       }
+
       const IDnumber = dataBase.map((val) => val.identification);
       const onlyIDnumber = IDnumber.filter((val) => val);
 
@@ -73,10 +86,11 @@ export default function TableHistoryScreen({ worksheets }) {
 
       uploadControlInfo(newControlInfo);
 
-      console.log(invalidReceipt);
-
-      if (onlyIDnumber.length > 0) {
+      if (onlyIDnumber.length > 0 || repeatedReceipts.length > 0) {
         setInvalidIdentification([...new Set(onlyIDnumber)]);
+        repeatedReceipts.sort((a, b) => a - b);
+        setInvalidReceipt(repeatedReceipts);
+        setInvalidIdentificationReceipt(onlyIDNumbersOut);
       } else navigate("/inicio");
     }
   };
@@ -140,7 +154,7 @@ export default function TableHistoryScreen({ worksheets }) {
               favor, registrar a los usuarios y volver a cargar el historial de transacciones de
               ahorro únicamente de los mecionados.
             </Alert>
-            <TableContainer sx={{ width: "70%", marginLeft: "15%" }}>
+            <TableContainer sx={{ width: "70%", marginLeft: "15%", marginBottom: "15px" }}>
               <Table>
                 <TableBody>
                   {invalidIdentification.map((info) => (
@@ -153,9 +167,29 @@ export default function TableHistoryScreen({ worksheets }) {
             </TableContainer>
           </div>
         )}
+        {invalidIdentificationReceipt.length > 0 && (
+          <div>
+            <Alert severity="warning">
+              Los números de comprobantes {invalidReceipt.map((val) => `${val}, `)} ya existen en el
+              sistema. Por favor, revise la infomación y vuelva a subir todo el historial de los
+              usuarios con el siguiente número de cédula:
+            </Alert>
+            <TableContainer sx={{ width: "70%", marginLeft: "15%" }}>
+              <Table>
+                <TableBody>
+                  {invalidIdentificationReceipt.map((info) => (
+                    <StyledTableRow>
+                      <TableCell align="center" sx={{ fontSize: 14 }}>{`CI: ${info}`}</TableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        )}
       </Grid>
 
-      {!invalidIdentification.length > 0 && (
+      {!invalidIdentification.length > 0 && !invalidIdentificationReceipt.length > 0 && (
         <div className="excel-table-import">
           <OutTable data={stateData.rows} columns={stateData.cols} tableClassName="excel-table" />
         </div>
