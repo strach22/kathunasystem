@@ -111,7 +111,7 @@ export default function TableClientsScreen({ worksheets }) {
 
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
-        {loading && <MDTypography>Cargando ...</MDTypography>}
+        {loading && <MDTypography>Cargando ... El proceso puede tardar unos segundos</MDTypography>}
       </Grid>
       <div className="excel-table-import">
         <OutTable data={state.rows} columns={state.cols} tableClassName="excel-table" />
