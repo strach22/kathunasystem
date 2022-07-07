@@ -17,7 +17,6 @@ export default function FormList1(props) {
     errMobile,
     errEmail,
     errOther,
-    state,
   } = props;
 
   return (
@@ -28,7 +27,6 @@ export default function FormList1(props) {
         value={valFirstName}
         onChange={handleInputChange}
         error={errFirstName}
-        state={state}
         read=""
       />
       <Input
@@ -37,7 +35,6 @@ export default function FormList1(props) {
         value={valLastName}
         onChange={handleInputChange}
         error={errLastName}
-        state={state}
         read=""
       />
       <Input
@@ -46,7 +43,6 @@ export default function FormList1(props) {
         value={valIdentification}
         onChange={handleInputChange}
         error={errIdentification}
-        state={state}
         read=""
       />
       <Input
@@ -55,7 +51,6 @@ export default function FormList1(props) {
         value={valMobile}
         onChange={handleInputChange}
         error={errMobile}
-        state={state}
         read=""
       />
       <Input
@@ -63,7 +58,6 @@ export default function FormList1(props) {
         name="secondMobile"
         value={valSecondMobile}
         onChange={handleInputChange}
-        state={state}
         error={errOther}
         read=""
       />
@@ -73,7 +67,6 @@ export default function FormList1(props) {
         value={valEmail}
         onChange={handleInputChange}
         error={errEmail}
-        state={state}
         read=""
       />
     </>
@@ -94,5 +87,4 @@ FormList1.propTypes = {
   errMobile: PropTypes.string.isRequired,
   errEmail: PropTypes.string.isRequired,
   errOther: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
 };

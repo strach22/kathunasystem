@@ -11,8 +11,6 @@ export default function useForm(
   const [errors, setErrors] = useState(errorValues);
   const [ok, setOk] = useState(initialOk);
 
-  const [state, setState] = useState({ civil: "false", other: "true" });
-
   const handleInputChange = ({ target }) => {
     setValues({
       ...values,
@@ -25,8 +23,7 @@ export default function useForm(
   const resetForm = () => {
     setValues(initialValues);
     setErrors(errorValues);
-    setState({ civil: "false", other: "true" });
   };
 
-  return { values, errors, setErrors, state, setState, handleInputChange, resetForm, ok, setOk };
+  return { values, errors, setErrors, handleInputChange, resetForm, ok, setOk };
 }

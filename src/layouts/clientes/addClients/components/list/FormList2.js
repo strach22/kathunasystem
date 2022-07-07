@@ -7,16 +7,8 @@ import SelectG from "elements/SelectG";
 import DatePickerH from "elements/DatePickerH";
 
 export default function FormList2(props) {
-  const {
-    valTariff,
-    valCivil,
-    valBirthDate,
-    valAddress,
-    handleInputChange,
-    errCivil,
-    errAddress,
-    state,
-  } = props;
+  const { valTariff, valCivil, valBirthDate, valAddress, handleInputChange, errCivil, errAddress } =
+    props;
 
   return (
     <>
@@ -47,7 +39,6 @@ export default function FormList2(props) {
         value={valAddress}
         onChange={handleInputChange}
         error={errAddress}
-        state={state}
         read=""
       />
     </>
@@ -62,5 +53,4 @@ FormList2.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   errCivil: PropTypes.string.isRequired,
   errAddress: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
 };

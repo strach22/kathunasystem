@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import MDTypography from "components/MDTypography";
@@ -151,12 +151,14 @@ export default function FormScreen() {
     if (fieldValues === values) return Object.values(tempo).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, state, setState, handleInputChange, resetForm } = useForm(
+  const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     initialValues,
     true,
     validate,
     errorValues
   );
+
+  const [state, setState] = useState({ civil: "false" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -205,7 +207,6 @@ export default function FormScreen() {
             errMobile={errors.mobile}
             errEmail={errors.email}
             errOther={errors.other}
-            state={state.other}
           />
         </Grid>
         <Grid item xs={6}>
@@ -217,36 +218,38 @@ export default function FormScreen() {
             handleInputChange={handleInputChange}
             errCivil={errors.civil}
             errAddress={errors.address}
-            state={state.other}
           />
         </Grid>
       </Grid>
-      <MDBox
-        mx={13}
-        mt={7}
-        py={2}
-        mb={2}
-        variant="gradient"
-        bgColor="info"
-        borderRadius="lg"
-        coloredShadow="info"
-      >
-        <MDTypography className="Subtitles">Datos del Conyuge</MDTypography>
-      </MDBox>
-      <MDBox pt={3}>
-        <FormListSpouse
-          valFirstName={values.firstNameSpouse}
-          valLastName={values.lastNameSpouse}
-          valIdentification={values.identificationSpouse}
-          valMobile={values.mobileSpouse}
-          handleInputChange={handleInputChange}
-          errFirstName={errors.firstNameSpouse}
-          errLastName={errors.lastNameSpouse}
-          errIdentification={errors.identificationSpouse}
-          errMobile={errors.mobileSpouse}
-          state={state.civil}
-        />
-      </MDBox>
+      {state.civil === "true" && (
+        <>
+          <MDBox
+            mx={13}
+            mt={7}
+            py={2}
+            mb={2}
+            variant="gradient"
+            bgColor="info"
+            borderRadius="lg"
+            coloredShadow="info"
+          >
+            <MDTypography className="Subtitles">Datos del Conyuge</MDTypography>
+          </MDBox>
+          <MDBox pt={3}>
+            <FormListSpouse
+              valFirstName={values.firstNameSpouse}
+              valLastName={values.lastNameSpouse}
+              valIdentification={values.identificationSpouse}
+              valMobile={values.mobileSpouse}
+              handleInputChange={handleInputChange}
+              errFirstName={errors.firstNameSpouse}
+              errLastName={errors.lastNameSpouse}
+              errIdentification={errors.identificationSpouse}
+              errMobile={errors.mobileSpouse}
+            />
+          </MDBox>
+        </>
+      )}
       <MDBox
         mx={13}
         mt={7}
@@ -272,7 +275,6 @@ export default function FormScreen() {
           errMobile={errors.mobileRelationShip}
           errRelationShip={errors.relationShip}
           errIdentification={errors.identificationRelationShip}
-          state={state.other}
         />
       </MDBox>
       <Grid item xs={12}>

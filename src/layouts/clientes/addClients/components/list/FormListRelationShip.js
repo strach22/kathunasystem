@@ -16,7 +16,6 @@ export default function FormListRelationShip(props) {
     errMobile,
     errRelationShip,
     errIdentification,
-    state,
   } = props;
 
   return (
@@ -28,7 +27,6 @@ export default function FormListRelationShip(props) {
           value={valFirstName}
           onChange={handleInputChange}
           error={errFirstName}
-          state={state}
           read=""
         />
         <Input
@@ -37,7 +35,6 @@ export default function FormListRelationShip(props) {
           value={valLastName}
           onChange={handleInputChange}
           error={errLastName}
-          state={state}
           read=""
         />
         <Input
@@ -46,7 +43,6 @@ export default function FormListRelationShip(props) {
           value={valIdentification}
           onChange={handleInputChange}
           error={errIdentification}
-          state={state}
           read=""
         />
       </Grid>
@@ -57,7 +53,6 @@ export default function FormListRelationShip(props) {
           value={valMobile}
           onChange={handleInputChange}
           error={errMobile}
-          state={state}
           read=""
         />
         <Input
@@ -66,7 +61,6 @@ export default function FormListRelationShip(props) {
           value={valRelationShip}
           onChange={handleInputChange}
           error={errRelationShip}
-          state={state}
           read=""
         />
       </Grid>
@@ -86,5 +80,4 @@ FormListRelationShip.propTypes = {
   errMobile: PropTypes.string.isRequired,
   errRelationShip: PropTypes.string.isRequired,
   errIdentification: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
 };

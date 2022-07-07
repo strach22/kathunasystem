@@ -14,7 +14,6 @@ export default function FormListSpouse(props) {
     errLastName,
     errIdentification,
     errMobile,
-    state,
   } = props;
 
   return (
@@ -26,7 +25,6 @@ export default function FormListSpouse(props) {
           value={valFirstName}
           onChange={handleInputChange}
           error={errFirstName}
-          state={state}
           read=""
         />
         <Input
@@ -35,7 +33,6 @@ export default function FormListSpouse(props) {
           value={valLastName}
           onChange={handleInputChange}
           error={errLastName}
-          state={state}
           read=""
         />
       </Grid>
@@ -46,7 +43,6 @@ export default function FormListSpouse(props) {
           value={valIdentification}
           onChange={handleInputChange}
           error={errIdentification}
-          state={state}
           read=""
         />
         <Input
@@ -55,7 +51,6 @@ export default function FormListSpouse(props) {
           value={valMobile}
           onChange={handleInputChange}
           error={errMobile}
-          state={state}
           read=""
         />
       </Grid>
@@ -73,5 +68,4 @@ FormListSpouse.propTypes = {
   errLastName: PropTypes.string.isRequired,
   errIdentification: PropTypes.string.isRequired,
   errMobile: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
 };
