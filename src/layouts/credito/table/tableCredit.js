@@ -14,7 +14,13 @@ export default function data(clients) {
     ],
 
     rows: clients.map((cliente) => ({
-      id: cliente.id,
+      id: (
+        <Link to={`/clientes/${cliente.id}`}>
+          <MDTypography variant="caption" color="info" fontWeight="medium">
+            {cliente.id}
+          </MDTypography>
+        </Link>
+      ),
       firstName: cliente.firstName,
       lastName: cliente.lastName,
       identification: cliente.identification,
