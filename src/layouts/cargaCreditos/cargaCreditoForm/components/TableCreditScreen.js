@@ -112,10 +112,11 @@ export default function TableCreditScreen({ worksheets }) {
 
     if (validate()) {
       if (dataBase) {
-        const auxFolder = clients.map((client) =>
+        const existingFolder = clients.map((client) =>
           client.credits.filter((val) => val.id === values.id)
         );
-        if (auxFolder.flat().length === 0) {
+
+        if (existingFolder.flat().length === 0) {
           if (values.actualLoan === "0.00") values.state = "Finalizado";
           else values.state = "Entregado";
 
@@ -163,15 +164,13 @@ export default function TableCreditScreen({ worksheets }) {
         data.shift();
 
         for (let i = 0; i < data.length; i += 1) {
-          const value = data[i].map((val) => val);
-
           const dataCreditsTempo = {
-            id: String(value[0]),
-            receipt: parseFloat(value[1], 10),
-            transactionDate: String(value[2]),
-            value: parseFloat(value[3], 10),
-            paymentType: value[4],
-            observation: value[5],
+            id: String(data[i][0]),
+            receipt: parseFloat(data[i][1], 10),
+            transactionDate: data[i][2],
+            value: parseFloat(data[i][3], 10),
+            paymentType: data[i][4],
+            observation: data[i][5],
           };
 
           dispatch({
