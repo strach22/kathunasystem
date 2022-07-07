@@ -205,8 +205,8 @@ export default function PrincipalScreen() {
                     </MDTypography>
                     <MDTypography gutterBottom>
                       Es obligatorio colocar: Número de carpeta, Fecha de entrega del crédito, Valor
-                      del préstamo, Interés, Número de cuotas, Deuda pendiente, Valor de pago
-                      Mensual y Garante.
+                      del préstamo, Número de cuotas, Deuda pendiente, Valor de pago mensual, Encaje
+                      bancario, Garante e Interés
                     </MDTypography>
                     <MDTypography gutterBottom>
                       Finalmente, seleccione el botón <b>Subir archivo</b> y se cargarán todos los

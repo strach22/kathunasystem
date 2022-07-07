@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MDButton from "components/MDButton";
@@ -62,6 +62,7 @@ export default function Credit() {
       timePayYear: "0",
       timePayMonth: "0",
       guarantor: "",
+      auxGuarantor: [],
     },
     true,
     validate,
@@ -69,6 +70,11 @@ export default function Credit() {
   );
 
   const { sociosItems } = listItems();
+
+  useEffect(() => {
+    const completeName = `${clients[id - 1].firstName} ${clients[id - 1].lastName}`;
+    values.auxGuarantor = sociosItems.filter((val) => val.title !== completeName);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -202,7 +208,7 @@ export default function Credit() {
                 label="Garante"
                 value={values.guarantor}
                 onChange={handleInputChange}
-                options={sociosItems}
+                options={values.auxGuarantor}
                 error={errors.guarantor}
               />
             </Grid>
