@@ -68,7 +68,6 @@ export default function TableCreditScreen({ worksheets }) {
     if (fieldValues.periods === "0") tempo.periods = "Es Obligatorio llenar este Campo";
     if (fieldValues.id === "0") tempo.id = "Es Obligatorio llenar este Campo";
     if (fieldValues.interest === "0.00") tempo.interest = "Es Obligatorio llenar este Campo";
-    if (fieldValues.reserve === "0.00") tempo.reserve = "Es Obligatorio llenar este Campo";
     if (fieldValues.monthlyPayment === "0.00")
       tempo.monthlyPayment = "Es Obligatorio llenar este Campo";
     setErrors({
@@ -112,11 +111,26 @@ export default function TableCreditScreen({ worksheets }) {
 
     if (validate()) {
       if (dataBase) {
-        const existingFolder = clients.map((client) =>
+        const realFolder = clients.map((client) =>
           client.credits.filter((val) => val.id === values.id)
         );
 
-        if (existingFolder.flat().length === 0) {
+        if (
+          values.initialDate.toISOString().split("T")[0].replace("-", "/").replace("-", "/") <=
+          dataBase[0].transactionDate
+        )
+          console.log("Bien");
+        else console.log("Mal");
+
+        if (parseInt(values.periods, 10) >= parseInt(dataBase[dataBase.length - 1].id, 10))
+          console.log("bien");
+        else console.log("mal");
+
+        if (parseInt(values.loanValue, 10) >= parseFloat(values.actualLoan, 10))
+          console.log("Bbien");
+        else console.log("Mmal");
+
+        if (realFolder.flat().length === 0) {
           if (values.actualLoan === "0.00") values.state = "Finalizado";
           else values.state = "Entregado";
 

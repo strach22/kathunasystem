@@ -209,6 +209,10 @@ export default function PrincipalScreen() {
                       bancario, Garante e Interés
                     </MDTypography>
                     <MDTypography gutterBottom>
+                      Tener cuidado con el formato de la fecha. Las celdas correspondientes del
+                      excel deben estar en <b>general</b> o en <b>texto</b>
+                    </MDTypography>
+                    <MDTypography gutterBottom>
                       Finalmente, seleccione el botón <b>Subir archivo</b> y se cargarán todos los
                       datos de los clientes.
                     </MDTypography>

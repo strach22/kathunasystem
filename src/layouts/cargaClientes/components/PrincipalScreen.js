@@ -120,6 +120,10 @@ export default function PrincipalScreen() {
                       Revisar todos los datos con mucho cuidado. NO SE PODRÁ REVERTIR LOS CAMBIOS.
                     </MDTypography>
                     <MDTypography gutterBottom>
+                      Tener cuidado con el formato de la fecha. Las celdas correspondientes del
+                      excel deben estar en <b>general</b> o en <b>texto</b>
+                    </MDTypography>
+                    <MDTypography gutterBottom>
                       Para cargar el historial de ahorros completo de todos los clientes, repita los
                       pasos anteriores.
                     </MDTypography>
