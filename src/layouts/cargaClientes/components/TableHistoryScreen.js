@@ -42,7 +42,10 @@ export default function TableHistoryScreen({ worksheets }) {
   const handleUpload = () => {
     if (dataBase) {
       const savingHistoryClients = clients.map((val) => val.savingHistory);
+      const creditClients = clients.map((val) => val.credits);
       const onlySavingHistoyValues = savingHistoryClients.filter((val) => val.length).flat();
+      const onlyCreditValues = creditClients.filter((val) => val.length).flat();
+      const onlyCreditHistoryValues = onlyCreditValues.map((val) => val.creditHistory).flat();
 
       const repeatedReceipts = [];
       const IDNumbersOut = [];
@@ -50,11 +53,21 @@ export default function TableHistoryScreen({ worksheets }) {
       const repeatedDataInformation = [];
 
       for (let i = 0; i < dataBase.length; i += 1) {
-        const findReceipts = onlySavingHistoyValues.find(
+        const findReceiptsSaving = onlySavingHistoyValues.find(
           (val) => val.receipt === dataBase[i].receipt
         );
-        if (findReceipts !== undefined) {
-          repeatedReceipts.push(findReceipts.receipt);
+        const findReceiptsCredit = onlyCreditHistoryValues.find(
+          (val) => val.receipt === dataBase[i].receipt
+        );
+
+        if (findReceiptsSaving !== undefined) {
+          repeatedReceipts.push(findReceiptsSaving.receipt);
+          IDNumbersOut.push(dataBase[i].identification);
+          onlyIDNumbersOut = [...new Set(IDNumbersOut)];
+        }
+
+        if (findReceiptsCredit !== undefined) {
+          repeatedReceipts.push(findReceiptsCredit.receipt);
           IDNumbersOut.push(dataBase[i].identification);
           onlyIDNumbersOut = [...new Set(IDNumbersOut)];
         }
