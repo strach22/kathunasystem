@@ -31,10 +31,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function TableHistoryScreen({ worksheets }) {
   const [stateData, setSatateData] = useState({ cols: [], rows: [] });
   const [loading, setLoading] = useState(false);
-  const [invalidIdentification, setInvalidIdentification] = useState([]);
-  const [invalidIdentificationReceipt, setInvalidIdentificationReceipt] = useState([]);
-  const [invalidReceipt, setInvalidReceipt] = useState([]);
-  const [repeatSavingHistory, setRepeatSavingHistory] = useState([]);
+  const [invalidState, setInvalidState] = useState({
+    invalidIdentification: [],
+    invalidIdentificationReceipt: [],
+    invalidReceipt: [],
+    repeatSavingHistory: [],
+  });
   const navigate = useNavigate();
   const [dataBase, dispatch] = useReducer(ActionReduce);
   const { clients, addClientHistory, controlInfo, uploadControlInfo } = useContext(ClientsContext);
@@ -142,11 +144,13 @@ export default function TableHistoryScreen({ worksheets }) {
         repeatedReceipts.length > 0 ||
         repeatedDataInformation.length > 0
       ) {
-        setInvalidIdentification([...new Set(onlyIDnumber)]);
         repeatedReceipts.sort((a, b) => a - b);
-        setInvalidReceipt(repeatedReceipts);
-        setInvalidIdentificationReceipt(onlyIDNumbersOut);
-        setRepeatSavingHistory(repeatedDataInformation);
+        setInvalidState({
+          invalidIdentification: [...new Set(onlyIDnumber)],
+          invalidIdentificationReceipt: onlyIDNumbersOut,
+          invalidReceipt: repeatedReceipts,
+          repeatSavingHistory: repeatedDataInformation,
+        });
       } else navigate("/inicio");
     }
   };
@@ -203,7 +207,7 @@ export default function TableHistoryScreen({ worksheets }) {
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
         {loading && <MDTypography>Cargando ... El proceso puede tardar unos segundos</MDTypography>}
-        {invalidIdentification.length > 0 && (
+        {invalidState.invalidIdentification.length > 0 && (
           <div>
             <Alert severity="warning">
               No están registrados en el sistema los usuarios con el siguiente número de cédula. Por
@@ -213,7 +217,7 @@ export default function TableHistoryScreen({ worksheets }) {
             <TableContainer sx={{ width: "70%", marginLeft: "15%", marginBottom: "30px" }}>
               <Table>
                 <TableBody>
-                  {invalidIdentification.map((info) => (
+                  {invalidState.invalidIdentification.map((info) => (
                     <StyledTableRow>
                       <TableCell align="center" sx={{ fontSize: 14 }}>{`CI: ${info}`}</TableCell>
                     </StyledTableRow>
@@ -223,17 +227,17 @@ export default function TableHistoryScreen({ worksheets }) {
             </TableContainer>
           </div>
         )}
-        {invalidIdentificationReceipt.length > 0 && (
+        {invalidState.invalidIdentificationReceipt.length > 0 && (
           <div>
             <Alert severity="warning">
-              Los números de comprobantes: {invalidReceipt.map((val) => `${val}, `)} ya existen en
-              el sistema. Por favor, revise la infomación y vuelva a subir todo el historial de los
-              usuarios con el siguiente número de cédula:
+              Los números de comprobantes: {invalidState.invalidReceipt.map((val) => `${val}, `)} ya
+              existen en el sistema. Por favor, revise la infomación y vuelva a subir todo el
+              historial de los usuarios con el siguiente número de cédula:
             </Alert>
             <TableContainer sx={{ width: "70%", marginLeft: "15%", marginBottom: "30px" }}>
               <Table>
                 <TableBody>
-                  {invalidIdentificationReceipt.map((info) => (
+                  {invalidState.invalidIdentificationReceipt.map((info) => (
                     <StyledTableRow>
                       <TableCell align="center" sx={{ fontSize: 14 }}>{`CI: ${info}`}</TableCell>
                     </StyledTableRow>
@@ -243,7 +247,7 @@ export default function TableHistoryScreen({ worksheets }) {
             </TableContainer>
           </div>
         )}
-        {repeatSavingHistory.length > 0 && (
+        {invalidState.repeatSavingHistory.length > 0 && (
           <div>
             <Alert severity="warning">
               Los siguientes datos no se pudieron cargar al sistama, debido a que ya existen. Por
@@ -252,7 +256,7 @@ export default function TableHistoryScreen({ worksheets }) {
             <TableContainer>
               <Table>
                 <TableBody>
-                  {repeatSavingHistory.map((info) => (
+                  {invalidState.repeatSavingHistory.map((info) => (
                     <StyledTableRow>
                       <TableCell align="center" sx={{ fontSize: 14 }}>{`CI: ${info.ci}`}</TableCell>
                       <TableCell
@@ -276,9 +280,9 @@ export default function TableHistoryScreen({ worksheets }) {
         )}
       </Grid>
 
-      {!invalidIdentification.length > 0 &&
-        !invalidIdentificationReceipt.length > 0 &&
-        !repeatSavingHistory.length > 0 && (
+      {!invalidState.invalidIdentification.length > 0 &&
+        !invalidState.invalidIdentificationReceipt.length > 0 &&
+        !invalidState.repeatSavingHistory.length > 0 && (
           <div className="excel-table-import">
             <OutTable data={stateData.rows} columns={stateData.cols} tableClassName="excel-table" />
           </div>
