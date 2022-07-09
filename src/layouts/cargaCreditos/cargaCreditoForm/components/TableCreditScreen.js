@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable object-shorthand */
 import React, { useContext, useEffect, useReducer, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { CircularProgress, Grid } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Alert, CircularProgress, Grid } from "@mui/material";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import MDTypography from "components/MDTypography";
 import ExcelExport from "layouts/cargaClientes/element/ExcelExport";
@@ -16,11 +16,6 @@ import ClientsContext from "context/Clients/ClientsContext";
 
 // eslint-disable-next-line react/prop-types
 export default function TableCreditScreen({ worksheets }) {
-  const [state, setState] = useState({ cols: [], rows: [] });
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const [dataBase, dispatch] = useReducer(ActionReduce);
-
   const errorValues = {
     id: "",
     loanValue: "",
@@ -97,6 +92,16 @@ export default function TableCreditScreen({ worksheets }) {
   );
 
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [state, setState] = useState({ cols: [], rows: [] });
+  const [loading, setLoading] = useState(false);
+  const [invalidState, setInvalidState] = useState({
+    invalidFolder: false,
+    invalidReceipt: [],
+    invalidDate: "",
+    invalidPeriod: "",
+  });
+  const [dataBase, dispatch] = useReducer(ActionReduce);
   const { clients, addClientCredit } = useContext(ClientsContext);
 
   const { sociosItems } = listItems();
@@ -106,59 +111,106 @@ export default function TableCreditScreen({ worksheets }) {
     values.auxGuarantor = sociosItems.filter((val) => val.title !== completeName);
   }, []);
 
-  const handleUpload = (e) => {
-    e.preventDefault();
-
+  const handleUpload = () => {
     if (validate()) {
       if (dataBase) {
         const realFolder = clients.map((client) =>
           client.credits.filter((val) => val.id === values.id)
         );
 
-        if (
-          values.initialDate.toISOString().split("T")[0].replace("-", "/").replace("-", "/") <=
-          dataBase[0].transactionDate
-        )
-          console.log("Bien");
-        else console.log("Mal");
-
-        if (parseInt(values.periods, 10) >= parseInt(dataBase[dataBase.length - 1].id, 10))
-          console.log("bien");
-        else console.log("mal");
-
-        if (parseInt(values.loanValue, 10) >= parseFloat(values.actualLoan, 10))
-          console.log("Bbien");
-        else console.log("Mmal");
-
         if (realFolder.flat().length === 0) {
-          if (values.actualLoan === "0.00") values.state = "Finalizado";
-          else values.state = "Entregado";
+          const savingHistoryClients = clients.map((val) => val.savingHistory);
+          const creditClients = clients.map((val) => val.credits);
+          const onlyCreditValues = creditClients.filter((val) => val.length).flat();
+          const onlySavingHistoyValues = savingHistoryClients.filter((val) => val.length).flat();
+          const onlyCreditHistoryValues = onlyCreditValues.map((val) => val.creditHistory).flat();
 
-          values.identificationGuarantor = values.auxGuarantor.filter(
-            (val) => val.title === values.guarantor
-          );
+          const repeatedReceipts = [];
 
-          const credit = {
-            id: values.id,
-            initialDate: values.initialDate
-              .toISOString()
-              .split("T")[0]
-              .replace("-", "/")
-              .replace("-", "/"),
-            loanValue: parseFloat(values.loanValue, 10),
-            interest: parseFloat(values.interest, 10),
-            periods: parseFloat(values.periods, 10),
-            actualLoan: parseFloat(values.actualLoan, 10),
-            reserve: parseFloat(values.reserve, 10),
-            state: values.state,
-            guarantor: values.guarantor,
-            identificationGuarantor: values.identificationGuarantor[0].ci,
-            monthlyPayment: parseFloat(values.monthlyPayment, 10),
-            creditHistory: dataBase,
-          };
+          for (let i = 0; i < dataBase.length; i += 1) {
+            const findReceiptsSaving = onlySavingHistoyValues.find(
+              (val) => val.receipt === dataBase[i].receipt
+            );
+            const findReceiptsCredit = onlyCreditHistoryValues.find(
+              (val) => val.receipt === dataBase[i].receipt
+            );
 
-          addClientCredit(id, credit);
-          navigate("/creditos");
+            if (findReceiptsSaving !== undefined) {
+              repeatedReceipts.push(findReceiptsSaving.receipt);
+            }
+            if (findReceiptsCredit !== undefined) {
+              repeatedReceipts.push(findReceiptsCredit.receipt);
+            }
+          }
+
+          repeatedReceipts.sort((a, b) => a - b);
+          setInvalidState({ invalidFolder: false, invalidReceipt: repeatedReceipts });
+
+          if (repeatedReceipts.length === 0) {
+            if (
+              values.initialDate.toISOString().split("T")[0].replace("-", "/").replace("-", "/") <=
+              dataBase[0].transactionDate
+            ) {
+              setInvalidState({
+                invalidFolder: false,
+                invalidReceipt: repeatedReceipts,
+                invalidDate: "",
+              });
+
+              if (parseInt(values.periods, 10) >= parseInt(dataBase[dataBase.length - 1].id, 10)) {
+                setInvalidState({
+                  invalidFolder: false,
+                  invalidReceipt: repeatedReceipts,
+                  invalidDate: "",
+                  invalidPeriod: "",
+                });
+
+                if (values.actualLoan === "0.00") values.state = "Finalizado";
+                else values.state = "Entregado";
+
+                values.identificationGuarantor = values.auxGuarantor.filter(
+                  (val) => val.title === values.guarantor
+                );
+
+                const credit = {
+                  id: values.id,
+                  initialDate: values.initialDate
+                    .toISOString()
+                    .split("T")[0]
+                    .replace("-", "/")
+                    .replace("-", "/"),
+                  loanValue: parseFloat(values.loanValue, 10),
+                  interest: parseFloat(values.interest, 10),
+                  periods: parseFloat(values.periods, 10),
+                  actualLoan: parseFloat(values.actualLoan, 10),
+                  reserve: parseFloat(values.reserve, 10),
+                  state: values.state,
+                  guarantor: values.guarantor,
+                  identificationGuarantor: values.identificationGuarantor[0].ci,
+                  monthlyPayment: parseFloat(values.monthlyPayment, 10),
+                  creditHistory: dataBase,
+                };
+
+                console.log(credit);
+
+                addClientCredit(id, credit);
+                navigate("/creditos");
+              } else {
+                setInvalidState({
+                  ...invalidState,
+                  invalidDate: "",
+                  invalidPeriod: values.periods,
+                });
+              }
+            } else {
+              setInvalidState({
+                ...invalidState,
+                invalidDate: values.initialDate.toISOString().split("T")[0],
+              });
+            }
+          }
+        } else {
+          setInvalidState({ ...invalidState, invalidFolder: true });
         }
       }
     }
@@ -196,6 +248,10 @@ export default function TableCreditScreen({ worksheets }) {
       setLoading(false);
     });
   };
+
+  useEffect(() => {
+    setInvalidState({ ...invalidState, invalidFolder: false });
+  }, [values.id]);
 
   return (
     <div className="excel-import-container">
@@ -411,6 +467,32 @@ export default function TableCreditScreen({ worksheets }) {
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
         {loading && <MDTypography>Cargando ...</MDTypography>}
+        {invalidState.invalidFolder && (
+          <Alert severity="error">
+            La carpeta número <b>{values.id}</b> ya existe. Por favor, cambie de valor y vuelva a
+            subir el historial del crédito
+          </Alert>
+        )}
+        {invalidState.invalidReceipt.length > 0 && (
+          <Alert severity="warning">
+            Los números de comprobantes: {invalidState.invalidReceipt.map((val) => `${val}, `)} ya
+            existen en el sistema. Por favor, revise la infomación y vuelva a subir todo el
+            historial de créditos.
+          </Alert>
+        )}
+        {invalidState.invalidDate.length > 0 && (
+          <Alert severity="warning">
+            La fecha de creación <b>{invalidState.invalidDate}</b> está incorrecta. Por favor,
+            verifique la fecha, vuelva a introducirla y presione el botón <b>SUBIR ARCHIVO</b>.
+          </Alert>
+        )}
+        {invalidState.invalidPeriod.length > 0 && (
+          <Alert severity="warning">
+            El número total de cuotas (<b>{invalidState.invalidPeriod}</b>) es incorrecto. Por
+            favor, verifique el número, vuelva a introducirlo y presione el botón{" "}
+            <b>SUBIR ARCHIVO</b>.
+          </Alert>
+        )}
       </Grid>
       <div className="excel-table-import">
         <OutTable data={state.rows} columns={state.cols} tableClassName="excel-table" />

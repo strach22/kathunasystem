@@ -45,8 +45,8 @@ export default function TableHistoryScreen({ worksheets }) {
     if (dataBase) {
       const savingHistoryClients = clients.map((val) => val.savingHistory);
       const creditClients = clients.map((val) => val.credits);
-      const onlySavingHistoyValues = savingHistoryClients.filter((val) => val.length).flat();
       const onlyCreditValues = creditClients.filter((val) => val.length).flat();
+      const onlySavingHistoyValues = savingHistoryClients.filter((val) => val.length).flat();
       const onlyCreditHistoryValues = onlyCreditValues.map((val) => val.creditHistory).flat();
 
       const repeatedReceipts = [];

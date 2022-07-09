@@ -103,6 +103,12 @@ const useStyles = makeStyles({
       height: 46,
       marginLeft: "10px",
     },
+    // Alert
+    "& .MuiPaper-root": {
+      width: "100%",
+      marginBottom: "40px",
+      borderRadius: 8,
+    },
   },
 });
 
