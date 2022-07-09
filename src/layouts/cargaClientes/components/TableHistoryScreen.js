@@ -130,15 +130,6 @@ export default function TableHistoryScreen({ worksheets }) {
       const IDnumber = dataBase.map((val) => val.identification);
       const onlyIDnumber = IDnumber.filter((val) => val);
 
-      const receiptNumber = dataBase.map((val) => val.receipt);
-      const maxReceiptNumber = receiptNumber.reduce((a, b) => Math.max(a, b));
-
-      const newControlInfo = controlInfo;
-      if (maxReceiptNumber > controlInfo.proofPaymentValue)
-        newControlInfo.proofPaymentValue = maxReceiptNumber;
-
-      uploadControlInfo(newControlInfo);
-
       if (
         onlyIDnumber.length > 0 ||
         repeatedReceipts.length > 0 ||
@@ -151,7 +142,17 @@ export default function TableHistoryScreen({ worksheets }) {
           invalidReceipt: repeatedReceipts,
           repeatSavingHistory: repeatedDataInformation,
         });
-      } else navigate("/inicio");
+      } else {
+        const receiptNumber = dataBase.map((val) => val.receipt);
+        const maxReceiptNumber = receiptNumber.reduce((a, b) => Math.max(a, b));
+
+        const newControlInfo = controlInfo;
+        if (maxReceiptNumber > controlInfo.proofPaymentValue)
+          newControlInfo.proofPaymentValue = maxReceiptNumber;
+
+        uploadControlInfo(newControlInfo);
+        navigate("/inicio");
+      }
     }
   };
 
