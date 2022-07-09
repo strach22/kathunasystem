@@ -94,6 +94,15 @@ export default function ApproveCredits() {
 
   const [verification, setVerification] = useState(false);
   const [errorNow, setErrorNow] = useState("");
+  let itemState = [];
+
+  if (clients[i].credits[i2].state === "Creado") {
+    itemState = ConstDate.stateItems1();
+  }
+
+  if (clients[i].credits[i2].state === "Aprobado") {
+    itemState = ConstDate.stateItems2();
+  }
 
   const columns = [
     { Header: "Carpeta", accessor: "id", align: "center", width: "15%" },
@@ -119,7 +128,7 @@ export default function ApproveCredits() {
           label="Estado Actual"
           value={values.actualState}
           onChange={handleInputChange}
-          options={ConstDate.stateItems()}
+          options={itemState}
           error={errors.actualState}
           read={values.read}
         />
