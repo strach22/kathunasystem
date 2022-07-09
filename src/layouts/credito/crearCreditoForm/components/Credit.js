@@ -57,7 +57,10 @@ export default function Credit() {
 
   const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
-      initialDate: new Date(),
+      creationDate: new Date(),
+      approvalDate: "",
+      rejectionDate: "",
+      initialDate: "",
       loanValue: "0",
       timePayYear: "0",
       timePayMonth: "0",
@@ -90,13 +93,13 @@ export default function Credit() {
         periodicFee + ((controlInfo.desgravament / 100) * values.loanValue) / periods;
       const folders = clients.map((client) => client.credits).flat();
 
-      values.id = String(folders.length + 1);
-      const newInitialDate = values.initialDate
+      values.id = String(folders.length);
+      const newCreationDate = values.creationDate
         .toISOString()
         .split("T")[0]
         .replace("-", "/")
         .replace("-", "/");
-      values.initialDate = newInitialDate;
+      values.creationDate = newCreationDate;
       values.loanValue = parseFloat(values.loanValue, 10);
       values.periods = periods;
       values.state = "Creado";
@@ -186,9 +189,9 @@ export default function Credit() {
         </Grid>
         <Grid item xs={2.5}>
           <DatePickerH
-            name="initialDate"
+            name="creationDate"
             label="Fecha del Crédito"
-            value={values.initialDate}
+            value={values.creationDate}
             onChange={handleInputChange}
           />
         </Grid>

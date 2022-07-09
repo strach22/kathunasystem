@@ -27,6 +27,7 @@ export default function PrincipalScreen() {
   const id = useMemo(() => useParams().id, []);
   const [idC, idF] = id.split("-");
   const i = clients.map((e) => e.id).indexOf(idC);
+  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
   const [folderInfo] = clients[i].credits.filter((folder) => folder.id === idF);
 
   const getInfo = (category, info) => (
@@ -85,26 +86,39 @@ export default function PrincipalScreen() {
             <MDBox pt={3}>
               <MDBox mt={6} mb={3}>
                 <Grid container spacing={1}>
-                  <Grid item xs={12} sx={{ display: "flex" }}>
-                    <MDBox m={1}>
-                      <DownloadAmortization />
-                    </MDBox>
-                    <MDBox m={1}>
-                      <DownloadBillofExchange />
-                    </MDBox>
-                  </Grid>
+                  {folderInfo.state !== "Denegado" && (
+                    <Grid item xs={12} sx={{ display: "flex" }}>
+                      <MDBox m={1}>
+                        <DownloadAmortization i={i} i2={i2} />
+                      </MDBox>
+                      {folderInfo.state !== "Creado" && folderInfo.state !== "Aprobado" && (
+                        <MDBox m={1}>
+                          <DownloadBillofExchange i={i} i2={i2} />
+                        </MDBox>
+                      )}
+                    </Grid>
+                  )}
                   <Grid item xs={11}>
                     <MDBox coloredShadow="secondary" pb={2}>
                       <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                         Carpeta # {idF}
                       </MDTypography>
-                      {getInfo("Fecha de inicio:", folderInfo.initialDate)}
-                      {getInfo("Deuda Total:", `$ ${folderInfo.loanValue}`)}
+                      {folderInfo.creationDate.length > 0 &&
+                        getInfo("Fecha de creación:", folderInfo.creationDate)}
+                      {folderInfo.approvalDate.length > 0 &&
+                        getInfo("Fecha de aprobación:", folderInfo.approvalDate)}
+                      {folderInfo.rejectionDate.length > 0 &&
+                        getInfo("Fecha de rechazo:", folderInfo.rejectionDate)}
+                      {folderInfo.initialDate.length > 0 &&
+                        getInfo("Fecha de inicio:", folderInfo.initialDate)}
+                      {getInfo("Crédito:", `$ ${folderInfo.loanValue}`)}
                       {getInfo("Pagos Mensuales:", `$ ${folderInfo.monthlyPayment.toFixed(2)}`)}
                       {getInfo("Intereses:", folderInfo.interest)}
                       {getInfo("Cuotas:", folderInfo.periods)}
-                      {getInfo("Deuda Actual:", `$ ${folderInfo.actualLoan.toFixed(2)}`)}
-                      {getInfo("Encaje:", `$ ${folderInfo.reserve.toFixed(2)}`)}
+                      {folderInfo.state !== "Denegado" &&
+                        getInfo("Deuda Actual:", `$ ${folderInfo.actualLoan.toFixed(2)}`)}
+                      {folderInfo.state !== "Denegado" &&
+                        getInfo("Encaje:", `$ ${folderInfo.reserve.toFixed(2)}`)}
                       {getInfo("Estado:", folderInfo.state)}
                       {getInfo("Garante:", folderInfo.guarantor)}
                     </MDBox>
@@ -122,7 +136,7 @@ export default function PrincipalScreen() {
                       REGRESAR
                     </MDButton>
                   </Link>
-                  {folderInfo.state !== "Finalizado" && folderInfo.state !== "Entregado" && (
+                  {folderInfo.state === "Creado" && folderInfo.state === "Aprobado" && (
                     <Link to={`/aprobar-creditos/${idC}-${idF}`}>
                       <MDButton
                         size="medium"
@@ -140,27 +154,31 @@ export default function PrincipalScreen() {
             </MDBox>
           </Card>
         </Grid>
-        <Grid item xs={12}>
-          <Card>
-            <MDBox
-              mx={2}
-              mt={-3}
-              py={3}
-              px={2}
-              variant="gradient"
-              bgColor="info"
-              borderRadius="lg"
-              coloredShadow="info"
-            >
-              <MDTypography variant="h5" color="white">
-                Historial de Cuotas
-              </MDTypography>
-            </MDBox>
-            <MDBox pt={3}>
-              <MonthlyPaymentHistory />
-            </MDBox>
-          </Card>
-        </Grid>
+        {folderInfo.state !== "Denegado" &&
+          folderInfo.state !== "Creado" &&
+          folderInfo.state !== "Aprobado" && (
+            <Grid item xs={12}>
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="info"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h5" color="white">
+                    Historial de Cuotas
+                  </MDTypography>
+                </MDBox>
+                <MDBox pt={3}>
+                  <MonthlyPaymentHistory />
+                </MDBox>
+              </Card>
+            </Grid>
+          )}
       </Grid>
     </MDBox>
   );

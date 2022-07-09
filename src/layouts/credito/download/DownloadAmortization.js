@@ -3,18 +3,15 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
-import { useParams } from "react-router-dom";
 import zfill from "elements/helpers/zfill";
 
-export default function DownloadAmortization() {
+// eslint-disable-next-line react/prop-types
+export default function DownloadAmortization({ i, i2 }) {
   const [relationShip, setRelationShip] = useState({ name: "", type: "", ci: "" });
   const [aux1, setAux1] = useState(false);
   const { clients, controlInfo } = useContext(ClientsContext);
-  const { id } = useParams();
-
-  const [idC, idF] = id.split("-");
-  const i = clients.map((e) => e.id).indexOf(idC);
-  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
+  let realName = "";
+  let realDate = "";
 
   useEffect(() => {
     if (clients[i].identificationSpouse) {
@@ -31,6 +28,17 @@ export default function DownloadAmortization() {
       });
     }
   }, [aux1]);
+
+  if (clients[i].credits[i2].state === "Creado") {
+    realName = "Fecha de Creación:";
+    realDate = clients[i].credits[i2].creationDate;
+  } else if (clients[i].credits[i2].state === "Aprobado") {
+    realName = "Fecha de Aprobación:";
+    realDate = clients[i].credits[i2].approvalDate;
+  } else {
+    realName = "Fecha de Inicio:";
+    realDate = clients[i].credits[i2].initialDate;
+  }
 
   let { loanValue, interest, periods } = clients[i].credits[i2];
   loanValue = parseFloat(loanValue);
@@ -148,8 +156,8 @@ export default function DownloadAmortization() {
                   columns: [
                     { text: "Cliente:", style: "Col1", width: 95 },
                     { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "Col2" },
-                    { text: "Fecha:", style: "Col1", width: 80 },
-                    { text: clients[i].credits[i2].initialDate, style: "Col2", width: 80 },
+                    { text: realName, style: "Col1", width: 80 },
+                    { text: realDate, style: "Col2", width: 80 },
                   ],
                 },
                 {

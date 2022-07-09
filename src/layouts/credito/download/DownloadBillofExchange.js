@@ -1,18 +1,13 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
 import zfill from "elements/helpers/zfill";
 
-export default function DownloadBillofExchange() {
+// eslint-disable-next-line react/prop-types
+export default function DownloadBillofExchange({ i, i2 }) {
   const { clients, controlInfo } = useContext(ClientsContext);
-  const { id } = useParams();
-
-  const [idC, idF] = id.split("-");
-  const i = clients.map((e) => e.id).indexOf(idC);
-  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   const auxInitialMonth = new Date(clients[i].credits[i2].initialDate);
   const nowDate = new Date().toISOString().split("T")[0].replace("-", "/").replace("-", "/");
