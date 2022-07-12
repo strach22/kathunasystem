@@ -23,6 +23,7 @@ export default function ControlScreen() {
     latePayment: "",
     reserveInterest: "",
     proofPaymentValue: "",
+    timeSavingInterest: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -61,6 +62,10 @@ export default function ControlScreen() {
       tempo.proofPaymentValue = /^[0-9]+$/.test(fieldValues.proofPaymentValue)
         ? ""
         : "Verifique el formato";
+    if ("timeSavingInterest" in fieldValues)
+      tempo.timeSavingInterest = /^[0-9]+$/.test(fieldValues.timeSavingInterest)
+        ? ""
+        : "Verifique el formato";
     if ("reserveInterest" in fieldValues)
       tempo.reserveItnerest = /^[0-9]{1,2}.[0-9]{2}$/.test(fieldValues.reserveInterest)
         ? ""
@@ -85,6 +90,7 @@ export default function ControlScreen() {
       latePayment: controlInfo.latePayment,
       reserveInterest: controlInfo.reserveInterest,
       proofPaymentValue: controlInfo.proofPaymentValue,
+      timeSavingInterest: controlInfo.timeSavingInterest,
       nameVerification: "",
     },
     true,
@@ -119,6 +125,7 @@ export default function ControlScreen() {
       newControlInfo.desgravament = parseFloat(values.desgravament, 10);
       newControlInfo.latePayment = parseFloat(values.latePayment, 10);
       newControlInfo.proofPaymentValue = values.proofPaymentValue;
+      newControlInfo.timeSavingInterest = values.timeSavingInterest;
       newControlInfo.reserveInterest = parseFloat(values.reserveInterest, 10);
 
       uploadControlInfo(newControlInfo);
@@ -192,6 +199,28 @@ export default function ControlScreen() {
             error={errors.partnerSavingInterest}
             icon="%"
             position="end"
+            read={read}
+          />
+        </Grid>
+
+        <Grid item xs={2.9}>
+          <MDTypography className="Subtitles2" variant="h6" sx={{ marginTop: "25px" }}>
+            Periodo en días para
+          </MDTypography>
+          <MDTypography className="Subtitles2" variant="h6">
+            Empiezar Interés
+          </MDTypography>
+        </Grid>
+
+        <Grid item xs={3.7} sx={{ marginTop: "25px" }}>
+          <InputValue
+            className="InputInterest"
+            name="timeSavingInterest"
+            value={values.timeSavingInterest}
+            onChange={handleInputChange}
+            error={errors.timeSavingInterest}
+            icon="#"
+            position="start"
             read={read}
           />
         </Grid>

@@ -15,6 +15,7 @@
   "latePayment": 0.0,
   "reserveInterest": 10.0,
   "proofPaymentValue": 14,
+  "timeSavingInterest": 15,
   "totalTransactions": 10100.00,
   "totalCredits": -6050.00,
   "totalExpenses": 1649.28,
