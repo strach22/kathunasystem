@@ -136,19 +136,21 @@ export default function PrincipalScreen() {
                       REGRESAR
                     </MDButton>
                   </Link>
-                  {folderInfo.state === "Creado" && folderInfo.state === "Aprobado" && (
-                    <Link to={`/aprobar-creditos/${idC}-${idF}`}>
-                      <MDButton
-                        size="medium"
-                        color="success"
-                        sx={{
-                          margin: "15px 0",
-                        }}
-                      >
-                        APROBAR CRÉDITOS
-                      </MDButton>
-                    </Link>
-                  )}
+                  {folderInfo.state !== "Denegado" &&
+                    folderInfo.state !== "Entregado" &&
+                    folderInfo.state !== "Finalizado" && (
+                      <Link to={`/aprobar-creditos/${idC}-${idF}`}>
+                        <MDButton
+                          size="medium"
+                          color="success"
+                          sx={{
+                            margin: "15px 0",
+                          }}
+                        >
+                          APROBAR CRÉDITOS
+                        </MDButton>
+                      </Link>
+                    )}
                 </Grid>
               </MDBox>
             </MDBox>

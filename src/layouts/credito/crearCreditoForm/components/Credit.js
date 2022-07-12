@@ -93,7 +93,7 @@ export default function Credit() {
         periodicFee + ((controlInfo.desgravament / 100) * values.loanValue) / periods;
       const folders = clients.map((client) => client.credits).flat();
 
-      values.id = String(folders.length);
+      values.id = String(folders.length + 1);
       const newCreationDate = values.creationDate
         .toISOString()
         .split("T")[0]

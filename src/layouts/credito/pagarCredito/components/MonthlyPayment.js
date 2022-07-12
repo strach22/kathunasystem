@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React, { useContext, useEffect, useState } from "react";
 import { Alert, Grid } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 import ClientsContext from "context/Clients/ClientsContext";
@@ -13,7 +13,8 @@ import TextArea from "elements/TextArea";
 import * as ConstDate from "elements/data/ConstDate";
 import FormSecundary from "layouts/credito/helpers/FormSecundary";
 
-export default function MonthlyPayment() {
+// eslint-disable-next-line react/prop-types
+export default function MonthlyPayment({ i, i2 }) {
   const errorValues = {
     value: "",
     paymentType: "",
@@ -40,12 +41,12 @@ export default function MonthlyPayment() {
   const { clients, updateClients, sbNotification, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
   const navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
 
-  const [idC, idF] = id.split("-");
+  // const [idC, idF] = id.split("-");
 
-  const i = clients.map((e) => e.id).indexOf(idC);
-  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
+  // const i = clients.map((e) => e.id).indexOf(idC);
+  // const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
@@ -62,7 +63,7 @@ export default function MonthlyPayment() {
 
   useEffect(() => {
     const nowState = clients[i].credits[i2].state;
-    if (nowState === "Creado" || nowState === "Aprobado" || nowState === "Finalizado") {
+    if (nowState !== "Entregado") {
       setRead("true");
       values.value = "0.00";
     }
@@ -176,14 +177,16 @@ export default function MonthlyPayment() {
               REGRESAR
             </MDButton>
           </Link>
-          <MDButton
-            variant="text"
-            size="large"
-            type="submit"
-            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-          >
-            PAGAR
-          </MDButton>
+          {clients[i].credits[i2].state === "Entregado" && (
+            <MDButton
+              variant="text"
+              size="large"
+              type="submit"
+              sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+            >
+              PAGAR
+            </MDButton>
+          )}
         </Grid>
       </Grid>
     </FormSecundary>

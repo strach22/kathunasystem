@@ -143,17 +143,57 @@ export default function ApproveCredits() {
         values.read = "true";
         const newClients = clients;
 
-        if (values.actualState === "Entregado")
+        if (values.actualState === "Aprobado") {
+          newClients[i].credits[i2].approvalDate = new Date()
+            .toISOString()
+            .split("T")[0]
+            .replace("-", "/")
+            .replace("-", "/");
+
+          sbNotification({
+            color: "info",
+            icon: "check",
+            tittle: "Aprobar Créditos",
+            content: "Credito aprobado satisfactoriamente!!",
+          });
+        }
+
+        if (values.actualState === "Entregado") {
           newClients[i].credits[i2].reserve =
             (newClients[i].credits[i2].loanValue * controlInfo.reserveInterest) / 100;
+          newClients[i].credits[i2].initialDate = new Date()
+            .toISOString()
+            .split("T")[0]
+            .replace("-", "/")
+            .replace("-", "/");
+
+          sbNotification({
+            color: "success",
+            icon: "check",
+            tittle: "Aprobar Créditos",
+            content: "Credito entregado satisfactoriamente!!",
+          });
+        }
+
+        if (values.actualState === "Denegado") {
+          newClients[i].credits[i2].rejectionDate = new Date()
+            .toISOString()
+            .split("T")[0]
+            .replace("-", "/")
+            .replace("-", "/");
+
+          newClients[i].credits[i2].actualLoan = 0;
+
+          sbNotification({
+            color: "info",
+            icon: "check",
+            tittle: "Aprobar Créditos",
+            content: "Credito denegado satisfactoriamente!!",
+          });
+        }
+
         newClients[i].credits[i2].state = values.actualState;
         updateClients(newClients);
-        sbNotification({
-          color: "info",
-          icon: "check",
-          tittle: "Aprobar Créditos",
-          content: "Credito modificado satisfactoriamente!!",
-        });
         navigate("/inicio");
       }
     }

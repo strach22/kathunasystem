@@ -9,7 +9,7 @@ export default function tableCreditApproval() {
   const clientsCredits = clients.filter((val) => val.credits.length);
   const allCredits = clientsCredits.map((credit) => credit.credits).flat();
   const creditToBeApproved = allCredits.filter(
-    (val) => val.state === "Creado" || val.state === "Aprobado" || val.state === "Denegado"
+    (val) => val.state === "Creado" || val.state === "Aprobado"
   );
   const folderOfCredits = creditToBeApproved.map((val) => val.id);
 
