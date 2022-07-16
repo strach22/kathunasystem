@@ -17,28 +17,43 @@ import DataTable from "examples/Tables/DataTable";
 import ClientsContext from "../../context/Clients/ClientsContext";
 
 function Creditos() {
-  const { controlInfo } = useContext(ClientsContext);
+  const { controlInfo, clients } = useContext(ClientsContext);
   const columns = [
     { Header: "id", accessor: "id", align: "center" },
-    { Header: "Fecha", accessor: "expenseDate", align: "center" },
-    { Header: "Monto", accessor: "expenseValue", align: "center" },
+    { Header: "Fecha", accessor: "date", align: "center" },
+    { Header: "Monto", accessor: "value", align: "center" },
     { Header: "Razón", accessor: "observation", align: "center" },
+    { Header: "Categoría", accessor: "category", align: "center" },
   ];
-  const rows = controlInfo.incomesHystory.map((info) => ({
+  let rows = controlInfo.incomesHystory.map((info) => ({
     id: info.id,
-    incomeDate: info.incomeDate,
-    incomeValue: `$ ${info.incomeValue}`,
+    date: info.incomeDate,
+    value: `$ ${info.incomeValue}`,
     observation: info.observation,
+    category: "Ingresos",
   }));
   controlInfo.expensesHystory.forEach((info) => {
     rows.push({
       id: info.id,
-      expenseDate: info.expenseDate,
-      expenseValue: `$ ${info.expenseValue}`,
+      date: info.expenseDate,
+      value: `$ -${info.expenseValue}`,
       observation: info.observation,
+      category: "Egresos",
     });
   });
-
+  clients.forEach((client) => {
+    client.savingHistory.forEach((info) => {
+      rows.push({
+        id: info.id,
+        date: info.transactionDate,
+        value: `$ ${info.value}`,
+        observation: info.observation,
+        category: "Transacciones Ahorros",
+      });
+    });
+  });
+  rows = rows.sort((a, b) => new Date(a.date) - new Date(b.date));
+  console.log(rows);
   return (
     <DashboardLayout>
       <DashboardNavbar />
