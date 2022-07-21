@@ -21,7 +21,7 @@
     "lastNameRelationShip": "Millbank",
     "mobileRelationShip": "1465243942",
     "identificationRelationShip": "3481313494",
-    "savingBalance": 50,
+    "savingBalance": 150,
     "creditBalance": 9990,
     "savingHistory": [
       {
@@ -35,7 +35,7 @@
       {
         "transactionDate": "2022/03/14",
         "value": -30,
-        "actualBalance": 50,
+        "actualBalance": 150,
         "paymentType": "Efectivo",
         "observation": "Ninguna",
         "receipt": 3

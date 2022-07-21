@@ -29,6 +29,27 @@ function reducer(state, action) {
   }
 }
 function ClientsState({ children }) {
+  clients.forEach((client) => {
+    if (client.savingHistory.length > 0) {
+      const date = new Date(client.savingHistory[client.savingHistory.length - 1].transactionDate);
+      if (new Date() >= date.setMonth(date.getMonth() + 1)) {
+        client.savingHistory.push({
+          transactionDate: new Date().toLocaleDateString().split("/").reverse().join("/"),
+          value:
+            client.tariff === "Particular"
+              ? client.savingBalance * controlInfo.particularSavingInterest
+              : client.savingBalance * controlInfo.partnerSavingInterest,
+          actualBalance:
+            client.tariff === "Particular"
+              ? client.savingBalance * (controlInfo.particularSavingInterest + 1)
+              : client.savingBalance * (controlInfo.partnerSavingInterest + 1),
+          paymentType: "Transferencia",
+          observation: "Intereses por ahorros",
+          receipt: 100,
+        });
+      }
+    }
+  });
   const initialstate = {
     controlInfo,
     clients,
