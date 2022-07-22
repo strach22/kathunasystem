@@ -29,7 +29,7 @@ export default function data() {
       actualBalance: `$ ${info.actualBalance.toFixed(2)}`,
       paymentType: info.paymentType,
       observation: info.observation,
-      download: <ProofPaymentTransaction info={info} />,
+      download: <ProofPaymentTransaction info={info} i={i} />,
     })),
   };
 }
