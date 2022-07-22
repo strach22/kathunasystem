@@ -8,7 +8,6 @@ import { Workbook } from "react-excel-workbook";
 import MDButton from "components/MDButton";
 import ClientsContext from "context/Clients/ClientsContext";
 import zfill from "elements/helpers/zfill";
-import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -20,14 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function QuotaHistory({ rows }) {
+export default function QuotaHistory({ rows, i, i2 }) {
   const classes = useStyles();
   const { clients, controlInfo } = useContext(ClientsContext);
-  const { id } = useParams();
-
-  const [idC, idF] = id.split("-");
-  const i = clients.map((e) => e.id).indexOf(idC);
-  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   function buildTableBody(data, columns) {
     const body = [];
@@ -57,15 +51,34 @@ export default function QuotaHistory({ rows }) {
     return body;
   }
 
+  function footerDefinition(currentPage, pageCount) {
+    return [
+      {
+        margin: [40, 10, 40],
+        layout: {
+          hLineColor: (val) => (val === 0 ? "lightgray" : ""),
+          vLineWidth: () => 0,
+          hLineWidth: (val) => (val === 0 ? 1 : 0),
+        },
+        table: {
+          widths: ["*", 160],
+          body: [[{ text: "" }, { text: `${currentPage}/${pageCount}`, alignment: "right" }]],
+        },
+      },
+    ];
+  }
+
   const quotaHistoryPDF = {
-    pageMargins: [40, 40, 40, 80],
+    pageMargins: [40, 40, 40, 60],
+    footer: footerDefinition,
     background(currentPage) {
       return currentPage === 1
         ? [
             {
               canvas: [
-                { type: "rect", x: 15, y: 15, w: 565, h: 285, r: 10, lineColor: "#000" },
-                { type: "line", x1: 60, y1: 175, x2: 535, y2: 175, lineWidth: 2.5 },
+                { type: "rect", x: 20, y: 15, w: 555, h: 280, r: 10, lineColor: "#000" },
+                { type: "line", x1: 60, y1: 105, x2: 535, y2: 105, lineWidth: 2.5 },
+                { type: "line", x1: 60, y1: 215, x2: 535, y2: 215, lineWidth: 2.5 },
               ],
             },
           ]
@@ -77,24 +90,11 @@ export default function QuotaHistory({ rows }) {
           [
             { text: controlInfo.nameBank, style: "title1", fontSize: 14 },
             { text: `''${controlInfo.nameSlogan}''`, style: "title1" },
-            { text: controlInfo.nameLocation, style: "title2" },
-            { text: "CREDITO OTORGADO", style: "title1" },
-            { text: "HISTORIAL DE CUOTAS", style: "title3" },
-            {
-              text: [
-                "CARPETA: ",
-                {
-                  text: zfill(parseInt(clients[i].credits[i2].id, 10), 3),
-                  style: "title3",
-                  italics: true,
-                },
-              ],
-              style: "title2",
-            },
+            { text: controlInfo.nameLocation, style: "title1", fontSize: 10 },
           ],
         ],
       },
-      "\n",
+      "\n\n",
       {
         columns: [
           [
@@ -136,7 +136,7 @@ export default function QuotaHistory({ rows }) {
                 },
                 {
                   columns: [
-                    { text: "Número de Cuotas:", style: "Col1", width: 95, marginBottom: 80 },
+                    { text: "Número de Cuotas:", style: "Col1", width: 95 },
                     { text: clients[i].credits[i2].periods, style: "Col2" },
                     { text: "Total Interés:", style: "Col1", width: 80 },
                     { text: `${clients[i].credits[i2].interest} %`, style: "Col2", width: 80 },
@@ -147,6 +147,25 @@ export default function QuotaHistory({ rows }) {
           ],
         ],
       },
+      "\n\n",
+      {
+        columns: [
+          [
+            { text: "CREDITO OTORGADO", style: "title1" },
+            { text: "HISTORIAL DE CUOTAS", style: "title3" },
+            {
+              text: [
+                "CARPETA: ",
+                { text: zfill(parseInt(clients[i].credits[i2].id, 10), 3), style: "subtitle" },
+              ],
+              style: "title1",
+              fontSize: 10,
+            },
+          ],
+        ],
+      },
+      "\n\n",
+      "\n\n",
       {
         layout: {
           hLineWidth(aux, node) {
@@ -194,27 +213,25 @@ export default function QuotaHistory({ rows }) {
     styles: {
       title1: {
         color: "#333333",
-        fontSize: 12,
         width: "*",
         bold: true,
         alignment: "center",
         marginBottom: 3,
+        fontSize: 12,
       },
-      title2: {
-        color: "#333333",
-        fontSize: 10,
-        width: "*",
+      subtitle: {
+        color: "red",
         bold: true,
-        alignment: "center",
-        marginBottom: 25,
+        italics: true,
+        fontSize: 10,
       },
       title3: {
         color: "red",
         width: "*",
-        fontSize: 11,
         bold: true,
         alignment: "center",
-        marginBottom: 2,
+        marginBottom: 3,
+        fontSize: 11,
       },
       Col1: {
         color: "#aaaaab",
@@ -278,7 +295,7 @@ export default function QuotaHistory({ rows }) {
           <MDButton
             variant="text"
             size="medium"
-            sx={{ margin: "10px", background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
           >
             Excel
           </MDButton>
@@ -296,7 +313,7 @@ export default function QuotaHistory({ rows }) {
         variant="text"
         size="medium"
         onClick={handleGeneratedPDF}
-        sx={{ margin: "10px", background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         PDF
       </MDButton>
@@ -304,7 +321,7 @@ export default function QuotaHistory({ rows }) {
         variant="text"
         size="medium"
         onClick={handlePrintPDF}
-        sx={{ margin: "10px", background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
       >
         Descargar
       </MDButton>

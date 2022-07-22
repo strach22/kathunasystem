@@ -1,18 +1,11 @@
-import { useContext, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
 
 // Soft UI Dashboard React components
 import ClientsContext from "../../../context/Clients/ClientsContext";
 import IndividualProofPayment from "../download/IndividualProofPayment";
 
-export default function data() {
+export default function data(i, i2) {
   const { clients } = useContext(ClientsContext);
-  const id = useMemo(() => useParams().id, []);
-
-  const [idC, idF] = id.split("-");
-
-  const i = clients.map((e) => e.id).indexOf(idC);
-  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   const rows = clients[i].credits[i2].creditHistory.map((info) => ({
     id: info.id,

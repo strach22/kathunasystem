@@ -392,16 +392,16 @@ export default function DownloadAmortization({ i, i2 }) {
       subtitle: {
         color: "red",
         width: "*",
-        fontSize: 12,
         bold: true,
         marginBottom: 3,
         alignment: "center",
+        fontSize: 11,
       },
       subtitle2: {
-        fontSize: 10,
+        color: "red",
         bold: true,
         italics: true,
-        color: "red",
+        fontSize: 10,
       },
       Col1: {
         color: "#aaaaab",
