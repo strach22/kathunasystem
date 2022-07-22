@@ -50,7 +50,9 @@ export default function DownloadAmortization({ i, i2 }) {
   let periodInteres = loanValue * interest;
   let amortizedCapital = periodicFee - periodInteres;
   let residue = loanValue - amortizedCapital;
+
   const rows = [];
+
   for (let j = 1; j < periods + 1; j += 1) {
     if (j === 1) {
       rows.push({
@@ -107,15 +109,34 @@ export default function DownloadAmortization({ i, i2 }) {
     return body;
   }
 
+  function footerDefinition(currentPage, pageCount) {
+    return [
+      {
+        margin: [40, 10, 40],
+        layout: {
+          hLineColor: (val) => (val === 0 ? "lightgray" : ""),
+          vLineWidth: () => 0,
+          hLineWidth: (val) => (val === 0 ? 1 : 0),
+        },
+        table: {
+          widths: ["*", 160],
+          body: [[{ text: "" }, { text: `${currentPage}/${pageCount}`, alignment: "right" }]],
+        },
+      },
+    ];
+  }
+
   const amortizationTablePDF = {
-    pageMargins: [40, 40, 40, 80],
+    pageMargins: [40, 40, 40, 60],
+    footer: footerDefinition,
     background(currentPage) {
       return currentPage === 1
         ? [
             {
               canvas: [
-                { type: "rect", x: 15, y: 15, w: 565, h: 305, r: 10, lineColor: "#000" },
-                { type: "line", x1: 60, y1: 175, x2: 535, y2: 175, lineWidth: 2.5 },
+                { type: "rect", x: 20, y: 15, w: 555, h: 280, r: 10, lineColor: "#000" },
+                { type: "line", x1: 60, y1: 105, x2: 535, y2: 105, lineWidth: 2.5 },
+                { type: "line", x1: 60, y1: 215, x2: 535, y2: 215, lineWidth: 2.5 },
               ],
             },
           ]
@@ -126,26 +147,11 @@ export default function DownloadAmortization({ i, i2 }) {
         columns: [
           [
             { text: controlInfo.nameBank, style: "title", fontSize: 14 },
-            {
-              text: `''${controlInfo.nameSlogan}''`,
-              style: "title",
-              fontSize: 12,
-            },
-            { text: controlInfo.nameLocation, style: "title2" },
-            { text: "TIPO", style: "title", fontSize: 12 },
-            { text: "TABLA DE AMORTIZACIÓN", style: "subtitle" },
-            {
-              text: [
-                "CARPETA: ",
-                { text: zfill(parseInt(clients[i].credits[i2].id, 10), 3), style: "subtitle2" },
-              ],
-              style: "title",
-              fontSize: 10,
-            },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title" },
+            { text: controlInfo.nameLocation, style: "title", fontSize: 10 },
           ],
         ],
       },
-      "\n",
       "\n\n",
       {
         columns: [
@@ -188,7 +194,7 @@ export default function DownloadAmortization({ i, i2 }) {
                 },
                 {
                   columns: [
-                    { text: "Número de Cuotas:", style: "Col1", width: 95, marginBottom: 80 },
+                    { text: "Número de Cuotas:", style: "Col1", width: 95 },
                     { text: clients[i].credits[i2].periods, style: "Col2" },
                     { text: "Total Interés:", style: "Col1", width: 80 },
                     { text: `${clients[i].credits[i2].interest} %`, style: "Col2", width: 80 },
@@ -199,6 +205,25 @@ export default function DownloadAmortization({ i, i2 }) {
           ],
         ],
       },
+      "\n\n",
+      {
+        columns: [
+          [
+            { text: "TIPO", style: "title" },
+            { text: "TABLA DE AMORTIZACIÓN", style: "subtitle" },
+            {
+              text: [
+                "CARPETA: ",
+                { text: zfill(parseInt(clients[i].credits[i2].id, 10), 3), style: "subtitle2" },
+              ],
+              style: "title",
+              fontSize: 10,
+            },
+          ],
+        ],
+      },
+      "\n\n",
+      "\n\n",
       {
         layout: {
           hLineWidth(val, node) {
@@ -361,21 +386,15 @@ export default function DownloadAmortization({ i, i2 }) {
         width: "*",
         bold: true,
         alignment: "center",
-        margin: [0, 0, 0, 3],
-      },
-      title2: {
-        color: "#333333",
-        width: "*",
-        fontSize: 10,
-        bold: true,
-        alignment: "center",
-        margin: [10, 0, 0, 25],
+        marginBottom: 3,
+        fontSize: 12,
       },
       subtitle: {
         color: "red",
         width: "*",
-        fontSize: 10,
+        fontSize: 12,
         bold: true,
+        marginBottom: 3,
         alignment: "center",
       },
       subtitle2: {
