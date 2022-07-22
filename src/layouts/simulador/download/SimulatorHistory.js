@@ -54,13 +54,34 @@ export default function SimulatorHistory({ rows }) {
     return body;
   }
 
+  function footerDefinition(currentPage, pageCount) {
+    return [
+      {
+        margin: [40, 10, 40],
+        layout: {
+          hLineColor: (i) => (i === 0 ? "lightgray" : ""),
+          vLineWidth: () => 0,
+          hLineWidth: (i) => (i === 0 ? 1 : 0),
+        },
+        table: {
+          widths: ["*", 160],
+          body: [[{ text: "" }, { text: `${currentPage}/${pageCount}`, alignment: "right" }]],
+        },
+      },
+    ];
+  }
+
   const simulatorPDF = {
-    pageMargins: [40, 40, 40, 80],
+    pageMargins: [40, 40, 40, 60],
+    footer: footerDefinition,
     background(currentPage) {
       return currentPage === 1
         ? [
             {
-              canvas: [{ type: "rect", x: 15, y: 15, w: 565, h: 160, r: 10, lineColor: "#000" }],
+              canvas: [
+                { type: "rect", x: 20, y: 15, w: 555, h: 160, r: 10, lineColor: "#000" },
+                { type: "line", x1: 97, y1: 100, x2: 498, y2: 100, lineWidth: 2.5 },
+              ],
             },
           ]
         : "";
@@ -70,7 +91,7 @@ export default function SimulatorHistory({ rows }) {
         columns: [
           [
             { text: controlInfo.nameBank, style: "title1", fontSize: 14 },
-            { text: `''${controlInfo.nameSlogan}''`, style: "title1", fontSize: 12 },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title1" },
             { text: controlInfo.nameLocation, style: "title2" },
             { text: "TIPO DE TRANSACCIÓN", style: "title1", fontSize: 12 },
             { text: "SIMULADOR", style: "title3" },
@@ -132,21 +153,23 @@ export default function SimulatorHistory({ rows }) {
         bold: true,
         alignment: "center",
         marginBottom: 3,
+        fontSize: 12,
       },
       title2: {
         color: "#333333",
         width: "*",
-        fontSize: 10,
         bold: true,
         alignment: "center",
         marginBottom: 25,
+        fontSize: 12,
       },
       title3: {
         color: "red",
+        italics: true,
         width: "*",
-        fontSize: 12,
         bold: true,
         alignment: "center",
+        fontSize: 12,
       },
       table1: {
         alignment: "center",
