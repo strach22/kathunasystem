@@ -259,8 +259,7 @@ export default function IndividualProofPayment({ info, i, i2 }) {
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    // pdfMake.createPdf(individualProofPaymentPDF).download("COMPROBANTE-DE-PAGOS.pdf");
-    pdfMake.createPdf(individualProofPaymentPDF).open();
+    pdfMake.createPdf(individualProofPaymentPDF).download("COMPROBANTE-DE-PAGOS.pdf");
   };
 
   return (
