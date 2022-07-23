@@ -93,7 +93,7 @@ export default function SimulatorHistory({ rows }) {
             { text: controlInfo.nameBank, style: "title1", fontSize: 14 },
             { text: `''${controlInfo.nameSlogan}''`, style: "title1" },
             { text: controlInfo.nameLocation, style: "title2" },
-            { text: "TIPO DE TRANSACCIÓN", style: "title1", fontSize: 12 },
+            { text: "TIPO DE TRANSACCIÓN", style: "title1" },
             { text: "SIMULADOR", style: "title3" },
           ],
         ],

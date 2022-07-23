@@ -20,14 +20,16 @@ export default function ProofPaymentExpenses({ info }) {
   });
 
   const proofPaymentExpensesPDF = {
-    pageMargins: [40, 40, 40, 80],
+    pageSize: "A6",
+    pageMargins: [30, 10, 30, 0],
     background(currentPage) {
       return currentPage === 1
         ? [
             {
               canvas: [
-                { type: "rect", x: 15, y: 15, w: 565, h: 220, r: 10, lineColor: "#000" },
-                { type: "line", x1: 60, y1: 165, x2: 535, y2: 165, lineWidth: 2.5 },
+                { type: "rect", x: 15, y: 5, w: 267, h: 130, r: 10, lineColor: "#000" },
+                { type: "line", x1: 60, y1: 50, x2: 237, y2: 50, lineWidth: 2.5 },
+                { type: "line", x1: 60, y1: 100, x2: 237, y2: 100, lineWidth: 2.5 },
               ],
             },
           ]
@@ -37,35 +39,34 @@ export default function ProofPaymentExpenses({ info }) {
       {
         columns: [
           [
-            { text: controlInfo.nameBank, style: "title1", fontSize: 16 },
-            { text: `''${controlInfo.nameSlogan}''`, style: "title1", marginBottom: 30 },
+            { text: controlInfo.nameBank, style: "title1", fontSize: 10 },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title1" },
+            { text: controlInfo.nameLocation, style: "title1", marginBottom: 15, fontSize: 7 },
             {
               stack: [
                 {
                   columns: [
-                    { text: "Representante Legal", style: "subtitle1", width: 112 },
-                    { text: controlInfo.legalRepresentative, style: "subtitle3", width: "*" },
-                    { text: "Recibo No.", style: "subtitle1", width: 95 },
-                    { text: zfill(id, 4), style: "subtitle2", width: 60 },
+                    { text: "Representante", style: "subtitle1", width: 34 },
+                    { text: controlInfo.legalRepresentative, style: "subtitle3" },
+                    { text: "Recibo No.", style: "subtitle1", width: 39 },
+                    { text: zfill(id, 4), style: "subtitle2", width: 43 },
                   ],
                 },
                 {
                   columns: [
-                    { text: "Dirección", style: "subtitle1", width: 112 },
-                    { text: controlInfo.nameLocation, style: "subtitle3", width: "*" },
-                    { text: "Fecha de Emisión", style: "subtitle1", width: 95 },
-                    { text: expenseDate, style: "subtitle2", width: 60 },
+                    { text: "RUC", style: "subtitle1", width: 34 },
+                    { text: controlInfo.ruc, style: "subtitle3" },
+                    { text: "Fecha", style: "subtitle1", width: 39 },
+                    { text: expenseDate, style: "subtitle2", width: 43 },
                   ],
                 },
               ],
             },
-            { text: "GASTOS DE CAJA", style: "title1", marginTop: 35 },
+            { text: "GASTOS DE CAJA", style: "title1", marginTop: 15 },
             { text: "COMPROBANTE DE EGRESO", style: "title1", color: "red" },
           ],
         ],
       },
-      "\n",
-      "\n\n",
       "\n\n",
       {
         layout: {
@@ -80,10 +81,10 @@ export default function ProofPaymentExpenses({ info }) {
             return 10;
           },
           paddingTop() {
-            return 2;
+            return 1;
           },
           paddingBottom() {
-            return 2;
+            return 1;
           },
           fillColor() {
             return "#fff";
@@ -91,7 +92,7 @@ export default function ProofPaymentExpenses({ info }) {
         },
         table: {
           headerRows: 1,
-          widths: ["*", 100],
+          widths: ["*", "auto"],
           body: [
             [
               { text: "DETALLE", style: "table1", border: [false, true, false, true] },
@@ -110,50 +111,6 @@ export default function ProofPaymentExpenses({ info }) {
               { text: "---", style: "table2", color: "white", border: [false, false, false, true] },
               { text: "", style: "table3", border: [false, false, false, true] },
             ],
-            [
-              { text: "---", style: "table2", color: "white", border: [false, false, false, true] },
-              { text: "", style: "table3", border: [false, false, false, true] },
-            ],
-          ],
-        },
-      },
-      "\n",
-      "\n\n",
-      {
-        layout: {
-          defaultBorder: false,
-          hLineWidth() {
-            return 1;
-          },
-          vLineWidth() {
-            return 1;
-          },
-          hLineColor() {
-            return "#eaeaea";
-          },
-          vLineColor() {
-            return "#eaeaea";
-          },
-          paddingLeft() {
-            return 10;
-          },
-          paddingRight() {
-            return 10;
-          },
-          paddingTop() {
-            return 3;
-          },
-          paddingBottom() {
-            return 3;
-          },
-          fillColor() {
-            return "#fff";
-          },
-        },
-        table: {
-          headerRows: 1,
-          widths: ["*", "auto"],
-          body: [
             [
               { text: "Subtotal", style: "table5", border: [false, true, false, true] },
               { text: `$ ${expenseValue}`, style: "table3", border: [false, true, false, true] },
@@ -174,13 +131,10 @@ export default function ProofPaymentExpenses({ info }) {
           ],
         },
       },
-      "\n",
       {
         text: ["La cantidad es: ", { text: lettersExpenseValue, style: "text2" }],
         style: "text1",
       },
-      "\n\n",
-      "\n\n",
       "\n\n",
       { text: "____________________________", style: "border" },
       { text: "Beneficiario", alignment: "center", fontSize: 10 },
@@ -191,72 +145,74 @@ export default function ProofPaymentExpenses({ info }) {
         fontSize: 15,
         bold: true,
         alignment: "center",
-        marginBottom: 5,
+        marginBottom: 3,
       },
       title1: {
         color: "#333333",
         width: "*",
         bold: true,
         alignment: "center",
-        marginBottom: 3,
-        fontSize: 14,
+        marginBottom: 2,
+        fontSize: 8,
       },
       subtitle1: {
         color: "#aaaaab",
         bold: true,
-        fontSize: 12,
         alignment: "left",
-        marginBottom: 3,
+        marginBottom: 2,
+        fontSize: 8,
       },
       subtitle2: {
-        bold: true,
         color: "#333333",
-        fontSize: 11,
+        bold: true,
         alignment: "right",
+        marginBottom: 2,
+        fontSize: 8,
       },
       subtitle3: {
-        bold: true,
         color: "#333333",
-        fontSize: 11,
+        width: "*",
+        bold: true,
         alignment: "left",
+        fontSize: 8,
       },
       table1: {
         fillColor: "#eaf2f5",
         margin: [0, 5, 0, 5],
         textTransform: "uppercase",
-        fontSize: 14,
+        fontSize: 10,
       },
       table2: {
-        alignment: "left",
         margin: [0, 5, 0, 5],
-        fontSize: 12,
+        alignment: "left",
+        fontSize: 8,
       },
       table3: {
         fillColor: "#f5f5f5",
-        alignment: "right",
         margin: [0, 5, 0, 5],
-        fontSize: 12,
+        alignment: "right",
+        fontSize: 8,
       },
       table4: {
-        bold: true,
-        fontSize: 20,
-        alignment: "right",
         margin: [0, 5, 0, 5],
+        bold: true,
+        alignment: "right",
+        fontSize: 10,
       },
       table5: {
-        alignment: "right",
         margin: [0, 5, 0, 5],
-        fontSize: 12,
+        alignment: "right",
+        fontSize: 8,
       },
       text1: {
-        fontSize: 10,
         bold: true,
-        marginBottom: 5,
+        marginBottom: 2,
+        fontSize: 8,
       },
       text2: {
-        fontSize: 10,
         bold: false,
         italics: true,
+        fontSize: 8,
       },
     },
     defaultStyle: {
