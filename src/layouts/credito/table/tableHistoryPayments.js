@@ -13,7 +13,7 @@ export default function data(i, i2) {
     value: `$ ${info.value}`,
     paymentType: info.paymentType,
     observation: info.observation,
-    download: <IndividualProofPayment info={info} />,
+    download: <IndividualProofPayment info={info} i={i} i2={i2} />,
   }));
 
   const totalPayments = clients[i].credits[i2].creditHistory.length;

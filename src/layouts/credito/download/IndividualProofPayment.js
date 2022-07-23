@@ -7,17 +7,11 @@ import ClientsContext from "context/Clients/ClientsContext";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import zfill from "elements/helpers/zfill";
 import { numbToLetters } from "elements/helpers/numbToLetters";
-import { useParams } from "react-router-dom";
 
-export default function IndividualProofPayment({ info }) {
+export default function IndividualProofPayment({ info, i, i2 }) {
   const { id, value, transactionDate, observation, receipt } = info;
 
   const { clients, controlInfo } = useContext(ClientsContext);
-  const { id: nowId } = useParams();
-
-  const [idC, idF] = nowId.split("-");
-  const i = clients.map((e) => e.id).indexOf(idC);
-  const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   const lettersExpenseValue = numbToLetters(value, {
     plural: "dólares estadounidenses",
@@ -27,14 +21,16 @@ export default function IndividualProofPayment({ info }) {
   });
 
   const individualProofPaymentPDF = {
-    pageMargins: [40, 40, 40, 80],
+    pageSize: "A6",
+    pageMargins: [30, 10, 30, 0],
     background(currentPage) {
       return currentPage === 1
         ? [
             {
               canvas: [
-                { type: "rect", x: 15, y: 15, w: 565, h: 250, r: 10, lineColor: "#000" },
-                { type: "line", x1: 60, y1: 175, x2: 535, y2: 175, lineWidth: 2.5 },
+                { type: "rect", x: 15, y: 5, w: 267, h: 155, r: 10, lineColor: "#000" },
+                { type: "line", x1: 60, y1: 50, x2: 237, y2: 50, lineWidth: 2.5 },
+                { type: "line", x1: 60, y1: 110, x2: 237, y2: 110, lineWidth: 2.5 },
               ],
             },
           ]
@@ -44,63 +40,55 @@ export default function IndividualProofPayment({ info }) {
       {
         columns: [
           [
-            { text: controlInfo.nameBank, style: "title1", fontSize: 16 },
-            { text: `''${controlInfo.nameSlogan}''`, style: "title1", marginBottom: 30 },
+            { text: controlInfo.nameBank, style: "title1", fontSize: 10 },
+            { text: `''${controlInfo.nameSlogan}''`, style: "title1" },
+            { text: controlInfo.nameLocation, style: "title1", marginBottom: 15, fontSize: 7 },
             {
               stack: [
                 {
                   columns: [
-                    { text: "Representante Legal", style: "subtitle1", width: 112 },
-                    { text: controlInfo.legalRepresentative, style: "subtitle3", width: "*" },
-                    { text: "Recibo No.", style: "subtitle1", width: 95 },
-                    { text: zfill(receipt, 4), style: "subtitle2", width: 60 },
+                    { text: "Cliente", style: "subtitle1", width: 34 },
+                    { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "subtitle3" },
                   ],
                 },
                 {
                   columns: [
-                    { text: "Dirección", style: "subtitle1", width: 112 },
-                    { text: controlInfo.nameLocation, style: "subtitle3", width: "*" },
-                    { text: "Fecha de Emisión", style: "subtitle1", width: 95 },
-                    { text: transactionDate, style: "subtitle2", width: 60 },
+                    { text: "RUC", style: "subtitle1", width: 34 },
+                    { text: clients[i].identification, style: "subtitle3" },
+                    { text: "Recibo No.", style: "subtitle1", width: 39 },
+                    { text: zfill(receipt, 4), style: "subtitle2", width: 43 },
                   ],
                 },
                 {
                   columns: [
-                    { text: "Crédito a Pagar", style: "subtitle1", width: 112 },
-                    {
-                      text: `$ ${clients[i].credits[i2].actualLoan}`,
-                      style: "subtitle3",
-                      width: "*",
-                    },
-                    { text: "Total de Cuotas", style: "subtitle1", width: 95 },
-                    {
-                      text: zfill(parseInt(clients[i].credits[i2].periods, 10), 3),
-                      style: "subtitle2",
-                      width: 60,
-                    },
+                    { text: "Dirección", style: "subtitle1", width: 34 },
+                    { text: clients[i].address, style: "subtitle3" },
+                  ],
+                },
+                {
+                  columns: [
+                    { text: "Crédito", style: "subtitle1", width: 34 },
+                    { text: `$ ${clients[i].credits[i2].loanValue}`, style: "subtitle3" },
+                    { text: "Fecha", style: "subtitle1", width: 39 },
+                    { text: transactionDate, style: "subtitle2", width: 43 },
                   ],
                 },
               ],
             },
-            { text: "HISTORIAL DE CUOTAS DE CRÉDITO", style: "title1", marginTop: 35 },
+            { text: "HISTORIAL DE CUOTAS DE CRÉDITO", style: "title1", marginTop: 15 },
             { text: "COMPROBANTE DE PAGOS", style: "title1", color: "red" },
             {
               text: [
                 "CARPETA: ",
-                {
-                  text: zfill(parseInt(clients[i].credits[i2].id, 10), 3),
-                  style: "title2",
-                  italics: true,
-                },
+                { text: zfill(parseInt(clients[i].credits[i2].id, 10), 3), style: "title2" },
+                { text: " - Total de Cuotas: ", style: "title1" },
+                { text: zfill(parseInt(clients[i].credits[i2].periods, 10), 3), style: "title2" },
               ],
-              style: "title2",
-              color: "black",
+              style: "title1",
             },
           ],
         ],
       },
-      "\n",
-      "\n\n",
       "\n\n",
       {
         layout: {
@@ -115,10 +103,10 @@ export default function IndividualProofPayment({ info }) {
             return 10;
           },
           paddingTop() {
-            return 2;
+            return 1;
           },
           paddingBottom() {
-            return 2;
+            return 1;
           },
           fillColor() {
             return "#fff";
@@ -126,7 +114,7 @@ export default function IndividualProofPayment({ info }) {
         },
         table: {
           headerRows: 1,
-          widths: ["*", 100],
+          widths: ["*", "auto"],
           body: [
             [
               { text: "DETALLE", style: "table1", border: [false, true, false, true] },
@@ -150,50 +138,6 @@ export default function IndividualProofPayment({ info }) {
               { text: "", style: "table3", border: [false, false, false, true] },
             ],
             [
-              { text: "---", style: "table2", color: "white", border: [false, false, false, true] },
-              { text: "", style: "table3", border: [false, false, false, true] },
-            ],
-          ],
-        },
-      },
-      "\n",
-      "\n\n",
-      {
-        layout: {
-          defaultBorder: false,
-          hLineWidth() {
-            return 1;
-          },
-          vLineWidth() {
-            return 1;
-          },
-          hLineColor() {
-            return "#eaeaea";
-          },
-          vLineColor() {
-            return "#eaeaea";
-          },
-          paddingLeft() {
-            return 10;
-          },
-          paddingRight() {
-            return 10;
-          },
-          paddingTop() {
-            return 3;
-          },
-          paddingBottom() {
-            return 3;
-          },
-          fillColor() {
-            return "#fff";
-          },
-        },
-        table: {
-          headerRows: 1,
-          widths: ["*", "auto"],
-          body: [
-            [
               { text: "Subtotal", style: "table5", border: [false, true, false, true] },
               { text: `$ ${value}`, style: "table3", border: [false, true, false, true] },
             ],
@@ -213,7 +157,6 @@ export default function IndividualProofPayment({ info }) {
           ],
         },
       },
-      "\n",
       {
         text: ["La cantidad es: ", { text: lettersExpenseValue, style: "text2" }],
         style: "text1",
@@ -222,8 +165,6 @@ export default function IndividualProofPayment({ info }) {
         text: ["Observación: ", { text: observation, style: "text2" }],
         style: "text1",
       },
-      "\n\n",
-      "\n\n",
       "\n\n",
       { text: "____________________________", style: "border" },
       { text: "Beneficiario", alignment: "center", fontSize: 10 },
@@ -234,77 +175,79 @@ export default function IndividualProofPayment({ info }) {
         fontSize: 15,
         bold: true,
         alignment: "center",
-        marginBottom: 5,
+        marginBottom: 3,
       },
       title1: {
         color: "#333333",
         width: "*",
         bold: true,
         alignment: "center",
-        marginBottom: 3,
-        fontSize: 14,
+        marginBottom: 2,
+        fontSize: 8,
       },
       title2: {
         color: "red",
         width: "*",
         alignment: "center",
-        marginBottom: 3,
-        fontSize: 12,
+        italics: true,
+        fontSize: 8,
       },
       subtitle1: {
         color: "#aaaaab",
         bold: true,
-        fontSize: 12,
         alignment: "left",
-        marginBottom: 3,
+        marginBottom: 2,
+        fontSize: 8,
       },
       subtitle2: {
-        bold: true,
         color: "#333333",
-        fontSize: 11,
+        bold: true,
         alignment: "right",
+        marginBottom: 2,
+        fontSize: 8,
       },
       subtitle3: {
-        bold: true,
         color: "#333333",
-        fontSize: 11,
+        width: "*",
+        bold: true,
         alignment: "left",
+        fontSize: 8,
       },
       table1: {
         fillColor: "#eaf2f5",
         margin: [0, 5, 0, 5],
         textTransform: "uppercase",
-        fontSize: 14,
+        fontSize: 10,
       },
       table2: {
         alignment: "left",
         margin: [0, 5, 0, 5],
-        fontSize: 12,
+        fontSize: 8,
       },
       table3: {
         fillColor: "#f5f5f5",
         alignment: "right",
         margin: [0, 5, 0, 5],
-        fontSize: 12,
+        fontSize: 8,
       },
       table4: {
         bold: true,
-        fontSize: 20,
+        fontSize: 10,
         alignment: "right",
         margin: [0, 5, 0, 5],
       },
       table5: {
         alignment: "right",
         margin: [0, 5, 0, 5],
-        fontSize: 12,
+        fontSize: 8,
       },
       text1: {
-        fontSize: 10,
+        fontSize: 8,
         bold: true,
-        marginBottom: 5,
+        marginTop: 2,
       },
       text2: {
-        fontSize: 10,
+        fontSize: 8,
         bold: false,
         italics: true,
       },
@@ -316,7 +259,8 @@ export default function IndividualProofPayment({ info }) {
 
   const handleGeneratedPDF = () => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.createPdf(individualProofPaymentPDF).download("COMPROBANTE-DE-PAGOS.pdf");
+    // pdfMake.createPdf(individualProofPaymentPDF).download("COMPROBANTE-DE-PAGOS.pdf");
+    pdfMake.createPdf(individualProofPaymentPDF).open();
   };
 
   return (

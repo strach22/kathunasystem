@@ -54,21 +54,13 @@ export default function ProofPaymentTransaction({ info, i }) {
                 {
                   columns: [
                     { text: "Cliente", style: "subtitle1", width: 34 },
-                    {
-                      text: `${clients[i].firstName} ${clients[i].lastName}`,
-                      style: "subtitle3",
-                      width: "*",
-                    },
+                    { text: `${clients[i].firstName} ${clients[i].lastName}`, style: "subtitle3" },
                   ],
                 },
                 {
                   columns: [
                     { text: "RUC", style: "subtitle1", width: 34 },
-                    {
-                      text: clients[i].identification,
-                      style: "subtitle3",
-                      width: "*",
-                    },
+                    { text: clients[i].identification, style: "subtitle3" },
                     { text: "Recibo No.", style: "subtitle1", width: 39 },
                     { text: zfill(receipt, 4), style: "subtitle2", width: 43 },
                   ],
@@ -76,13 +68,13 @@ export default function ProofPaymentTransaction({ info, i }) {
                 {
                   columns: [
                     { text: "Dirección", style: "subtitle1", width: 34 },
-                    { text: clients[i].address, style: "subtitle3", width: "*" },
+                    { text: clients[i].address, style: "subtitle3" },
                   ],
                 },
                 {
                   columns: [
                     { text: "Saldo", style: "subtitle1", width: 34 },
-                    { text: `$ ${clients[i].savingBalance}`, style: "subtitle3", width: "*" },
+                    { text: `$ ${clients[i].savingBalance}`, style: "subtitle3" },
                     { text: "Fecha", style: "subtitle1", width: 39 },
                     { text: transactionDate, style: "subtitle2", width: 43 },
                   ],
@@ -210,6 +202,7 @@ export default function ProofPaymentTransaction({ info, i }) {
       },
       subtitle3: {
         color: "#333333",
+        width: "*",
         bold: true,
         alignment: "left",
         fontSize: 8,
