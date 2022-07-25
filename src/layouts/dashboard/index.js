@@ -56,7 +56,7 @@ function Dashboard() {
       <DashboardNavbar />
       <MDBox py={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} sm={6} lg={3}>
             <MDBox>
               <Link to="/transacciones-ahorros">
                 <InfoIcon
@@ -67,7 +67,7 @@ function Dashboard() {
               </Link>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} sm={6} lg={3}>
             <MDBox mb={1.5}>
               <Link to="/creditos">
                 <InfoIcon
@@ -79,7 +79,7 @@ function Dashboard() {
               </Link>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} sm={6} lg={3}>
             <MDBox mb={1.5}>
               <Link to="/gastos">
                 <InfoIcon
@@ -91,7 +91,7 @@ function Dashboard() {
               </Link>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} sm={6} lg={3}>
             <MDBox>
               <InfoIcon
                 color="dark"
@@ -109,7 +109,7 @@ function Dashboard() {
 
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="info"
@@ -120,7 +120,7 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="success"
@@ -131,7 +131,7 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="warning"
@@ -142,7 +142,7 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="dark"
