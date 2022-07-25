@@ -28,7 +28,7 @@ function Tables() {
       <DashboardNavbar />
       <MDBox pt={3}>
         <Grid container spacing={6}>
-          <Grid item xs={8} md={6} lg={4}>
+          <Grid item xs={12} sm={8} md={6} lg={4}>
             <MDBox>
               <Link to="/agregar-clientes">
                 <InfoIcon
