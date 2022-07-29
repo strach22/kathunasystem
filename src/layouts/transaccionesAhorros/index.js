@@ -22,7 +22,7 @@ function Retiros() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox pt={3}>
-        <Grid container spacing={6}>
+        <Grid container>
           <Grid item xs={12}>
             <Card>
               <MDBox
