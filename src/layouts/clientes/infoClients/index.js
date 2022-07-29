@@ -22,8 +22,11 @@ import historial from "../../transaccionesAhorros/table/tableHistory";
 const useStyles = makeStyles({
   root: {
     "& .css-1f19gdh": {
-      margin: "30px",
-      padding: "40px",
+      margin: "0px 40px 40px 40px",
+    },
+    "& .MuiButton-sizeLarge": {
+      width: "90%",
+      margin: "0px 0px 10px 40px",
     },
   },
 });
@@ -52,7 +55,7 @@ function infoClients() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
+      <MDBox pt={6} pb={3} mx={3}>
         <Grid container spacing={10} className={classes.root}>
           <Grid item xs={12}>
             <Card>
@@ -72,7 +75,7 @@ function infoClients() {
               </MDBox>
               <MDBox pt={3}>
                 <Grid item xs={12}>
-                  <MDBox coloredShadow="secondary" pb={2}>
+                  <MDBox coloredShadow="secondary">
                     <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                       Cliente # {id}
                     </MDTypography>
@@ -114,6 +117,31 @@ function infoClients() {
                   </MDBox>
                 </Grid>
               </MDBox>
+              <Grid container>
+                <Grid item xs={10} sm={4} md={3}>
+                  <MDButton
+                    size="large"
+                    variant="text"
+                    component={Link}
+                    to="/clientes"
+                    sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+                  >
+                    REGRESAR
+                  </MDButton>
+                </Grid>
+                <Grid item xs={10} sm={4} md={3}>
+                  <MDButton
+                    variant="text"
+                    size="large"
+                    component={Link}
+                    to="/agregar-clientes"
+                    sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+                    onClick={() => editClient(clients[i])}
+                  >
+                    EDITAR
+                  </MDButton>
+                </Grid>
+              </Grid>
             </Card>
           </Grid>
 
@@ -134,38 +162,16 @@ function infoClients() {
                 </MDTypography>
               </MDBox>
               <MDBox coloredShadow="secondary" pt={3} pb={2}>
-                <div>
-                  <DataTable
-                    table={{ columns, rows }}
-                    isSorted
-                    showTotalEntries={false}
-                    noEndBorder
-                    entriesPerPage={false}
-                    defaultEntries={5}
-                  />
-                </div>
+                <DataTable
+                  table={{ columns, rows }}
+                  isSorted
+                  showTotalEntries={false}
+                  noEndBorder
+                  entriesPerPage={false}
+                  defaultEntries={5}
+                />
               </MDBox>
             </Card>
-          </Grid>
-
-          <Grid item xs={12}>
-            <MDButton
-              color="secondary"
-              component={Link}
-              to="/clientes"
-              sx={{ marginLeft: "65px", width: "12%" }}
-            >
-              REGRESAR
-            </MDButton>
-            <MDButton
-              color="success"
-              component={Link}
-              to="/agregar-clientes"
-              sx={{ marginLeft: "15px", width: "12%" }}
-              onClick={() => editClient(clients[i])}
-            >
-              EDITAR
-            </MDButton>
           </Grid>
         </Grid>
       </MDBox>

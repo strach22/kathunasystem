@@ -194,7 +194,7 @@ export default function FormScreen() {
 
   return (
     <MDBox pt={6} pb={3} mx={4}>
-      <Grid container spacing={6}>
+      <Grid container>
         <Grid item xs={12}>
           <Form onSubmit={handleSubmit}>
             <Card>
