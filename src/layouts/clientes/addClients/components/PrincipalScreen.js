@@ -10,7 +10,7 @@ import ClientsContext from "../../../../context/Clients/ClientsContext";
 export default function PrincipalScreen() {
   const { clientInfo } = useContext(ClientsContext);
   return (
-    <MDBox pt={6} pb={3} mx={15}>
+    <MDBox pt={6} pb={3} mx={4}>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
@@ -28,7 +28,7 @@ export default function PrincipalScreen() {
                 {clientInfo ? "Editar Cliente" : "Agregar Cliente"}
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox py={3} mx={2}>
               <FormScreen />
             </MDBox>
           </Card>

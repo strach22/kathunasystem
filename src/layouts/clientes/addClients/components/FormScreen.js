@@ -29,7 +29,7 @@ export default function FormScreen() {
           identification: "",
           mobile: "",
           secondMobile: "",
-          tariff: "Particular",
+          tariff: "",
           civil: "",
           birthDate: new Date(),
           creationDate: new Date(),
@@ -56,6 +56,7 @@ export default function FormScreen() {
     identification: "",
     mobile: "",
     email: "",
+    tariff: "",
     civil: "",
     address: "",
     relationShip: "",
@@ -69,6 +70,7 @@ export default function FormScreen() {
     mobileSpouse: "",
     other: "",
   };
+
   // eslint-disable-next-line consistent-return
   const validate = (fieldValues = values) => {
     const tempo = { ...errors };
@@ -112,6 +114,8 @@ export default function FormScreen() {
         : "Este campo es obligatorio llenar con 10 dígitos";
     if ("relationShip" in fieldValues)
       tempo.relationShip = fieldValues.relationShip ? "" : "Este campo es obligatorio llenar";
+    if ("tariff" in fieldValues)
+      tempo.tariff = fieldValues.tariff.length !== 0 ? "" : "Es obligatorio escoger una opción";
 
     if ("civil" in fieldValues) {
       tempo.civil = fieldValues.civil.length !== 0 ? "" : "Es obligatorio escoger una opción";
@@ -191,33 +195,34 @@ export default function FormScreen() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Grid container spacing={1}>
-        <Grid item xs={6}>
+      <Grid container>
+        <Grid item xs={12} md={6}>
           <FormList1
             valFirstName={values.firstName}
-            valLastName={values.lastName}
             valIdentification={values.identification}
-            valMobile={values.mobile}
             valSecondMobile={values.secondMobile}
-            valEmail={values.email}
+            valAddress={values.address}
+            valTariff={values.tariff}
             handleInputChange={handleInputChange}
             errFirstName={errors.firstName}
-            errLastName={errors.lastName}
             errIdentification={errors.identification}
-            errMobile={errors.mobile}
-            errEmail={errors.email}
+            errAddress={errors.address}
+            errTariff={errors.tariff}
             errOther={errors.other}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <FormList2
-            valTariff={values.tariff}
-            valCivil={values.civil}
+            valLastName={values.lastName}
+            valMobile={values.mobile}
+            valEmail={values.email}
             valBirthDate={values.birthDate}
-            valAddress={values.address}
+            valCivil={values.civil}
             handleInputChange={handleInputChange}
+            errLastName={errors.lastName}
+            errMobile={errors.mobile}
+            errEmail={errors.email}
             errCivil={errors.civil}
-            errAddress={errors.address}
           />
         </Grid>
       </Grid>
