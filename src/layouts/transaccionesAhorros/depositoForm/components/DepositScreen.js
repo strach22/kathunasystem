@@ -95,7 +95,7 @@ export default function DepositScreen() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={5}>
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha de la transacción:
           </MDTypography>
@@ -107,7 +107,11 @@ export default function DepositScreen() {
           />
         </Grid>
 
-        <Grid item xs={7}>
+        <Grid item xs={0} md={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Forma de Pago:
           </MDTypography>
@@ -121,7 +125,7 @@ export default function DepositScreen() {
           />
         </Grid>
 
-        <Grid item xs={5}>
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Valor a depositar:
           </MDTypography>
@@ -136,7 +140,12 @@ export default function DepositScreen() {
             read=""
           />
         </Grid>
-        <Grid item xs={7}>
+
+        <Grid item xs={0} md={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} md={6} lg={7}>
           <MDTypography className="Subtitles" variant="h5">
             Observaciones:
           </MDTypography>
@@ -149,9 +158,10 @@ export default function DepositScreen() {
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
           />
         </Grid>
-        <Grid item xs={12} lg={11}>
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <Link to="/transacciones-ahorros">
             <MDButton
+              variant="text"
               size="large"
               onClick={resetForm}
               sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
@@ -159,6 +169,11 @@ export default function DepositScreen() {
               REGRESAR
             </MDButton>
           </Link>
+        </Grid>
+        <Grid item xs={0} sm={0.4}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <MDButton
             variant="text"
             size="large"

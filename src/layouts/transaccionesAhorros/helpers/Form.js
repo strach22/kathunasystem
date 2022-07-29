@@ -5,14 +5,19 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
+    // Label
+    "& .Subtitles": {
+      marginBottom: "15px",
+      marginTop: "40px",
+      color: "black",
+    },
     // DatePicker
     "& .Calendario": {
-      width: "60%",
-      marginBottom: "40px",
+      width: "100%",
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
-      width: "60%",
+      width: "100%",
     },
     // Label Selector
     "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
@@ -21,35 +26,29 @@ const useStyles = makeStyles({
     },
     // Selector
     "& #demo-simple-select": {
-      width: "100%",
       height: 46,
       marginLeft: "10px",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
-      width: "70%",
+      width: "100%",
       height: "35%",
-      marginBottom: "5px",
       fontSize: "120%",
     },
-    // Label
-    "& .Subtitles": {
-      marginBottom: "15px",
-      color: "black",
-    },
-    // Buttons
-    "& .MuiButton-root": {
-      width: "20%",
-      color: "white",
-      margin: "50px 10px 0px 15px",
-    },
+    // Text Area
     "& #textAreaForm": {
-      width: "90%",
+      width: "100%",
       height: "35%",
       padding: "2%",
       border: "1px double #CDD4D5",
       borderRadius: 7,
       fontSize: "80%",
+      marginBottom: 50,
+    },
+    // Buttons
+    "& .MuiButton-root": {
+      width: "100%",
+      marginBottom: 10,
     },
     // Alert
     "& .MuiPaper-root": {

@@ -52,7 +52,7 @@ export default function PrincipalScreen() {
                 Crear Depósito
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox pt={1} mx={5} mb={3}>
               <DepositScreen />
             </MDBox>
           </Card>
