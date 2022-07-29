@@ -1,14 +1,13 @@
 /* eslint-disable no-use-before-define */
 import React, { useContext, useState } from "react";
-import { Grid } from "@mui/material";
+import { Card, Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
 import useForm from "../../../../elements/hooks/useForm";
 import Form from "../helpers/Form";
-import FormList1 from "./list/FormList1";
-import FormList2 from "./list/FormList2";
+import FormPersonalInformation from "./list/FormPersonalInformation";
 import FormListSpouse from "./list/FormListSpouse";
 import FormListRelationShip from "./list/FormListRelationShip";
 
@@ -194,121 +193,154 @@ export default function FormScreen() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Grid container>
-        <Grid item xs={12} md={6}>
-          <FormList1
-            valFirstName={values.firstName}
-            valIdentification={values.identification}
-            valSecondMobile={values.secondMobile}
-            valAddress={values.address}
-            valTariff={values.tariff}
-            handleInputChange={handleInputChange}
-            errFirstName={errors.firstName}
-            errIdentification={errors.identification}
-            errAddress={errors.address}
-            errTariff={errors.tariff}
-            errOther={errors.other}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <FormList2
-            valLastName={values.lastName}
-            valMobile={values.mobile}
-            valEmail={values.email}
-            valBirthDate={values.birthDate}
-            valCivil={values.civil}
-            handleInputChange={handleInputChange}
-            errLastName={errors.lastName}
-            errMobile={errors.mobile}
-            errEmail={errors.email}
-            errCivil={errors.civil}
-          />
+    <MDBox pt={6} pb={3} mx={4}>
+      <Grid container spacing={6}>
+        <Grid item xs={12}>
+          <Form onSubmit={handleSubmit}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  {clientInfo ? "Editar Cliente" : "Agregar Cliente"}
+                </MDTypography>
+              </MDBox>
+
+              <MDBox py={3} mx={2}>
+                <FormPersonalInformation
+                  valFirstName={values.firstName}
+                  valLastName={values.lastName}
+                  valIdentification={values.identification}
+                  valMobile={values.mobile}
+                  valSecondMobile={values.secondMobile}
+                  valEmail={values.email}
+                  valAddress={values.address}
+                  valBirthDate={values.birthDate}
+                  valTariff={values.tariff}
+                  valCivil={values.civil}
+                  handleInputChange={handleInputChange}
+                  errFirstName={errors.firstName}
+                  errLastName={errors.lastName}
+                  errIdentification={errors.identification}
+                  errMobile={errors.mobile}
+                  errEmail={errors.email}
+                  errAddress={errors.address}
+                  errTariff={errors.tariff}
+                  errCivil={errors.civil}
+                  errOther={errors.other}
+                />
+              </MDBox>
+            </Card>
+
+            {state.civil === "true" && (
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="info"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h5" color="white">
+                    Datos del Conyuge
+                  </MDTypography>
+                </MDBox>
+
+                <MDBox py={3} mx={2}>
+                  <FormListSpouse
+                    valFirstName={values.firstNameSpouse}
+                    valLastName={values.lastNameSpouse}
+                    valIdentification={values.identificationSpouse}
+                    valMobile={values.mobileSpouse}
+                    handleInputChange={handleInputChange}
+                    errFirstName={errors.firstNameSpouse}
+                    errLastName={errors.lastNameSpouse}
+                    errIdentification={errors.identificationSpouse}
+                    errMobile={errors.mobileSpouse}
+                  />
+                </MDBox>
+              </Card>
+            )}
+
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h5" color="white">
+                  Datos del Parentesco
+                </MDTypography>
+              </MDBox>
+
+              <MDBox py={3} mx={2}>
+                <FormListRelationShip
+                  valFirstName={values.firstNameRelationShip}
+                  valLastName={values.lastNameRelationShip}
+                  valMobile={values.mobileRelationShip}
+                  valRelationShip={values.relationShip}
+                  valIdentification={values.identificationRelationShip}
+                  handleInputChange={handleInputChange}
+                  errFirstName={errors.firstNameRelationShip}
+                  errLastName={errors.lastNameRelationShip}
+                  errMobile={errors.mobileRelationShip}
+                  errRelationShip={errors.relationShip}
+                  errIdentification={errors.identificationRelationShip}
+                />
+              </MDBox>
+
+              <Grid container>
+                <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
+                  <Link to="/clientes">
+                    <MDButton
+                      size="medium"
+                      onClick={resetClientInfo}
+                      sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+                    >
+                      REGRESAR
+                    </MDButton>
+                  </Link>
+                </Grid>
+                <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
+                  <MDButton
+                    size="medium"
+                    variant="text"
+                    onClick={resetForm}
+                    sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
+                  >
+                    RESETEAR
+                  </MDButton>
+                </Grid>
+                <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
+                  <MDButton
+                    variant="text"
+                    size="medium"
+                    type="submit"
+                    sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+                  >
+                    {clientInfo ? "EDITAR" : "AGREGAR"}
+                  </MDButton>
+                </Grid>
+              </Grid>
+            </Card>
+          </Form>
         </Grid>
       </Grid>
-      {state.civil === "true" && (
-        <>
-          <MDBox
-            mx={13}
-            mt={7}
-            py={2}
-            mb={2}
-            variant="gradient"
-            bgColor="info"
-            borderRadius="lg"
-            coloredShadow="info"
-          >
-            <MDTypography className="Subtitles">Datos del Conyuge</MDTypography>
-          </MDBox>
-          <MDBox pt={3}>
-            <FormListSpouse
-              valFirstName={values.firstNameSpouse}
-              valLastName={values.lastNameSpouse}
-              valIdentification={values.identificationSpouse}
-              valMobile={values.mobileSpouse}
-              handleInputChange={handleInputChange}
-              errFirstName={errors.firstNameSpouse}
-              errLastName={errors.lastNameSpouse}
-              errIdentification={errors.identificationSpouse}
-              errMobile={errors.mobileSpouse}
-            />
-          </MDBox>
-        </>
-      )}
-      <MDBox
-        mx={13}
-        mt={7}
-        py={2}
-        mb={2}
-        variant="gradient"
-        bgColor="info"
-        borderRadius="lg"
-        coloredShadow="info"
-      >
-        <MDTypography className="Subtitles">Datos del Parentesco</MDTypography>
-      </MDBox>
-      <MDBox pt={3}>
-        <FormListRelationShip
-          valFirstName={values.firstNameRelationShip}
-          valLastName={values.lastNameRelationShip}
-          valMobile={values.mobileRelationShip}
-          valRelationShip={values.relationShip}
-          valIdentification={values.identificationRelationShip}
-          handleInputChange={handleInputChange}
-          errFirstName={errors.firstNameRelationShip}
-          errLastName={errors.lastNameRelationShip}
-          errMobile={errors.mobileRelationShip}
-          errRelationShip={errors.relationShip}
-          errIdentification={errors.identificationRelationShip}
-        />
-      </MDBox>
-      <Grid item xs={12}>
-        <Link to="/clientes">
-          <MDButton
-            size="large"
-            onClick={resetClientInfo}
-            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-          >
-            REGRESAR
-          </MDButton>
-        </Link>
-        <MDButton
-          size="large"
-          variant="text"
-          onClick={resetForm}
-          sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
-        >
-          RESETEAR
-        </MDButton>
-        <MDButton
-          variant="text"
-          size="large"
-          type="submit"
-          sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-        >
-          {clientInfo ? "EDITAR" : "AGREGAR"}
-        </MDButton>
-      </Grid>
-    </Form>
+    </MDBox>
   );
 }

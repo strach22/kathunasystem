@@ -20,7 +20,7 @@ export default function FormListRelationShip(props) {
 
   return (
     <Grid container>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Input
           label="Nombres"
           name="firstNameRelationShip"
@@ -29,6 +29,8 @@ export default function FormListRelationShip(props) {
           error={errFirstName}
           read=""
         />
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Input
           label="Apellidos"
           name="lastNameRelationShip"
@@ -37,6 +39,8 @@ export default function FormListRelationShip(props) {
           error={errLastName}
           read=""
         />
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Input
           label="Cédula de Identidad"
           name="identificationRelationShip"
@@ -46,7 +50,7 @@ export default function FormListRelationShip(props) {
           read=""
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Input
           label="Número de Teléfono"
           name="mobileRelationShip"
@@ -55,6 +59,8 @@ export default function FormListRelationShip(props) {
           error={errMobile}
           read=""
         />
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Input
           label="Parentesco"
           name="relationShip"

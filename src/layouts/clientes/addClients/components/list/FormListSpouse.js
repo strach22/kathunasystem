@@ -18,7 +18,7 @@ export default function FormListSpouse(props) {
 
   return (
     <Grid container>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Input
           label="Nombres"
           name="firstNameSpouse"
@@ -27,6 +27,8 @@ export default function FormListSpouse(props) {
           error={errFirstName}
           read=""
         />
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Input
           label="Apellidos"
           name="lastNameSpouse"
@@ -36,7 +38,7 @@ export default function FormListSpouse(props) {
           read=""
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Input
           label="Cédula de Identidad"
           name="identificationSpouse"
@@ -45,6 +47,8 @@ export default function FormListSpouse(props) {
           error={errIdentification}
           read=""
         />
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Input
           label="Número de Teléfono"
           name="mobileSpouse"

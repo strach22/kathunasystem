@@ -17,15 +17,13 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "100%",
+      width: "90%",
       color: "white",
-      margin: "50px 10px 0px 15px",
+      margin: "0px 30px 10px 30px",
     },
-    // Subtítulo
-    "& .Subtitles": {
-      // fontSize: 20,
-      // color: "white",
-      // textAlign: "center",
+    // Card
+    "& .MuiPaper-root": {
+      marginBottom: 70,
     },
   },
 });
