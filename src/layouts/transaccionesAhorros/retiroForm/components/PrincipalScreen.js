@@ -8,7 +8,7 @@ import RetiroScreen from "./RetiroScreen";
 
 export default function PrincipalScreen() {
   return (
-    <MDBox pt={6} pb={3} mx={15}>
+    <MDBox pt={6} pb={3} mx={4}>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
@@ -26,7 +26,7 @@ export default function PrincipalScreen() {
                 Datos del cliente
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox pt={3}>
               <InfoScreen />
             </MDBox>
           </Card>
@@ -47,7 +47,7 @@ export default function PrincipalScreen() {
                 Crear Retiro
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox pt={1} mx={5} mb={3}>
               <RetiroScreen />
             </MDBox>
           </Card>
@@ -68,7 +68,7 @@ export default function PrincipalScreen() {
                 Historial de Estado de Cuenta
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
+            <MDBox pt={3}>
               <AccountStatusScreen />
             </MDBox>
           </Card>

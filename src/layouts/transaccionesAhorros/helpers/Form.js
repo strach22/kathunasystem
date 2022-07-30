@@ -32,8 +32,7 @@ const useStyles = makeStyles({
     // NumericInput
     "& .MuiInputBase-adornedStart": {
       width: "100%",
-      height: "35%",
-      fontSize: "120%",
+      fontSize: "100%",
     },
     // Text Area
     "& #textAreaForm": {
@@ -52,8 +51,8 @@ const useStyles = makeStyles({
     },
     // Alert
     "& .MuiPaper-root": {
-      width: "80%",
-      marginBottom: "40px",
+      width: "100%",
+      marginTop: "25px",
       borderRadius: 8,
     },
   },
