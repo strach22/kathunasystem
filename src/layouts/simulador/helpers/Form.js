@@ -7,18 +7,19 @@ const useStyles = makeStyles({
   root: {
     // Label
     "& .Subtitles": {
-      marginBottom: "30px",
+      marginBottom: "15px",
+      marginTop: "40px",
       color: "black",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
       width: "100%",
-      fontSize: "80%",
+      fontSize: "90%",
     },
     // NumericInput
     "& .MuiInputBase-adornedEnd": {
       width: "90%",
-      fontSize: "80%",
+      fontSize: "90%",
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
@@ -35,16 +36,13 @@ const useStyles = makeStyles({
     },
     // Selector
     "& #demo-simple-select": {
-      width: "100%",
       height: 46,
       marginLeft: "10px",
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "20%",
-      color: "white",
-      marginTop: "10px",
-      marginRight: "20px",
+      width: "100%",
+      marginTop: 10,
     },
     // Label
     "& .SubtitlesInfo": {

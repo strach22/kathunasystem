@@ -2,25 +2,15 @@ import React, { useState } from "react";
 import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
-import { makeStyles } from "@mui/styles";
 import CreditSimulatorScreen from "./CreditSimulatorScreen";
 import PaymentHistory from "./PaymentHistory";
 
-const useStyles = makeStyles({
-  root: {
-    "& .css-1f19gdh": {
-      margin: "30px",
-      padding: "24px",
-    },
-  },
-});
-
 export default function PrincipalScreen() {
   const [parameters, setParameters] = useState({});
-  const classes = useStyles();
+
   return (
-    <MDBox pt={6} pb={3} mx={15}>
-      <Grid container spacing={6} className={classes.root}>
+    <MDBox pt={6} pb={3} mx={4}>
+      <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
             <MDBox
@@ -37,7 +27,7 @@ export default function PrincipalScreen() {
                 Simulador de Créditos
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox mx={5} mb={4}>
               <CreditSimulatorScreen setParameters={setParameters} />
             </MDBox>
           </Card>
@@ -59,7 +49,7 @@ export default function PrincipalScreen() {
                   Tabla de Amortización
                 </MDTypography>
               </MDBox>
-              <MDBox pt={3}>
+              <MDBox pt={3} mx={2.5} mb={4}>
                 <PaymentHistory parameters={parameters} />
               </MDBox>
             </Card>
