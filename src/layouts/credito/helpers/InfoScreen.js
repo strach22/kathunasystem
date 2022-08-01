@@ -12,10 +12,10 @@ export default function InfoScreen() {
 
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
-      <Grid item xs={6.8}>
+      <Grid item xs={12} md={6.2}>
         <MDTypography variant="h5">{category}</MDTypography>
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={12} md={5}>
         <MDTypography fontWeight="regular" variant="h5">
           {info}
         </MDTypography>
@@ -24,9 +24,9 @@ export default function InfoScreen() {
   );
 
   return (
-    <MDBox mt={6} mb={3}>
-      <Grid container spacing={3}>
-        <Grid item xs={11}>
+    <MDBox mt={1} mb={6} mx={5}>
+      <Grid container>
+        <Grid item xs={12}>
           <MDBox coloredShadow="secondary" pb={2}>
             <Link to={`/clientes/${id}`}>
               <MDTypography padding={2} color="info" variant="h4" sx={{ textAlign: "center" }}>

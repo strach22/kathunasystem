@@ -7,13 +7,13 @@ const useStyles = makeStyles({
   root: {
     // Label
     "& .Subtitles": {
-      marginBottom: "25px",
+      marginBottom: "15px",
+      marginTop: "40px",
       color: "black",
     },
-    // Label
-    "& .Subtitles2": {
-      margin: "30px 0px 25px 0px",
-      color: "black",
+    // DatePicker
+    "& .Calendario": {
+      width: "100%",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
@@ -24,10 +24,11 @@ const useStyles = makeStyles({
     "& .InputTimeValue": {
       width: "90%",
       fontSize: "80%",
+      marginBottom: 10,
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
-      width: "80%",
+      width: "100%",
     },
     // Label Selector
     "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
@@ -36,16 +37,13 @@ const useStyles = makeStyles({
     },
     // Selector
     "& #demo-simple-select": {
-      width: "100%",
       height: 46,
       marginLeft: "10px",
     },
     // Buttons
     "& .MuiButton-root": {
-      width: "30%",
-      color: "white",
-      marginTop: "50px",
-      marginRight: "20px",
+      width: "100%",
+      marginTop: 10,
     },
     // Label
     "& .SubtitlesCreditInfo": {

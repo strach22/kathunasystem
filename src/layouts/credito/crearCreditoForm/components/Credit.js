@@ -120,31 +120,40 @@ export default function Credit() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={2.5}>
-          <MDTypography className="Subtitles" variant="h5">
-            Valor del Crédito:
-          </MDTypography>
-        </Grid>
-        <Grid item xs={1}>
-          {}
-        </Grid>
-        <Grid item xs={4}>
-          <MDTypography className="Subtitles" variant="h5">
-            Tiempo a Pagar:
-          </MDTypography>
-        </Grid>
-        <Grid item xs={1}>
-          {}
-        </Grid>
-        <Grid item xs={2.5}>
+        <Grid item xs={12} sm={7} md={4.5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha del Crédito:
           </MDTypography>
+          <DatePickerH
+            name="creationDate"
+            label="Fecha del Crédito"
+            value={values.creationDate}
+            onChange={handleInputChange}
+          />
         </Grid>
-      </Grid>
 
-      <Grid container>
-        <Grid item xs={2.5}>
+        <Grid item xs={0} md={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={7} md={6} lg={4.5}>
+          <MDTypography className="Subtitles" variant="h5">
+            Garante:
+          </MDTypography>
+          <SelectG
+            name="guarantor"
+            label="Garante"
+            value={values.guarantor}
+            onChange={handleInputChange}
+            options={values.auxGuarantor}
+            error={errors.guarantor}
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={7} md={4.5} lg={4}>
+          <MDTypography className="Subtitles" variant="h5">
+            Valor del Crédito:
+          </MDTypography>
           <InputValue
             className="InputLoanValue"
             name="loanValue"
@@ -155,12 +164,17 @@ export default function Credit() {
             position="start"
           />
         </Grid>
-        <Grid item xs={1}>
+
+        <Grid item xs={0} md={1}>
           {}
         </Grid>
-        <Grid item xs={4}>
+
+        <Grid item xs={12} md={6.5} lg={7}>
+          <MDTypography className="Subtitles" variant="h5">
+            Tiempo a Pagar:
+          </MDTypography>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputValue
                 className="InputTimeValue"
                 name="timePayYear"
@@ -171,7 +185,7 @@ export default function Credit() {
                 position="end"
               />
             </Grid>
-            <Grid item xs={6} className="hola">
+            <Grid item xs={12} sm={6}>
               <InputValue
                 className="InputTimeValue"
                 name="timePayMonth"
@@ -184,41 +198,12 @@ export default function Credit() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={1}>
-          {}
-        </Grid>
-        <Grid item xs={2.5}>
-          <DatePickerH
-            name="creationDate"
-            label="Fecha del Crédito"
-            value={values.creationDate}
-            onChange={handleInputChange}
-          />
-        </Grid>
-      </Grid>
 
-      <Grid container>
-        <Grid item xs={7}>
-          <Grid container>
-            <Grid item xs={12}>
-              <MDTypography className="Subtitles2" variant="h5">
-                Garante:
-              </MDTypography>
-            </Grid>
-            <Grid item xs={12}>
-              <SelectG
-                name="guarantor"
-                label="Garante"
-                value={values.guarantor}
-                onChange={handleInputChange}
-                options={values.auxGuarantor}
-                error={errors.guarantor}
-              />
-            </Grid>
-          </Grid>
-          <Grid item xs={12} lg={11}>
+        <Grid container sx={{ marginTop: 4 }}>
+          <Grid item xs={12} sm={5.8} md={4} lg={3}>
             <Link to="/creditos">
               <MDButton
+                variant="text"
                 size="large"
                 onClick={resetForm}
                 sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
@@ -226,6 +211,13 @@ export default function Credit() {
                 REGRESAR
               </MDButton>
             </Link>
+          </Grid>
+
+          <Grid item xs={0} sm={0.4}>
+            {}
+          </Grid>
+
+          <Grid item xs={12} sm={5.8} md={4} lg={3}>
             <MDButton
               variant="text"
               size="large"
