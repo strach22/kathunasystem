@@ -1,25 +1,14 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
 import MDBox from "components/MDBox";
 import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import InfoScreen from "layouts/credito/helpers/InfoScreen";
 import CreditGenerated from "./CreditGenerated";
 
-const useStyles = makeStyles({
-  root: {
-    "& .css-1f19gdh": {
-      margin: "30px",
-      padding: "24px",
-    },
-  },
-});
-
 export default function PrincipalScreen() {
-  const classes = useStyles();
   return (
-    <MDBox pt={6} pb={3} mx={15}>
-      <Grid container spacing={6} className={classes.root}>
+    <MDBox pt={6} pb={3} mx={4}>
+      <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
             <MDBox

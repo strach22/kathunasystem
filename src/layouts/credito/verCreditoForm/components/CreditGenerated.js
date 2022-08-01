@@ -20,7 +20,7 @@ export default function CreditGenerated() {
           defaultEntries={5}
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={8} sm={5} md={4} lg={3}>
         <Link to="/creditos">
           <MDButton
             size="large"
@@ -28,8 +28,8 @@ export default function CreditGenerated() {
             color="secondary"
             sx={{
               "&:hover": { background: "#99A3A4" },
-              width: "60%",
-              marginTop: "50px",
+              width: "100%",
+              margin: "20px 0px 30px 30px",
             }}
           >
             REGRESAR
