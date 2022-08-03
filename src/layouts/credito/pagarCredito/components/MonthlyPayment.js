@@ -14,7 +14,7 @@ import * as ConstDate from "elements/data/ConstDate";
 import Form from "layouts/transaccionesAhorros/helpers/Form";
 
 // eslint-disable-next-line react/prop-types
-export default function MonthlyPayment({ i, i2 }) {
+export default function MonthlyPayment({ i, i2, idC }) {
   const errorValues = {
     value: "",
     paymentType: "",
@@ -173,7 +173,7 @@ export default function MonthlyPayment({ i, i2 }) {
         </Grid>
 
         <Grid item xs={12} sm={5.8} md={4} lg={3}>
-          <Link to="/creditos">
+          <Link to={`/creditos/ver/${idC}`}>
             <MDButton
               size="large"
               variant="text"

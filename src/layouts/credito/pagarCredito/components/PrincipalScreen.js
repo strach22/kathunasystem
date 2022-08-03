@@ -58,7 +58,7 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={1} mx={5} mb={3}>
-              <MonthlyPayment i={i} i2={i2} />
+              <MonthlyPayment i={i} i2={i2} idC={idC} />
             </MDBox>
           </Card>
         </Grid>
