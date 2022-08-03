@@ -197,7 +197,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
             variant="text"
             size="large"
             onClick={handleReset}
-            sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
+            sx={{ background: "#D5923B", "&:hover": { background: "#D5AE7A" } }}
           >
             RESETEAR
           </MDButton>

@@ -263,7 +263,12 @@ export default function DownloadBillofExchange({ i, i2 }) {
   };
 
   return (
-    <MDButton color="text" onClick={handlePrintPDF}>
+    <MDButton
+      variant="text"
+      size="medium"
+      onClick={handlePrintPDF}
+      sx={{ background: "#2A557F", "&:hover": { background: "#4C657E" }, width: "100%" }}
+    >
       LETRA DE CAMBIO
     </MDButton>
   );

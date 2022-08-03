@@ -321,7 +321,7 @@ export default function FormScreen() {
                     size="medium"
                     variant="text"
                     onClick={resetForm}
-                    sx={{ background: "#FB8C00", "&:hover": { background: "#F5B041" } }}
+                    sx={{ background: "#D5923B", "&:hover": { background: "#D5AE7A" } }}
                   >
                     RESETEAR
                   </MDButton>

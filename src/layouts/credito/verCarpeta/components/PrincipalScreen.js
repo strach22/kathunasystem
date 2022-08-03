@@ -21,10 +21,10 @@ export default function PrincipalScreen() {
 
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
-      <Grid item xs={6.8}>
+      <Grid item xs={12} md={6.8}>
         <MDTypography variant="h5">{category}</MDTypography>
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={12} md={5}>
         <MDTypography fontWeight="regular" variant="h5">
           {info}
         </MDTypography>
@@ -75,18 +75,18 @@ export default function PrincipalScreen() {
             <MDBox mt={5} mb={3}>
               <Grid container spacing={2}>
                 {folderInfo.state !== "Denegado" && (
-                  <Grid container>
-                    <Grid item xs={6}>
+                  <Grid container ml={4.5} mr={1.5}>
+                    <Grid item xs={12} sm={5.8} md={3.9} lg={3.1} mr={0.5} mt={0.5}>
                       <DownloadAmortization i={i} i2={i2} />
                     </Grid>
                     {folderInfo.state !== "Creado" && folderInfo.state !== "Aprobado" && (
-                      <Grid item xs={6}>
+                      <Grid item xs={12} sm={5.9} md={3.9} lg={3.1} mr={0.5} mt={0.5}>
                         <DownloadBillofExchange i={i} i2={i2} />
                       </Grid>
                     )}
                   </Grid>
                 )}
-                <Grid item xs={11}>
+                <Grid item xs={12} mx={2.8} mb={2}>
                   <MDBox coloredShadow="secondary" pb={2}>
                     <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
                       Carpeta # {idF}
@@ -111,34 +111,42 @@ export default function PrincipalScreen() {
                     {getInfo("Garante:", folderInfo.guarantor)}
                   </MDBox>
                 </Grid>
-                <Link to={`/creditos/ver/${idC}`}>
-                  <MDButton
-                    size="medium"
-                    variant="text"
-                    sx={{
-                      margin: "15px",
-                      background: "#7B809A",
-                      "&:hover": { background: "#99A3A4" },
-                    }}
-                  >
-                    REGRESAR
-                  </MDButton>
-                </Link>
-                {folderInfo.state !== "Denegado" &&
-                  folderInfo.state !== "Entregado" &&
-                  folderInfo.state !== "Finalizado" && (
-                    <Link to={`/aprobar-creditos/${idC}-${idF}`}>
+                <Grid container ml={4.5} mr={1.5}>
+                  <Grid item xs={12} sm={5.8} md={3.9} lg={3.1} mr={0.5} mt={0.5}>
+                    <Link to={`/creditos/ver/${idC}`}>
                       <MDButton
+                        variant="text"
                         size="medium"
-                        color="success"
                         sx={{
-                          margin: "15px 0",
+                          background: "#7B809A",
+                          "&:hover": { background: "#99A3A4" },
+                          width: "100%",
                         }}
                       >
-                        APROBAR CRÉDITOS
+                        REGRESAR
                       </MDButton>
                     </Link>
-                  )}
+                  </Grid>
+                  <Grid item xs={12} sm={5.9} md={3.9} lg={3.1} mr={0.5} mt={0.5}>
+                    {folderInfo.state !== "Denegado" &&
+                      folderInfo.state !== "Entregado" &&
+                      folderInfo.state !== "Finalizado" && (
+                        <Link to={`/aprobar-creditos/${idC}-${idF}`}>
+                          <MDButton
+                            variant="text"
+                            size="medium"
+                            sx={{
+                              background: "#1A73E8",
+                              "&:hover": { background: "#5499C7" },
+                              width: "100%",
+                            }}
+                          >
+                            APROBAR CRÉDITOS
+                          </MDButton>
+                        </Link>
+                      )}
+                  </Grid>
+                </Grid>
               </Grid>
             </MDBox>
           </Card>

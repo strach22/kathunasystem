@@ -13,8 +13,6 @@ const useStyles = makeStyles({
     // Button
     "& .MuiButton-root": {
       width: "100%",
-      background: "#7B809A",
-      "&:hover": { background: "#99A3A4" },
       marginBottom: 10,
     },
   },
@@ -216,11 +214,15 @@ export default function SimulatorHistory({ rows }) {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
+      <Grid item xs={12} sm={6} md={2.5} lg={2}>
         <Workbook
           filename="Tabla-de-Amortización.xlsx"
           element={
-            <MDButton variant="text" size="medium">
+            <MDButton
+              variant="text"
+              size="medium"
+              sx={{ background: "#688C29", "&:hover": { background: "#808D68" } }}
+            >
               Excel
             </MDButton>
           }
@@ -234,13 +236,23 @@ export default function SimulatorHistory({ rows }) {
           ))}
         </Workbook>
       </Grid>
-      <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
-        <MDButton variant="text" size="medium" onClick={handleGeneratedPDF}>
+      <Grid item xs={12} sm={6} md={2.5} lg={2}>
+        <MDButton
+          variant="text"
+          size="medium"
+          onClick={handleGeneratedPDF}
+          sx={{ background: "#961515", "&:hover": { background: "#954242" } }}
+        >
           PDF
         </MDButton>
       </Grid>
-      <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
-        <MDButton variant="text" size="medium" onClick={handlePrintPDF}>
+      <Grid item xs={12} sm={6} md={2.5} lg={2}>
+        <MDButton
+          variant="text"
+          size="medium"
+          onClick={handlePrintPDF}
+          sx={{ background: "#434343", "&:hover": { background: "#5A5A5A" } }}
+        >
           Descargar
         </MDButton>
       </Grid>
