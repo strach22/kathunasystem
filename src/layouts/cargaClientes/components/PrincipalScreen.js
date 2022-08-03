@@ -11,8 +11,8 @@ import SavingHistoryScreen from "./SavingHistoryScreen";
 const useStyles = makeStyles({
   root: {
     "& .excel-import-container": {
-      padding: "25px",
-      margin: "40px 60px 60px 60px",
+      padding: "20px",
+      margin: "40px 35px 60px 35px",
       boxShadow: "0 0 20px rgba(66, 50, 98, 0.35)",
       border: "1px solid #eaeaea",
       borderRadius: "10px",
@@ -56,12 +56,20 @@ const useStyles = makeStyles({
       backgroundColor: "#e6fbff",
     },
     "& .excel-table-import": {
-      margin: "15px 0px",
+      margin: "5px 0px",
       maxHeight: "400px",
       overflowY: "scroll",
     },
-    "& .AlertDialog": {
-      margin: "10px 0px 0px 60px",
+    // Button
+    "& .MuiButton-outlined": {
+      width: "100%",
+      margin: "10px 0px 0px 0px",
+    },
+    // Button
+    "& .MuiButton-contained": {
+      height: "10px",
+      width: "90%",
+      marginBottom: 20,
     },
     // Alert
     "& .MuiPaper-root": {
@@ -85,7 +93,7 @@ export default function PrincipalScreen() {
   };
 
   return (
-    <MDBox pt={6} pb={3} mx={15}>
+    <MDBox pt={6} pb={3} mx={4}>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
@@ -104,11 +112,13 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3} className={classes.root}>
-              <div className="AlertDialog">
-                <MDButton variant="outlined" color="info" onClick={handleClickOpen}>
-                  <InfoOutlinedIcon sx={{ marginRight: 1 }} />
-                  INFORMACIÓN IMPORTANTE
-                </MDButton>
+              <Grid container>
+                <Grid item xs={12} sm={6.3} md={4.5} lg={3.6} mx={4}>
+                  <MDButton variant="outlined" color="info" onClick={handleClickOpen}>
+                    <InfoOutlinedIcon sx={{ marginRight: 1 }} />
+                    INFORMACIÓN IMPORTANTE
+                  </MDButton>
+                </Grid>
                 <Dialog onClose={handleClose} open={open} sx={{ background: "#B2C6C6" }}>
                   <DialogTitle onClose={handleClose}>INSTRUCCIONES</DialogTitle>
                   <DialogContent dividers>
@@ -142,12 +152,12 @@ export default function PrincipalScreen() {
                     </MDButton>
                   </DialogActions>
                 </Dialog>
-              </div>
-
+              </Grid>
               <UploadClientsScreen />
             </MDBox>
           </Card>
         </Grid>
+
         <Grid item xs={12}>
           <Card>
             <MDBox

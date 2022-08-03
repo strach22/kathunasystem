@@ -10,11 +10,11 @@ import ArticleIcon from "@mui/icons-material/Article";
 export default function ExcelExport({ filename = "", worksheets = [], handleUpload }) {
   return (
     <Grid container>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={6} md={5} lg={4}>
         <Workbook
           filename={filename}
           element={
-            <MDButton color="success" sx={{ marginBottom: "20px", width: "80%", height: "10px" }}>
+            <MDButton color="success">
               <ArticleIcon color="dark" fontSize="large" sx={{ marginRight: 1 }} />
               Descargar Plantilla
             </MDButton>
@@ -30,8 +30,8 @@ export default function ExcelExport({ filename = "", worksheets = [], handleUplo
         </Workbook>
       </Grid>
 
-      <Grid item xs={4}>
-        <MDButton onClick={handleUpload} color="info" sx={{ width: "80%", height: "10px" }}>
+      <Grid item xs={12} sm={6} md={5} lg={4}>
+        <MDButton onClick={handleUpload} color="info">
           <UploadIcon color="dark" fontSize="large" sx={{ marginRight: 1 }} />
           SUBIR ARCHIVO
         </MDButton>

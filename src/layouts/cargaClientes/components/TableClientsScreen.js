@@ -44,15 +44,6 @@ export default function TableClientsScreen({ worksheets }) {
 
         for (let i = 0; i < data.length; i += 1) {
           const id = clients.length + i + 1;
-          // const [birthYear, birthMonth, birthNowDate] = value[7].split("/");
-          // const [creationYear, creationMonth, creationNowDate] = value[8].split("/");
-
-          // const newBirthYear = parseInt(birthYear, 10);
-          // const newBirthMonth = parseInt(birthMonth, 10);
-          // const newBirthNowDate = parseInt(birthNowDate, 10);
-          // const newCreationYear = parseInt(creationYear, 10);
-          // const newCreationMonth = parseInt(creationMonth, 10);
-          // const newCreationNowDate = parseInt(creationNowDate, 10);
 
           const dataBaseTempo = {
             id: String(id),
@@ -63,8 +54,6 @@ export default function TableClientsScreen({ worksheets }) {
             secondMobile: !data[i][4] ? "" : String(data[i][4]),
             tariff: data[i][5],
             civil: data[i][6],
-            // birthDate: new Date(newBirthYear, newBirthMonth - 1, newBirthNowDate, 12),
-            // creationDate: new Date(newCreationYear, newCreationMonth - 1, newCreationNowDate, 12),
             birthDate: data[i][7],
             creationDate: data[i][8],
             address: data[i][9],
@@ -111,7 +100,7 @@ export default function TableClientsScreen({ worksheets }) {
 
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
-        {loading && <MDTypography>Cargando ... El proceso puede tardar unos segundos</MDTypography>}
+        {loading && <MDTypography>Cargando... El proceso puede tardar unos segundos</MDTypography>}
       </Grid>
       <div className="excel-table-import">
         <OutTable data={state.rows} columns={state.cols} tableClassName="excel-table" />
