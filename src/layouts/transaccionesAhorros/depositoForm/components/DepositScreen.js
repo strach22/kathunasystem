@@ -158,6 +158,7 @@ export default function DepositScreen() {
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
           />
         </Grid>
+
         <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <Link to="/transacciones-ahorros">
             <MDButton
@@ -170,9 +171,11 @@ export default function DepositScreen() {
             </MDButton>
           </Link>
         </Grid>
+
         <Grid item xs={0} sm={0.4}>
           {}
         </Grid>
+
         <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <MDButton
             variant="text"

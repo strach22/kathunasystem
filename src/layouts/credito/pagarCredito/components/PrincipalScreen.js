@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Grid } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MonthlyPaymentHistory from "layouts/credito/verCarpeta/components/MonthlyPaymentHistory";
@@ -9,18 +8,7 @@ import InfoScreenSecond from "layouts/credito/helpers/InfoScreenSecond";
 import ClientsContext from "context/Clients/ClientsContext";
 import MonthlyPayment from "./MonthlyPayment";
 
-const useStyles = makeStyles({
-  root: {
-    "& .css-1f19gdh": {
-      margin: "30px",
-      padding: "24px",
-    },
-  },
-});
-
 export default function PrincipalScreen() {
-  const classes = useStyles();
-
   const { clients } = useContext(ClientsContext);
   const id = useMemo(() => useParams().id, []);
 
@@ -30,8 +18,8 @@ export default function PrincipalScreen() {
   const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   return (
-    <MDBox pt={6} pb={3} mx={15}>
-      <Grid container spacing={6} className={classes.root}>
+    <MDBox pt={6} pb={3} mx={4}>
+      <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
             <MDBox
@@ -69,7 +57,7 @@ export default function PrincipalScreen() {
                 Pago Mensual de Cuota
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox pt={1} mx={5} mb={3}>
               <MonthlyPayment i={i} i2={i2} />
             </MDBox>
           </Card>

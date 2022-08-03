@@ -11,7 +11,7 @@ import InputValue from "elements/InputValue";
 import SelectG from "elements/SelectG";
 import TextArea from "elements/TextArea";
 import * as ConstDate from "elements/data/ConstDate";
-import FormSecundary from "layouts/credito/helpers/FormSecundary";
+import Form from "layouts/transaccionesAhorros/helpers/Form";
 
 // eslint-disable-next-line react/prop-types
 export default function MonthlyPayment({ i, i2 }) {
@@ -41,12 +41,6 @@ export default function MonthlyPayment({ i, i2 }) {
   const { clients, updateClients, sbNotification, controlInfo, uploadControlInfo } =
     useContext(ClientsContext);
   const navigate = useNavigate();
-  // const { id } = useParams();
-
-  // const [idC, idF] = id.split("-");
-
-  // const i = clients.map((e) => e.id).indexOf(idC);
-  // const i2 = clients[i].credits.map((e) => e.id).indexOf(idF);
 
   const { values, errors, setErrors, handleInputChange, resetForm } = useForm(
     {
@@ -104,7 +98,7 @@ export default function MonthlyPayment({ i, i2 }) {
   };
 
   return (
-    <FormSecundary onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Grid container>
         {read === "true" && (
           <Grid item xs={12}>
@@ -113,7 +107,7 @@ export default function MonthlyPayment({ i, i2 }) {
             </Alert>
           </Grid>
         )}
-        <Grid item xs={5.5}>
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha de Pago:
           </MDTypography>
@@ -124,7 +118,12 @@ export default function MonthlyPayment({ i, i2 }) {
             onChange={handleInputChange}
           />
         </Grid>
-        <Grid item xs={6.5}>
+
+        <Grid item xs={0} md={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Forma de Pago:
           </MDTypography>
@@ -138,7 +137,8 @@ export default function MonthlyPayment({ i, i2 }) {
             read={read}
           />
         </Grid>
-        <Grid item xs={5.5}>
+
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Valor a Pagar:
           </MDTypography>
@@ -153,7 +153,12 @@ export default function MonthlyPayment({ i, i2 }) {
             read={read}
           />
         </Grid>
-        <Grid item xs={6.5}>
+
+        <Grid item xs={0} md={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} md={6} lg={7}>
           <MDTypography className="Subtitles" variant="h5">
             Observaciones:
           </MDTypography>
@@ -166,7 +171,8 @@ export default function MonthlyPayment({ i, i2 }) {
             placeholder="Si existe alguna observación, puede ingresarla  en este apartado"
           />
         </Grid>
-        <Grid item xs={12} lg={11}>
+
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <Link to="/creditos">
             <MDButton
               size="large"
@@ -177,6 +183,13 @@ export default function MonthlyPayment({ i, i2 }) {
               REGRESAR
             </MDButton>
           </Link>
+        </Grid>
+
+        <Grid item xs={0} sm={0.4}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           {clients[i].credits[i2].state === "Entregado" && (
             <MDButton
               variant="text"
@@ -189,6 +202,6 @@ export default function MonthlyPayment({ i, i2 }) {
           )}
         </Grid>
       </Grid>
-    </FormSecundary>
+    </Form>
   );
 }
