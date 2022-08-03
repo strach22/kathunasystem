@@ -197,6 +197,7 @@ export default function TableHistoryScreen({ worksheets }) {
         <MDTypography variant="h5" sx={{ marginBottom: 2 }}>
           CARGAR HISTORIAL DE AHORROS DEL CLIENTE
         </MDTypography>
+
         <ExcelExport
           filename="Historial-de-Ahorros.xlsx"
           worksheets={worksheets}
@@ -207,7 +208,7 @@ export default function TableHistoryScreen({ worksheets }) {
 
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
-        {loading && <MDTypography>Cargando ... El proceso puede tardar unos segundos</MDTypography>}
+        {loading && <MDTypography>Cargando... El proceso puede tardar unos segundos</MDTypography>}
         {invalidState.invalidIdentification.length > 0 && (
           <div>
             <Alert severity="warning">
