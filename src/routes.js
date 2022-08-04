@@ -15,7 +15,6 @@ import HistorialG from "layouts/gastos/historialGastos/gastos";
 import HistorialI from "layouts/gastos/historialGastos/ingresos";
 import AprobarCreditos from "layouts/aprobarCreditos";
 import Control from "layouts/control";
-import Reports from "layouts/reportes";
 import InfoClientes from "layouts/clientes/infoClients";
 import DepositoForm from "layouts/transaccionesAhorros/depositoForm";
 import RetiroForm from "layouts/transaccionesAhorros/retiroForm";
@@ -149,14 +148,6 @@ const routes = [
     icon: <Icon fontSize="small">check</Icon>,
     route: "/aprobar-creditos",
     component: <AprobarCreditos />,
-  },
-  {
-    type: "collapse",
-    name: "Reportes",
-    key: "reportes",
-    icon: <Icon fontSize="small">assessment</Icon>,
-    route: "/reports",
-    component: <Reports />,
   },
   {
     type: "collapse",

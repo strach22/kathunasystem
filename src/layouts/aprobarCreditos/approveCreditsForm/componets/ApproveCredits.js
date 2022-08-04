@@ -27,12 +27,13 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .OkBottom": {
-      width: "80%",
-      marginTop: "40px",
+      width: "100%",
+      marginBottom: 10,
     },
     // Input Password
     "& .outlined-password-input": {
-      width: "85%",
+      width: "100%",
+      marginBottom: 10,
     },
     // Label Input Password
     "& #outlined-password-input-label": {
@@ -41,15 +42,15 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .BottomVerification": {
-      width: "50%",
+      width: "100%",
       background: "#357ABB",
       "&:hover": { background: "#5499C7" },
     },
     // Alert
     "& .MuiPaper-root": {
       width: "100%",
-      marginTop: "30px",
       borderRadius: 8,
+      marginBottom: 40,
     },
   },
 });
@@ -230,7 +231,7 @@ export default function ApproveCredits() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12}>
+      <Grid item xs={12} mb={4}>
         <DataTable
           table={{ columns, rows }}
           isSorted
@@ -240,45 +241,59 @@ export default function ApproveCredits() {
           defaultEntries={5}
         />
       </Grid>
-      <Grid item xs={2}>
-        <Link to="/aprobar-creditos">
+
+      <Grid container mx={3} mb={2}>
+        <Grid item xs={12} sm={5.85} md={3} lg={2.2}>
+          <Link to="/aprobar-creditos">
+            <MDButton
+              className="OkBottom"
+              variant="text"
+              size="large"
+              sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+            >
+              REGRESAR
+            </MDButton>
+          </Link>
+        </Grid>
+
+        <Grid item xs={0} sm={0.3}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={5.85} md={3} lg={2.2}>
           <MDButton
             className="OkBottom"
             variant="text"
             size="large"
-            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+            onClick={handleEdit}
+            sx={{ background: "#D5923B", "&:hover": { background: "#D5AE7A" } }}
           >
-            REGRESAR
+            EDITAR
           </MDButton>
-        </Link>
-      </Grid>
-      <Grid item xs={2}>
-        <MDButton
-          className="OkBottom"
-          variant="text"
-          size="large"
-          onClick={handleEdit}
-          sx={{ background: "#53B74B", "&:hover": { background: "#8CBC89" } }}
-        >
-          EDITAR
-        </MDButton>
-      </Grid>
-      <Grid item xs={2}>
-        <MDButton
-          className="OkBottom"
-          variant="text"
-          size="large"
-          onClick={handleSubmit}
-          sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-        >
-          GUARDAR
-        </MDButton>
+        </Grid>
+
+        <Grid item xs={0} md={0.3}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={5.85} md={3} lg={2.2}>
+          <MDButton
+            className="OkBottom"
+            variant="text"
+            size="large"
+            onClick={handleSubmit}
+            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+          >
+            GUARDAR
+          </MDButton>
+        </Grid>
       </Grid>
       {verification && (
         <Grid item xs={12}>
           <MDBox
             mx={5}
-            mt={7}
+            mt={1}
+            mb={5}
             py={4}
             px={3}
             variant="gradient"
@@ -287,7 +302,7 @@ export default function ApproveCredits() {
             sx={{ background: "#F2F4F2" }}
           >
             <Grid container>
-              <Grid item xs={5}>
+              <Grid item xs={12} md={5} lg={4}>
                 <InputPassword
                   label="Password"
                   name="nameVerification"
@@ -296,7 +311,10 @@ export default function ApproveCredits() {
                   error={errorNow}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={0} md={1}>
+                {}
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
                 <MDButton
                   className="BottomVerification"
                   variant="text"
@@ -311,7 +329,7 @@ export default function ApproveCredits() {
         </Grid>
       )}
       {values.read === "false" && (
-        <Grid item xs={12}>
+        <Grid item xs={12} mx={3}>
           <Alert severity="success">Puede Editar el Estado del Crédito</Alert>
         </Grid>
       )}
