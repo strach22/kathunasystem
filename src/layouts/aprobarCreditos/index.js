@@ -2,7 +2,6 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import { makeStyles } from "@mui/styles";
 import MDBox from "components/MDBox";
 import { Card, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
@@ -11,24 +10,14 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import clientes from "./tables/tableCreditApproval";
 
-const useStyles = makeStyles({
-  root: {
-    "& .css-1f19gdh": {
-      margin: "30px",
-      padding: "24px",
-    },
-  },
-});
-
 function AprobarCreditos() {
-  const classes = useStyles();
   const { columns, rows } = clientes();
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={6} pb={3} mx={15}>
-        <Grid container spacing={6} className={classes.root}>
+      <MDBox pt={6} pb={3} mx={4}>
+        <Grid container>
           <Grid item xs={12}>
             <Card>
               <MDBox
