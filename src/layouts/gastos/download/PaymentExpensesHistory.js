@@ -12,8 +12,8 @@ const useStyles = makeStyles({
   root: {
     // Button
     "& .MuiButton-root": {
-      marginBottom: "20px",
-      marginRight: "1px",
+      width: "100%",
+      marginBottom: 10,
     },
   },
 });
@@ -204,42 +204,50 @@ export default function PaymentExpensesHistory({ rows }) {
 
   return (
     <Grid container className={classes.root}>
-      <Workbook
-        filename="Historial-de-Gastos.xlsx"
-        element={
-          <MDButton
-            variant="text"
-            size="medium"
-            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-          >
-            Excel
-          </MDButton>
-        }
-      >
-        {worksheets.map(({ name, columns, data }) => (
-          <Workbook.Sheet name={name} data={data}>
-            {columns.map(({ label, value }) => (
-              <Workbook.Column label={label} value={value} />
-            ))}
-          </Workbook.Sheet>
-        ))}
-      </Workbook>
-      <MDButton
-        variant="text"
-        size="medium"
-        onClick={handleGeneratedPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-      >
-        PDF
-      </MDButton>
-      <MDButton
-        variant="text"
-        size="medium"
-        onClick={handlePrintPDF}
-        sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
-      >
-        Descargar
-      </MDButton>
+      <Grid item xs={12} sm={6} md={2.5} lg={2}>
+        <Workbook
+          filename="Historial-de-Gastos.xlsx"
+          element={
+            <MDButton
+              variant="text"
+              size="medium"
+              sx={{ background: "#688C29", "&:hover": { background: "#808D68" } }}
+            >
+              Excel
+            </MDButton>
+          }
+        >
+          {worksheets.map(({ name, columns, data }) => (
+            <Workbook.Sheet name={name} data={data}>
+              {columns.map(({ label, value }) => (
+                <Workbook.Column label={label} value={value} />
+              ))}
+            </Workbook.Sheet>
+          ))}
+        </Workbook>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={2.5} lg={2}>
+        <MDButton
+          variant="text"
+          size="medium"
+          onClick={handleGeneratedPDF}
+          sx={{ background: "#961515", "&:hover": { background: "#954242" } }}
+        >
+          PDF
+        </MDButton>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={2.5} lg={2}>
+        <MDButton
+          variant="text"
+          size="medium"
+          onClick={handlePrintPDF}
+          sx={{ background: "#434343", "&:hover": { background: "#5A5A5A" } }}
+        >
+          Descargar
+        </MDButton>
+      </Grid>
     </Grid>
   );
 }

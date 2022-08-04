@@ -236,6 +236,7 @@ export default function SimulatorHistory({ rows }) {
           ))}
         </Workbook>
       </Grid>
+
       <Grid item xs={12} sm={6} md={2.5} lg={2}>
         <MDButton
           variant="text"
@@ -246,6 +247,7 @@ export default function SimulatorHistory({ rows }) {
           PDF
         </MDButton>
       </Grid>
+
       <Grid item xs={12} sm={6} md={2.5} lg={2}>
         <MDButton
           variant="text"
