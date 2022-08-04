@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     // Label
     "& .Subtitles": {
       color: "black",
+      marginBottom: 10,
     },
     // Label
     "& .Subtitles2": {
@@ -26,8 +27,8 @@ const useStyles = makeStyles({
     },
     // Input
     "& .Input-outlined-allPages": {
-      width: "90%",
-      marginBottom: "30px",
+      width: "100%",
+      marginBottom: 25,
     },
     //  Label Input
     "& .MuiOutlinedInput-input": {
@@ -43,12 +44,13 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .OkBottom": {
-      width: "80%",
-      marginTop: "30px",
+      width: "100%",
+      marginBottom: 10,
     },
     // Input Password
     "& .outlined-password-input": {
-      width: "85%",
+      width: "100%",
+      marginBottom: 10,
     },
     // Label Input Password
     "& #outlined-password-input-label": {
@@ -57,15 +59,16 @@ const useStyles = makeStyles({
     },
     // Buttons
     "& .BottomVerification": {
-      width: "50%",
+      width: "100%",
       background: "#357ABB",
       "&:hover": { background: "#5499C7" },
     },
     // Alert
     "& .MuiPaper-root": {
       width: "100%",
-      marginTop: "30px",
       borderRadius: 8,
+      marginBottom: 30,
+      marginTop: 15,
     },
   },
 });

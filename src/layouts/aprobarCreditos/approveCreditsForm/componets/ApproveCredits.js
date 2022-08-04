@@ -266,7 +266,7 @@ export default function ApproveCredits() {
             variant="text"
             size="large"
             onClick={handleEdit}
-            sx={{ background: "#D5923B", "&:hover": { background: "#D5AE7A" } }}
+            sx={{ background: "#688C29", "&:hover": { background: "#808D68" } }}
           >
             EDITAR
           </MDButton>

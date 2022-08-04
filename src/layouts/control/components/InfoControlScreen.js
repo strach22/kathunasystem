@@ -117,12 +117,15 @@ export default function InfoControlScreen() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             Nombre de la Caja de Ahorros
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="Caja de Ahorro"
             name="nameBank"
@@ -132,12 +135,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             SLOGAN
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="SLOGAN"
             name="nameSlogan"
@@ -147,12 +153,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             Ubicación
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="Ubicación"
             name="nameLocation"
@@ -162,12 +171,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             Representante Legal
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="Representante Legal"
             name="legalRepresentative"
@@ -177,12 +189,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             E-mail
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="correo@mail.com"
             name="email"
@@ -193,12 +208,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             RUC
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="RUC"
             name="ruc"
@@ -209,12 +227,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             Teléfono
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Input
             label="Teléfono"
             name="mobile"
@@ -225,12 +246,15 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3.5}>
+        <Grid item xs={12} md={3.5}>
           <MDTypography className="Subtitles" variant="h6">
             Ciudad, País
           </MDTypography>
         </Grid>
-        <Grid item xs={8.5}>
+        <Grid item xs={0} md={0.5}>
+          {}
+        </Grid>
+        <Grid item xs={12} md={8} mb={4}>
           <Input
             label="Ciudad"
             name="city"
@@ -240,19 +264,23 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <MDButton
             className="OkBottom"
             variant="text"
             size="large"
             onClick={handleEdit}
-            sx={{ background: "#53B74B", "&:hover": { background: "#8CBC89" } }}
+            sx={{ background: "#688C29", "&:hover": { background: "#808D68" } }}
           >
             EDITAR
           </MDButton>
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={0} sm={0.4}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <MDButton
             className="OkBottom"
             variant="text"
@@ -268,7 +296,8 @@ export default function InfoControlScreen() {
           <Grid item xs={12}>
             <MDBox
               mx={5}
-              mt={7}
+              mt={1}
+              mb={5}
               py={4}
               px={3}
               variant="gradient"
@@ -277,7 +306,7 @@ export default function InfoControlScreen() {
               sx={{ background: "#F2F4F2" }}
             >
               <Grid container>
-                <Grid item xs={5}>
+                <Grid item xs={12} md={5} lg={4}>
                   <InputPassword
                     label="Password"
                     name="nameVerification"
@@ -286,7 +315,10 @@ export default function InfoControlScreen() {
                     error={errorNow}
                   />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={0} md={1}>
+                  {}
+                </Grid>
+                <Grid item xs={12} md={4} lg={3}>
                   <MDButton
                     className="BottomVerification"
                     variant="text"
@@ -301,7 +333,7 @@ export default function InfoControlScreen() {
           </Grid>
         )}
         {read === "false" && (
-          <Grid item xs={12}>
+          <Grid item xs={12} mx={3}>
             <Alert severity="success">Puede Editar el Nombre de la Caja de Ahorros</Alert>
           </Grid>
         )}
