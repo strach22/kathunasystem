@@ -165,13 +165,15 @@ export default function ControlScreen() {
           </MDTypography>
         </Grid>
 
-        <Grid item xs={2.9}>
+        <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Clientes Particulares
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
             className="InputInterest"
             name="particularSavingInterest"
@@ -184,13 +186,19 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={1.7}>
+        <Grid item xs={0} md={0.6} lg={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={4.5} md={2} lg={1.7}>
           <MDTypography className="Subtitles2" variant="h6">
             Socios
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
             className="InputInterest"
             name="partnerSavingInterest"
@@ -203,16 +211,15 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={2.9}>
-          <MDTypography className="Subtitles2" variant="h6" sx={{ marginTop: "25px" }}>
-            Periodo en días para
-          </MDTypography>
+        <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
-            Empiezar Interés
+            Inicio de interés (días)
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7} sx={{ marginTop: "25px" }}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
             className="InputInterest"
             name="timeSavingInterest"
@@ -226,7 +233,7 @@ export default function ControlScreen() {
         </Grid>
 
         <Grid item xs={12}>
-          <MDTypography className="title2" variant="h5">
+          <MDTypography className="title" variant="h5">
             INTERÉS PARA CRÉDITOS
           </MDTypography>
         </Grid>

@@ -8,13 +8,7 @@ const useStyles = makeStyles({
     // Label title
     "& .title": {
       color: "black",
-      marginBottom: "30px",
-    },
-    // Label title
-    "& .title2": {
-      color: "black",
-      marginBottom: "30px",
-      marginTop: "40px",
+      marginBottom: 30,
     },
     // Label
     "& .Subtitles": {
@@ -24,6 +18,7 @@ const useStyles = makeStyles({
     // Label
     "& .Subtitles2": {
       color: "gray",
+      marginBottom: 10,
     },
     // Input
     "& .Input-outlined-allPages": {
@@ -36,7 +31,8 @@ const useStyles = makeStyles({
     },
     //  Input Value
     "& .InputInterest": {
-      width: "50%",
+      width: "100%",
+      marginBottom: 25,
     },
     // End Adornet Input Value
     "& .css-8l5fgy-MuiTypography-root": {

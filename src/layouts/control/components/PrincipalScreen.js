@@ -46,7 +46,7 @@ export default function PrincipalScreen() {
                 Control de Variables
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox pt={4} mx={4} mb={3}>
               <ControlScreen />
             </MDBox>
           </Card>
