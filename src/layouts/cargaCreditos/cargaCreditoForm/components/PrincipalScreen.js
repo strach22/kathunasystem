@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Card, Dialog, DialogActions, DialogContent, DialogTitle, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -12,8 +12,8 @@ import UploadCreditScreen from "./UploadCreditScreen";
 const useStyles = makeStyles({
   root: {
     "& .excel-import-container": {
-      padding: "25px",
-      margin: "40px 60px 60px 60px",
+      padding: "20px",
+      margin: "40px 35px 60px 35px",
       boxShadow: "0 0 20px rgba(66, 50, 98, 0.35)",
       border: "1px solid #eaeaea",
       borderRadius: "10px",
@@ -61,28 +61,32 @@ const useStyles = makeStyles({
       maxHeight: "400px",
       overflowY: "scroll",
     },
-    "& .AlertDialog": {
-      margin: "10px 0px 0px 60px",
+    // Button
+    "& .MuiButton-outlined": {
+      width: "100%",
+      margin: "10px 0px 0px 0px",
+    },
+    // Button
+    "& .MuiButton-contained": {
+      height: "10px",
+      width: "90%",
+      marginBottom: 20,
     },
     // Label
     "& .Subtitles": {
       marginBottom: "15px",
-      color: "#585858",
-    },
-    // Label
-    "& .Subtitles2": {
-      margin: "30px 0px 15px 0px",
+      marginTop: "20px",
       color: "#585858",
     },
     // NumericInput
     "& .MuiInputBase-adornedStart": {
       width: "100%",
-      fontSize: "80%",
+      fontSize: "100%",
     },
     // NumericInput
     "& .interestValueClass": {
       width: "100%",
-      fontSize: "80%",
+      fontSize: "100%",
     },
     // Calendario
     "& .MuiTextField-root": {
@@ -91,6 +95,7 @@ const useStyles = makeStyles({
     // Selector
     "& .MuiFormControl-fullWidth": {
       width: "100%",
+      marginBottom: 50,
     },
     // Label Selector
     "& .css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root": {
@@ -99,7 +104,6 @@ const useStyles = makeStyles({
     },
     // Selector
     "& #demo-simple-select": {
-      width: "100%",
       height: 46,
       marginLeft: "10px",
     },
@@ -122,10 +126,10 @@ export default function PrincipalScreen() {
 
   const getInfo = (category, info) => (
     <Grid container paddingLeft={3}>
-      <Grid item xs={6.8}>
+      <Grid item xs={12} md={6.8}>
         <MDTypography variant="h5">{category}</MDTypography>
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={12} md={5}>
         <MDTypography fontWeight="regular" variant="h5">
           {info}
         </MDTypography>
@@ -142,7 +146,7 @@ export default function PrincipalScreen() {
   };
 
   return (
-    <MDBox pt={6} pb={3} mx={15}>
+    <MDBox pt={6} pb={3} mx={4}>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
@@ -160,13 +164,20 @@ export default function PrincipalScreen() {
                 Datos del cliente
               </MDTypography>
             </MDBox>
-            <MDBox pt={3} sx={{ margin: "30px", padding: "24px" }}>
-              <Grid container spacing={3}>
-                <Grid item xs={11}>
+            <MDBox pt={3} mt={1} mb={6} mx={5}>
+              <Grid container>
+                <Grid item xs={12}>
                   <MDBox coloredShadow="secondary" pb={2}>
-                    <MDTypography padding={2} variant="h4" sx={{ textAlign: "center" }}>
-                      Cliente # {idC}
-                    </MDTypography>
+                    <Link to={`/clientes/${id}`}>
+                      <MDTypography
+                        padding={2}
+                        color="info"
+                        variant="h4"
+                        sx={{ textAlign: "center" }}
+                      >
+                        Cliente # {idC}
+                      </MDTypography>
+                    </Link>
                     {getInfo("Nombres:", clients[i].firstName)}
                     {getInfo("Apellidos:", clients[i].lastName)}
                     {getInfo("Documento de Identidad:", clients[i].identification)}
@@ -177,6 +188,7 @@ export default function PrincipalScreen() {
             </MDBox>
           </Card>
         </Grid>
+
         <Grid item xs={12}>
           <Card>
             <MDBox
@@ -194,11 +206,13 @@ export default function PrincipalScreen() {
               </MDTypography>
             </MDBox>
             <MDBox pt={3} className={classes.root}>
-              <div className="AlertDialog">
-                <MDButton variant="outlined" color="info" onClick={handleClickOpen}>
-                  <InfoOutlinedIcon sx={{ marginRight: 1 }} />
-                  INFORMACIÓN IMPORTANTE
-                </MDButton>
+              <Grid container>
+                <Grid item xs={12} sm={6.3} md={4.5} lg={3.6} mx={4}>
+                  <MDButton variant="outlined" color="info" onClick={handleClickOpen}>
+                    <InfoOutlinedIcon sx={{ marginRight: 1 }} />
+                    INFORMACIÓN IMPORTANTE
+                  </MDButton>
+                </Grid>
                 <Dialog onClose={handleClose} open={open} sx={{ background: "#B2C6C6" }}>
                   <DialogTitle onClose={handleClose}>INSTRUCCIONES</DialogTitle>
                   <DialogContent dividers>
@@ -229,7 +243,7 @@ export default function PrincipalScreen() {
                     </MDButton>
                   </DialogActions>
                 </Dialog>
-              </div>
+              </Grid>
 
               <UploadCreditScreen />
             </MDBox>

@@ -153,6 +153,7 @@ export default function PrincipalScreen() {
                   </DialogActions>
                 </Dialog>
               </Grid>
+
               <UploadClientsScreen />
             </MDBox>
           </Card>

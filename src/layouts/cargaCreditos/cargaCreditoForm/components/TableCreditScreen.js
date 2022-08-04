@@ -191,8 +191,6 @@ export default function TableCreditScreen({ worksheets }) {
                   creditHistory: dataBase,
                 };
 
-                console.log(credit);
-
                 addClientCredit(id, credit);
                 navigate("/creditos");
               } else {
@@ -256,29 +254,14 @@ export default function TableCreditScreen({ worksheets }) {
   return (
     <div className="excel-import-container">
       <div className="file-upload">
-        <MDTypography variant="h5" sx={{ marginBottom: 2 }}>
-          CARGAR CREDITO DEL CLIENTE
-        </MDTypography>
+        <MDTypography variant="h5">CARGAR CREDITO DEL CLIENTE</MDTypography>
 
         <form onSubmit={handleUpload}>
           <Grid container>
-            <Grid item xs={3.38}>
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
               <MDTypography className="Subtitles" variant="h5">
                 Número de Carpeta:
               </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              {}
-            </Grid>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles" variant="h5">
-                Fecha del Crédito:
-              </MDTypography>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid item xs={3.38}>
               <InputValue
                 className="InputId"
                 name="id"
@@ -289,10 +272,15 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
-            <Grid item xs={2}>
+
+            <Grid item xs={0} md={1.5}>
               {}
             </Grid>
-            <Grid item xs={3.38}>
+
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
+                Fecha del Crédito:
+              </MDTypography>
               <DatePickerH
                 name="initialDate"
                 label="Fecha del Crédito"
@@ -300,26 +288,11 @@ export default function TableCreditScreen({ worksheets }) {
                 onChange={handleInputChange}
               />
             </Grid>
-          </Grid>
 
-          <Grid container>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
                 Valor del Crédito:
               </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              {}
-            </Grid>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
-                Cuotas:
-              </MDTypography>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid item xs={3.38}>
               <InputValue
                 className="InputLoanValue"
                 name="loanValue"
@@ -330,10 +303,15 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
-            <Grid item xs={2}>
+
+            <Grid item xs={0} md={1.5}>
               {}
             </Grid>
-            <Grid item xs={3.38}>
+
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
+                Cuotas:
+              </MDTypography>
               <InputValue
                 className="InputLoanValue"
                 name="periods"
@@ -344,26 +322,11 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
-          </Grid>
 
-          <Grid container>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
                 Deuda Pendiente:
               </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              {}
-            </Grid>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
-                Valor del Pago Mensual:
-              </MDTypography>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid item xs={3.38}>
               <InputValue
                 className="InputLoanValue"
                 name="actualLoan"
@@ -374,10 +337,15 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
-            <Grid item xs={2}>
+
+            <Grid item xs={0} md={1.5}>
               {}
             </Grid>
-            <Grid item xs={3.38}>
+
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
+                Valor del Pago Mensual:
+              </MDTypography>
               <InputValue
                 className="InputLoanValue"
                 name="monthlyPayment"
@@ -388,26 +356,11 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
-          </Grid>
 
-          <Grid container>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
                 Encaje Bancario:
               </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              {}
-            </Grid>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
-                Garante:
-              </MDTypography>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid item xs={3.38}>
               <InputValue
                 className="InputLoanValue"
                 name="reserve"
@@ -418,31 +371,15 @@ export default function TableCreditScreen({ worksheets }) {
                 position="start"
               />
             </Grid>
-            <Grid item xs={2}>
+
+            <Grid item xs={0} md={1.5}>
               {}
             </Grid>
-            <Grid item xs={5.62}>
-              <SelectG
-                name="guarantor"
-                label="Garante"
-                value={values.guarantor}
-                onChange={handleInputChange}
-                options={values.auxGuarantor}
-                error={errors.guarantor}
-              />
-            </Grid>
-          </Grid>
 
-          <Grid container>
-            <Grid item xs={3.38}>
-              <MDTypography className="Subtitles2" variant="h5">
+            <Grid item xs={12} sm={7} md={5} lg={4.5}>
+              <MDTypography className="Subtitles" variant="h5">
                 Interés:
               </MDTypography>
-            </Grid>
-          </Grid>
-
-          <Grid container sx={{ marginBottom: "40px" }}>
-            <Grid item xs={3.38}>
               <InputValue
                 className="interestValueClass"
                 name="interest"
@@ -451,6 +388,20 @@ export default function TableCreditScreen({ worksheets }) {
                 error={errors.interest}
                 icon="%"
                 position="end"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={7} md={6} lg={5.5}>
+              <MDTypography className="Subtitles" variant="h5">
+                Garante:
+              </MDTypography>
+              <SelectG
+                name="guarantor"
+                label="Garante"
+                value={values.guarantor}
+                onChange={handleInputChange}
+                options={values.auxGuarantor}
+                error={errors.guarantor}
               />
             </Grid>
           </Grid>
@@ -466,7 +417,7 @@ export default function TableCreditScreen({ worksheets }) {
 
       <Grid container sx={{ marginTop: "3%" }}>
         {loading && <CircularProgress disableShrink color="inherit" sx={{ marginRight: "2%" }} />}
-        {loading && <MDTypography>Cargando ...</MDTypography>}
+        {loading && <MDTypography>Cargando...</MDTypography>}
         {invalidState.invalidFolder && (
           <Alert severity="error">
             La carpeta número <b>{values.id}</b> ya existe. Por favor, cambie de valor y vuelva a
