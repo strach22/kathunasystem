@@ -1,24 +1,13 @@
-import { makeStyles } from "@mui/styles";
 import { Card, Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import AddExpense from "./AddExpense";
 import AddIncome from "./AddIncome";
 
-const useStyles = makeStyles({
-  root: {
-    "& .css-1f19gdh": {
-      margin: "30px",
-      padding: "24px",
-    },
-  },
-});
-
 export default function PrincipalScreen() {
-  const classes = useStyles();
   return (
-    <MDBox pt={6} pb={3} mx={15}>
-      <Grid container spacing={6} className={classes.root}>
+    <MDBox pt={6} pb={3} mx={4}>
+      <Grid container spacing={6}>
         <Grid item xs={12}>
           <Card>
             <MDBox
@@ -35,7 +24,7 @@ export default function PrincipalScreen() {
                 Agregar Gasto
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox pt={1} mx={5} mb={3}>
               <AddExpense />
             </MDBox>
           </Card>
@@ -56,7 +45,7 @@ export default function PrincipalScreen() {
                 Agregar Ingreso
               </MDTypography>
             </MDBox>
-            <MDBox pt={3}>
+            <MDBox pt={1} mx={5} mb={3}>
               <AddIncome />
             </MDBox>
           </Card>

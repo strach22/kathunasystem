@@ -8,7 +8,7 @@ import DatePickerH from "elements/DatePickerH";
 import InputValue from "elements/InputValue";
 import TextArea from "elements/TextArea";
 import useForm from "elements/hooks/useForm";
-import Form from "../helpers/Form";
+import Form from "layouts/transaccionesAhorros/helpers/Form";
 
 import ClientsContext from "../../../context/Clients/ClientsContext";
 
@@ -86,12 +86,16 @@ export default function AddExpense() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={4}>
+        {verification === "true" && (
+          <Grid item xs={12}>
+            <Alert severity="error">Debe ingresar un valor y/o la razón del gasto</Alert>
+          </Grid>
+        )}
+
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Fecha del Gasto:
           </MDTypography>
-        </Grid>
-        <Grid item xs={8}>
           <DatePickerH
             name="expenseDate"
             label="Fecha del gasto"
@@ -99,7 +103,12 @@ export default function AddExpense() {
             onChange={handleInputChange}
           />
         </Grid>
-        <Grid item xs={5}>
+
+        <Grid item xs={0} md={1} lg={1.5}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={7} md={5} lg={4}>
           <MDTypography className="Subtitles" variant="h5">
             Valor del Gasto:
           </MDTypography>
@@ -113,7 +122,8 @@ export default function AddExpense() {
             position="start"
           />
         </Grid>
-        <Grid item xs={7}>
+
+        <Grid item xs={12} md={11} lg={9.5}>
           <MDTypography className="Subtitles" variant="h5">
             Razón:
           </MDTypography>
@@ -126,20 +136,21 @@ export default function AddExpense() {
             placeholder="Razón del Gasto"
           />
         </Grid>
-        {verification === "true" && (
-          <Grid item xs={12}>
-            <Alert severity="error">Debe ingresar un valor y/o la razón del gasto</Alert>
-          </Grid>
-        )}
-        <Grid item xs={12} lg={11}>
+
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <MDButton
             variant="text"
             size="large"
             onClick={() => navigate("/historial-gastos")}
-            sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
+            sx={{ background: "#277F7F", "&:hover": { background: "#678989" } }}
           >
             Historial
           </MDButton>
+        </Grid>
+        <Grid item xs={0} sm={0.4}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={5.8} md={4} lg={3}>
           <MDButton
             variant="text"
             size="large"
