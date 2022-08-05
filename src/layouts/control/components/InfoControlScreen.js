@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Alert, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
@@ -12,12 +13,18 @@ import ClientsContext from "context/Clients/ClientsContext";
 import Form from "layouts/control/helpers/Form";
 
 export default function InfoControlScreen() {
-  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
+  const { controlInfo, uploadControlInfo, sbNotification } = useContext(ClientsContext);
+
   const errorValues = {
     nameVerification: "Colocar Contraseña",
+    nameBank: "",
+    nameSlogan: "",
+    nameLocation: "",
+    legalRepresentative: "",
     email: "",
     ruc: "",
     mobile: "",
+    city: "",
   };
 
   // eslint-disable-next-line consistent-return
@@ -27,6 +34,18 @@ export default function InfoControlScreen() {
     if ("nameVerification" in fieldValues)
       tempo.nameVerification =
         fieldValues.nameVerification === "123" ? "" : "La Contraseña es Incorrecta";
+    if ("nameBank" in fieldValues)
+      tempo.nameBank = fieldValues.nameBank ? "" : "Este campo es obligatorio llenar";
+    if ("nameSlogan" in fieldValues)
+      tempo.nameSlogan = fieldValues.nameSlogan ? "" : "Este campo es obligatorio llenar";
+    if ("nameLocation" in fieldValues)
+      tempo.nameLocation = fieldValues.nameLocation ? "" : "Este campo es obligatorio llenar";
+    if ("city" in fieldValues)
+      tempo.city = fieldValues.city ? "" : "Este campo es obligatorio llenar";
+    if ("legalRepresentative" in fieldValues)
+      tempo.legalRepresentative = fieldValues.legalRepresentative
+        ? ""
+        : "Este campo es obligatorio llenar";
     if ("email" in fieldValues)
       tempo.email = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
         fieldValues.email
@@ -64,28 +83,48 @@ export default function InfoControlScreen() {
     errorValues
   );
 
+  const navigate = useNavigate();
   const [read, setRead] = useState("true");
   const [verification, setVerification] = useState(false);
   const [errorNow, setErrorNow] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (errors.email !== "La dirección de email no es válido") {
-      if (errors.ruc !== "Este campo es obligatorio llenar con 13 dígitos") {
-        if (errors.mobile !== "Este campo es obligatorio llenar con 10 dígitos") {
-          setRead("true");
-          errors.nameVerification = "Colocar Contraseña";
-          const newControlInfo = controlInfo;
-          newControlInfo.nameBank = values.nameBank;
-          newControlInfo.nameSlogan = values.nameSlogan;
-          newControlInfo.nameLocation = values.nameLocation;
-          newControlInfo.legalRepresentative = values.legalRepresentative;
-          newControlInfo.email = values.email;
-          newControlInfo.ruc = values.ruc;
-          newControlInfo.mobile = values.mobile;
-          newControlInfo.city = values.city;
-          uploadControlInfo(newControlInfo);
-        }
+
+    if (read === "false") {
+      const auxVerification = Object.keys(errors).map((key) => {
+        if (key === "nameVerification") return true;
+        if (errors[key] === "La dirección de email no es válido") return false;
+        if (errors[key] === "Este campo es obligatorio llenar con 13 dígitos") return false;
+        if (errors[key] === "Este campo es obligatorio llenar con 10 dígitos") return false;
+        if (errors[key] === "Este campo es obligatorio llenar") return false;
+        return true;
+      });
+
+      const auxValidation = auxVerification.filter((key) => key === false);
+
+      if (auxValidation.length === 0) {
+        setRead("true");
+        errors.nameVerification = "Colocar Contraseña";
+        const newControlInfo = controlInfo;
+        newControlInfo.nameBank = values.nameBank;
+        newControlInfo.nameSlogan = values.nameSlogan;
+        newControlInfo.nameLocation = values.nameLocation;
+        newControlInfo.legalRepresentative = values.legalRepresentative;
+        newControlInfo.email = values.email;
+        newControlInfo.ruc = values.ruc;
+        newControlInfo.mobile = values.mobile;
+        newControlInfo.city = values.city;
+        uploadControlInfo(newControlInfo);
+
+        sbNotification({
+          color: "info",
+          icon: "check",
+          tittle: "Información General",
+          content: "Cambios realizados satisfactoriamente!!",
+        });
+
+        navigate("/inicio");
       }
     }
   };
@@ -131,6 +170,7 @@ export default function InfoControlScreen() {
             name="nameBank"
             value={values.nameBank}
             onChange={handleInputChange}
+            error={errors.nameBank}
             read={read}
           />
         </Grid>
@@ -149,6 +189,7 @@ export default function InfoControlScreen() {
             name="nameSlogan"
             value={values.nameSlogan}
             onChange={handleInputChange}
+            error={errors.nameSlogan}
             read={read}
           />
         </Grid>
@@ -167,6 +208,7 @@ export default function InfoControlScreen() {
             name="nameLocation"
             value={values.nameLocation}
             onChange={handleInputChange}
+            error={errors.nameLocation}
             read={read}
           />
         </Grid>
@@ -185,6 +227,7 @@ export default function InfoControlScreen() {
             name="legalRepresentative"
             value={values.legalRepresentative}
             onChange={handleInputChange}
+            error={errors.legalRepresentative}
             read={read}
           />
         </Grid>
@@ -260,6 +303,7 @@ export default function InfoControlScreen() {
             name="city"
             value={values.city}
             onChange={handleInputChange}
+            error={errors.city}
             read={read}
           />
         </Grid>

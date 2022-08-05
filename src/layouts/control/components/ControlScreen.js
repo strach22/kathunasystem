@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Alert, Grid } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
@@ -12,7 +13,7 @@ import ClientsContext from "context/Clients/ClientsContext";
 import Form from "layouts/control/helpers/Form";
 
 export default function ControlScreen() {
-  const { controlInfo, uploadControlInfo } = useContext(ClientsContext);
+  const { controlInfo, uploadControlInfo, sbNotification } = useContext(ClientsContext);
   const errorValues = {
     nameVerification: "Colocar Contraseña",
     partnerCreditInterest: "",
@@ -98,6 +99,7 @@ export default function ControlScreen() {
     errorValues
   );
 
+  const navigate = useNavigate();
   const [read, setRead] = useState("true");
   const [verification, setVerification] = useState(false);
   const [errorNow, setErrorNow] = useState("");
@@ -105,30 +107,41 @@ export default function ControlScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const auxVerification = Object.keys(errors).map((key) => {
-      if (key === "nameVerification") return true;
-      if (errors[key] === "Verifique el formato") return false;
-      return true;
-    });
+    if (read === "false") {
+      const auxVerification = Object.keys(errors).map((key) => {
+        if (key === "nameVerification") return true;
+        if (errors[key] === "Verifique el formato") return false;
+        return true;
+      });
 
-    const auxValidation = auxVerification.filter((key) => key === false);
+      const auxValidation = auxVerification.filter((key) => key === false);
 
-    if (auxValidation.length === 0) {
-      setRead("true");
-      errors.nameVerification = "Colocar Contraseña";
+      if (auxValidation.length === 0) {
+        setRead("true");
+        errors.nameVerification = "Colocar Contraseña";
 
-      const newControlInfo = controlInfo;
-      newControlInfo.particularSavingInterest = parseFloat(values.particularSavingInterest, 10);
-      newControlInfo.particularCreditInterest = parseFloat(values.particularCreditInterest, 10);
-      newControlInfo.partnerSavingInterest = parseFloat(values.partnerSavingInterest, 10);
-      newControlInfo.partnerCreditInterest = parseFloat(values.partnerCreditInterest, 10);
-      newControlInfo.desgravament = parseFloat(values.desgravament, 10);
-      newControlInfo.latePayment = parseFloat(values.latePayment, 10);
-      newControlInfo.proofPaymentValue = values.proofPaymentValue;
-      newControlInfo.timeSavingInterest = values.timeSavingInterest;
-      newControlInfo.reserveInterest = parseFloat(values.reserveInterest, 10);
+        const newControlInfo = controlInfo;
+        newControlInfo.particularSavingInterest = parseFloat(values.particularSavingInterest, 10);
+        newControlInfo.particularCreditInterest = parseFloat(values.particularCreditInterest, 10);
+        newControlInfo.partnerSavingInterest = parseFloat(values.partnerSavingInterest, 10);
+        newControlInfo.partnerCreditInterest = parseFloat(values.partnerCreditInterest, 10);
+        newControlInfo.desgravament = parseFloat(values.desgravament, 10);
+        newControlInfo.latePayment = parseFloat(values.latePayment, 10);
+        newControlInfo.proofPaymentValue = values.proofPaymentValue;
+        newControlInfo.timeSavingInterest = values.timeSavingInterest;
+        newControlInfo.reserveInterest = parseFloat(values.reserveInterest, 10);
 
-      uploadControlInfo(newControlInfo);
+        uploadControlInfo(newControlInfo);
+
+        sbNotification({
+          color: "info",
+          icon: "check",
+          tittle: "Control de Variables",
+          content: "Cambios realizados satisfactoriamente!!",
+        });
+
+        navigate("/inicio");
+      }
     }
   };
 
