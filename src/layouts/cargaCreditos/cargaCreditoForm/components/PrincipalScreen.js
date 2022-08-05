@@ -103,7 +103,7 @@ const useStyles = makeStyles({
     },
     // Selector
     "& #demo-simple-select": {
-      height: 55,
+      height: 46,
       marginLeft: "10px",
     },
     // Alert
