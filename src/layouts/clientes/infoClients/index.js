@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import MDButton from "components/MDButton";
@@ -35,6 +35,7 @@ function infoClients() {
   const classes = useStyles();
   const { clients, editClient } = useContext(ClientsContext);
   const id = useMemo(() => useParams().id, []);
+  const navigate = useNavigate();
 
   const i = clients.map((e) => e.id).indexOf(id);
   const { columns, rows } = historial();
@@ -51,6 +52,10 @@ function infoClients() {
       </Grid>
     </Grid>
   );
+
+  const handleReturn = () => {
+    navigate(-1);
+  };
 
   return (
     <DashboardLayout>
@@ -122,8 +127,7 @@ function infoClients() {
                   <MDButton
                     size="large"
                     variant="text"
-                    component={Link}
-                    to="/clientes"
+                    onClick={handleReturn}
                     sx={{ background: "#7B809A", "&:hover": { background: "#99A3A4" } }}
                   >
                     REGRESAR
@@ -145,34 +149,36 @@ function infoClients() {
             </Card>
           </Grid>
 
-          <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h5" color="white">
-                  Historial Estado de Cuenta Ahorros
-                </MDTypography>
-              </MDBox>
-              <MDBox coloredShadow="secondary" pt={3} pb={2}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted
-                  showTotalEntries={false}
-                  noEndBorder
-                  entriesPerPage={false}
-                  defaultEntries={5}
-                />
-              </MDBox>
-            </Card>
-          </Grid>
+          {clients[i].savingHistory.length && (
+            <Grid item xs={12}>
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="info"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h5" color="white">
+                    Historial Estado de Cuenta Ahorros
+                  </MDTypography>
+                </MDBox>
+                <MDBox coloredShadow="secondary" pt={3} pb={2}>
+                  <DataTable
+                    table={{ columns, rows }}
+                    isSorted
+                    showTotalEntries={false}
+                    noEndBorder
+                    entriesPerPage={false}
+                    defaultEntries={5}
+                  />
+                </MDBox>
+              </Card>
+            </Grid>
+          )}
         </Grid>
       </MDBox>
 

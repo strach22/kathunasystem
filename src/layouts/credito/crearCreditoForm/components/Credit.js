@@ -175,7 +175,7 @@ export default function Credit() {
             Tiempo a Pagar:
           </MDTypography>
           <Grid container>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={5.5} xl={5}>
               <InputValue
                 name="timePayYear"
                 value={values.timePayYear}
@@ -186,7 +186,10 @@ export default function Credit() {
                 read=""
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={0} sm={0.5}>
+              {}
+            </Grid>
+            <Grid item xs={12} sm={5.5} xl={5}>
               <InputValue
                 name="timePayMonth"
                 value={values.timePayMonth}

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     },
     // NumericInput
     "& .css-1nrlq1o-MuiFormControl-root": {
-      "& .MuiInputBase-adornedEnd": { width: "90%", fontSize: "80%" },
+      "& .MuiInputBase-adornedEnd": { width: "100%", fontSize: "80%" },
     },
     // Selector
     "& .MuiFormControl-fullWidth": {
