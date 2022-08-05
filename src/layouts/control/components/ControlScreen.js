@@ -238,13 +238,15 @@ export default function ControlScreen() {
           </MDTypography>
         </Grid>
 
-        <Grid item xs={2.9}>
+        <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Clientes Particulares
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
             className="InputInterest"
             name="particularCreditInterest"
@@ -257,13 +259,19 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={1.7}>
+        <Grid item xs={0} md={0.6} lg={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={4.5} md={2} lg={1.7}>
           <MDTypography className="Subtitles2" variant="h6">
             Socios
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
             className="InputInterest"
             name="partnerCreditInterest"
@@ -277,18 +285,20 @@ export default function ControlScreen() {
         </Grid>
 
         <Grid item xs={12}>
-          <MDTypography className="title2" variant="h5">
+          <MDTypography className="title" variant="h5">
             INTERÉS VARIOS
           </MDTypography>
         </Grid>
 
-        <Grid item xs={2.9}>
+        <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Fondo Desgravament
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
             className="InputInterest"
             name="desgravament"
@@ -301,13 +311,19 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={1.7}>
+        <Grid item xs={0} md={0.6} lg={1}>
+          {}
+        </Grid>
+
+        <Grid item xs={12} sm={4.5} md={2} lg={1.7}>
           <MDTypography className="Subtitles2" variant="h6">
             Interés Encaje
           </MDTypography>
         </Grid>
-
-        <Grid item xs={3.7}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
             className="InputInterest"
             name="reserveInterest"
@@ -320,13 +336,15 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={2.9} sx={{ marginTop: "25px" }}>
+        <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Interés por Mora
           </MDTypography>
         </Grid>
-
-        <Grid item xs={9} sx={{ marginTop: "25px" }}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
             className="InputInterest"
             name="latePayment"
@@ -340,18 +358,20 @@ export default function ControlScreen() {
         </Grid>
 
         <Grid item xs={12}>
-          <MDTypography className="title2" variant="h5">
+          <MDTypography className="title" variant="h5">
             COMPROBANTES DE PAGO
           </MDTypography>
         </Grid>
 
-        <Grid item xs={2.9} sx={{ marginBottom: "60px" }}>
+        <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
           <MDTypography className="Subtitles2" variant="h6">
             Último Valor de Factura
           </MDTypography>
         </Grid>
-
-        <Grid item xs={9}>
+        <Grid item xs={0} sm={0.5} md={0.1} lg={0.2}>
+          {}
+        </Grid>
+        <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
             className="InputInterest"
             name="proofPaymentValue"
@@ -364,35 +384,42 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={3}>
-          <MDButton
-            className="OkBottom"
-            variant="text"
-            size="large"
-            onClick={handleEdit}
-            sx={{ background: "#53B74B", "&:hover": { background: "#8CBC89" } }}
-          >
-            EDITAR
-          </MDButton>
-        </Grid>
+        <Grid container>
+          <Grid item xs={12} sm={5.8} md={4} lg={3}>
+            <MDButton
+              className="OkBottom"
+              variant="text"
+              size="large"
+              onClick={handleEdit}
+              sx={{ background: "#688C29", "&:hover": { background: "#808D68" } }}
+            >
+              EDITAR
+            </MDButton>
+          </Grid>
 
-        <Grid item xs={3}>
-          <MDButton
-            className="OkBottom"
-            variant="text"
-            size="large"
-            type="submit"
-            sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
-          >
-            GUARDAR
-          </MDButton>
+          <Grid item xs={0} sm={0.4}>
+            {}
+          </Grid>
+
+          <Grid item xs={12} sm={5.8} md={4} lg={3}>
+            <MDButton
+              className="OkBottom"
+              variant="text"
+              size="large"
+              type="submit"
+              sx={{ background: "#1A73E8", "&:hover": { background: "#5499C7" } }}
+            >
+              GUARDAR
+            </MDButton>
+          </Grid>
         </Grid>
 
         {verification && (
           <Grid item xs={12}>
             <MDBox
               mx={5}
-              mt={7}
+              mt={1}
+              mb={5}
               py={4}
               px={3}
               variant="gradient"
@@ -401,7 +428,7 @@ export default function ControlScreen() {
               sx={{ background: "#F2F4F2" }}
             >
               <Grid container>
-                <Grid item xs={5}>
+                <Grid item xs={12} md={5} lg={4}>
                   <InputPassword
                     label="Password"
                     name="nameVerification"
@@ -410,7 +437,10 @@ export default function ControlScreen() {
                     error={errorNow}
                   />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={0} md={1}>
+                  {}
+                </Grid>
+                <Grid item xs={12} md={4} lg={3}>
                   <MDButton
                     className="BottomVerification"
                     variant="text"
@@ -425,7 +455,7 @@ export default function ControlScreen() {
           </Grid>
         )}
         {read === "false" && (
-          <Grid item xs={12}>
+          <Grid item xs={12} mx={3}>
             <Alert severity="success">Puede Editar el porcentaje de interés</Alert>
           </Grid>
         )}
