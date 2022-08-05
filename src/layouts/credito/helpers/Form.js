@@ -21,9 +21,8 @@ const useStyles = makeStyles({
       fontSize: "80%",
     },
     // NumericInput
-    "& .InputTimeValue": {
-      width: "90%",
-      fontSize: "80%",
+    "& .css-1nrlq1o-MuiFormControl-root": {
+      "& .MuiInputBase-adornedEnd": { width: "90%", fontSize: "80%" },
     },
     // Selector
     "& .MuiFormControl-fullWidth": {

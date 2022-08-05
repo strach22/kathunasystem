@@ -29,10 +29,6 @@ const useStyles = makeStyles({
     "& .MuiOutlinedInput-input": {
       fontSize: "110%",
     },
-    //  Input Value
-    "& .InputInterest": {
-      width: "100%",
-    },
     // End Adornet Input Value
     "& .css-8l5fgy-MuiTypography-root": {
       fontSize: "130%",

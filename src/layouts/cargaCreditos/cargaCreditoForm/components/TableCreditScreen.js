@@ -263,13 +263,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Número de Carpeta:
               </MDTypography>
               <InputValue
-                className="InputId"
                 name="id"
                 value={values.id}
                 onChange={handleInputChange}
                 error={errors.id}
                 icon="#"
                 position="start"
+                read=""
               />
             </Grid>
 
@@ -294,13 +294,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Valor del Crédito:
               </MDTypography>
               <InputValue
-                className="InputLoanValue"
                 name="loanValue"
                 value={values.loanValue}
                 onChange={handleInputChange}
                 error={errors.loanValue}
                 icon="$"
                 position="start"
+                read=""
               />
             </Grid>
 
@@ -313,13 +313,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Cuotas:
               </MDTypography>
               <InputValue
-                className="InputLoanValue"
                 name="periods"
                 value={values.periods}
                 onChange={handleInputChange}
                 error={errors.periods}
                 icon="#"
                 position="start"
+                read=""
               />
             </Grid>
 
@@ -328,13 +328,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Deuda Pendiente:
               </MDTypography>
               <InputValue
-                className="InputLoanValue"
                 name="actualLoan"
                 value={values.actualLoan}
                 onChange={handleInputChange}
                 error={errors.actualLoan}
                 icon="$"
                 position="start"
+                read=""
               />
             </Grid>
 
@@ -347,13 +347,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Valor del Pago Mensual:
               </MDTypography>
               <InputValue
-                className="InputLoanValue"
                 name="monthlyPayment"
                 value={values.monthlyPayment}
                 onChange={handleInputChange}
                 error={errors.monthlyPayment}
                 icon="$"
                 position="start"
+                read=""
               />
             </Grid>
 
@@ -362,13 +362,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Encaje Bancario:
               </MDTypography>
               <InputValue
-                className="InputLoanValue"
                 name="reserve"
                 value={values.reserve}
                 onChange={handleInputChange}
                 error={errors.reserve}
                 icon="$"
                 position="start"
+                read=""
               />
             </Grid>
 
@@ -381,13 +381,13 @@ export default function TableCreditScreen({ worksheets }) {
                 Interés:
               </MDTypography>
               <InputValue
-                className="interestValueClass"
                 name="interest"
                 value={values.interest}
                 onChange={handleInputChange}
                 error={errors.interest}
                 icon="%"
                 position="end"
+                read=""
               />
             </Grid>
 

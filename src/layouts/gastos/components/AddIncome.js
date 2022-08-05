@@ -113,13 +113,13 @@ export default function AddIncome() {
             Valor del Ingreso:
           </MDTypography>
           <InputValue
-            className="InputIncomeValue"
             name="incomeValue"
             value={values.incomeValue}
             onChange={handleInputChange}
             error={errors.incomeValue}
             icon="$"
             position="start"
+            read=""
           />
         </Grid>
 

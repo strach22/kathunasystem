@@ -113,13 +113,13 @@ export default function AddExpense() {
             Valor del Gasto:
           </MDTypography>
           <InputValue
-            className="InputExpenseValue"
             name="expenseValue"
             value={values.expenseValue}
             onChange={handleInputChange}
             error={errors.expenseValue}
             icon="$"
             position="start"
+            read=""
           />
         </Grid>
 

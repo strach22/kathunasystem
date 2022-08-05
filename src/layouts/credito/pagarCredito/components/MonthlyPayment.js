@@ -143,7 +143,6 @@ export default function MonthlyPayment({ i, i2, idC }) {
             Valor a Pagar:
           </MDTypography>
           <InputValue
-            className="InputDepositValue"
             name="value"
             value={values.value}
             onChange={handleInputChange}

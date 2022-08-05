@@ -188,7 +188,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
-            className="InputInterest"
             name="particularSavingInterest"
             value={values.particularSavingInterest}
             onChange={handleInputChange}
@@ -213,7 +212,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
-            className="InputInterest"
             name="partnerSavingInterest"
             value={values.partnerSavingInterest}
             onChange={handleInputChange}
@@ -238,7 +236,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
-            className="InputInterest"
             name="timeSavingInterest"
             value={values.timeSavingInterest}
             onChange={handleInputChange}
@@ -265,7 +262,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
-            className="InputInterest"
             name="particularCreditInterest"
             value={values.particularCreditInterest}
             onChange={handleInputChange}
@@ -290,7 +286,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
-            className="InputInterest"
             name="partnerCreditInterest"
             value={values.partnerCreditInterest}
             onChange={handleInputChange}
@@ -317,7 +312,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
-            className="InputInterest"
             name="desgravament"
             value={values.desgravament}
             onChange={handleInputChange}
@@ -342,7 +336,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4}>
           <InputValue
-            className="InputInterest"
             name="reserveInterest"
             value={values.reserveInterest}
             onChange={handleInputChange}
@@ -367,7 +360,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
-            className="InputInterest"
             name="latePayment"
             value={values.latePayment}
             onChange={handleInputChange}
@@ -394,7 +386,6 @@ export default function ControlScreen() {
         </Grid>
         <Grid item xs={12} sm={7} md={3} lg={2.4} mb={3.5}>
           <InputValue
-            className="InputInterest"
             name="proofPaymentValue"
             value={values.proofPaymentValue}
             onChange={handleInputChange}

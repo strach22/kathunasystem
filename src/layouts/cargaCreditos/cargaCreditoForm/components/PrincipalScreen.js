@@ -84,7 +84,7 @@ const useStyles = makeStyles({
       fontSize: "100%",
     },
     // NumericInput
-    "& .interestValueClass": {
+    "& .MuiInputBase-adornedEnd": {
       width: "100%",
       fontSize: "100%",
     },
@@ -104,7 +104,7 @@ const useStyles = makeStyles({
     },
     // Selector
     "& #demo-simple-select": {
-      height: 46,
+      height: 55,
       marginLeft: "10px",
     },
     // Alert

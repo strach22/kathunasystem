@@ -155,13 +155,13 @@ export default function Credit() {
             Valor del Crédito:
           </MDTypography>
           <InputValue
-            className="InputLoanValue"
             name="loanValue"
             value={values.loanValue}
             onChange={handleInputChange}
             error={errors.loanValue}
             icon="$"
             position="start"
+            read=""
           />
         </Grid>
 
@@ -176,24 +176,24 @@ export default function Credit() {
           <Grid container>
             <Grid item xs={12} sm={6}>
               <InputValue
-                className="InputTimeValue"
                 name="timePayYear"
                 value={values.timePayYear}
                 onChange={handleInputChange}
                 error={errors.timePayYear}
                 icon="años"
                 position="end"
+                read=""
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <InputValue
-                className="InputTimeValue"
                 name="timePayMonth"
                 value={values.timePayMonth}
                 onChange={handleInputChange}
                 error={errors.timePayMonth}
                 icon="meses"
                 position="end"
+                read=""
               />
             </Grid>
           </Grid>

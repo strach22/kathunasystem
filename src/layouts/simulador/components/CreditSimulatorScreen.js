@@ -123,7 +123,6 @@ export default function CreditSimulatorScreen({ setParameters }) {
             Valor del Préstamo:
           </MDTypography>
           <InputValue
-            className="InputLoanValue"
             name="loanValue"
             value={values.loanValue}
             onChange={handleInputChange}
@@ -143,7 +142,6 @@ export default function CreditSimulatorScreen({ setParameters }) {
           <Grid container>
             <Grid item xs={12} sm={6}>
               <InputValue
-                className="InputTimeValue"
                 name="timePayYear"
                 value={values.timePayYear}
                 onChange={handleInputChange}
@@ -155,7 +153,6 @@ export default function CreditSimulatorScreen({ setParameters }) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <InputValue
-                className="InputTimeValue"
                 name="timePayMonth"
                 value={values.timePayMonth}
                 onChange={handleInputChange}

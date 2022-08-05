@@ -156,7 +156,7 @@ export default function InfoControlScreen() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             Nombre de la Caja de Ahorros
           </MDTypography>
@@ -175,7 +175,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             SLOGAN
           </MDTypography>
@@ -194,7 +194,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             Ubicación
           </MDTypography>
@@ -213,7 +213,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             Representante Legal
           </MDTypography>
@@ -232,7 +232,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             E-mail
           </MDTypography>
@@ -251,7 +251,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             RUC
           </MDTypography>
@@ -270,7 +270,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             Teléfono
           </MDTypography>
@@ -289,7 +289,7 @@ export default function InfoControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={12} md={3.5}>
+        <Grid item xs={12} md={3.5} xl={3}>
           <MDTypography className="Subtitles" variant="h6">
             Ciudad, País
           </MDTypography>
