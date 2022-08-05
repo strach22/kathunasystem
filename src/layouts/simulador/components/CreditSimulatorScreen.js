@@ -178,6 +178,7 @@ export default function CreditSimulatorScreen({ setParameters }) {
             onChange={handleInputChange}
             options={ConstDate.getTariffItems()}
             error={errors.tariff}
+            read=""
           />
         </Grid>
         <Grid item xs={0} md={1}>

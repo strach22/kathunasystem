@@ -147,6 +147,7 @@ export default function Credit() {
             onChange={handleInputChange}
             options={values.auxGuarantor}
             error={errors.guarantor}
+            read=""
           />
         </Grid>
 

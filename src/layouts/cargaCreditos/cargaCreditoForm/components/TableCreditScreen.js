@@ -402,6 +402,7 @@ export default function TableCreditScreen({ worksheets }) {
                 onChange={handleInputChange}
                 options={values.auxGuarantor}
                 error={errors.guarantor}
+                read=""
               />
             </Grid>
           </Grid>

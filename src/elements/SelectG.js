@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function SelectG(props) {
-  const { name, label, value, error = null, onChange, options, read } = props;
+  const { name, label, value, onChange, options, error = null, read } = props;
 
   return (
     <FormControl fullWidth>

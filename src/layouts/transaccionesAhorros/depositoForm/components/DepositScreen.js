@@ -122,6 +122,7 @@ export default function DepositScreen() {
             onChange={handleInputChange}
             options={ConstDate.getWaytoPay()}
             error={errors.paymentType}
+            read=""
           />
         </Grid>
 

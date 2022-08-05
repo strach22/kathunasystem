@@ -118,6 +118,7 @@ export default function FormList1(props) {
           onChange={handleInputChange}
           options={ConstDate.getTariffItems()}
           error={errTariff}
+          read=""
         />
       </Grid>
       <Grid item xs={12} md={6}>
@@ -128,6 +129,7 @@ export default function FormList1(props) {
           onChange={handleInputChange}
           options={ConstDate.getCivilStatus()}
           error={errCivil}
+          read=""
         />
       </Grid>
     </Grid>
