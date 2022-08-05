@@ -117,7 +117,7 @@ function infoClients() {
                   </MDBox>
                 </Grid>
               </MDBox>
-              <Grid container>
+              <Grid container mb={2}>
                 <Grid item xs={10} sm={4} md={3}>
                   <MDButton
                     size="large"

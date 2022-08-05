@@ -326,7 +326,7 @@ export default function FormScreen() {
                     RESETEAR
                   </MDButton>
                 </Grid>
-                <Grid item xs={10} sm={5.35} md={2.5} lg={2}>
+                <Grid item xs={10} sm={5.35} md={2.5} lg={2} mb={3}>
                   <MDButton
                     variant="text"
                     size="medium"
