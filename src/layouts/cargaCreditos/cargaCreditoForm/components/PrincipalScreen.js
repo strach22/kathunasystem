@@ -84,9 +84,8 @@ const useStyles = makeStyles({
       fontSize: "100%",
     },
     // NumericInput
-    "& .MuiInputBase-adornedEnd": {
-      width: "100%",
-      fontSize: "100%",
+    "& .css-1nrlq1o-MuiFormControl-root": {
+      "& .MuiInputBase-adornedEnd": { width: "100%", fontSize: "100%" },
     },
     // Calendario
     "& .MuiTextField-root": {
