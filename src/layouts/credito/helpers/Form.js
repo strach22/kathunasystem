@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     "& .InputTimeValue": {
       width: "90%",
       fontSize: "80%",
-      marginBottom: 10,
     },
     // Selector
     "& .MuiFormControl-fullWidth": {

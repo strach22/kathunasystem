@@ -199,7 +199,7 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={0} md={0.6} lg={1}>
+        <Grid item xs={0} md={0.6} lg={1} mb={9}>
           {}
         </Grid>
 
@@ -222,6 +222,10 @@ export default function ControlScreen() {
             position="end"
             read={read}
           />
+        </Grid>
+
+        <Grid item xs={0} mb={9}>
+          {}
         </Grid>
 
         <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
@@ -272,7 +276,7 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={0} md={0.6} lg={1}>
+        <Grid item xs={0} md={0.6} lg={1} mb={9}>
           {}
         </Grid>
 
@@ -324,7 +328,7 @@ export default function ControlScreen() {
           />
         </Grid>
 
-        <Grid item xs={0} md={0.6} lg={1}>
+        <Grid item xs={0} md={0.6} lg={1} mb={9}>
           {}
         </Grid>
 
@@ -347,6 +351,10 @@ export default function ControlScreen() {
             position="end"
             read={read}
           />
+        </Grid>
+
+        <Grid item xs={0} mb={9}>
+          {}
         </Grid>
 
         <Grid item xs={12} sm={4.5} md={3.2} lg={2.9}>
